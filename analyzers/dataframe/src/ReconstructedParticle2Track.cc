@@ -242,6 +242,36 @@ namespace ReconstructedParticle2Track{
   }
 
 
+
+
+
+
+
+ROOT::VecOps::RVec<float> 
+getRP2TRK_mom(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in,  
+	      ROOT::VecOps::RVec<edm4hep::TrackState> tracks) {
+  ROOT::VecOps::RVec<float> result;
+  for (auto & p: in) {
+    if (p.tracks_begin<tracks.size())
+      result.push_back(VertexingUtils::get_trackMom(tracks.at(p.tracks_begin)));
+    else result.push_back(std::nan(""));
+  }
+  return result;
+}
+
+ROOT::VecOps::RVec<float> 
+getRP2TRK_charge(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in,  
+		 ROOT::VecOps::RVec<edm4hep::TrackState> tracks) {
+  ROOT::VecOps::RVec<float> result;
+  for (auto & p: in) {
+    if (p.tracks_begin<tracks.size())
+      result.push_back(p.charge);
+    else result.push_back(std::nan(""));
+  }
+  return result;
+}
+
+>>>>>>> c34b863c3 (adding the implementation of LCFIPlus vertexing module and the necessary funtions to exploit vertex properties in VertexingUtils)
 ROOT::VecOps::RVec<float>
 getRP2TRK_D0(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in,
              ROOT::VecOps::RVec<edm4hep::TrackState> tracks) {
