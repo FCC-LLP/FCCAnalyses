@@ -1,25 +1,41 @@
 #Mandatory: List of processes
 processList = {
+
+        #centrally-produced backgrounds
         'p8_ee_Zee_ecm91':{'chunks':100},
         'p8_ee_Zbb_ecm91':{'chunks':100},
         'p8_ee_Ztautau_ecm91':{'chunks':100},
         'p8_ee_Zuds_ecm91':{'chunks':100},
         'p8_ee_Zcc_ecm91':{'chunks':100},
 
+        #privately-produced signals
+        #'eenu_30GeV_1p41e-6Ve':{},
+        #'eenu_50GeV_1p41e-6Ve':{},
+        #'eenu_70GeV_1p41e-6Ve':{},
+        #'eenu_90GeV_1p41e-6Ve':{},
+
         #test
-        #'p8_ee_Zuds_ecm91':{'fraction':0.000001},
+        #'p8_ee_Zee_ecm91':{'fraction':0.000001},
         #'p8_ee_Zuds_ecm91':{'chunks':10,'fraction':0.000001},
 }
 
-#Mandatory: Production tag when running over EDM4Hep centrally produced events, this points to the yaml files for getting sample statistics
+#Production tag. This points to the yaml files for getting sample statistics
+#Mandatory when running over EDM4Hep centrally produced events
+#Comment out when running over privately produced events
 prodTag     = "FCCee/spring2021/IDEA/"
 
+#Input directory
+#Comment out when running over centrally produced events
+#Mandatory when running over privately produced events
+#inputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNLs/HNL_eenu_MadgraphPythiaDelphes"
+
+
 #Optional: output directory, default is local dir
-outputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNLs/"
+outputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNLs/output_stage1/"
 #outputDir = "/eos/user/j/jalimena/FCCeeLLP/"
 #outputDir = "output_stage1/"
 
-outputDirEos = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNLs/"
+outputDirEos = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNLs/output_stage1/"
 #outputDirEos = "/eos/user/j/jalimena/FCCeeLLP/"
 #eosType = "eosuser"
 
