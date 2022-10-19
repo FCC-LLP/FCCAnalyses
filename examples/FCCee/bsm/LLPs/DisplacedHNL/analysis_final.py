@@ -1,5 +1,5 @@
 #Input directory where the files produced at the stage1 level are
-inputDir  = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNLs/"
+inputDir  = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNLs/output_stage1"
 #inputDir = "/eos/user/j/jalimena/FCCeeLLP/"
 #inputDir = "output_stage1/"
 
@@ -17,11 +17,19 @@ outputDir  = "output_finalSel/"
 
 processList = {
     #run over the full statistics from stage1
+
+    #backgrounds
     'p8_ee_Zee_ecm91':{},
     'p8_ee_Ztautau_ecm91':{},
     'p8_ee_Zbb_ecm91':{},
     'p8_ee_Zcc_ecm91':{},
     'p8_ee_Zuds_ecm91':{},
+
+    #signals
+    'eenu_30GeV_1p41e-6Ve':{},
+    'eenu_50GeV_1p41e-6Ve':{},
+    'eenu_70GeV_1p41e-6Ve':{},
+    'eenu_90GeV_1p41e-6Ve':{},
 }
 
 #Link to the dictonary that contains all the cross section information etc...
@@ -30,6 +38,10 @@ procDict = "FCCee_procDict_spring2021_IDEA.json"
 #Add MySample_p8_ee_ZH_ecm240 as it is not an offical process
 procDictAdd={
     #"MySample_p8_ee_ZH_ecm240":{"numberOfEvents": 10000000, "sumOfWeights": 10000000, "crossSection": 0.201868, "kfactor": 1.0, "matchingEfficiency": 1.0}
+    "eenu_30GeV_1p41e-6Ve": {"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 6.638e-10, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    "eenu_50GeV_1p41e-6Ve": {"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 4.535e-10, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    "eenu_70GeV_1p41e-6Ve": {"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 1.968e-10, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    "eenu_90GeV_1p41e-6Ve": {"numberOfEvents": 50000, "sumOfWeights": 50000, "crossSection": 1.749e-12, "kfactor": 1.0, "matchingEfficiency": 1.0},
 }
 
 #Number of CPUs to use
