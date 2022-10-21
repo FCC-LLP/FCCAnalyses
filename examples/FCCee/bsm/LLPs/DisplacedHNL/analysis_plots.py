@@ -191,9 +191,9 @@ colors['eenu_50GeV_1p41e-6Ve'] = ROOT.kRed
 colors['eenu_70GeV_1p41e-6Ve'] = ROOT.kBlue
 colors['eenu_90GeV_1p41e-6Ve'] = ROOT.kGreen+1
 
-colors['Zbb'] = ROOT.kAzure-4
-colors['Zcc'] = ROOT.kCyan-9
-colors['Zuds'] = ROOT.kViolet-4
+#colors['Zbb'] = ROOT.kAzure-4
+#colors['Zcc'] = ROOT.kCyan-9
+#colors['Zuds'] = ROOT.kViolet-4
 colors['Ztautau'] = ROOT.kRed-3
 colors['Zee'] = ROOT.kGray+2
 
@@ -226,9 +226,9 @@ legend['eenu_50GeV_1p41e-6Ve'] = 'm_{N} = 50 GeV, V_{e} = 1.41e-6'
 legend['eenu_70GeV_1p41e-6Ve'] = 'm_{N} = 70 GeV, V_{e} = 1.41e-6'
 legend['eenu_90GeV_1p41e-6Ve'] = 'm_{N} = 90 GeV, V_{e} = 1.41e-6'
 
-legend['Zbb'] = 'e^{+}e^{-} #rightarrow Z #rightarrow bb'
-legend['Zcc'] = 'e^{+}e^{-} #rightarrow Z #rightarrow cc'
-legend['Zuds'] = 'e^{+}e^{-} #rightarrow Z #rightarrow uds'
+#legend['Zbb'] = 'e^{+}e^{-} #rightarrow Z #rightarrow bb'
+#legend['Zcc'] = 'e^{+}e^{-} #rightarrow Z #rightarrow cc'
+#legend['Zuds'] = 'e^{+}e^{-} #rightarrow Z #rightarrow uds'
 legend['Ztautau'] = 'e^{+}e^{-} #rightarrow Z #rightarrow #tau#tau'
 legend['Zee'] = 'e^{+}e^{-} #rightarrow Z #rightarrow ee'
 #legend['Ztautau_spring2021'] = 'Z #rightarrow #tau#tau Spring2021'
