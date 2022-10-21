@@ -5,8 +5,8 @@ intLumi        = 150.0e+06 #in pb-1
 
 ###If scaleSig=0 or scaleBack=0, we don't apply any additional scaling, on top of the normalization to cross section and integrated luminosity, as defined in finalSel.py
 ###If scaleSig or scaleBack is not defined, plots will be normalized to 1
-scaleSig       = 0.
-scaleBack      = 0.
+#scaleSig       = 0.
+#scaleBack      = 0.
 ana_tex        = 'e^{+}e^{-} #rightarrow N #nu, N #rightarrow ee#nu'
 delphesVersion = '3.4.2'
 energy         = 91
@@ -181,28 +181,28 @@ extralabel['sel2RecoEle_vetoes_MissingEnergyGt10'] = "2 electrons; No muons, jet
 extralabel['sel2RecoEle_vetoes_MissingEnergyGt10_absD0Gt0p5'] = "2 electrons with |d_0|>0.5 mm; No muons, jets, or photons; Missing momentum > 10 GeV"
 
 colors = {}
-# colors['HNL_eenu_30GeV_1p41e-6Ve'] = ROOT.kOrange+1
-# colors['HNL_eenu_50GeV_1p41e-6Ve'] = ROOT.kRed
-# colors['HNL_eenu_70GeV_1p41e-6Ve'] = ROOT.kBlue
-# colors['HNL_eenu_90GeV_1p41e-6Ve'] = ROOT.kGreen+1
+colors['eenu_30GeV_1p41e-6Ve'] = ROOT.kOrange+1
+colors['eenu_50GeV_1p41e-6Ve'] = ROOT.kRed
+colors['eenu_70GeV_1p41e-6Ve'] = ROOT.kBlue
+colors['eenu_90GeV_1p41e-6Ve'] = ROOT.kGreen+1
 
-colors['Zbb'] = ROOT.kAzure-4
-colors['Zcc'] = ROOT.kCyan-9
-colors['Zuds'] = ROOT.kViolet-4
+#colors['Zbb'] = ROOT.kAzure-4
+#colors['Zcc'] = ROOT.kCyan-9
+#colors['Zuds'] = ROOT.kViolet-4
 colors['Ztautau'] = ROOT.kRed-3
 colors['Zee'] = ROOT.kGray+2
 
 plots = {}
 plots['HNL'] = {'signal':{
-                    # 'HNL_eenu_30GeV_1p41e-6Ve':['HNL_eenu_30GeV_1p41e-6Ve'],
-                    # 'HNL_eenu_50GeV_1p41e-6Ve':['HNL_eenu_50GeV_1p41e-6Ve'],
-                    # 'HNL_eenu_70GeV_1p41e-6Ve':['HNL_eenu_70GeV_1p41e-6Ve'],
-                    # 'HNL_eenu_90GeV_1p41e-6Ve':['HNL_eenu_90GeV_1p41e-6Ve'],
+                     'eenu_30GeV_1p41e-6Ve':['eenu_30GeV_1p41e-6Ve'],
+                     'eenu_50GeV_1p41e-6Ve':['eenu_50GeV_1p41e-6Ve'],
+                     'eenu_70GeV_1p41e-6Ve':['eenu_70GeV_1p41e-6Ve'],
+                     'eenu_90GeV_1p41e-6Ve':['eenu_90GeV_1p41e-6Ve'],
 },
                 'backgrounds':{
-                    'Zbb':['p8_ee_Zbb_ecm91'],
-                    'Zcc': ['p8_ee_Zcc_ecm91'],
-                    'Zuds': ['p8_ee_Zuds_ecm91'],
+                    #'Zbb':['p8_ee_Zbb_ecm91'],
+                    #'Zcc': ['p8_ee_Zcc_ecm91'],
+                    #'Zuds': ['p8_ee_Zuds_ecm91'],
                     'Ztautau': ['p8_ee_Ztautau_ecm91'],
                     'Zee':['p8_ee_Zee_ecm91'],
                 }
@@ -210,13 +210,13 @@ plots['HNL'] = {'signal':{
 
 
 legend = {}
-# legend['HNL_eenu_30GeV_1p41e-6Ve'] = 'm_{N} = 30 GeV, V_{e} = 1.41e-6'
-# legend['HNL_eenu_50GeV_1p41e-6Ve'] = 'm_{N} = 50 GeV, V_{e} = 1.41e-6'
-# legend['HNL_eenu_70GeV_1p41e-6Ve'] = 'm_{N} = 70 GeV, V_{e} = 1.41e-6'
-# legend['HNL_eenu_90GeV_1p41e-6Ve'] = 'm_{N} = 90 GeV, V_{e} = 1.41e-6'
+legend['eenu_30GeV_1p41e-6Ve'] = 'm_{N} = 30 GeV, V_{e} = 1.41e-6'
+legend['eenu_50GeV_1p41e-6Ve'] = 'm_{N} = 50 GeV, V_{e} = 1.41e-6'
+legend['eenu_70GeV_1p41e-6Ve'] = 'm_{N} = 70 GeV, V_{e} = 1.41e-6'
+legend['eenu_90GeV_1p41e-6Ve'] = 'm_{N} = 90 GeV, V_{e} = 1.41e-6'
 
-legend['Zbb'] = 'e^{+}e^{-} #rightarrow Z #rightarrow bb'
-legend['Zcc'] = 'e^{+}e^{-} #rightarrow Z #rightarrow cc'
-legend['Zuds'] = 'e^{+}e^{-} #rightarrow Z #rightarrow uds'
+#legend['Zbb'] = 'e^{+}e^{-} #rightarrow Z #rightarrow bb'
+#legend['Zcc'] = 'e^{+}e^{-} #rightarrow Z #rightarrow cc'
+#legend['Zuds'] = 'e^{+}e^{-} #rightarrow Z #rightarrow uds'
 legend['Ztautau'] = 'e^{+}e^{-} #rightarrow Z #rightarrow #tau#tau'
 legend['Zee'] = 'e^{+}e^{-} #rightarrow Z #rightarrow ee'
