@@ -32,6 +32,22 @@ processList = {
     'eenu_90GeV_1p41e-6Ve':{},
 }
 
+###Dictionary for prettier names of processes (optional)
+processLabels = {
+    #backgrounds
+    'p8_ee_Zee_ecm91':"Z $\rightarrow$ ee",
+    'p8_ee_Ztautau_ecm91':"Z $\rightarrow \tau \tau$",
+    'p8_ee_Zbb_ecm91':"Z $\rightarrow$ bb",
+    'p8_ee_Zcc_ecm91':"Z $\rightarrow$ cc",
+    'p8_ee_Zuds_ecm91':"Z $\rightarrow$ uds",
+
+    #signals
+    'eenu_30GeV_1p41e-6Ve': "$m_N =$ 30 GeV, $|V_{eN}| =  1.41 * 10^{-6}$",
+    'eenu_50GeV_1p41e-6Ve': "$m_N =$ 50 GeV, $|V_{eN}| =  1.41 * 10^{-6}$",
+    'eenu_70GeV_1p41e-6Ve': "$m_N =$ 70 GeV, $|V_{eN}| =  1.41 * 10^{-6}$",
+    'eenu_90GeV_1p41e-6Ve': "$m_N =$ 90 GeV, $|V_{eN}| =  1.41 * 10^{-6}$",
+}
+
 #Link to the dictonary that contains all the cross section information etc...
 procDict = "FCCee_procDict_spring2021_IDEA.json"
 
