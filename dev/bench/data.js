@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1666428347122,
+  "lastUpdate": 1666428349354,
   "repoUrl": "https://github.com/FCC-LLP/FCCAnalyses",
   "entries": {
     "Benchmark": [
@@ -340,6 +340,50 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds",
             "range": 10,
             "extra": "Analysis path: examples/FCCee/test"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "juliette.alimena@cern.ch",
+            "name": "Juliette Alimena",
+            "username": "jalimena"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "68d22b7ee8d0861c0fb3555e80bcf97d8317414d",
+          "message": "Merge pull request #4 from jalimena/updateLLHNL2\n\nminor updates for tutorial",
+          "timestamp": "2022-10-22T10:29:41+02:00",
+          "tree_id": "b11fe5fb59285f61edc6cb5ab134566ecde193a4",
+          "url": "https://github.com/FCC-LLP/FCCAnalyses/commit/68d22b7ee8d0861c0fb3555e80bcf97d8317414d"
+        },
+        "date": 1666428348421,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "nightly | Events processed per second: case-studies/analysis_example/scripts",
+            "value": 7.077983105974247,
+            "unit": "Evt/s"
+          },
+          {
+            "name": "nightly | Events processed per second: examples/FCCee/higgs/mH-recoil/mumu",
+            "value": 6.080577792207995,
+            "unit": "Evt/s"
+          },
+          {
+            "name": "nightly | Events processed per second: examples/FCCee/flavour/Bc2TauNu",
+            "value": 4.617886521869387,
+            "unit": "Evt/s"
+          },
+          {
+            "name": "nightly | Events processed per second: examples/FCCee/test",
+            "value": 5.776667628823917,
+            "unit": "Evt/s"
           }
         ]
       }
