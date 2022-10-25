@@ -42,8 +42,8 @@ import model SM_HeavyN_CKM_AllMasses_LO
 define e = e+ e-
 define nue = ve ve~
 generate e+ e- > nue n1, (n1 > e e nue)
-output HNL_eenu_50GeV_1p41e-6Ve
-launch HNL_eenu_50GeV_1p41e-6Ve
+output HNL_Majorana_eenu_50GeV_1p41e-6Ve
+launch HNL_Majorana_eenu_50GeV_1p41e-6Ve
 done
 # set to electron beams (0 for ele, 1 for proton)
 set lpp1 0
