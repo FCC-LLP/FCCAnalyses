@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1666699550412,
+  "lastUpdate": 1666699552559,
   "repoUrl": "https://github.com/FCC-LLP/FCCAnalyses",
   "entries": {
     "Benchmark": [
@@ -724,6 +724,50 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds",
             "range": 10,
             "extra": "Analysis path: examples/FCCee/test"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "juliette.alimena@cern.ch",
+            "name": "Juliette Alimena",
+            "username": "jalimena"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "766dce53dba6d1516a01a6e79a6cbd89df53a158",
+          "message": "Merge pull request #6 from jalimena/majorana\n\nrename mg5 proc card to be clearer",
+          "timestamp": "2022-10-25T13:52:35+02:00",
+          "tree_id": "ce904923009b4a5bf2d54977329ce67d347c2a69",
+          "url": "https://github.com/FCC-LLP/FCCAnalyses/commit/766dce53dba6d1516a01a6e79a6cbd89df53a158"
+        },
+        "date": 1666699551690,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "prod | Events processed per second: case-studies/analysis_example/scripts",
+            "value": 6.634721915520834,
+            "unit": "Evt/s"
+          },
+          {
+            "name": "prod | Events processed per second: examples/FCCee/higgs/mH-recoil/mumu",
+            "value": 5.677290054709733,
+            "unit": "Evt/s"
+          },
+          {
+            "name": "prod | Events processed per second: examples/FCCee/flavour/Bc2TauNu",
+            "value": 4.639205783062082,
+            "unit": "Evt/s"
+          },
+          {
+            "name": "prod | Events processed per second: examples/FCCee/test",
+            "value": 6.062892851570947,
+            "unit": "Evt/s"
           }
         ]
       }
