@@ -8,15 +8,19 @@ intLumi        = 150.0e+06 #in pb-1
 #scaleSig       = 0.
 #scaleBack      = 0.
 ana_tex        = 'e^{+}e^{-} #rightarrow N #nu, N #rightarrow ee#nu'
+#ana_tex        = ''
 delphesVersion = '3.4.2'
+#delphesVersion = ''
 energy         = 91
 collider       = 'FCC-ee'
 inputDir       = 'output_finalSel/'
+#inputDir       = 'output_finalSel_Ztautau/'
 #formats        = ['png','pdf']
 formats        = ['pdf']
 yaxis          = ['lin','log']
 stacksig       = ['nostack']
 outdir         = 'plots/'
+#outdir         = 'plots_Ztautau_spring2021_vs_prewinter2023/'
 splitLeg       = True
 
 variables = [
@@ -105,6 +109,7 @@ variables = [
     "RecoElectronTrack_absZ0",
     "RecoElectronTrack_absZ0_prompt",
     "RecoElectronTrack_absD0sig",
+    "RecoElectronTrack_absD0sig_med",
     "RecoElectronTrack_absD0sig_prompt",
     "RecoElectronTrack_absZ0sig",
     "RecoElectronTrack_absZ0sig_prompt",
@@ -186,11 +191,15 @@ colors['eenu_50GeV_1p41e-6Ve'] = ROOT.kRed
 colors['eenu_70GeV_1p41e-6Ve'] = ROOT.kBlue
 colors['eenu_90GeV_1p41e-6Ve'] = ROOT.kGreen+1
 
-#colors['Zbb'] = ROOT.kAzure-4
-#colors['Zcc'] = ROOT.kCyan-9
-#colors['Zuds'] = ROOT.kViolet-4
+colors['Zbb'] = ROOT.kAzure-4
+colors['Zcc'] = ROOT.kCyan-9
+colors['Zuds'] = ROOT.kViolet-4
 colors['Ztautau'] = ROOT.kRed-3
 colors['Zee'] = ROOT.kGray+2
+
+#colors['Ztautau_spring2021'] = ROOT.kBlack
+#colors['Ztautau_pre_winter2023_tests_v2'] = ROOT.kRed
+
 
 plots = {}
 plots['HNL'] = {'signal':{
@@ -198,13 +207,15 @@ plots['HNL'] = {'signal':{
                      'eenu_50GeV_1p41e-6Ve':['eenu_50GeV_1p41e-6Ve'],
                      'eenu_70GeV_1p41e-6Ve':['eenu_70GeV_1p41e-6Ve'],
                      'eenu_90GeV_1p41e-6Ve':['eenu_90GeV_1p41e-6Ve'],
-},
-                'backgrounds':{
-                    #'Zbb':['p8_ee_Zbb_ecm91'],
-                    #'Zcc': ['p8_ee_Zcc_ecm91'],
-                    #'Zuds': ['p8_ee_Zuds_ecm91'],
+    },
+                'backgrounds':{},
+                    'Zbb':['p8_ee_Zbb_ecm91'],
+                    'Zcc': ['p8_ee_Zcc_ecm91'],
+                    'Zuds': ['p8_ee_Zuds_ecm91'],
                     'Ztautau': ['p8_ee_Ztautau_ecm91'],
                     'Zee':['p8_ee_Zee_ecm91'],
+                    #'Ztautau_spring2021': ['p8_ee_Ztautau_ecm91_spring2021'],
+                    #'Ztautau_pre_winter2023_tests_v2': ['p8_ee_Ztautau_ecm91_pre_winter2023_tests_v2'],
                 }
                 }
 
@@ -215,8 +226,11 @@ legend['eenu_50GeV_1p41e-6Ve'] = 'm_{N} = 50 GeV, V_{e} = 1.41e-6'
 legend['eenu_70GeV_1p41e-6Ve'] = 'm_{N} = 70 GeV, V_{e} = 1.41e-6'
 legend['eenu_90GeV_1p41e-6Ve'] = 'm_{N} = 90 GeV, V_{e} = 1.41e-6'
 
-#legend['Zbb'] = 'e^{+}e^{-} #rightarrow Z #rightarrow bb'
-#legend['Zcc'] = 'e^{+}e^{-} #rightarrow Z #rightarrow cc'
-#legend['Zuds'] = 'e^{+}e^{-} #rightarrow Z #rightarrow uds'
+legend['Zbb'] = 'e^{+}e^{-} #rightarrow Z #rightarrow bb'
+legend['Zcc'] = 'e^{+}e^{-} #rightarrow Z #rightarrow cc'
+legend['Zuds'] = 'e^{+}e^{-} #rightarrow Z #rightarrow uds'
 legend['Ztautau'] = 'e^{+}e^{-} #rightarrow Z #rightarrow #tau#tau'
 legend['Zee'] = 'e^{+}e^{-} #rightarrow Z #rightarrow ee'
+#legend['Ztautau_spring2021'] = 'Z #rightarrow #tau#tau Spring2021'
+#legend['Ztautau_pre_winter2023_tests_v2'] = 'Z #rightarrow #tau#tau pre winter2023 tests v2'
+

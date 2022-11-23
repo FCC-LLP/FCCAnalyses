@@ -27,15 +27,17 @@ prodTag     = "FCCee/spring2021/IDEA/"
 #Input directory
 #Comment out when running over centrally produced events
 #Mandatory when running over privately produced events
-#inputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNLs/HNL_eenu_MadgraphPythiaDelphes"
+#inputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNL_Majorana_eenu/spring2021/output_MadgraphPythiaDelphes"
+#inputDir = "/eos/experiment/fcc/ee/generation/DelphesStandalone/Edm4Hep/pre_winter2023_tests_v2"
 
 
 #Optional: output directory, default is local dir
-outputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNLs/output_stage1/"
+outputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNL_Majorana_eenu/spring2021/output_stage1/"
+#outputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNL_Majorana_eenu/pre_winter2023_tests_v2/output_stage1/"
 #outputDir = "/eos/user/j/jalimena/FCCeeLLP/"
 #outputDir = "output_stage1/"
 
-outputDirEos = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNLs/output_stage1/"
+#outputDirEos = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/HNL_Majorana_eenu/spring2021/output_stage1/"
 #outputDirEos = "/eos/user/j/jalimena/FCCeeLLP/"
 #eosType = "eosuser"
 
