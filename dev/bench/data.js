@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1669914540677,
+  "lastUpdate": 1669914542962,
   "repoUrl": "https://github.com/FCC-LLP/FCCAnalyses",
   "entries": {
     "Benchmark": [
@@ -1204,6 +1204,50 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds",
             "range": 10,
             "extra": "Analysis path: examples/FCCee/test"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "juliette.alimena@cern.ch",
+            "name": "Juliette Alimena",
+            "username": "jalimena"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f9f504552e2eb87d813ff055b5a186b3b78cf597",
+          "message": "Merge pull request #12 from jalimena/lcfiplus\n\nLcfiplus",
+          "timestamp": "2022-12-01T17:55:59+01:00",
+          "tree_id": "22dbd9a6ee621796dc48d672d6ae7a947d203ffd",
+          "url": "https://github.com/FCC-LLP/FCCAnalyses/commit/f9f504552e2eb87d813ff055b5a186b3b78cf597"
+        },
+        "date": 1669914542071,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "nightly | Events processed per second: case-studies/analysis_example/scripts",
+            "value": 11.281242426091767,
+            "unit": "Evt/s"
+          },
+          {
+            "name": "nightly | Events processed per second: examples/FCCee/higgs/mH-recoil/mumu",
+            "value": 8.94212195074476,
+            "unit": "Evt/s"
+          },
+          {
+            "name": "nightly | Events processed per second: examples/FCCee/flavour/Bc2TauNu",
+            "value": 7.6779542169717905,
+            "unit": "Evt/s"
+          },
+          {
+            "name": "nightly | Events processed per second: examples/FCCee/test",
+            "value": 9.775833815971403,
+            "unit": "Evt/s"
           }
         ]
       }
