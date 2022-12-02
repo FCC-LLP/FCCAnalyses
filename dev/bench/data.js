@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1669994597201,
+  "lastUpdate": 1669994599046,
   "repoUrl": "https://github.com/FCC-LLP/FCCAnalyses",
   "entries": {
     "Benchmark": [
@@ -1396,6 +1396,50 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds",
             "range": 10,
             "extra": "Analysis path: examples/FCCee/test"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "juliette.alimena@cern.ch",
+            "name": "Juliette Alimena",
+            "username": "jalimena"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f66700edd44f7a4f7e72fe78094294c81820b287",
+          "message": "Merge pull request #13 from mvoorde/add_exoticHiggsDecays_mg_processcards\n\nAdd exotic higgs decays sample generation",
+          "timestamp": "2022-12-02T16:14:07+01:00",
+          "tree_id": "45378c40bab96c2c70d7fb6984e6cca08e62cf36",
+          "url": "https://github.com/FCC-LLP/FCCAnalyses/commit/f66700edd44f7a4f7e72fe78094294c81820b287"
+        },
+        "date": 1669994598343,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "nightly | Events processed per second: case-studies/analysis_example/scripts",
+            "value": 9.890827469520408,
+            "unit": "Evt/s"
+          },
+          {
+            "name": "nightly | Events processed per second: examples/FCCee/higgs/mH-recoil/mumu",
+            "value": 7.657834066507759,
+            "unit": "Evt/s"
+          },
+          {
+            "name": "nightly | Events processed per second: examples/FCCee/flavour/Bc2TauNu",
+            "value": 5.319682517368316,
+            "unit": "Evt/s"
+          },
+          {
+            "name": "nightly | Events processed per second: examples/FCCee/test",
+            "value": 6.626555162602598,
+            "unit": "Evt/s"
           }
         ]
       }
