@@ -309,6 +309,9 @@ ROOT::VecOps::RVec<VertexingUtils::FCCAnalysesVertex> findSVfromTracks(ROOT::Vec
     // save the tracks that are used to fit the SV
     sec_vtx.tracks = tr_vtx_fin;
 
+    // save the tracks that are used to fit the SV
+    sec_vtx.tracks = tr_vtx_fin;
+
     // see if we can also get indices in the reco collection (for tracks forming an SV)
     //sec_vtx.reco_ind = VertexFitterSimple::get_reco_ind(recoparticles,thetracks); // incorrect
 
