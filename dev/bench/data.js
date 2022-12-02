@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1669997873422,
+  "lastUpdate": 1669997875177,
   "repoUrl": "https://github.com/FCC-LLP/FCCAnalyses",
   "entries": {
     "Benchmark": [
@@ -1588,6 +1588,50 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds",
             "range": 10,
             "extra": "Analysis path: examples/FCCee/test"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "juliette.alimena@cern.ch",
+            "name": "Juliette Alimena",
+            "username": "jalimena"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "99191196833ee8eaf3fea4584a72e7f6316f0667",
+          "message": "Merge pull request #15 from mvoorde/add_exoticHiggsDecays_DVfinder_code\n\nAdd exotic higgs decays dv finder code",
+          "timestamp": "2022-12-02T17:08:47+01:00",
+          "tree_id": "555a95c5bfbc30f6def9b786d92ebb7328010dc1",
+          "url": "https://github.com/FCC-LLP/FCCAnalyses/commit/99191196833ee8eaf3fea4584a72e7f6316f0667"
+        },
+        "date": 1669997874655,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "prod | Events processed per second: case-studies/analysis_example/scripts",
+            "value": 10.365096798638016,
+            "unit": "Evt/s"
+          },
+          {
+            "name": "prod | Events processed per second: examples/FCCee/higgs/mH-recoil/mumu",
+            "value": 7.974634211560724,
+            "unit": "Evt/s"
+          },
+          {
+            "name": "prod | Events processed per second: examples/FCCee/flavour/Bc2TauNu",
+            "value": 6.211674127145323,
+            "unit": "Evt/s"
+          },
+          {
+            "name": "prod | Events processed per second: examples/FCCee/test",
+            "value": 8.551692888190377,
+            "unit": "Evt/s"
           }
         ]
       }
