@@ -1,0 +1,86 @@
+#************************************************************
+#*                     MadGraph5_aMC@NLO                    *
+#*                                                          *
+#*                *                       *                 *
+#*                  *        * *        *                   *
+#*                    * * * * 5 * * * *                     *
+#*                  *        * *        *                   *
+#*                *                       *                 *
+#*                                                          *
+#*                                                          *
+#*         VERSION 3.4.1                 2022-09-01         *
+#*                                                          *
+#*    The MadGraph5_aMC@NLO Development Team - Find us at   *
+#*    https://server06.fynu.ucl.ac.be/projects/madgraph     *
+#*                                                          *
+#************************************************************
+#*                                                          *
+#*               Command File for MadGraph5_aMC@NLO         *
+#*                                                          *
+#*     run as ./bin/mg5_aMC  filename                       *
+#*                                                          *
+#************************************************************
+set group_subprocesses Auto
+set ignore_six_quark_processes False
+set low_mem_multicore_nlo_generation False
+set complex_mass_scheme False
+set include_lepton_initiated_processes False
+set gauge unitary
+set loop_optimized_output True
+set loop_color_flows False
+set max_npoint_for_channel 0
+set default_unset_couplings 99
+set max_t_for_channel 99
+set zerowidth_tchannel True
+set nlo_mixed_expansion True
+import model sm
+
+set auto_convert_model T
+import model --modelname HAHM_variableMW_v3_UFO/
+define l+ = e+ m+
+define l- = e- m-
+define f = u c d s u~ c~ d~ s~ b b~ e+ e- m+ m- tt+ tt-
+
+#*** generate the process: e+ e- -> Z -> Z h with Z -> e+ e-/mu+ mu- and h -> 2hs -> 4b
+generate e+ e- > z > z h, z > l+ l-, (h > hs hs, hs > b b~)
+
+output h_2hs_4b_mhs60GeV_WHSe-17
+
+# launch the event generation
+launch
+
+#*** set electron beams and the center-of-mass energy to the ZH maximum production peak (240 GeV), i.e 120 GeV per electron beam
+
+# set beam type; 0 for electron, 1 for proton	
+set lpp1 0
+set lpp2 0
+# set total energy in GeV for each beam 
+set ebeam1 120		
+set ebeam2 120
+
+#*** set model parameters; couplings and masses
+
+# the model accounts both dark scalars and dark photons, hence set the kinetic mixing coupling epsilon to zero and mass of dark photon high (to only simulate SM + dark scalar singlet)
+set epsilon 1.000000e-10
+set mZDinput 1.000000e+03
+
+# set the mass of the dark scalar
+set MHSinput 60.000000e+00
+
+# set singlet-higgs coupling
+set kap 1.000000e-03
+
+# set the decay width to O(e-17) s.t sin^2 theta = O(e-14) and decay length O(10 m)
+set whs 2.251767e-17
+
+# set the width of the higgs and the dark photon to auto
+set wh Auto
+set wzp Auto
+
+# needed to get llp
+set time_of_flight 0
+
+# set number of events
+set nevents 10000
+
+done
