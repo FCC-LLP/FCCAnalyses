@@ -9,11 +9,11 @@ processList = {
 
         #privately-produced signals
         'exoticHiggs_scalar_ms20GeV_sine-5':{},
-        # 'exoticHiggs_scalar_ms20GeV_sine-6':{},
-        # 'exoticHiggs_scalar_ms20GeV_sine-7':{},
-        # 'exoticHiggs_scalar_ms60GeV_sine-5':{},
-        # 'exoticHiggs_scalar_ms60GeV_sine-6':{},
-        # 'exoticHiggs_scalar_ms60GeV_sine-7':{},
+        'exoticHiggs_scalar_ms20GeV_sine-6':{},
+        'exoticHiggs_scalar_ms20GeV_sine-7':{},
+        'exoticHiggs_scalar_ms60GeV_sine-5':{},
+        'exoticHiggs_scalar_ms60GeV_sine-6':{},
+        'exoticHiggs_scalar_ms60GeV_sine-7':{},
 }
 
 #Production tag. This points to the yaml files for getting sample statistics
@@ -114,8 +114,8 @@ class RDFanalysis():
             .Define('bquarks2_indices', 'MCParticle::get_indices_ExclusiveDecay_MotherByIndex(H2HSHS_indices[2], {5, -5}, false, Particle, Particle1)')
 
             # # get the b quarks, right now only picking the first daughter (hopefully b quark) from the list of decay particles from hs, should update this section maybe
-            .Define('bquarks1', 'ExoticHiggsDecays_analysis_code::selMC_leg(1) (bquarks1_indices, Particle)')
-            .Define('bquarks2', 'ExoticHiggsDecays_analysis_code::selMC_leg(1) (bquarks2_indices, Particle)')
+            .Define('bquarks1', 'myUtils::selMC_leg(1) (bquarks1_indices, Particle)')
+            .Define('bquarks2', 'myUtils::selMC_leg(1) (bquarks2_indices, Particle)')
 
             # # get the vertex position for the first group of b quarks
             .Define('b1_vertex_x', 'MCParticle::get_vertex_x(bquarks1)')
@@ -134,7 +134,7 @@ class RDFanalysis():
             .Define('decayLengthHS2', 'return sqrt((b2_vertex_x - HS_vertex_x.at(1))*(b2_vertex_x - HS_vertex_x.at(1)) + (b2_vertex_y - HS_vertex_y.at(1))*(b2_vertex_y - HS_vertex_y.at(1)) + (b2_vertex_z - HS_vertex_z.at(1))*(b2_vertex_z - HS_vertex_z.at(1)))')
 
             # get decay length of both scalars in a vector for each event
-            .Define('decayLengthsHS', 'ExoticHiggsDecays_analysis_code::get_both_scalars(decayLengthHS1, decayLengthHS2)')
+            .Define('decayLengthsHS', 'myUtils::get_both_scalars(decayLengthHS1, decayLengthHS2)')
 
             # get the transverse decay length of HS 1
             .Define('LxyHS1', 'return sqrt((b1_vertex_x - HS_vertex_x.at(0))*(b1_vertex_x - HS_vertex_x.at(0)) + (b1_vertex_y - HS_vertex_y.at(0))*(b1_vertex_y - HS_vertex_y.at(0)))')
@@ -150,14 +150,14 @@ class RDFanalysis():
             .Define('lifetimeHS2', 'return (decayLengthHS2 * 1E-3 * AllGenHS_mass.at(1)/(3E8 * AllGenHS_e.at(1))*1E9)')
 
             # get proper lifetime of both scalars in a vector for each event
-            .Define('lifetimeHS', 'ExoticHiggsDecays_analysis_code::get_both_scalars(lifetimeHS1, lifetimeHS2)')
+            .Define('lifetimeHS', 'myUtils::get_both_scalars(lifetimeHS1, lifetimeHS2)')
 
             # the lifetime of the scalars in the LAB frame in [ns]
             .Define('lifetimeHS1LAB', 'return (decayLengthHS1 * 1E-3 * 1E9/3E8)')
             .Define('lifetimeHS2LAB', 'return (decayLengthHS2 * 1E-3 * 1E9/3E8)')
 
             # get lifetime in LAB of both scalars in a vector for each event
-            .Define('lifetimeHSLAB', 'ExoticHiggsDecays_analysis_code::get_both_scalars(lifetimeHS1LAB, lifetimeHS2LAB)')
+            .Define('lifetimeHSLAB', 'myUtils::get_both_scalars(lifetimeHS1LAB, lifetimeHS2LAB)')
         )
         return df2
 
