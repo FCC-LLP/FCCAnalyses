@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1670244273021,
+  "lastUpdate": 1671180579343,
   "repoUrl": "https://github.com/FCC-LLP/FCCAnalyses",
   "entries": {
     "Benchmark": [
@@ -1920,6 +1920,58 @@ window.BENCHMARK_DATA = {
             "name": "nightly | Events processed per second: examples/FCCee/test",
             "value": 5.827408640142431,
             "unit": "Evt/s"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "juliette.alimena@cern.ch",
+            "name": "Juliette Alimena",
+            "username": "jalimena"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "bafe9a9eb1596af5576c88074530203713d8a863",
+          "message": "Merge pull request #14 from mvoorde/add_ExoticHiggsDecays_MC_analysis\n\nAdd exotic higgs decays mc analysis code and scripts",
+          "timestamp": "2022-12-16T09:39:01+01:00",
+          "tree_id": "7d64351999e7c69c4037b61a7f2b98103fa922c8",
+          "url": "https://github.com/FCC-LLP/FCCAnalyses/commit/bafe9a9eb1596af5576c88074530203713d8a863"
+        },
+        "date": 1671180577799,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "nightly | Time spent running the analysis: case-studies/analysis_example/scripts",
+            "value": 9.551442623138428,
+            "unit": "Seconds",
+            "range": 10,
+            "extra": "Analysis path: case-studies/analysis_example/scripts"
+          },
+          {
+            "name": "nightly | Time spent running the analysis: examples/FCCee/higgs/mH-recoil/mumu",
+            "value": 10.732378721237183,
+            "unit": "Seconds",
+            "range": 10,
+            "extra": "Analysis path: examples/FCCee/higgs/mH-recoil/mumu"
+          },
+          {
+            "name": "nightly | Time spent running the analysis: examples/FCCee/flavour/Bc2TauNu",
+            "value": 14.151303768157959,
+            "unit": "Seconds",
+            "range": 10,
+            "extra": "Analysis path: examples/FCCee/flavour/Bc2TauNu"
+          },
+          {
+            "name": "nightly | Time spent running the analysis: examples/FCCee/test",
+            "value": 10.959259748458862,
+            "unit": "Seconds",
+            "range": 10,
+            "extra": "Analysis path: examples/FCCee/test"
           }
         ]
       }
