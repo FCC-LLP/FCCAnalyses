@@ -1,6 +1,8 @@
 <map id="analyzers/dataframe/FCCAnalyses/MCParticle.h" name="analyzers/dataframe/FCCAnalyses/MCParticle.h">
-<area shape="rect" id="node1" title=" " alt="" coords="183,6,377,47"/>
-<area shape="rect" id="node2" href="$_m_c_particle_8cc.html" title=" " alt="" coords="5,97,163,138"/>
-<area shape="rect" id="node3" href="$_vertex_fitter_simple_8cc.html" title=" " alt="" coords="187,97,373,138"/>
-<area shape="rect" id="node4" href="$my_utils_8cc.html" title=" " alt="" coords="397,97,555,138"/>
+<area shape="rect" id="node1" title=" " alt="" coords="285,6,480,47"/>
+<area shape="rect" id="node2" href="$my_utils_8h.html" title=" " alt="" coords="5,97,181,138"/>
+<area shape="rect" id="node5" href="$_m_c_particle_8cc.html" title=" " alt="" coords="207,97,364,138"/>
+<area shape="rect" id="node6" href="$_vertex_fitter_simple_8cc.html" title=" " alt="" coords="388,97,575,138"/>
+<area shape="rect" id="node4" href="$my_utils_8cc.html" title=" " alt="" coords="365,187,523,229"/>
+<area shape="rect" id="node3" href="$_vertexing_utils_8cc.html" title=" " alt="" coords="14,187,172,229"/>
 </map>
