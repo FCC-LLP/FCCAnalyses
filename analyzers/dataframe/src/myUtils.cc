@@ -50,6 +50,81 @@ ROOT::VecOps::RVec<edm4hep::MCParticleData> selMC_leg::operator() ( ROOT::VecOps
 
 // end of added code for Exotic Higgs to LLPs analysis
 
+selRP_leg::selRP_leg(int idx) {
+  m_idx = idx;
+};
+
+// Below, RecoParticles is always of size 4 by construction
+// but the RecoParticles maybe dummy ( energy set to -9999 )
+ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> selRP_leg::operator() ( ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> RecoParticles ) {
+  ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> res;
+  if ( RecoParticles.size() == 0) return res;
+  if ( m_idx < RecoParticles.size() ) {
+    res.push_back( RecoParticles[m_idx] ) ;
+    return res;
+  }
+  else {
+    std::cout << "   !!!  in selRP_leg: idx = " << m_idx << " but size of RecoParticles = " << RecoParticles.size() << std::endl;
+  }
+  return res;
+}
+
+
+// Retrieve the Reco'ed  legs, but now with their momentum corrected to the  decay vertex
+
+selRP_leg_atVertex::selRP_leg_atVertex(int idx) {
+  m_idx = idx;
+};
+
+ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> selRP_leg_atVertex::operator() ( ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> RecoParticles,
+											VertexingUtils::FCCAnalysesVertex    DecayVertex,
+											ROOT::VecOps::RVec<edm4hep::TrackState> tracks) {
+
+  ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> res;
+
+  if ( RecoParticles.size() == 0 || m_idx > RecoParticles.size() ) {
+    return res;
+  }
+
+  if ( DecayVertex.ntracks <= 1 ) return  res;   // no genuine vertex could be reco'ed
+
+  // the updated momenta of the tracks used in the verte fit :
+  ROOT::VecOps::RVec< TVector3 >  updated_track_momentum_at_vertex = DecayVertex.updated_track_momentum_at_vertex ;
+
+  // m_idx : 1,2,3,4 = mu+, mu-, K+, K-
+  // but the index in the list of tracks can be different, in case a track was not found
+  std::vector<int> track_indices;
+  int count = -1;
+  for (auto & p: RecoParticles) {
+    if ( p.tracks_begin>= 0 && p.tracks_begin < tracks.size() ) {  // this particle is matched to a track
+      count ++;
+      track_indices.push_back( count );
+    }
+    else {// insert -1
+      track_indices.push_back( -1 );
+    }
+  }
+
+  int idx_track = track_indices[ m_idx ];
+
+  if ( idx_track < 0 )  { // no track associated to this particle, return the original particle
+    res.push_back( RecoParticles.at( m_idx ) );
+    return res;
+  }
+  else {// idx_track is the track index of this particle, in the internal track array of DecayVertex
+    TVector3 track_momentum = updated_track_momentum_at_vertex[idx_track];
+    edm4hep::ReconstructedParticleData particle = RecoParticles[m_idx];
+    particle.momentum.x = track_momentum.Px();
+    particle.momentum.y = track_momentum.Py();
+    particle.momentum.z = track_momentum.Pz();
+    particle.referencePoint = DecayVertex.vertex.position ;
+    res.push_back( particle );
+    return res;
+  }
+
+  return res;
+}
+
 float get_d0(TVector3 x, TVector3 p){
   float D = x[1]*p[0]/sqrt(p[0]*p[0]+p[1]*p[1])-x[0]*p[1]/sqrt(p[0]*p[0]+p[1]*p[1]);
   return D;
