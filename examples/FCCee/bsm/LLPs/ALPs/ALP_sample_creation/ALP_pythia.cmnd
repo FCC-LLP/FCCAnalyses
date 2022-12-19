@@ -1,7 +1,7 @@
 ! File: ALP_pythia.cmd
 Random:setSeed = on
 Main:timesAllowErrors = 10         ! how many aborts before run stops
-Main:numberOfEvents = 10000         ! number of events to generate
+Main:numberOfEvents = 100000         ! number of events to generate
 
 
 ! 2) Settings related to output in init(), next() and stat().
@@ -11,7 +11,7 @@ Next:numberCount = 100             ! print message every n events
 
 Beams:frameType = 4                ! read info from a LHEF
 ! Change the LHE file here
-Beams:LHEF = ALP_test.lhe
+Beams:LHEF = ALP_Z_aa_1GeV_cYY_0p5.lhe
 
 ! 3) Settings for the event generation process in the Pythia8 library.
 PartonLevel:ISR = on               ! initial-state radiation
