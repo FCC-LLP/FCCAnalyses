@@ -29,14 +29,6 @@ namespace FCCAnalyses{
 
 namespace ReconstructedParticle2Track{
 
-  /// Return the momentum of a track to a reconstructed particle
-  ROOT::VecOps::RVec<float> getRP2TRK_mom (ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in, 
-					   ROOT::VecOps::RVec<edm4hep::TrackState> tracks);
-
-  /// Return the charge of a track to a reconstructed particle
-  ROOT::VecOps::RVec<float> getRP2TRK_charge(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in,  
-					     ROOT::VecOps::RVec<edm4hep::TrackState> tracks);
-
   //compute the magnetic field Bz
   ROOT::VecOps::RVec<float> getRP2TRK_Bz(const ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData>& rps,
 					 const ROOT::VecOps::RVec<edm4hep::TrackState>& tracks); //here computed for all particles passed
