@@ -21,5 +21,7 @@ var searchData=
   ['seltracks_18',['selTracks',['../struct_f_c_c_analyses_1_1_vertexing_utils_1_1sel_tracks.html',1,'FCCAnalyses::VertexingUtils']]],
   ['smearedreconstructedparticle_19',['SmearedReconstructedParticle',['../struct_f_c_c_analyses_1_1_smear_objects_1_1_smeared_reconstructed_particle.html',1,'FCCAnalyses::SmearObjects']]],
   ['smearedtracks_20',['SmearedTracks',['../struct_f_c_c_analyses_1_1_smear_objects_1_1_smeared_tracks.html',1,'FCCAnalyses::SmearObjects']]],
-  ['sphericityfit_21',['sphericityFit',['../struct_f_c_c_analyses_1_1_algorithms_1_1sphericity_fit.html',1,'FCCAnalyses::Algorithms']]]
+  ['smearedtracksdndx_21',['SmearedTracksdNdx',['../struct_f_c_c_analyses_1_1_smear_objects_1_1_smeared_tracksd_ndx.html',1,'FCCAnalyses::SmearObjects']]],
+  ['smearedtrackstof_22',['SmearedTracksTOF',['../struct_f_c_c_analyses_1_1_smear_objects_1_1_smeared_tracks_t_o_f.html',1,'FCCAnalyses::SmearObjects']]],
+  ['sphericityfit_23',['sphericityFit',['../struct_f_c_c_analyses_1_1_algorithms_1_1sphericity_fit.html',1,'FCCAnalyses::Algorithms']]]
 ];
