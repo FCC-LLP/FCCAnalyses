@@ -44,7 +44,6 @@ namespace VertexingUtils{
     ROOT::VecOps::RVec< TVector3 >  updated_track_momentum_at_vertex;
     ROOT::VecOps::RVec< TVectorD >  updated_track_parameters;
     ROOT::VecOps::RVec<float> final_track_phases;
-    ROOT::VecOps::RVec<edm4hep::TrackState> tracks;   // added to keep track of the tracks that are associated to each vertex, used in SV finder from LCFI+ to merge vertices
   };
 
   /// Structure to keep useful information that is related to the V0
@@ -84,23 +83,6 @@ namespace VertexingUtils{
 
   /// Retrieve the number of reconstructed vertices from the collection of vertex object
   int get_Nvertex( ROOT::VecOps::RVec<FCCAnalysesVertex> TheVertexColl );
-
-  /// Merge vertices that are within 10*error of position or 1 mm, of each other
-  ROOT::VecOps::RVec<FCCAnalysesVertex> mergeVertices ( ROOT::VecOps::RVec<FCCAnalysesVertex> vertices_in );
-
-  /// selection of tracks based on the transverse momentum pT
-  struct sel_pt_tracks {
-    sel_pt_tracks(float arg_min_pt);
-    float m_min_pt = 0;
-    ROOT::VecOps::RVec<edm4hep::TrackState> operator() (ROOT::VecOps::RVec<edm4hep::TrackState> in);
-  };
-
-  /// selection of tracks based on the impact paramter d0
-  struct sel_d0_tracks {
-    sel_d0_tracks(float arg_min_d0);
-    float m_min_d0 = 0;
-    ROOT::VecOps::RVec<edm4hep::TrackState> operator() (ROOT::VecOps::RVec<edm4hep::TrackState> in);
-  };
 
   /// Retrieve a single FCCAnalyses vertex from the collection of vertex object
   FCCAnalysesVertex get_FCCAnalysesVertex(ROOT::VecOps::RVec<FCCAnalysesVertex> TheVertexColl, int index );
@@ -333,7 +315,7 @@ namespace VertexingUtils{
  /// --- Internal methods needed by the code of  Franco B:
   TVectorD get_trackParam( edm4hep::TrackState & atrack, bool Units_mm = false) ;
   TMatrixDSym get_trackCov( const edm4hep::TrackState &  atrack, bool Units_mm = false) ;
-  
+
   TVectorD ParToACTS(TVectorD Par);
   TMatrixDSym CovToACTS(TMatrixDSym Cov,TVectorD Par);
 
