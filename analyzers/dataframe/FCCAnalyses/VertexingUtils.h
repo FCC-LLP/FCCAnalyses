@@ -519,10 +519,27 @@ namespace VertexingUtils{
 
  // --- Internal methods needed by the code of  Franco B :
   float get_trackMom( edm4hep::TrackState & atrack );
-  // TVectorD get_trackParam( edm4hep::TrackState & atrack) ;
-  // TMatrixDSym get_trackCov( edm4hep::TrackState &  atrack) ;
 
-// >>>>>>> c5a4bb427 (adding the implementation of LCFIPlus vertexing module and the necessary funtions to exploit vertex properties in VertexingUtils)
+
+// --- Conversion methods between the Delphes and edm4hep conventions
+
+/// convert track parameters, from edm4hep to delphes conventions
+  TVectorD Edm4hep2Delphes_TrackParam( const TVectorD& param, bool Units_mm );
+/// convert track parameters, from delphes to edm4hep conventions
+  TVectorD Delphes2Edm4hep_TrackParam( const TVectorD& param, bool Units_mm );
+/// convert track covariance matrix, from edm4hep to delphes conventions
+  TMatrixDSym  Edm4hep2Delphes_TrackCovMatrix( const std::array<float, 21>&  covMatrix, bool Units_mm );
+#if __has_include("edm4hep/CovMatrix6f.h")
+  TMatrixDSym  Edm4hep2Delphes_TrackCovMatrix( const edm4hep::CovMatrix6f&  covMatrix, bool Units_mm );
+#endif
+/// convert track covariance matrix, from delphes to edm4hep conventions
+  std::array<float, 21> Delphes2Edm4hep_TrackCovMatrix( const TMatrixDSym& cov, bool Units_mm ) ;
+
+
+ /// --- Internal methods needed by the code of  Franco B:
+  TVectorD get_trackParam( edm4hep::TrackState & atrack, bool Units_mm = false) ;
+  TMatrixDSym get_trackCov( const edm4hep::TrackState &  atrack, bool Units_mm = false) ;
+
   TVectorD ParToACTS(TVectorD Par);
   TMatrixDSym CovToACTS(TMatrixDSym Cov,TVectorD Par);
 

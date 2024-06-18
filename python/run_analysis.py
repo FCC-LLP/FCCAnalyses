@@ -323,6 +323,7 @@ def run_rdf(rdf_module,
         dframe2 = dframe
 
     try:
+        evtcount_init = dframe2.Count()
         dframe3 = get_element(rdf_module.RDFanalysis, "analysers")(dframe2)
 
         branch_list = ROOT.vector('string')()
@@ -330,7 +331,7 @@ def run_rdf(rdf_module,
         for bname in blist:
             branch_list.push_back(bname)
 
-        evtcount = dframe3.Count()
+        evtcount_final = dframe3.Count()
 
         # Generate computational graph of the analysis
         if args.graph:
@@ -342,7 +343,7 @@ def run_rdf(rdf_module,
                      'occurred:\n%s', excp)
         sys.exit(3)
 
-    return evtcount.GetValue()
+    return evtcount_init.GetValue(), evtcount_final.GetValue()
 
 
 # _____________________________________________________________________________
@@ -459,7 +460,7 @@ def run_local(rdf_module, infile_list, args):
     Run analysis locally.
     '''
     # Create list of files to be processed
-    info_msg = 'Creating dataframe object from files:\n\t'
+    info_msg = 'Creating dataframe object from files:\n'
     file_list = ROOT.vector('string')()
     # Amount of events processed in previous stage (= 0 if it is the first
     # stage)
@@ -511,18 +512,20 @@ def run_local(rdf_module, infile_list, args):
 
     # Run RDF
     start_time = time.time()
-    outn = run_rdf(rdf_module, file_list, outfile_path, args)
+    inn, outn = run_rdf(rdf_module, file_list, outfile_path, args)
     elapsed_time = time.time() - start_time
+    
+    # replace nevents_local by inn = the amount of processed events
 
     info_msg = f"{' SUMMARY ':=^80}\n"
     info_msg += 'Elapsed time (H:M:S):    '
     info_msg += time.strftime('%H:%M:%S', time.gmtime(elapsed_time))
     info_msg += '\nEvents processed/second: '
-    info_msg += f'{int(nevents_local/elapsed_time):,}'
-    info_msg += f'\nTotal events processed:  {int(nevents_local):,}'
+    info_msg += f'{int(inn/elapsed_time):,}'
+    info_msg += f'\nTotal events processed:  {int(inn):,}'
     info_msg += f'\nNo. result events:       {int(outn):,}'
-    if nevents_local > 0:
-        info_msg += f'\nReduction factor local:  {outn/nevents_local}'
+    if inn > 0:
+        info_msg += f'\nReduction factor local:  {outn/inn}'
     if nevents_orig > 0:
         info_msg += f'\nReduction factor total:  {outn/nevents_orig}'
     info_msg += '\n'
@@ -531,10 +534,13 @@ def run_local(rdf_module, infile_list, args):
     LOGGER.info(info_msg)
 
     # Update resulting root file with number of processed events
+    # and number of selected events
     with ROOT.TFile(outfile_path, 'update') as outfile:
         param = ROOT.TParameter(int)(
                 'eventsProcessed',
-                nevents_orig if nevents_orig != 0 else nevents_local)
+                nevents_orig if nevents_orig != 0 else inn)
+        param.Write()
+        param = ROOT.TParameter(int)('eventsSelected', outn)
         param.Write()
         outfile.Write()
 
@@ -745,7 +751,7 @@ def run_histmaker(args, rdf_module, anapath):
             file_list_root.push_back(file_name)
             # Skip check for processed events in case of first stage
             if get_element(rdf_module, "prodTag") is None:
-                infile = ROOT.TFile(str(file_name), 'READ')
+                infile = ROOT.TFile.Open(str(file_name), 'READ')
                 for key in infile.GetListOfKeys():
                     if 'eventsProcessed' == key.GetName():
                         nevents_meta += infile.eventsProcessed.GetVal()
