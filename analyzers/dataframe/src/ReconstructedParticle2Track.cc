@@ -5,29 +5,29 @@ namespace FCCAnalyses{
 
 namespace ReconstructedParticle2Track{
 
-  ROOT::VecOps::RVec<float> 
-  getRP2TRK_mom(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in,
-                ROOT::VecOps::RVec<edm4hep::TrackState> tracks) {
-    ROOT::VecOps::RVec<float> result;
-    for (auto & p: in) {
-      if (p.tracks_begin<tracks.size())
-        result.push_back(VertexingUtils::get_trackMom(tracks.at(p.tracks_begin)));
-      else result.push_back(std::nan(""));
-    }
-    return result;
-  }
+  // ROOT::VecOps::RVec<float>
+  // getRP2TRK_mom(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in,
+  //               ROOT::VecOps::RVec<edm4hep::TrackState> tracks) {
+  //   ROOT::VecOps::RVec<float> result;
+  //   for (auto & p: in) {
+  //     if (p.tracks_begin<tracks.size())
+  //       result.push_back(VertexingUtils::get_trackMom(tracks.at(p.tracks_begin)));
+  //     else result.push_back(std::nan(""));
+  //   }
+  //   return result;
+  // }
 
-  ROOT::VecOps::RVec<float> 
-  getRP2TRK_charge(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in,
-                   ROOT::VecOps::RVec<edm4hep::TrackState> tracks) {
-    ROOT::VecOps::RVec<float> result;
-    for (auto & p: in) {
-      if (p.tracks_begin<tracks.size())
-        result.push_back(p.charge);
-      else result.push_back(std::nan(""));
-    }
-    return result;
-  }
+  // ROOT::VecOps::RVec<float>
+  // getRP2TRK_charge(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in,
+  //                  ROOT::VecOps::RVec<edm4hep::TrackState> tracks) {
+  //   ROOT::VecOps::RVec<float> result;
+  //   for (auto & p: in) {
+  //     if (p.tracks_begin<tracks.size())
+  //       result.push_back(p.charge);
+  //     else result.push_back(std::nan(""));
+  //   }
+  //   return result;
+  // }
 
   ROOT::VecOps::RVec<float> getRP2TRK_Bz(const ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData>& rps, const ROOT::VecOps::RVec<edm4hep::TrackState>& tracks) {
     const double c_light = 2.99792458e8;
@@ -247,8 +247,8 @@ namespace ReconstructedParticle2Track{
 
 
 
-ROOT::VecOps::RVec<float> 
-getRP2TRK_mom(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in,  
+ROOT::VecOps::RVec<float>
+getRP2TRK_mom(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in,
 	      ROOT::VecOps::RVec<edm4hep::TrackState> tracks) {
   ROOT::VecOps::RVec<float> result;
   for (auto & p: in) {
@@ -259,8 +259,8 @@ getRP2TRK_mom(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in,
   return result;
 }
 
-ROOT::VecOps::RVec<float> 
-getRP2TRK_charge(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in,  
+ROOT::VecOps::RVec<float>
+getRP2TRK_charge(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in,
 		 ROOT::VecOps::RVec<edm4hep::TrackState> tracks) {
   ROOT::VecOps::RVec<float> result;
   for (auto & p: in) {
@@ -271,7 +271,7 @@ getRP2TRK_charge(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in,
   return result;
 }
 
->>>>>>> c34b863c3 (adding the implementation of LCFIPlus vertexing module and the necessary funtions to exploit vertex properties in VertexingUtils)
+// >>>>>>> c34b863c3 (adding the implementation of LCFIPlus vertexing module and the necessary funtions to exploit vertex properties in VertexingUtils)
 ROOT::VecOps::RVec<float>
 getRP2TRK_D0(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in,
              ROOT::VecOps::RVec<edm4hep::TrackState> tracks) {
@@ -554,13 +554,13 @@ getRP2TRK( ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in,
 }
 
 // returns reco indices of tracks
-ROOT::VecOps::RVec<int> 
-get_recoindTRK( ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in, 
+ROOT::VecOps::RVec<int>
+get_recoindTRK( ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in,
 		ROOT::VecOps::RVec<edm4hep::TrackState> tracks )
 {
 
   ROOT::VecOps::RVec<int> result ;
-  
+
   for (unsigned int ctr=0; ctr<in.size(); ctr++) {
     edm4hep::ReconstructedParticleData p = in.at(ctr);
     if (p.tracks_begin >= 0 && p.tracks_begin<tracks.size()) result.push_back(ctr) ;
@@ -574,12 +574,12 @@ int getTK_n(ROOT::VecOps::RVec<edm4hep::TrackState> x) {
 }
 
 ///
-ROOT::VecOps::RVec<bool> 
+ROOT::VecOps::RVec<bool>
 hasTRK( ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in ) {
 
   ROOT::VecOps::RVec<bool> result ;
   result.reserve( in.size() );
-  
+
   for (auto & p: in) {
     if (p.tracks_begin >= 0 && p.tracks_begin != p.tracks_end) result.push_back(true) ;
     else result.push_back(false);
