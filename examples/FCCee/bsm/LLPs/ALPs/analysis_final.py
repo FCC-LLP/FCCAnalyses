@@ -1,10 +1,10 @@
 #Input directory where the files produced at the stage1 level are
-inputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/ALPs_3photons/winter2023/output_stage1/"
+inputDir = "./output_stage1/"
 #inputDir = "/eos/user/j/jalimena/FCCeeLLP/"
 #inputDir = "output_stage1/"
 
 #Output directory where the files produced at the final-selection level are
-outputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/ALPs_3photons/winter2023/output_finalSel/"
+outputDir = "./output_finalSel/"
 #outputDir  = "output_finalSel/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
