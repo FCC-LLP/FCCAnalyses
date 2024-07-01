@@ -12,12 +12,14 @@ delphesVersion = '3.4.2'
 energy         = 240
 collider       = 'FCC-ee'
 inputDir       = 'Reco_output_finalSelPlots/'
+#inputDir       = 'Reco_output_finalSel_CLD/'
 #formats        = ['png','pdf']
 formats        = ['pdf']
 # yaxis          = ['lin','log']
 yaxis          = ['log']
 stacksig       = ['nostack']
 outdir         = 'Reco_plots/'
+#outdir         = 'Reco_plots_CLD/'
 splitLeg       = True
 
 variables = [

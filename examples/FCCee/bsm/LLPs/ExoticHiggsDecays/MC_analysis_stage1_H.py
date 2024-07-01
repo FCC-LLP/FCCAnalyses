@@ -8,37 +8,39 @@ testfile="/afs/cern.ch/work/u/uvandevo/exoticHiggs_scalar_ms20GeV_sine-5.root"
 processList = {
 
         #privately-produced signals
-        'exoticHiggs_scalar_ms20GeV_sine-5':{},
-        'exoticHiggs_scalar_ms20GeV_sine-6':{},
-        'exoticHiggs_scalar_ms20GeV_sine-7':{},
-        'exoticHiggs_scalar_ms60GeV_sine-5':{},
-        'exoticHiggs_scalar_ms60GeV_sine-6':{},
-        'exoticHiggs_scalar_ms60GeV_sine-7':{},
-        #'exoticHiggs_scalar_ms20GeV_sine-5_CLD':{},
-        #'exoticHiggs_scalar_ms20GeV_sine-6_CLD':{},
-        #'exoticHiggs_scalar_ms20GeV_sine-7_CLD':{},
-        #'exoticHiggs_scalar_ms60GeV_sine-5_CLD':{},
-        #'exoticHiggs_scalar_ms60GeV_sine-6_CLD':{},
-        #'exoticHiggs_scalar_ms60GeV_sine-7_CLD':{},
+        'exoticHiggs_scalar_ms20GeV_sine-5_H':{},
+        'exoticHiggs_scalar_ms20GeV_sine-6_H':{},
+        'exoticHiggs_scalar_ms20GeV_sine-7_H':{},
+        'exoticHiggs_scalar_ms60GeV_sine-5_H':{},
+        'exoticHiggs_scalar_ms60GeV_sine-6_H':{},
+        'exoticHiggs_scalar_ms60GeV_sine-7_H':{}
+        
+        # #centrally produced backgrounds
+        #'p8_ee_ZZ_ecm240':{'fraction':0.005, 'chunks':5},   
+        #'p8_ee_WW_ecm240':{'fraction':0.005, 'chunks':5},   
+        #'wzp6_ee_ccH_HWW_ecm240':{'fraction':0.005, 'chunks':5},   
+        #'wzp6_ee_qqH_HWW_ecm240':{'fraction':0.005, 'chunks':5},   
+        #'wzp6_ee_bbH_HWW_ecm240':{'fraction':0.005, 'chunks':5},   
+        #'wzp6_ee_ssH_HWW_ecm240':{'fraction':0.005, 'chunks':5},   
+        #'wzp6_ee_ssH_Hbb_ecm240':{'fraction':0.005, 'chunks':5},   
+        #'wzp6_ee_qqH_Hbb_ecm240':{'fraction':0.005, 'chunks':5},   
+        #'wzp6_ee_bbH_Hbb_ecm240':{'fraction':0.005, 'chunks':5},   
+        #'wzp6_ee_ccH_Hbb_ecm240':{'fraction':0.005, 'chunks':5}   
 }
 
 #Production tag. This points to the yaml files for getting sample statistics
 #Mandatory when running over EDM4Hep centrally produced events
 #Comment out when running over privately produced events
-#prodTag     = "FCCee/spring2021/IDEA/"
+#prodTag     = "FCCee/winter2023/IDEA/"
 
 #Input directory
 #Comment out when running over centrally produced events
 #Mandatory when running over privately produced events
-#inputDir = "/afs/cern.ch/work/u/uvandevo"
-inputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/H_SS_4b/output_MadgraphPythiaDelphes"
-#inputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/exoticHiggsSamplesCLD"
+inputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/exoticHiggsSamplesCLD"
 
 #Optional: output directory, default is local dir
-#outputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/H_SS_4b/MC_output_stage1/"
-#outputDirEos = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/H_SS_4b/MC_output_stage1/"
-outputDir = "MC_output_stage1/"
-#outputDir = "MC_output_stage1_CLD/"
+outputDir = "MC_output_stage1_H/"
+
 #Optional: ncpus, default is 4
 nCPUS       = 4
 
@@ -64,15 +66,16 @@ class RDFanalysis():
             .Alias("Particle1", "Particle#1.index")
             # MC-particles/truth particles
 
-            # select the generated electrons and positrons
-            .Define('GenElectrons_PID', 'MCParticle::sel_pdgID(11, true)(Particle)')
-            # get the number of generated electrons and positrons
-            .Define('n_GenElectrons', 'MCParticle::get_n(GenElectrons_PID)')
+            # select gen quarks from Z decay (besides b, which is already later selected)
+            .Define('GenU_PID', 'MCParticle::sel_pdgID(2, true)(Particle)')
+            .Define('GenD_PID', 'MCParticle::sel_pdgID(1, true)(Particle)')
+            .Define('GenC_PID', 'MCParticle::sel_pdgID(4, true)(Particle)')
+            .Define('GenS_PID', 'MCParticle::sel_pdgID(3, true)(Particle)')
 
-            # select the generated muons
-            .Define('GenMuons_PID', 'MCParticle::sel_pdgID(13, true)(Particle)')
-            # get the number of generated muons
-            .Define('n_GenMuons', 'MCParticle::get_n(GenMuons_PID)')
+            .Define('n_GenU', 'MCParticle::get_n(GenU_PID)')
+            .Define('n_GenD', 'MCParticle::get_n(GenD_PID)')
+            .Define('n_GenC', 'MCParticle::get_n(GenC_PID)')
+            .Define('n_GenS', 'MCParticle::get_n(GenS_PID)')
 
             # select generated Z boson
             .Define('GenZ_PID',  'MCParticle::sel_pdgID(23, false)(Particle)')
@@ -171,8 +174,10 @@ class RDFanalysis():
     #Mandatory: output function, please make sure you return the branchlist as a python list
     def output():
         branchList = [
-            'n_GenElectrons',
-            'n_GenMuons',
+            'n_GenU',
+            'n_GenD',
+            'n_GenC',
+            'n_GenS',
             'n_GenZ',
             'n_GenHiggs',
             'n_Genb',

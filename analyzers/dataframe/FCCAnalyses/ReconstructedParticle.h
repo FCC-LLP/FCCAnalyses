@@ -169,6 +169,21 @@ namespace ReconstructedParticle{
   /// get number of b-jets
   int getJet_ntags(ROOT::VecOps::RVec<bool> in);
 
+    // get sum of vector of floats
+  float get_sum_float(ROOT::VecOps::RVec<float> in);
+
+  // get sum of vector of ints 
+  int get_sum_int(ROOT::VecOps::RVec<int> in);
+
+  // get avg of vector of floats
+  float get_avg_float(ROOT::VecOps::RVec<float> in);
+
+  // get avg of vector of ints
+  int get_avg_int(ROOT::VecOps::RVec<float> in);
+
+  /// return the summed total energy of all of the input ReconstructedParticles
+  float get_total_e(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in);
+
 }//end NS ReconstructedParticle
 
 }//end NS FCCAnalyses

@@ -1,56 +1,37 @@
 import ROOT
 
-testFile = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/H_SS_4b/output_MadgraphPythiaDelphes/exoticHiggs_scalar_ms20GeV_sine-6.root"
+testFile = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/exoticHiggsSamplesCLD/exoticHiggs_scalar_ms20GeV_sine-5_NU.root"
 
 #Mandatory: List of processes
 processList = {
 
         #privately-produced signals
-        'exoticHiggs_scalar_ms20GeV_sine-5':{},
-        'exoticHiggs_scalar_ms20GeV_sine-6':{},
-        'exoticHiggs_scalar_ms20GeV_sine-7':{},
-        'exoticHiggs_scalar_ms60GeV_sine-5':{},
-        'exoticHiggs_scalar_ms60GeV_sine-6':{},
-        'exoticHiggs_scalar_ms60GeV_sine-7':{},
-        #'exoticHiggs_scalar_ms20GeV_sine-5_CLD':{}, # CLD privately-produced signals 
-        #'exoticHiggs_scalar_ms20GeV_sine-6_CLD':{},
-        #'exoticHiggs_scalar_ms20GeV_sine-7_CLD':{},
-        #'exoticHiggs_scalar_ms60GeV_sine-5_CLD':{},
-        #'exoticHiggs_scalar_ms60GeV_sine-6_CLD':{},
-        #'exoticHiggs_scalar_ms60GeV_sine-7_CLD':{},
+        'exoticHiggs_scalar_ms20GeV_sine-5_NU':{},
+        'exoticHiggs_scalar_ms20GeV_sine-6_NU':{},
+        'exoticHiggs_scalar_ms20GeV_sine-7_NU':{},
+        'exoticHiggs_scalar_ms60GeV_sine-5_NU':{},
+        'exoticHiggs_scalar_ms60GeV_sine-6_NU':{},
+        'exoticHiggs_scalar_ms60GeV_sine-7_NU':{},
 
         # #centrally produced backgrounds
-        # IDEA backgrounds
-        # 'p8_ee_ZH_ecm240':{'fraction':0.01},
-        # 'p8_ee_ZZ_ecm240':{'fraction':0.01},   
-        # 'p8_ee_WW_ecm240':{'fraction':0.01},     
-        
-        # CLD (IDEA_FullSilicon) backgrounds
-        #'p8_ee_ZH_ecm240':{'fraction':0.01, 'chunks':5},
-        #'p8_ee_ZZ_ecm240':{'fraction':0.01, 'chunks':5},   
-        #'p8_ee_WW_ecm240':{'fraction':0.01, 'chunks':5},     
-        #'wzp6_ee_eeH_HZa_ecm240':{'fraction':0.01, 'chunks':5},   
-        #'wzp6_ee_mumuH_HZa_ecm240':{'fraction':0.01, 'chunks':5},   
+        #'p8_ee_ZZ_ecm240':{'fraction':0.005, 'chunks':5},   
+        #'p8_ee_WW_ecm240':{'fraction':0.005, 'chunks':5},     
+        #'wzp6_ee_nunuH_Hbb_ecm240':{'fraction':0.005, 'chunks':5},
+        #'wzp6_ee_nunuH_HWW_ecm240':{'fraction':0.005, 'chunks':5}
 }
 
 #Production tag. This points to the yaml files for getting sample statistics
 #Mandatory when running over EDM4Hep centrally produced events
 #Comment out when running over privately produced events
-#prodTag     = "FCCee/spring2021/IDEA/"
-#prodTag     = "FCCee/winter2023/IDEA_FullSilicon/"
-
+#prodTag     = "FCCee/winter2023/IDEA/"
 
 #Input directory
 #Comment out when running over centrally produced events
 #Mandatory when running over privately produced events
-#inputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/exoticHiggsSamplesCLD"
-inputDir = "/eos/experiment/fcc/ee/analyses_storage/BSM/LLPs/ExoticHiggsDecays/MC_generation"
+inputDir = "/eos/user/m/mlarson/exoticHiggsSamplesCLD"
 
 #Optional: output directory, default is local dir
-#outputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/H_SS_4b/Reco_output_stage1/"
-#outputDirEos = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/H_SS_4b/Reco_output_stage1/"
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/BSM/LLPs/ExoticHiggsDecays/Reco_output_stage1/"
-#outputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/exoticHiggsSamplesCLD/Reco_output_stage1/"
+outputDir = "/eos/user/m/mlarson/exoticHiggsSamplesCLD/Reco_output_stage1_NU"
 
 #Optional: ncpus, default is 4
 nCPUS       = 8
@@ -60,10 +41,10 @@ nCPUS       = 8
 runBatch    = True
 
 #Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "workday"
+batchQueue = "testmatch"
 
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
-#compGroup = "group_u_FCC.local_gen"
+compGroup = "group_u_FCC.local_gen"
 
 #USER DEFINED CODE
 # For costum displaced vertex selection, apply selection on the DVs with invariant mass higher than 1 GeV and distance from PV to DV less than 2000 mm, but longer than 4 mm
@@ -153,54 +134,31 @@ class RDFanalysis():
             .Define("Reco_DVs_merged_Lxy","VertexingUtils::get_dxy_SV(merged_DVs, PrimaryVertexObject)")
             .Define("Reco_DVs_merged_Lxyz","VertexingUtils::get_d3d_SV(merged_DVs, PrimaryVertexObject)")
 
-            # Reconstructed electrons and muons
-
-            # Electrons
-            .Alias('Electron0', 'Electron#0.index')
-            .Define('RecoElectrons',  'ReconstructedParticle::get(Electron0, ReconstructedParticles)') 
-            .Define('n_RecoElectrons',  'ReconstructedParticle::get_n(RecoElectrons)') #count how many electrons are in the event in total
-
-            # some kinematics of the reconstructed electrons and positrons
-            .Define("RecoElectron_e", "ReconstructedParticle::get_e(RecoElectrons)")
-            .Define("RecoElectron_p", "ReconstructedParticle::get_p(RecoElectrons)")
-            .Define("RecoElectron_pt", "ReconstructedParticle::get_pt(RecoElectrons)")
-            .Define("RecoElectron_px", "ReconstructedParticle::get_px(RecoElectrons)")
-            .Define("RecoElectron_py", "ReconstructedParticle::get_py(RecoElectrons)")
-            .Define("RecoElectron_pz", "ReconstructedParticle::get_pz(RecoElectrons)")
-            .Define("RecoElectron_charge",  "ReconstructedParticle::get_charge(RecoElectrons)")
-
-            # finding the invariant mass of the reconstructed electron and positron pair
-            .Define("Reco_ee_energy", "if ((n_RecoElectrons>1) && (RecoElectron_charge.at(0) != RecoElectron_charge.at(1))) return (RecoElectron_e.at(0) + RecoElectron_e.at(1)); else return float(-1.);")
-            .Define("Reco_ee_px", "if ((n_RecoElectrons>1) && (RecoElectron_charge.at(0) != RecoElectron_charge.at(1))) return (RecoElectron_px.at(0) + RecoElectron_px.at(1)); else return float(-1.);")
-            .Define("Reco_ee_py", "if ((n_RecoElectrons>1) && (RecoElectron_charge.at(0) != RecoElectron_charge.at(1))) return (RecoElectron_py.at(0) + RecoElectron_py.at(1)); else return float(-1.);")
-            .Define("Reco_ee_pz", "if ((n_RecoElectrons>1) && (RecoElectron_charge.at(0) != RecoElectron_charge.at(1))) return (RecoElectron_pz.at(0) + RecoElectron_pz.at(1)); else return float(-1.);")
-            .Define("Reco_ee_invMass", "if ((n_RecoElectrons>1) && (RecoElectron_charge.at(0) != RecoElectron_charge.at(1))) return sqrt(Reco_ee_energy*Reco_ee_energy - Reco_ee_px*Reco_ee_px - Reco_ee_py*Reco_ee_py - Reco_ee_pz*Reco_ee_pz ); else return float(-1.);")
-
-
-            # Muons
-            .Alias('Muon0', 'Muon#0.index')
-            .Define('RecoMuons',  'ReconstructedParticle::get(Muon0, ReconstructedParticles)')
-            .Define('n_RecoMuons',  'ReconstructedParticle::get_n(RecoMuons)') #count how many muons are in the event in total
-
-            # some kinematics of the reconstructed muons
-            .Define("RecoMuon_e",      "ReconstructedParticle::get_e(RecoMuons)")
-            .Define("RecoMuon_p",      "ReconstructedParticle::get_p(RecoMuons)")
-            .Define("RecoMuon_pt",      "ReconstructedParticle::get_pt(RecoMuons)")
-            .Define("RecoMuon_px",      "ReconstructedParticle::get_px(RecoMuons)")
-            .Define("RecoMuon_py",      "ReconstructedParticle::get_py(RecoMuons)")
-            .Define("RecoMuon_pz",      "ReconstructedParticle::get_pz(RecoMuons)")
-            .Define("RecoMuon_charge",  "ReconstructedParticle::get_charge(RecoMuons)")
-
-            # finding the invariant mass of the reconstructed muon pair
-            .Define("Reco_mumu_energy", "if ((n_RecoMuons>1) && (RecoMuon_charge.at(0) != RecoMuon_charge.at(1))) return (RecoMuon_e.at(0) + RecoMuon_e.at(1)); else return float(-1.);")
-            .Define("Reco_mumu_px", "if ((n_RecoMuons>1) && (RecoMuon_charge.at(0) != RecoMuon_charge.at(1))) return (RecoMuon_px.at(0) + RecoMuon_px.at(1)); else return float(-1.);")
-            .Define("Reco_mumu_py", "if ((n_RecoMuons>1) && (RecoMuon_charge.at(0) != RecoMuon_charge.at(1))) return (RecoMuon_py.at(0) + RecoMuon_py.at(1)); else return float(-1.);")
-            .Define("Reco_mumu_pz", "if ((n_RecoMuons>1) && (RecoMuon_charge.at(0) != RecoMuon_charge.at(1))) return (RecoMuon_pz.at(0) + RecoMuon_pz.at(1)); else return float(-1.);")
-            .Define("Reco_mumu_invMass", "if ((n_RecoMuons>1) && (RecoMuon_charge.at(0) != RecoMuon_charge.at(1))) return sqrt(Reco_mumu_energy*Reco_mumu_energy - Reco_mumu_px*Reco_mumu_px - Reco_mumu_py*Reco_mumu_py - Reco_mumu_pz*Reco_mumu_pz ); else return float(-1.);")
-
             # Number of DVs with distance and invariant mass selection applied
             .Define("filter_n_DVs_seltracks", "filter_n_DVs(Reco_seltracks_DVs_Lxyz, invMass_seltracks_DVs)")
             .Define("filter_n_DVs_merge", "filter_n_DVs(Reco_DVs_merged_Lxyz, invMass_merged_DVs)")
+            
+            # MET (from displaced HNL analysis_stage1.py)
+            #EVENTWIDE VARIABLES: Access quantities that exist only once per event, such as the missing energy (despite the name, the MissingET collection contains the total missing energy)
+            .Define("RecoMissingEnergy_e", "ReconstructedParticle::get_e(MissingET)")
+            .Define("RecoMissingEnergy_p", "ReconstructedParticle::get_p(MissingET)")
+            .Define("RecoMissingEnergy_pt", "ReconstructedParticle::get_pt(MissingET)")
+            .Define("RecoMissingEnergy_px", "ReconstructedParticle::get_px(MissingET)") #x-component of RecoMissingEnergy
+            .Define("RecoMissingEnergy_py", "ReconstructedParticle::get_py(MissingET)") #y-component of RecoMissingEnergy
+            .Define("RecoMissingEnergy_pz", "ReconstructedParticle::get_pz(MissingET)") #z-component of RecoMissingEnergy
+            .Define("RecoMissingEnergy_eta", "ReconstructedParticle::get_eta(MissingET)")
+            .Define("RecoMissingEnergy_theta", "ReconstructedParticle::get_theta(MissingET)")
+            .Define("RecoMissingEnergy_phi", "ReconstructedParticle::get_phi(MissingET)") #angle of RecoMissingEnergy
+
+            .Define("RecoMissingEnergy_e_sum", "ReconstructedParticle::get_sum_float(RecoMissingEnergy_e)")
+            .Define("RecoMissingEnergy_p_sum", "ReconstructedParticle::get_sum_float(RecoMissingEnergy_p)")
+            .Define("RecoMissingEnergy_pt_sum", "ReconstructedParticle::get_sum_float(RecoMissingEnergy_pt)")
+            .Define("RecoMissingEnergy_px_sum", "ReconstructedParticle::get_sum_float(RecoMissingEnergy_px)") #x-component of RecoMissingEnergy
+            .Define("RecoMissingEnergy_py_sum", "ReconstructedParticle::get_sum_float(RecoMissingEnergy_py)") #y-component of RecoMissingEnergy
+            .Define("RecoMissingEnergy_pz_sum", "ReconstructedParticle::get_sum_float(RecoMissingEnergy_pz)") #z-component of RecoMissingEnergy
+            .Define("RecoMissingEnergy_eta_sum", "ReconstructedParticle::get_sum_float(RecoMissingEnergy_eta)")
+            .Define("RecoMissingEnergy_theta_sum", "ReconstructedParticle::get_sum_float(RecoMissingEnergy_theta)")
+            .Define("RecoMissingEnergy_phi_sum", "ReconstructedParticle::get_sum_float(RecoMissingEnergy_phi)") #angle of RecoMissingEnergy
 
         )
         return df2
@@ -229,26 +187,19 @@ class RDFanalysis():
             "Reco_DVs_merged_Lxy",
             "Reco_DVs_merged_Lxyz",
 
-            'n_RecoElectrons',
-            "RecoElectron_e",
-            "RecoElectron_p",
-            "RecoElectron_pt",
-            "RecoElectron_px",
-            "RecoElectron_py",
-            "RecoElectron_pz",
-            "RecoElectron_charge",
-            "Reco_ee_invMass",
-            'n_RecoMuons',
-            "RecoMuon_e",
-            "RecoMuon_p",
-            "RecoMuon_pt",
-            "RecoMuon_px",
-            "RecoMuon_py",
-            "RecoMuon_pz",
-            "RecoMuon_charge",
-            "Reco_mumu_invMass",
-
             "filter_n_DVs_seltracks",
             "filter_n_DVs_merge",
+
+            "RecoMissingEnergy_e_sum",
+            "RecoMissingEnergy_p_sum",
+            "RecoMissingEnergy_pt_sum",
+            "RecoMissingEnergy_px_sum",
+            "RecoMissingEnergy_py_sum",
+            "RecoMissingEnergy_pz_sum",
+            "RecoMissingEnergy_eta_sum",
+            "RecoMissingEnergy_theta_sum",
+            "RecoMissingEnergy_phi_sum"
+
+
         ]
         return branchList

@@ -1,15 +1,16 @@
 #Input directory where the files produced at the stage1 level are
 inputDir  = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/H_SS_4b/Reco_output_stage1/"
+#inputDir  = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/exoticHiggsSamplesCLD/Reco_output_stage1_CLD/"
 
 #Output directory where the files produced at the final-selection level are
 outputDir  = "Reco_output_finalSel/"
-
+#outputDir  = "Reco_output_finalSel_CLD/"
 
 # # #Integrated luminosity for scaling number of events (required only if setting doScale to true)
-# intLumi = 5e6 #pb^-1
+intLumi = 5e6 #pb^-1
 
 # # #Scale event yields by intLumi and cross section (optional)
-# doScale = True
+doScale = True
 
 # # #Save event yields in a table (optional)
 # saveTabular = True
@@ -24,11 +25,24 @@ processList = {
         'exoticHiggs_scalar_ms60GeV_sine-5':{},
         'exoticHiggs_scalar_ms60GeV_sine-6':{},
         'exoticHiggs_scalar_ms60GeV_sine-7':{},
+        #'exoticHiggs_scalar_ms20GeV_sine-5_CLD':{}, # CLD privately-produced signals 
+        #'exoticHiggs_scalar_ms20GeV_sine-6_CLD':{},
+        #'exoticHiggs_scalar_ms20GeV_sine-7_CLD':{},
+        #'exoticHiggs_scalar_ms60GeV_sine-5_CLD':{},
+        #'exoticHiggs_scalar_ms60GeV_sine-6_CLD':{},
+        #'exoticHiggs_scalar_ms60GeV_sine-7_CLD':{},
 
-        #centrally produced backgrounds
-        'p8_ee_ZZ_ecm240':{},
-        'p8_ee_WW_ecm240':{},
-        'p8_ee_ZH_ecm240':{},
+        # #centrally produced backgrounds
+        # IDEA backgrounds
+        'p8_ee_ZH_ecm240':{'fraction':0.01},
+        'p8_ee_ZZ_ecm240':{'fraction':0.01},   
+        'p8_ee_WW_ecm240':{'fraction':0.01},     
+        
+        # CLD (IDEA_FullSilicon) backgrounds
+        #'p8_ee_ZZ_ecm240':{'fraction':0.01, 'chunks':5},   
+        #'p8_ee_WW_ecm240':{'fraction':0.01, 'chunks':5},     
+        #'wzp6_ee_eeH_HZa_ecm240':{'fraction':0.01, 'chunks':5},   
+        #'wzp6_ee_mumuH_HZa_ecm240':{'fraction':0.01, 'chunks':5},   
 }
 
 ###Dictionary for prettier names of processes (optional)
@@ -41,14 +55,28 @@ processLabels = {
     'exoticHiggs_scalar_ms60GeV_sine-6': "$m_S$ = 60 GeV, sin $\theta = 1 * 10^{-6}$",
     'exoticHiggs_scalar_ms60GeV_sine-7': "$m_S$ = 60 GeV, sin $\theta = 1 * 10^{-7}$",
 
+    #'exoticHiggs_scalar_ms20GeV_sine-5_CLD': "$m_S$ = 20 GeV, sin $\theta = 1 * 10^{-5}$",
+    #'exoticHiggs_scalar_ms20GeV_sine-6_CLD': "$m_S$ = 20 GeV, sin $\theta = 1 * 10^{-6}$",
+    #'exoticHiggs_scalar_ms20GeV_sine-7_CLD': "$m_S$ = 20 GeV, sin $\theta = 1 * 10^{-7}$",
+    #'exoticHiggs_scalar_ms60GeV_sine-5_CLD': "$m_S$ = 60 GeV, sin $\theta = 1 * 10^{-5}$",
+    #'exoticHiggs_scalar_ms60GeV_sine-6_CLD': "$m_S$ = 60 GeV, sin $\theta = 1 * 10^{-6}$",
+    #'exoticHiggs_scalar_ms60GeV_sine-7_CLD': "$m_S$ = 60 GeV, sin $\theta = 1 * 10^{-7}$",
+
     #backgrounds
     'p8_ee_WW_ecm240': "e^{-}e^{+} $\rightarrow$ WW",
     'p8_ee_ZZ_ecm240': "e^{-}e^{+} $\rightarrow$ ZZ",
     'p8_ee_ZH_ecm240': "e^{-}e^{+} $\rightarrow$ ZH",
+    
+    # CLD (IDEA_FullSilicon) backgrounds
+    #'p8_ee_WW_ecm240': "e^{-}e^{+} $\rightarrow$ WW",
+    #'p8_ee_ZZ_ecm240': "e^{-}e^{+} $\rightarrow$ ZZ",
+    #'wzp6_ee_eeH_HZa_ecm240': "e^{-}e^{+} $\rightarrow$ ZH, (Z -> e^{-}e^{+})",
+    #'wzp6_ee_mumuH_HZa_ecm240': "e^{-}e^{+} $\rightarrow$ ZH, (Z -> mu^{-}mu^{+})",
 }
 
 #Link to the dictonary that contains all the cross section information etc...
 procDict = "FCCee_procDict_spring2021_IDEA.json"
+#prodDict     = "FCCee/winter2023/IDEA_FullSilicon/"
 
 #Add MySample_p8_ee_ZH_ecm240 as it is not an offical process
 procDictAdd={
@@ -58,6 +86,13 @@ procDictAdd={
     'exoticHiggs_scalar_ms60GeV_sine-5': {"numberOfEvents": 10000, "sumOfWeights": 10000, "crossSection": 2.618e-6, "kfactor": 1.0, "matchingEfficiency": 1.0},
     'exoticHiggs_scalar_ms60GeV_sine-6': {"numberOfEvents": 10000, "sumOfWeights": 10000, "crossSection": 2.618e-6, "kfactor": 1.0, "matchingEfficiency": 1.0},
     'exoticHiggs_scalar_ms60GeV_sine-7': {"numberOfEvents": 10000, "sumOfWeights": 10000, "crossSection": 2.618e-6, "kfactor": 1.0, "matchingEfficiency": 1.0},
+
+    #'exoticHiggs_scalar_ms20GeV_sine-5_CLD': {"numberOfEvents": 10000, "sumOfWeights": 10000, "crossSection": 7.667e-6, "kfactor": 1.0, "matchingEfficiency": 1.0}, # NOTE cross sections use updated kappa value of 7e-4, which was used for sample generation 
+    #'exoticHiggs_scalar_ms20GeV_sine-6_CLD': {"numberOfEvents": 10000, "sumOfWeights": 10000, "crossSection": 7.667e-6, "kfactor": 1.0, "matchingEfficiency": 1.0}, # unsure if should be updated for IDEA samples too 
+    #'exoticHiggs_scalar_ms20GeV_sine-7_CLD': {"numberOfEvents": 10000, "sumOfWeights": 10000, "crossSection": 7.667e-6, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    #'exoticHiggs_scalar_ms60GeV_sine-5_CLD': {"numberOfEvents": 10000, "sumOfWeights": 10000, "crossSection": 2.26666e-6, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    #'exoticHiggs_scalar_ms60GeV_sine-6_CLD': {"numberOfEvents": 10000, "sumOfWeights": 10000, "crossSection": 2.26666e-6, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    #'exoticHiggs_scalar_ms60GeV_sine-7_CLD': {"numberOfEvents": 10000, "sumOfWeights": 10000, "crossSection": 2.26666e-6, "kfactor": 1.0, "matchingEfficiency": 1.0},
 }
 
 #Number of CPUs to use

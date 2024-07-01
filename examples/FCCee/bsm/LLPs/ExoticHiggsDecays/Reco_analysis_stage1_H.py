@@ -1,56 +1,45 @@
 import ROOT
 
-testFile = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/H_SS_4b/output_MadgraphPythiaDelphes/exoticHiggs_scalar_ms20GeV_sine-6.root"
+testFile = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/exoticHiggsSamplesCLD/exoticHiggs_scalar_ms20GeV_sine-5_H.root"
 
 #Mandatory: List of processes
 processList = {
 
         #privately-produced signals
-        'exoticHiggs_scalar_ms20GeV_sine-5':{},
-        'exoticHiggs_scalar_ms20GeV_sine-6':{},
-        'exoticHiggs_scalar_ms20GeV_sine-7':{},
-        'exoticHiggs_scalar_ms60GeV_sine-5':{},
-        'exoticHiggs_scalar_ms60GeV_sine-6':{},
-        'exoticHiggs_scalar_ms60GeV_sine-7':{},
-        #'exoticHiggs_scalar_ms20GeV_sine-5_CLD':{}, # CLD privately-produced signals 
-        #'exoticHiggs_scalar_ms20GeV_sine-6_CLD':{},
-        #'exoticHiggs_scalar_ms20GeV_sine-7_CLD':{},
-        #'exoticHiggs_scalar_ms60GeV_sine-5_CLD':{},
-        #'exoticHiggs_scalar_ms60GeV_sine-6_CLD':{},
-        #'exoticHiggs_scalar_ms60GeV_sine-7_CLD':{},
+        'exoticHiggs_scalar_ms20GeV_sine-5_H':{},
+        'exoticHiggs_scalar_ms20GeV_sine-6_H':{},
+        'exoticHiggs_scalar_ms20GeV_sine-7_H':{},
+        'exoticHiggs_scalar_ms60GeV_sine-5_H':{},
+        'exoticHiggs_scalar_ms60GeV_sine-6_H':{},
+        'exoticHiggs_scalar_ms60GeV_sine-7_H':{},
 
         # #centrally produced backgrounds
-        # IDEA backgrounds
-        # 'p8_ee_ZH_ecm240':{'fraction':0.01},
-        # 'p8_ee_ZZ_ecm240':{'fraction':0.01},   
-        # 'p8_ee_WW_ecm240':{'fraction':0.01},     
-        
-        # CLD (IDEA_FullSilicon) backgrounds
-        #'p8_ee_ZH_ecm240':{'fraction':0.01, 'chunks':5},
-        #'p8_ee_ZZ_ecm240':{'fraction':0.01, 'chunks':5},   
-        #'p8_ee_WW_ecm240':{'fraction':0.01, 'chunks':5},     
-        #'wzp6_ee_eeH_HZa_ecm240':{'fraction':0.01, 'chunks':5},   
-        #'wzp6_ee_mumuH_HZa_ecm240':{'fraction':0.01, 'chunks':5},   
+        #'p8_ee_ZZ_ecm240':{'fraction':0.005, 'chunks':5},   
+        #'p8_ee_WW_ecm240':{'fraction':0.005, 'chunks':5},   
+        #'wzp6_ee_ccH_HWW_ecm240':{'fraction':0.005, 'chunks':5},   
+        #'wzp6_ee_qqH_HWW_ecm240':{'fraction':0.005, 'chunks':5},   
+        #'wzp6_ee_bbH_HWW_ecm240':{'fraction':0.005, 'chunks':5},   
+        #'wzp6_ee_ssH_HWW_ecm240':{'fraction':0.005, 'chunks':5},   
+        #'wzp6_ee_ssH_Hbb_ecm240':{'fraction':0.005, 'chunks':5},   
+        #'wzp6_ee_qqH_Hbb_ecm240':{'fraction':0.005, 'chunks':5},   
+        #'wzp6_ee_bbH_Hbb_ecm240':{'fraction':0.005, 'chunks':5},   
+        #'wzp6_ee_ccH_Hbb_ecm240':{'fraction':0.005, 'chunks':5}   
+
 }
 
 #Production tag. This points to the yaml files for getting sample statistics
 #Mandatory when running over EDM4Hep centrally produced events
 #Comment out when running over privately produced events
-#prodTag     = "FCCee/spring2021/IDEA/"
-#prodTag     = "FCCee/winter2023/IDEA_FullSilicon/"
-
+#prodTag     = "FCCee/winter2023/IDEA/"
 
 #Input directory
 #Comment out when running over centrally produced events
 #Mandatory when running over privately produced events
-#inputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/exoticHiggsSamplesCLD"
-inputDir = "/eos/experiment/fcc/ee/analyses_storage/BSM/LLPs/ExoticHiggsDecays/MC_generation"
+#inputDir = "/eos/experiment/fcc/ee/analyses_storage/BSM/LLPs/ExoticHiggsDecays/MC_generation"
+inputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/exoticHiggsSamplesCLD"
 
 #Optional: output directory, default is local dir
-#outputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/H_SS_4b/Reco_output_stage1/"
-#outputDirEos = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/H_SS_4b/Reco_output_stage1/"
-outputDir = "/eos/experiment/fcc/ee/analyses_storage/BSM/LLPs/ExoticHiggsDecays/Reco_output_stage1/"
-#outputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/exoticHiggsSamplesCLD/Reco_output_stage1/"
+outputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/exoticHiggsSamplesCLD/Reco_output_stage1_H/"
 
 #Optional: ncpus, default is 4
 nCPUS       = 8
@@ -60,10 +49,11 @@ nCPUS       = 8
 runBatch    = True
 
 #Optional batch queue name when running on HTCondor, default is workday
-batchQueue = "workday"
+#batchQueue = "workday"
+batchQueue = "testmatch"
 
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
-#compGroup = "group_u_FCC.local_gen"
+compGroup = "group_u_FCC.local_gen"
 
 #USER DEFINED CODE
 # For costum displaced vertex selection, apply selection on the DVs with invariant mass higher than 1 GeV and distance from PV to DV less than 2000 mm, but longer than 4 mm
@@ -153,54 +143,55 @@ class RDFanalysis():
             .Define("Reco_DVs_merged_Lxy","VertexingUtils::get_dxy_SV(merged_DVs, PrimaryVertexObject)")
             .Define("Reco_DVs_merged_Lxyz","VertexingUtils::get_d3d_SV(merged_DVs, PrimaryVertexObject)")
 
-            # Reconstructed electrons and muons
-
-            # Electrons
-            .Alias('Electron0', 'Electron#0.index')
-            .Define('RecoElectrons',  'ReconstructedParticle::get(Electron0, ReconstructedParticles)') 
-            .Define('n_RecoElectrons',  'ReconstructedParticle::get_n(RecoElectrons)') #count how many electrons are in the event in total
-
-            # some kinematics of the reconstructed electrons and positrons
-            .Define("RecoElectron_e", "ReconstructedParticle::get_e(RecoElectrons)")
-            .Define("RecoElectron_p", "ReconstructedParticle::get_p(RecoElectrons)")
-            .Define("RecoElectron_pt", "ReconstructedParticle::get_pt(RecoElectrons)")
-            .Define("RecoElectron_px", "ReconstructedParticle::get_px(RecoElectrons)")
-            .Define("RecoElectron_py", "ReconstructedParticle::get_py(RecoElectrons)")
-            .Define("RecoElectron_pz", "ReconstructedParticle::get_pz(RecoElectrons)")
-            .Define("RecoElectron_charge",  "ReconstructedParticle::get_charge(RecoElectrons)")
-
-            # finding the invariant mass of the reconstructed electron and positron pair
-            .Define("Reco_ee_energy", "if ((n_RecoElectrons>1) && (RecoElectron_charge.at(0) != RecoElectron_charge.at(1))) return (RecoElectron_e.at(0) + RecoElectron_e.at(1)); else return float(-1.);")
-            .Define("Reco_ee_px", "if ((n_RecoElectrons>1) && (RecoElectron_charge.at(0) != RecoElectron_charge.at(1))) return (RecoElectron_px.at(0) + RecoElectron_px.at(1)); else return float(-1.);")
-            .Define("Reco_ee_py", "if ((n_RecoElectrons>1) && (RecoElectron_charge.at(0) != RecoElectron_charge.at(1))) return (RecoElectron_py.at(0) + RecoElectron_py.at(1)); else return float(-1.);")
-            .Define("Reco_ee_pz", "if ((n_RecoElectrons>1) && (RecoElectron_charge.at(0) != RecoElectron_charge.at(1))) return (RecoElectron_pz.at(0) + RecoElectron_pz.at(1)); else return float(-1.);")
-            .Define("Reco_ee_invMass", "if ((n_RecoElectrons>1) && (RecoElectron_charge.at(0) != RecoElectron_charge.at(1))) return sqrt(Reco_ee_energy*Reco_ee_energy - Reco_ee_px*Reco_ee_px - Reco_ee_py*Reco_ee_py - Reco_ee_pz*Reco_ee_pz ); else return float(-1.);")
-
-
-            # Muons
-            .Alias('Muon0', 'Muon#0.index')
-            .Define('RecoMuons',  'ReconstructedParticle::get(Muon0, ReconstructedParticles)')
-            .Define('n_RecoMuons',  'ReconstructedParticle::get_n(RecoMuons)') #count how many muons are in the event in total
-
-            # some kinematics of the reconstructed muons
-            .Define("RecoMuon_e",      "ReconstructedParticle::get_e(RecoMuons)")
-            .Define("RecoMuon_p",      "ReconstructedParticle::get_p(RecoMuons)")
-            .Define("RecoMuon_pt",      "ReconstructedParticle::get_pt(RecoMuons)")
-            .Define("RecoMuon_px",      "ReconstructedParticle::get_px(RecoMuons)")
-            .Define("RecoMuon_py",      "ReconstructedParticle::get_py(RecoMuons)")
-            .Define("RecoMuon_pz",      "ReconstructedParticle::get_pz(RecoMuons)")
-            .Define("RecoMuon_charge",  "ReconstructedParticle::get_charge(RecoMuons)")
-
-            # finding the invariant mass of the reconstructed muon pair
-            .Define("Reco_mumu_energy", "if ((n_RecoMuons>1) && (RecoMuon_charge.at(0) != RecoMuon_charge.at(1))) return (RecoMuon_e.at(0) + RecoMuon_e.at(1)); else return float(-1.);")
-            .Define("Reco_mumu_px", "if ((n_RecoMuons>1) && (RecoMuon_charge.at(0) != RecoMuon_charge.at(1))) return (RecoMuon_px.at(0) + RecoMuon_px.at(1)); else return float(-1.);")
-            .Define("Reco_mumu_py", "if ((n_RecoMuons>1) && (RecoMuon_charge.at(0) != RecoMuon_charge.at(1))) return (RecoMuon_py.at(0) + RecoMuon_py.at(1)); else return float(-1.);")
-            .Define("Reco_mumu_pz", "if ((n_RecoMuons>1) && (RecoMuon_charge.at(0) != RecoMuon_charge.at(1))) return (RecoMuon_pz.at(0) + RecoMuon_pz.at(1)); else return float(-1.);")
-            .Define("Reco_mumu_invMass", "if ((n_RecoMuons>1) && (RecoMuon_charge.at(0) != RecoMuon_charge.at(1))) return sqrt(Reco_mumu_energy*Reco_mumu_energy - Reco_mumu_px*Reco_mumu_px - Reco_mumu_py*Reco_mumu_py - Reco_mumu_pz*Reco_mumu_pz ); else return float(-1.);")
-
             # Number of DVs with distance and invariant mass selection applied
             .Define("filter_n_DVs_seltracks", "filter_n_DVs(Reco_seltracks_DVs_Lxyz, invMass_seltracks_DVs)")
             .Define("filter_n_DVs_merge", "filter_n_DVs(Reco_DVs_merged_Lxyz, invMass_merged_DVs)")
+
+            ##### Remove particles associated with DVs, then run N = 2 exclusive jet clustering
+
+            # get particle indices from dv tracks
+            #get_recoindTRK
+            #DV_evt_seltracks
+            .Define("rp_indices_DVs_trks", "VertexingUtils::get_VerticesRecoParticlesInd(DV_evt_seltracks, ReconstructedParticles)")
+            .Define("rp_DVs", "ReconstructedParticle::get(rp_indices_DVs_trks, ReconstructedParticles)")
+            .Define("nondv_recoparticles",  "ReconstructedParticle::remove( ReconstructedParticles,  rp_DVs )")
+
+            #define the RP px, py, pz and e
+            .Define("RP_px",          "ReconstructedParticle::get_px(nondv_recoparticles)")
+            .Define("RP_py",          "ReconstructedParticle::get_py(nondv_recoparticles)")
+            .Define("RP_pz",          "ReconstructedParticle::get_pz(nondv_recoparticles)")
+            .Define("RP_e",           "ReconstructedParticle::get_e(nondv_recoparticles)")
+            .Define("RP_m",           "ReconstructedParticle::get_mass(nondv_recoparticles)")
+            .Define("RP_q",           "ReconstructedParticle::get_charge(nondv_recoparticles)")
+
+            #build pseudo jets with the RP, using the interface that takes px,py,pz,m for better
+            #handling of rounding errors
+            .Define("pseudo_jets",    "JetClusteringUtils::set_pseudoJets_xyzm(RP_px, RP_py, RP_pz, RP_m)")
+
+            #run jet clustering with all reconstructed particles. kt_algorithm, R=0.5, exclusive clustering, exactly 2 jets, E0-scheme
+            .Define("FCCAnalysesJets_kt", "JetClustering::clustering_kt(0.5, 2, 2, 0, 10)(pseudo_jets)")
+            #get the jets out of the struct
+            .Define("jets_kt",           "JetClusteringUtils::get_pseudoJets(FCCAnalysesJets_kt)")
+            #get the jets constituents out of the struct
+            .Define("jetconstituents_kt","JetClusteringUtils::get_constituents(FCCAnalysesJets_kt)")
+            #get some variables
+            .Define("jets_kt_e",        "JetClusteringUtils::get_e(jets_kt)")
+            .Define("jets_kt_px",        "JetClusteringUtils::get_px(jets_kt)")
+            .Define("jets_kt_py",        "JetClusteringUtils::get_py(jets_kt)")
+            .Define("jets_kt_pz",        "JetClusteringUtils::get_pz(jets_kt)")
+            .Define("jets_kt_m",        "JetClusteringUtils::get_m(jets_kt)")
+            
+            .Define("jets_kt_e_sum",        "ReconstructedParticle::get_sum_float(jets_kt_e)")
+            .Define("jets_kt_px_sum",        "ReconstructedParticle::get_sum_float(jets_kt_px)")
+            .Define("jets_kt_py_sum",        "ReconstructedParticle::get_sum_float(jets_kt_py)")
+            .Define("jets_kt_pz_sum",        "ReconstructedParticle::get_sum_float(jets_kt_pz)")
+            .Define("jets_kt_m_sum",        "ReconstructedParticle::get_sum_float(jets_kt_m)")
+
+            .Define("jets_kt_e_avg",        "ReconstructedParticle::get_avg_float(jets_kt_e)")
+            .Define("jets_kt_px_avg",        "ReconstructedParticle::get_avg_float(jets_kt_px)")
+            .Define("jets_kt_py_avg",        "ReconstructedParticle::get_avg_float(jets_kt_py)")
+            .Define("jets_kt_pz_avg",        "ReconstructedParticle::get_avg_float(jets_kt_pz)")
+            .Define("jets_kt_m_avg",        "ReconstructedParticle::get_avg_float(jets_kt_m)")
 
         )
         return df2
@@ -229,26 +220,26 @@ class RDFanalysis():
             "Reco_DVs_merged_Lxy",
             "Reco_DVs_merged_Lxyz",
 
-            'n_RecoElectrons',
-            "RecoElectron_e",
-            "RecoElectron_p",
-            "RecoElectron_pt",
-            "RecoElectron_px",
-            "RecoElectron_py",
-            "RecoElectron_pz",
-            "RecoElectron_charge",
-            "Reco_ee_invMass",
-            'n_RecoMuons',
-            "RecoMuon_e",
-            "RecoMuon_p",
-            "RecoMuon_pt",
-            "RecoMuon_px",
-            "RecoMuon_py",
-            "RecoMuon_pz",
-            "RecoMuon_charge",
-            "Reco_mumu_invMass",
-
             "filter_n_DVs_seltracks",
             "filter_n_DVs_merge",
+
+            "jets_kt_e",
+            "jets_kt_px",
+            "jets_kt_py",
+            "jets_kt_pz",
+            "jets_kt_m",
+            "jetconstituents_kt",
+
+            "jets_kt_e_sum",
+            "jets_kt_px_sum",
+            "jets_kt_py_sum",
+            "jets_kt_pz_sum",
+            "jets_kt_m_sum",
+
+            "jets_kt_e_avg",
+            "jets_kt_px_avg",
+            "jets_kt_py_avg",
+            "jets_kt_pz_avg",
+            "jets_kt_m_avg"
         ]
         return branchList
