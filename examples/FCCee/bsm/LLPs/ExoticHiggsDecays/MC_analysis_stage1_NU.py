@@ -8,37 +8,33 @@ testfile="/afs/cern.ch/work/u/uvandevo/exoticHiggs_scalar_ms20GeV_sine-5.root"
 processList = {
 
         #privately-produced signals
-        'exoticHiggs_scalar_ms20GeV_sine-5':{},
-        'exoticHiggs_scalar_ms20GeV_sine-6':{},
-        'exoticHiggs_scalar_ms20GeV_sine-7':{},
-        'exoticHiggs_scalar_ms60GeV_sine-5':{},
-        'exoticHiggs_scalar_ms60GeV_sine-6':{},
-        'exoticHiggs_scalar_ms60GeV_sine-7':{},
-        #'exoticHiggs_scalar_ms20GeV_sine-5_CLD':{},
-        #'exoticHiggs_scalar_ms20GeV_sine-6_CLD':{},
-        #'exoticHiggs_scalar_ms20GeV_sine-7_CLD':{},
-        #'exoticHiggs_scalar_ms60GeV_sine-5_CLD':{},
-        #'exoticHiggs_scalar_ms60GeV_sine-6_CLD':{},
-        #'exoticHiggs_scalar_ms60GeV_sine-7_CLD':{},
+        'exoticHiggs_scalar_ms20GeV_sine-5_NU':{},
+        'exoticHiggs_scalar_ms20GeV_sine-6_NU':{},
+        'exoticHiggs_scalar_ms20GeV_sine-7_NU':{},
+        'exoticHiggs_scalar_ms60GeV_sine-5_NU':{},
+        'exoticHiggs_scalar_ms60GeV_sine-6_NU':{},
+        'exoticHiggs_scalar_ms60GeV_sine-7_NU':{},
+
+        # #centrally produced backgrounds
+        #'p8_ee_ZZ_ecm240':{'fraction':0.005, 'chunks':5},   
+        #'p8_ee_WW_ecm240':{'fraction':0.005, 'chunks':5},     
+        #'wzp6_ee_nunuH_Hbb_ecm240':{'fraction':0.005, 'chunks':5},
+        #'wzp6_ee_nunuH_HWW_ecm240':{'fraction':0.005, 'chunks':5}
 }
 
 #Production tag. This points to the yaml files for getting sample statistics
 #Mandatory when running over EDM4Hep centrally produced events
 #Comment out when running over privately produced events
-#prodTag     = "FCCee/spring2021/IDEA/"
+#prodTag     = "FCCee/winter2023/IDEA/"
 
 #Input directory
 #Comment out when running over centrally produced events
 #Mandatory when running over privately produced events
-#inputDir = "/afs/cern.ch/work/u/uvandevo"
-inputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/H_SS_4b/output_MadgraphPythiaDelphes"
-#inputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/exoticHiggsSamplesCLD"
+inputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/exoticHiggsSamplesCLD"
 
 #Optional: output directory, default is local dir
-#outputDir = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/H_SS_4b/MC_output_stage1/"
-#outputDirEos = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/H_SS_4b/MC_output_stage1/"
-outputDir = "MC_output_stage1/"
-#outputDir = "MC_output_stage1_CLD/"
+outputDir = "MC_output_stage1_NU/"
+
 #Optional: ncpus, default is 4
 nCPUS       = 4
 
@@ -64,15 +60,14 @@ class RDFanalysis():
             .Alias("Particle1", "Particle#1.index")
             # MC-particles/truth particles
 
-            # select the generated electrons and positrons
-            .Define('GenElectrons_PID', 'MCParticle::sel_pdgID(11, true)(Particle)')
-            # get the number of generated electrons and positrons
-            .Define('n_GenElectrons', 'MCParticle::get_n(GenElectrons_PID)')
+            # select the generated neutrinos 
+            .Define('GenElecNeutrinos_PID', 'MCParticle::sel_pdgID(12,true)(Particle)')
+            .Define('GenMuNeutrinos_PID', 'MCParticle::sel_pdgID(14,true)(Particle)')
+            .Define('GenTauNeutrinos_PID', 'MCParticle::sel_pdgID(16,true)(Particle)')
 
-            # select the generated muons
-            .Define('GenMuons_PID', 'MCParticle::sel_pdgID(13, true)(Particle)')
-            # get the number of generated muons
-            .Define('n_GenMuons', 'MCParticle::get_n(GenMuons_PID)')
+            .Define('n_GenElecNeutrinos', 'MCParticle::get_n(GenElecNeutrinos_PID)')
+            .Define('n_GenMuNeutrinos', 'MCParticle::get_n(GenMuNeutrinos_PID)')
+            .Define('n_GenTauNeutrinos', 'MCParticle::get_n(GenTauNeutrinos_PID)')
 
             # select generated Z boson
             .Define('GenZ_PID',  'MCParticle::sel_pdgID(23, false)(Particle)')
@@ -171,8 +166,9 @@ class RDFanalysis():
     #Mandatory: output function, please make sure you return the branchlist as a python list
     def output():
         branchList = [
-            'n_GenElectrons',
-            'n_GenMuons',
+            'n_GenElecNeutrinos',
+            'n_GenMuNeutrinos',
+            'n_GenTauNeutrinos',
             'n_GenZ',
             'n_GenHiggs',
             'n_Genb',

@@ -12,11 +12,13 @@ delphesVersion = '3.4.2'
 energy         = 240
 collider       = 'FCC-ee'
 inputDir       = 'MC_output_finalSel/'
+#inputDir       = 'MC_output_finalSec_CLD/'
 #formats        = ['png','pdf']
 formats        = ['pdf']
 yaxis          = ['lin','log']
 stacksig       = ['nostack']
 outdir         = 'MC_plots/'
+#outdir         = 'MC_plots_CLD/'
 splitLeg       = True
 
 variables = [
@@ -55,6 +57,13 @@ colors['exoticHiggs_scalar_ms60GeV_sine-5'] = ROOT.kGreen+1
 colors['exoticHiggs_scalar_ms60GeV_sine-6'] = ROOT.kCyan-9
 colors['exoticHiggs_scalar_ms60GeV_sine-7'] = ROOT.kViolet-4
 
+#colors['exoticHiggs_scalar_ms20GeV_sine-5_CLD'] = ROOT.kOrange+1
+#colors['exoticHiggs_scalar_ms20GeV_sine-6_CLD'] = ROOT.kRed
+#colors['exoticHiggs_scalar_ms20GeV_sine-7_CLD'] = ROOT.kBlue
+#colors['exoticHiggs_scalar_ms60GeV_sine-5_CLD'] = ROOT.kGreen+1
+#colors['exoticHiggs_scalar_ms60GeV_sine-6_CLD'] = ROOT.kCyan-9
+#colors['exoticHiggs_scalar_ms60GeV_sine-7_CLD'] = ROOT.kViolet-4
+
 plots = {}
 plots['ExoticHiggs'] = {'signal':{
                     'exoticHiggs_scalar_ms20GeV_sine-5':['exoticHiggs_scalar_ms20GeV_sine-5'],
@@ -63,6 +72,12 @@ plots['ExoticHiggs'] = {'signal':{
                     'exoticHiggs_scalar_ms60GeV_sine-5':['exoticHiggs_scalar_ms60GeV_sine-5'],
                     'exoticHiggs_scalar_ms60GeV_sine-6':['exoticHiggs_scalar_ms60GeV_sine-6'],
                     'exoticHiggs_scalar_ms60GeV_sine-7':['exoticHiggs_scalar_ms60GeV_sine-7'],
+                    #'exoticHiggs_scalar_ms20GeV_sine-5_CLD':['exoticHiggs_scalar_ms20GeV_sine-5_CLD'],
+                    #'exoticHiggs_scalar_ms20GeV_sine-6_CLD':['exoticHiggs_scalar_ms20GeV_sine-6_CLD'],
+                    #'exoticHiggs_scalar_ms20GeV_sine-7_CLD':['exoticHiggs_scalar_ms20GeV_sine-7_CLD'],
+                    #'exoticHiggs_scalar_ms60GeV_sine-5_CLD':['exoticHiggs_scalar_ms60GeV_sine-5_CLD'],
+                    #'exoticHiggs_scalar_ms60GeV_sine-6_CLD':['exoticHiggs_scalar_ms60GeV_sine-6_CLD'],
+                    #'exoticHiggs_scalar_ms60GeV_sine-7_CLD':['exoticHiggs_scalar_ms60GeV_sine-7_CLD'],
 },
 'backgrounds':{
             #
@@ -77,3 +92,10 @@ legend['exoticHiggs_scalar_ms20GeV_sine-7'] = 'm_{S} = 20 GeV, sin #theta = 1e-7
 legend['exoticHiggs_scalar_ms60GeV_sine-5'] = 'm_{S} = 60 GeV, sin #theta = 1e-5'
 legend['exoticHiggs_scalar_ms60GeV_sine-6'] = 'm_{S} = 60 GeV, sin #theta = 1e-6'
 legend['exoticHiggs_scalar_ms60GeV_sine-7'] = 'm_{S} = 60 GeV, sin #theta = 1e-7'
+
+#legend['exoticHiggs_scalar_ms20GeV_sine-5_CLD'] = 'm_{S} = 20 GeV, sin #theta = 1e-5'
+#legend['exoticHiggs_scalar_ms20GeV_sine-6_CLD'] = 'm_{S} = 20 GeV, sin #theta = 1e-6'
+#legend['exoticHiggs_scalar_ms20GeV_sine-7_CLD'] = 'm_{S} = 20 GeV, sin #theta = 1e-7'
+#legend['exoticHiggs_scalar_ms60GeV_sine-5_CLD'] = 'm_{S} = 60 GeV, sin #theta = 1e-5'
+#legend['exoticHiggs_scalar_ms60GeV_sine-6_CLD'] = 'm_{S} = 60 GeV, sin #theta = 1e-6'
+#legend['exoticHiggs_scalar_ms60GeV_sine-7_CLD'] = 'm_{S} = 60 GeV, sin #theta = 1e-7'
