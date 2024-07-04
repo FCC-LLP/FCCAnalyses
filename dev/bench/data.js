@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1720084328973,
+  "lastUpdate": 1720084330087,
   "repoUrl": "https://github.com/FCC-LLP/FCCAnalyses",
   "entries": {
     "Benchmark": [
@@ -3275,6 +3275,55 @@ window.BENCHMARK_DATA = {
             "unit": "Seconds",
             "range": 10,
             "extra": "Analysis path: examples/FCCee/vertex_lcfiplus/analysis_V0.py"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "juliette.alimena@cern.ch",
+            "name": "Juliette Alimena",
+            "username": "jalimena"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "565b59d76b13a7fdb1c5e4420bc7c39ea9936c99",
+          "message": "Merge pull request #19 from mlarson02/ExoticHiggsCLDHadronicNeutrinoAdditions\n\nAdding for code for exotic Higgs analysis for CLD, hadronic/invisible Z decay samples",
+          "timestamp": "2024-07-04T11:04:25+02:00",
+          "tree_id": "88dd761f886462c2bd34f661b67c18b7e1c4de19",
+          "url": "https://github.com/FCC-LLP/FCCAnalyses/commit/565b59d76b13a7fdb1c5e4420bc7c39ea9936c99"
+        },
+        "date": 1720084329780,
+        "tool": "customBiggerIsBetter",
+        "benches": [
+          {
+            "name": "nightly | Events processed per second: case-studies/analysis_example/scripts/analysis_example.py",
+            "value": 8.151321878919587,
+            "unit": "Evt/s"
+          },
+          {
+            "name": "nightly | Events processed per second: examples/FCCee/higgs/mH-recoil/mumu/analysis_stage1.py",
+            "value": 7.105053630797013,
+            "unit": "Evt/s"
+          },
+          {
+            "name": "nightly | Events processed per second: examples/FCCee/flavour/Bc2TauNu/analysis_B2TauNu_truth.py",
+            "value": 6.815021122190793,
+            "unit": "Evt/s"
+          },
+          {
+            "name": "nightly | Events processed per second: examples/FCCee/test/jet_constituents.py",
+            "value": 8.780983067204112,
+            "unit": "Evt/s"
+          },
+          {
+            "name": "nightly | Events processed per second: examples/FCCee/vertex_lcfiplus/analysis_V0.py",
+            "value": 2.665716213447252,
+            "unit": "Evt/s"
           }
         ]
       }
