@@ -340,6 +340,128 @@ ROOT::VecOps::RVec<float> get_phi(ROOT::VecOps::RVec<edm4hep::ReconstructedParti
   return result;
 }
 
+ROOT::VecOps::RVec<float> get_delta_eta(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in) {
+  ROOT::VecOps::RVec<float> result;
+  for (int i = 0; i < in.size(); i++) {
+    TLorentzVector tlv1;
+    tlv1.SetXYZM(in[i].momentum.x, in[i].momentum.y, in[i].momentum.z, in[i].mass);
+    for (auto j = i + 1; j < in.size(); j++) {
+      TLorentzVector tlv2;
+      tlv2.SetXYZM(in[j].momentum.x, in[j].momentum.y, in[j].momentum.z, in[j].mass);
+      float delta_eta = abs(tlv1.Eta() - tlv2.Eta());
+      // std::cout << "****************" + std::to_string(delta_eta);
+      result.push_back(delta_eta);
+    }
+  }
+  return result;
+}
+
+ROOT::VecOps::RVec<float> get_delta_phi(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in) {
+  ROOT::VecOps::RVec<float> result;
+  for (int i = 0; i < in.size(); i++) {
+    TLorentzVector tlv1;
+    tlv1.SetXYZM(in[i].momentum.x, in[i].momentum.y, in[i].momentum.z, in[i].mass);
+    for (auto j = i + 1; j < in.size(); j++) {
+      TLorentzVector tlv2;
+      tlv2.SetXYZM(in[j].momentum.x, in[j].momentum.y, in[j].momentum.z, in[j].mass);
+      // float delta_phi = abs(tlv1.Phi() - tlv2.Phi());
+      // std::cout << "****************" + std::to_string(delta_phi);
+      float delta_phi = tlv1.DeltaPhi(tlv2);
+      result.push_back(delta_phi);
+    }
+  }
+  return result;
+}
+
+ROOT::VecOps::RVec<float> get_delta_r(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in) {
+  ROOT::VecOps::RVec<float> result;
+  for (int i = 0; i < in.size(); i++) {
+    TLorentzVector tlv1;
+    tlv1.SetXYZM(in[i].momentum.x, in[i].momentum.y, in[i].momentum.z, in[i].mass);
+    for (auto j = i + 1; j < in.size(); j++) {
+      TLorentzVector tlv2;
+      tlv2.SetXYZM(in[j].momentum.x, in[j].momentum.y, in[j].momentum.z, in[j].mass);
+      float delta_r = tlv1.DeltaR(tlv2);
+      result.push_back(delta_r);
+    }
+  }
+  return result;
+}
+
+ROOT::VecOps::RVec<float> get_min_delta_r(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in) {
+  ROOT::VecOps::RVec<float> result;
+  float min_delta_r = 999;
+  for (int i = 0; i < in.size(); i++) {
+    TLorentzVector tlv1;
+    tlv1.SetXYZM(in[i].momentum.x, in[i].momentum.y, in[i].momentum.z, in[i].mass);
+    for (int j = i + 1; j < in.size(); j++) {
+      TLorentzVector tlv2;
+      tlv2.SetXYZM(in[j].momentum.x, in[j].momentum.y, in[j].momentum.z, in[j].mass);
+      float delta_r = tlv1.DeltaR(tlv2);
+      if (delta_r < min_delta_r) {
+        min_delta_r = delta_r;
+      }
+    }
+    // result.push_back(min_delta_r);
+  }
+  result.push_back(min_delta_r);
+  return result;
+}
+
+ROOT::VecOps::RVec<float> get_ALP_delta_r(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in1, ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in2) {
+  ROOT::VecOps::RVec<float> result;
+  TLorentzVector tlv1;
+  TLorentzVector tlv2;
+  for (auto & p: in1) {
+    tlv1.SetXYZM(p.momentum.x, p.momentum.y, p.momentum.z, p.mass);
+  }
+  for (auto & p: in2) {
+    tlv2.SetXYZM(p.momentum.x, p.momentum.y, p.momentum.z, p.mass);
+  }
+  float ALP_delta_r = tlv1.DeltaR(tlv2);
+  result.push_back(ALP_delta_r);
+  return result;
+}
+
+ROOT::VecOps::RVec<float> get_ALP_delta_phi(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in1, ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in2) {
+  ROOT::VecOps::RVec<float> result;
+  TLorentzVector tlv1;
+  TLorentzVector tlv2;
+  for (auto & p: in1) {
+    tlv1.SetXYZM(p.momentum.x, p.momentum.y, p.momentum.z, p.mass);
+  }
+  for (auto & p: in2) {
+    tlv2.SetXYZM(p.momentum.x, p.momentum.y, p.momentum.z, p.mass);
+  }
+  float ALP_delta_phi = tlv1.DeltaPhi(tlv2);
+  // float ALP_delta_phi = abs(tlv1.Phi() - tlv2.Phi());
+  result.push_back(ALP_delta_phi);
+  return result;
+}
+
+ROOT::VecOps::RVec<float> get_ALP_delta_eta(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in1, ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in2) {
+  ROOT::VecOps::RVec<float> result;
+  TLorentzVector tlv1;
+  TLorentzVector tlv2;
+  for (auto & p: in1) {
+    tlv1.SetXYZM(p.momentum.x, p.momentum.y, p.momentum.z, p.mass);
+  }
+  for (auto & p: in2) {
+    tlv2.SetXYZM(p.momentum.x, p.momentum.y, p.momentum.z, p.mass);
+  }
+  float ALP_delta_eta = abs(tlv1.Eta() - tlv2.Eta());
+  result.push_back(ALP_delta_eta);
+  return result;
+}
+
+ROOT::VecOps::RVec<float> get_reference_point_x(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in) {
+  ROOT::VecOps::RVec<float> result;
+  for (auto & p: in) {
+    result.push_back(p.referencePoint.x);
+  }
+  return result;
+}
+
 ROOT::VecOps::RVec<float> get_e(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in) {
   ROOT::VecOps::RVec<float> result;
   for (auto & p: in) {
