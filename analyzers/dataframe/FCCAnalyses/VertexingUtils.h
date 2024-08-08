@@ -115,10 +115,8 @@ namespace VertexingUtils{
   /// Return the number of tracks in a given track collection
   int get_nTracks(ROOT::VecOps::RVec<edm4hep::TrackState> tracks);
 
-// <<<<<<< HEAD
   /// compare two track states
   bool compare_Tracks( const edm4hep::TrackState& tr1, const edm4hep::TrackState& tr2 ) ;
-
 
   ///////////////////////////////////////////////////
   /// functions used for SV reconstruction
@@ -300,7 +298,6 @@ namespace VertexingUtils{
   ROOT::VecOps::RVec<ROOT::VecOps::RVec<TVector3>> get_position_SV( ROOT::VecOps::RVec<ROOT::VecOps::RVec<FCCAnalysesVertex>> vertices );
   // --- for get_SV_jets --- //
 
- // --- Internal methods needed by the code of  Franco B :
   float get_trackMom( edm4hep::TrackState & atrack );
 
 
