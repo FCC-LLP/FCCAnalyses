@@ -337,6 +337,21 @@ ROOT::VecOps::RVec<float> get_phi(ROOT::VecOps::RVec<edm4hep::MCParticleData> in
   return result;
 }
 
+ROOT::VecOps::RVec<float> get_delta_r(ROOT::VecOps::RVec<edm4hep::MCParticleData> in) {
+  ROOT::VecOps::RVec<float> result;
+  for (int i = 0; i < in.size(); i++) {
+    TLorentzVector tlv1;
+    tlv1.SetXYZM(in[i].momentum.x, in[i].momentum.y, in[i].momentum.z, in[i].mass);
+    for (auto j = i + 1; j < in.size(); j++) {
+      TLorentzVector tlv2;
+      tlv2.SetXYZM(in[j].momentum.x, in[j].momentum.y, in[j].momentum.z, in[j].mass);
+      float delta_r = tlv1.DeltaR(tlv2);
+      result.push_back(delta_r);
+    }
+  }
+  return result;
+}
+
 ROOT::VecOps::RVec<float> get_e(ROOT::VecOps::RVec<edm4hep::MCParticleData> in) {
   ROOT::VecOps::RVec<float> result;
   for (auto & p: in) {

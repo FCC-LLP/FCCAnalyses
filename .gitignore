@@ -10,6 +10,9 @@ __pycache__/
 # ROOT files
 *.root
 
+# PDF files
+*.pdf
+
 # Editors
 *~
 .vimlocal
