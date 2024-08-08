@@ -590,3 +590,4 @@ hasTRK( ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in ) {
 }//end NS ReconstructedParticle2Track
 
 }//end NS FCCAnalyses
+
