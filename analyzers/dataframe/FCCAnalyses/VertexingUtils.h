@@ -44,7 +44,6 @@ namespace VertexingUtils{
     ROOT::VecOps::RVec< TVector3 >  updated_track_momentum_at_vertex;
     ROOT::VecOps::RVec< TVectorD >  updated_track_parameters;
     ROOT::VecOps::RVec<float> final_track_phases;
-    ROOT::VecOps::RVec<edm4hep::TrackState> tracks;   // added to keep track of the tracks that are associated to each vertex, used in SV finder from LCFI+ to merge vertices
   };
 
   /// Structure to keep useful information that is related to the V0
@@ -85,23 +84,6 @@ namespace VertexingUtils{
   /// Retrieve the number of reconstructed vertices from the collection of vertex object
   int get_Nvertex( ROOT::VecOps::RVec<FCCAnalysesVertex> TheVertexColl );
 
-  /// Merge vertices that are within 10*error of position or 1 mm, of each other
-  ROOT::VecOps::RVec<FCCAnalysesVertex> mergeVertices ( ROOT::VecOps::RVec<FCCAnalysesVertex> vertices_in );
-
-  /// selection of tracks based on the transverse momentum pT
-  struct sel_pt_tracks {
-    sel_pt_tracks(float arg_min_pt);
-    float m_min_pt = 0;
-    ROOT::VecOps::RVec<edm4hep::TrackState> operator() (ROOT::VecOps::RVec<edm4hep::TrackState> in);
-  };
-
-  /// selection of tracks based on the impact paramter d0
-  struct sel_d0_tracks {
-    sel_d0_tracks(float arg_min_d0);
-    float m_min_d0 = 0;
-    ROOT::VecOps::RVec<edm4hep::TrackState> operator() (ROOT::VecOps::RVec<edm4hep::TrackState> in);
-  };
-
   /// Retrieve a single FCCAnalyses vertex from the collection of vertex object
   FCCAnalysesVertex get_FCCAnalysesVertex(ROOT::VecOps::RVec<FCCAnalysesVertex> TheVertexColl, int index );
 
@@ -124,6 +106,10 @@ namespace VertexingUtils{
 
   /// Retrieve the indices of the tracks fitted to that vertex, but now in the collection of RecoParticles
   ROOT::VecOps::RVec<int> get_VertexRecoParticlesInd( FCCAnalysesVertex TheVertex,
+						      const ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData>& reco );
+
+  /// Retrieve the indices of the tracks fitted to a vector of vertices, but now in the collection of RecoParticles
+  ROOT::VecOps::RVec<int> get_VerticesRecoParticlesInd( ROOT::VecOps::RVec<FCCAnalysesVertex > vertices,
 						      const ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData>& reco );
 
   /// Return the number of tracks in a given track collection
@@ -519,10 +505,27 @@ namespace VertexingUtils{
 
  // --- Internal methods needed by the code of  Franco B :
   float get_trackMom( edm4hep::TrackState & atrack );
-  // TVectorD get_trackParam( edm4hep::TrackState & atrack) ;
-  // TMatrixDSym get_trackCov( edm4hep::TrackState &  atrack) ;
 
-// >>>>>>> c5a4bb427 (adding the implementation of LCFIPlus vertexing module and the necessary funtions to exploit vertex properties in VertexingUtils)
+
+// --- Conversion methods between the Delphes and edm4hep conventions
+
+/// convert track parameters, from edm4hep to delphes conventions
+  TVectorD Edm4hep2Delphes_TrackParam( const TVectorD& param, bool Units_mm );
+/// convert track parameters, from delphes to edm4hep conventions
+  TVectorD Delphes2Edm4hep_TrackParam( const TVectorD& param, bool Units_mm );
+/// convert track covariance matrix, from edm4hep to delphes conventions
+  TMatrixDSym  Edm4hep2Delphes_TrackCovMatrix( const std::array<float, 21>&  covMatrix, bool Units_mm );
+#if __has_include("edm4hep/CovMatrix6f.h")
+  TMatrixDSym  Edm4hep2Delphes_TrackCovMatrix( const edm4hep::CovMatrix6f&  covMatrix, bool Units_mm );
+#endif
+/// convert track covariance matrix, from delphes to edm4hep conventions
+  std::array<float, 21> Delphes2Edm4hep_TrackCovMatrix( const TMatrixDSym& cov, bool Units_mm ) ;
+
+
+ /// --- Internal methods needed by the code of  Franco B:
+  TVectorD get_trackParam( edm4hep::TrackState & atrack, bool Units_mm = false) ;
+  TMatrixDSym get_trackCov( const edm4hep::TrackState &  atrack, bool Units_mm = false) ;
+
   TVectorD ParToACTS(TVectorD Par);
   TMatrixDSym CovToACTS(TMatrixDSym Cov,TVectorD Par);
 
@@ -532,4 +535,3 @@ namespace VertexingUtils{
 
 }//end NS FCCAnalyses
 #endif
-
