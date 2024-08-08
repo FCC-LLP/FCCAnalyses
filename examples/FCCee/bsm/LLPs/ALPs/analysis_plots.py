@@ -252,9 +252,9 @@ variables = [
 
     "RecoPhotons_min_delta_r",
 
-    "RecoPhotons_ALP_delta_r",
-    "RecoPhotons_ALP_delta_phi",
-    "RecoPhotons_ALP_delta_eta",
+    # "RecoPhotons_ALP_delta_r",
+    # "RecoPhotons_ALP_delta_phi",
+    # "RecoPhotons_ALP_delta_eta",
 
     # "RecoPhoton_reference_point_x",
 

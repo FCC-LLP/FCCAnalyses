@@ -345,29 +345,10 @@ ROOT::VecOps::RVec<float> get_delta_r(ROOT::VecOps::RVec<edm4hep::MCParticleData
     for (auto j = i + 1; j < in.size(); j++) {
       TLorentzVector tlv2;
       tlv2.SetXYZM(in[j].momentum.x, in[j].momentum.y, in[j].momentum.z, in[j].mass);
-      // float delta_eta = abs(tlv1.Eta() - tlv2.Eta());
-      // float delta_phi = abs(tlv1.Phi() - tlv2.Phi());
-      // float delta_r = sqrt(delta_eta*delta_eta + delta_phi*delta_phi);
-      // std::cout << "****************" + std::to_string(delta_r);
       float delta_r = tlv1.DeltaR(tlv2);
       result.push_back(delta_r);
     }
   }
-  return result;
-}
-
-ROOT::VecOps::RVec<float> get_ALP_delta_r(ROOT::VecOps::RVec<edm4hep::MCParticleData> in1, ROOT::VecOps::RVec<edm4hep::MCParticleData> in2) {
-  ROOT::VecOps::RVec<float> result;
-  TLorentzVector tlv1;
-  TLorentzVector tlv2;
-  for (auto & p: in1) {
-    tlv1.SetXYZM(p.momentum.x, p.momentum.y, p.momentum.z, p.mass);
-  }
-  for (auto & p: in2) {
-    tlv2.SetXYZM(p.momentum.x, p.momentum.y, p.momentum.z, p.mass);
-  }
-  float ALP_delta_r = tlv1.DeltaR(tlv2);
-  result.push_back(ALP_delta_r);
   return result;
 }
 

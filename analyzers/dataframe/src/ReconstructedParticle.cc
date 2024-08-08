@@ -349,7 +349,6 @@ ROOT::VecOps::RVec<float> get_delta_eta(ROOT::VecOps::RVec<edm4hep::Reconstructe
       TLorentzVector tlv2;
       tlv2.SetXYZM(in[j].momentum.x, in[j].momentum.y, in[j].momentum.z, in[j].mass);
       float delta_eta = abs(tlv1.Eta() - tlv2.Eta());
-      // std::cout << "****************" + std::to_string(delta_eta);
       result.push_back(delta_eta);
     }
   }
@@ -364,8 +363,6 @@ ROOT::VecOps::RVec<float> get_delta_phi(ROOT::VecOps::RVec<edm4hep::Reconstructe
     for (auto j = i + 1; j < in.size(); j++) {
       TLorentzVector tlv2;
       tlv2.SetXYZM(in[j].momentum.x, in[j].momentum.y, in[j].momentum.z, in[j].mass);
-      // float delta_phi = abs(tlv1.Phi() - tlv2.Phi());
-      // std::cout << "****************" + std::to_string(delta_phi);
       float delta_phi = tlv1.DeltaPhi(tlv2);
       result.push_back(delta_phi);
     }
@@ -402,55 +399,8 @@ ROOT::VecOps::RVec<float> get_min_delta_r(ROOT::VecOps::RVec<edm4hep::Reconstruc
         min_delta_r = delta_r;
       }
     }
-    // result.push_back(min_delta_r);
   }
   result.push_back(min_delta_r);
-  return result;
-}
-
-ROOT::VecOps::RVec<float> get_ALP_delta_r(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in1, ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in2) {
-  ROOT::VecOps::RVec<float> result;
-  TLorentzVector tlv1;
-  TLorentzVector tlv2;
-  for (auto & p: in1) {
-    tlv1.SetXYZM(p.momentum.x, p.momentum.y, p.momentum.z, p.mass);
-  }
-  for (auto & p: in2) {
-    tlv2.SetXYZM(p.momentum.x, p.momentum.y, p.momentum.z, p.mass);
-  }
-  float ALP_delta_r = tlv1.DeltaR(tlv2);
-  result.push_back(ALP_delta_r);
-  return result;
-}
-
-ROOT::VecOps::RVec<float> get_ALP_delta_phi(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in1, ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in2) {
-  ROOT::VecOps::RVec<float> result;
-  TLorentzVector tlv1;
-  TLorentzVector tlv2;
-  for (auto & p: in1) {
-    tlv1.SetXYZM(p.momentum.x, p.momentum.y, p.momentum.z, p.mass);
-  }
-  for (auto & p: in2) {
-    tlv2.SetXYZM(p.momentum.x, p.momentum.y, p.momentum.z, p.mass);
-  }
-  float ALP_delta_phi = tlv1.DeltaPhi(tlv2);
-  // float ALP_delta_phi = abs(tlv1.Phi() - tlv2.Phi());
-  result.push_back(ALP_delta_phi);
-  return result;
-}
-
-ROOT::VecOps::RVec<float> get_ALP_delta_eta(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in1, ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in2) {
-  ROOT::VecOps::RVec<float> result;
-  TLorentzVector tlv1;
-  TLorentzVector tlv2;
-  for (auto & p: in1) {
-    tlv1.SetXYZM(p.momentum.x, p.momentum.y, p.momentum.z, p.mass);
-  }
-  for (auto & p: in2) {
-    tlv2.SetXYZM(p.momentum.x, p.momentum.y, p.momentum.z, p.mass);
-  }
-  float ALP_delta_eta = abs(tlv1.Eta() - tlv2.Eta());
-  result.push_back(ALP_delta_eta);
   return result;
 }
 
@@ -614,7 +564,7 @@ int getJet_ntags(ROOT::VecOps::RVec<bool> in) {
     return result;
   }
 
-  // get sum of int 
+  // get sum of int
   int get_sum_int(ROOT::VecOps::RVec<int> in){
     int result = std::accumulate(in.begin(), in.end(), 0);
     //int result = 0;
@@ -631,7 +581,7 @@ int getJet_ntags(ROOT::VecOps::RVec<bool> in) {
     //  result += in[i];
     //}
     float result = std::accumulate(in.begin(), in.end(), 0.0f) / in.size();
-    //result /= in.size(); 
+    //result /= in.size();
     return result;
   }
 
@@ -641,7 +591,7 @@ int getJet_ntags(ROOT::VecOps::RVec<bool> in) {
     //for (int i; i < in.size(); ++i){
     //  result += in[i];
     //}
-    //result /= in.size(); 
+    //result /= in.size();
     int result = std::accumulate(in.begin(), in.end(), 0.0f) / in.size();
     return result;
   }

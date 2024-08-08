@@ -124,7 +124,7 @@ processList = {
 
         # 'ALP_Z_aa_1.GeV_cYY_0.6':{},
         # 'ALP_Z_aa_1.GeV_cYY_0.8':{},
-        # 'ALP_Z_aa_1.GeV_cYY_1.0':{},
+        'ALP_Z_aa_1.GeV_cYY_1.0':{},
         # 'ALP_Z_aa_1.GeV_cYY_1.2':{},
         # 'ALP_Z_aa_1.GeV_cYY_1.4':{},
 
@@ -473,7 +473,7 @@ class RDFanalysis():
                 .Define("GenALPPhotons_deltaPhi", "return abs(GenALPPhoton1_phi - GenALPPhoton2_phi)")
                 .Define("GenALPPhotons_deltaR", "return sqrt(GenALPPhotons_deltaEta*GenALPPhotons_deltaEta + GenALPPhotons_deltaPhi*GenALPPhotons_deltaPhi)")
 
-                .Define("GenALPPhotons_deltaR_2", "MCParticle::get_ALP_delta_r(GenALPPhoton1, GenALPPhoton2)")
+                # .Define("GenALPPhotons_deltaR_2", "MCParticle::get_ALP_delta_r(GenALPPhoton1, GenALPPhoton2)")
                 .Define("FSGenPhotons_delta_r", "MCParticle::get_delta_r(FSGenPhoton)")
 
                 .Define("GenALPPhoton1_time", "MCParticle::get_time( GenALPPhoton1 )")
@@ -683,9 +683,9 @@ class RDFanalysis():
 
                 .Define("RecoPhotons_min_delta_r", "ReconstructedParticle::get_min_delta_r(RecoPhotons)")
 
-                .Define("RecoPhotons_ALP_delta_r", "ReconstructedParticle::get_ALP_delta_r(RecoALPPhoton1, RecoALPPhoton2)")
-                .Define("RecoPhotons_ALP_delta_phi", "ReconstructedParticle::get_ALP_delta_phi(RecoALPPhoton1, RecoALPPhoton2)")
-                .Define("RecoPhotons_ALP_delta_eta", "ReconstructedParticle::get_ALP_delta_eta(RecoALPPhoton1, RecoALPPhoton2)")
+                # .Define("RecoPhotons_ALP_delta_r", "ReconstructedParticle::get_ALP_delta_r(RecoALPPhoton1, RecoALPPhoton2)")
+                # .Define("RecoPhotons_ALP_delta_phi", "ReconstructedParticle::get_ALP_delta_phi(RecoALPPhoton1, RecoALPPhoton2)")
+                # .Define("RecoPhotons_ALP_delta_eta", "ReconstructedParticle::get_ALP_delta_eta(RecoALPPhoton1, RecoALPPhoton2)")
 
                 .Define("RecoPhoton_y",       "ReconstructedParticle::get_y(RecoPhotons)")
                 # .Define("RecoPhoton_time",    "ReconstructedParticle::get_time(RecoPhotons)")
@@ -867,7 +867,7 @@ class RDFanalysis():
                         "GenALPPhotons_deltaPhi",
                         "GenALPPhotons_deltaR",
 
-                        "GenALPPhotons_deltaR_2",
+                        # "GenALPPhotons_deltaR_2",
                         "FSGenPhotons_delta_r",
 
                         "GenALPPhoton1_time",
@@ -1020,9 +1020,9 @@ class RDFanalysis():
 
                         "RecoPhotons_min_delta_r",
 
-                        "RecoPhotons_ALP_delta_r",
-                        "RecoPhotons_ALP_delta_phi",
-                        "RecoPhotons_ALP_delta_eta",
+                        # "RecoPhotons_ALP_delta_r",
+                        # "RecoPhotons_ALP_delta_phi",
+                        # "RecoPhotons_ALP_delta_eta",
 
                         "RecoPhoton_y",
                         # "RecoPhoton_time",

@@ -806,9 +806,9 @@ histoList = {
 
     "RecoPhotons_min_delta_r": {"name": "RecoPhotons_min_delta_r", "title": "Reco photons minimum #DeltaR", "bin":100, "xmin":0, "xmax": 7},
 
-    "RecoPhotons_ALP_delta_r":{"name": "RecoPhotons_ALP_delta_r", "title": "Reco photons #DeltaR (from ALP)", "bin":100, "xmin": 0, "xmax": 0.2},
-    "RecoPhotons_ALP_delta_phi":{"name": "RecoPhotons_ALP_delta_phi", "title": "Reco photons #Delta#phi (from ALP)", "bin":100, "xmin": -4, "xmax": 4},
-    "RecoPhotons_ALP_delta_eta":{"name": "RecoPhotons_ALP_delta_eta", "title": "Reco photons #Delta#eta (from ALP)", "bin":100, "xmin": -4, "xmax": 4},
+    # "RecoPhotons_ALP_delta_r":{"name": "RecoPhotons_ALP_delta_r", "title": "Reco photons #DeltaR (from ALP)", "bin":100, "xmin": 0, "xmax": 0.2},
+    # "RecoPhotons_ALP_delta_phi":{"name": "RecoPhotons_ALP_delta_phi", "title": "Reco photons #Delta#phi (from ALP)", "bin":100, "xmin": -4, "xmax": 4},
+    # "RecoPhotons_ALP_delta_eta":{"name": "RecoPhotons_ALP_delta_eta", "title": "Reco photons #Delta#eta (from ALP)", "bin":100, "xmin": -4, "xmax": 4},
 
     # "RecoPhoton_reference_point_x": {"name": "RecoPhoton_reference_point_x", "title": "Reco photons reference point x", "bin": 100, "xmin": -1, "xmax": 1},
 

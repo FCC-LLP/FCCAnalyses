@@ -191,9 +191,6 @@ namespace MCParticle{
   /// return the delta r of the input ReconstructedParticles
   ROOT::VecOps::RVec<float> get_delta_r(ROOT::VecOps::RVec<edm4hep::MCParticleData> in);
 
-  /// return the delta r of the two reconstructed photons decaying from the ALP
-  ROOT::VecOps::RVec<float> get_ALP_delta_r(ROOT::VecOps::RVec<edm4hep::MCParticleData> in1, ROOT::VecOps::RVec<edm4hep::MCParticleData> in2);
-
   /// return the energy of the input MCParticles
   ROOT::VecOps::RVec<float> get_e(ROOT::VecOps::RVec<edm4hep::MCParticleData> in);
 
