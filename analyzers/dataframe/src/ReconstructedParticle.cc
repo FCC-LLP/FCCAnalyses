@@ -470,6 +470,14 @@ ROOT::VecOps::RVec<float> get_e(ROOT::VecOps::RVec<edm4hep::ReconstructedParticl
   return result;
 }
 
+float get_total_e(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in){
+  float result;
+  for (auto & p: in) {
+    result += p.energy;
+  }
+  return result;
+}
+
 ROOT::VecOps::RVec<float> get_p(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in) {
   ROOT::VecOps::RVec<float> result;
   for (auto & p: in) {
@@ -596,6 +604,49 @@ int getJet_ntags(ROOT::VecOps::RVec<bool> in) {
     if (in.at(i))result+=1;
   return result;
 }
+
+ float get_sum_float(ROOT::VecOps::RVec<float> in){
+    float result = std::accumulate(in.begin(), in.end(), 0.0f);
+    //float result = 0;
+    //for (int i; i < in.size(); ++i){
+    //  result += in[i];
+    //}
+    return result;
+  }
+
+  // get sum of int 
+  int get_sum_int(ROOT::VecOps::RVec<int> in){
+    int result = std::accumulate(in.begin(), in.end(), 0);
+    //int result = 0;
+    //for (int i; i < in.size(); ++i){
+    //  result += in[i];
+    //}
+    return result;
+  }
+
+  // get avg of floats
+  float get_avg_float(ROOT::VecOps::RVec<float> in){
+    //float result;
+    //for (int i; i < in.size(); ++i){
+    //  result += in[i];
+    //}
+    float result = std::accumulate(in.begin(), in.end(), 0.0f) / in.size();
+    //result /= in.size(); 
+    return result;
+  }
+
+  // get avg of ints
+  int get_avg_int(ROOT::VecOps::RVec<float> in){
+    //int result;
+    //for (int i; i < in.size(); ++i){
+    //  result += in[i];
+    //}
+    //result /= in.size(); 
+    int result = std::accumulate(in.begin(), in.end(), 0.0f) / in.size();
+    return result;
+  }
+
+
 
 }//end NS ReconstructedParticle
 
