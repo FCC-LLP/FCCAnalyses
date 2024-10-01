@@ -130,6 +130,21 @@ namespace ReconstructedParticle{
   /// return the phi of the input ReconstructedParticles
   ROOT::VecOps::RVec<float> get_phi(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in);
 
+  /// return the delta eta of the input ReconstructedParticles
+  ROOT::VecOps::RVec<float> get_delta_eta(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in);
+
+  /// return the delta phi of the input ReconstructedParticles
+  ROOT::VecOps::RVec<float> get_delta_phi(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in);
+
+  /// return the delta r of the input ReconstructedParticles
+  ROOT::VecOps::RVec<float> get_delta_r(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in);
+
+  /// return the minimum delta r of the input ReconstructedParticles
+  ROOT::VecOps::RVec<float> get_min_delta_r(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in);
+
+  /// return the energy of the input ReconstructedParticles
+  ROOT::VecOps::RVec<float> get_reference_point_x(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in);
+
   /// return the energy of the input ReconstructedParticles
   ROOT::VecOps::RVec<float> get_e(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in);
 
@@ -172,7 +187,7 @@ namespace ReconstructedParticle{
     // get sum of vector of floats
   float get_sum_float(ROOT::VecOps::RVec<float> in);
 
-  // get sum of vector of ints 
+  // get sum of vector of ints
   int get_sum_int(ROOT::VecOps::RVec<int> in);
 
   // get avg of vector of floats

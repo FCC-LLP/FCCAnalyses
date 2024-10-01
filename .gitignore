@@ -14,6 +14,9 @@ __pycache__/
 # ignores <lxplus-username>.cc file in the top FCCAnalyses directory
 /*.cc
 
+# PDF files
+*.pdf
+
 # Editors
 *~
 .vimlocal

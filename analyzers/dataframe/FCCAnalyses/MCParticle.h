@@ -188,6 +188,9 @@ namespace MCParticle{
   /// return the phi of the input MCParticles
   ROOT::VecOps::RVec<float> get_phi(ROOT::VecOps::RVec<edm4hep::MCParticleData> in);
 
+  /// return the delta r of the input ReconstructedParticles
+  ROOT::VecOps::RVec<float> get_delta_r(ROOT::VecOps::RVec<edm4hep::MCParticleData> in);
+
   /// return the energy of the input MCParticles
   ROOT::VecOps::RVec<float> get_e(ROOT::VecOps::RVec<edm4hep::MCParticleData> in);
 
