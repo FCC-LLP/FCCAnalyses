@@ -13,17 +13,23 @@ import ROOT  # type: ignore
 
 ROOT.gROOT.SetBatch(True)
 
+
 LOGGER: logging.Logger = logging.getLogger('FCCAnalyses.process_info')
 
 
-def get_entries(inpath: str) -> int:
+def get_entries(inpath: str) -> int | None:
     '''
-    Get number of entries in the TTree named "events".
+    Retrieves number of entries in the "events" TTree from the provided ROOT
+    file.
     '''
     nevents = None
     with ROOT.TFile(inpath, 'READ') as infile:
-        tt = infile.Get("events")
-        nevents = tt.GetEntries()
+        try:
+            nevents = infile.Get("events").GetEntries()
+        except AttributeError:
+            LOGGER.error('Input file is missing "events" TTree!\nAborting...')
+            sys.exit(3)
+
     return nevents
 
 

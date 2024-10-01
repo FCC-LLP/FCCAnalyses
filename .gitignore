@@ -20,6 +20,7 @@ __pycache__/
 # Editors
 *~
 .vimlocal
+.cache/
 
 # Distribution / packaging
 .Python
