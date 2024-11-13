@@ -1,5 +1,5 @@
 import ROOT
-
+#plots_flavor
 # global parameters
 intLumi = 1
 intLumiLabel = "L = 5 ab^{-1}"
