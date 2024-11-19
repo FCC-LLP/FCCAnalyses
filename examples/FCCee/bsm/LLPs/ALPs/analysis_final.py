@@ -1,10 +1,10 @@
 #Input directory where the files produced at the stage1 level are
 # inputDir = "./output_stage1/"
 #inputDir = "/eos/user/j/jalimena/FCCeeLLP/"
-inputDir = "./stage1_sameMass/"
+inputDir = "./stage1_output/"
 
 #Output directory where the files produced at the final-selection level are
-outputDir = "./final_sameMass/"
+outputDir = "./final_output/"
 #outputDir  = "output_finalSel/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
@@ -140,11 +140,11 @@ processList = {
     # 'ALP_Z_aa_0.5.GeV_cYY_0.6':{},
     # 'ALP_Z_aa_0.5.GeV_cYY_1.2':{},
 
-    'ALP_Z_aa_1.GeV_cYY_0.6':{},
-    'ALP_Z_aa_1.GeV_cYY_0.8':{},
-    'ALP_Z_aa_1.GeV_cYY_1.0':{},
-    'ALP_Z_aa_1.GeV_cYY_1.2':{},
-    'ALP_Z_aa_1.GeV_cYY_1.4':{},
+    # 'ALP_Z_aa_1.GeV_cYY_0.6':{},
+    # 'ALP_Z_aa_1.GeV_cYY_0.8':{},
+     'ALP_Z_aa_1.GeV_cYY_1.0':{},
+    # 'ALP_Z_aa_1.GeV_cYY_1.2':{},
+    # 'ALP_Z_aa_1.GeV_cYY_1.4':{},
 
     # 'ALP_Z_aa_0.5.GeV_cYY_1.0':{},
     # 'ALP_Z_aa_1.GeV_cYY_1.0':{},
@@ -308,11 +308,11 @@ processLabels = {
     # 'ALP_Z_aa_0.5.GeV_cYY_0.6': "$m_ALP =$ 0.5 GeV, $c_{YY} = 0.6$",
     # 'ALP_Z_aa_0.5.GeV_cYY_1.2': "$m_ALP =$ 0.5 GeV, $c_{YY} = 1.2$",
 
-    'ALP_Z_aa_1.GeV_cYY_0.6': "$m_ALP =$ 1 GeV, $c_{YY} = 0.6$",
-    'ALP_Z_aa_1.GeV_cYY_0.8': "$m_ALP =$ 1 GeV, $c_{YY} = 0.8$",
-    'ALP_Z_aa_1.GeV_cYY_1.0': "$m_ALP =$ 1 GeV, $c_{YY} = 1.0$",
-    'ALP_Z_aa_1.GeV_cYY_1.2': "$m_ALP =$ 1 GeV, $c_{YY} = 1.2$",
-    'ALP_Z_aa_1.GeV_cYY_1.4': "$m_ALP =$ 1 GeV, $c_{YY} = 1.4$",
+    # 'ALP_Z_aa_1.GeV_cYY_0.6': "$m_ALP =$ 1 GeV, $c_{YY} = 0.6$",
+    # 'ALP_Z_aa_1.GeV_cYY_0.8': "$m_ALP =$ 1 GeV, $c_{YY} = 0.8$",
+     'ALP_Z_aa_1.GeV_cYY_1.0': "$m_ALP =$ 1 GeV, $c_{YY} = 1.0$",
+    # 'ALP_Z_aa_1.GeV_cYY_1.2': "$m_ALP =$ 1 GeV, $c_{YY} = 1.2$",
+    # 'ALP_Z_aa_1.GeV_cYY_1.4': "$m_ALP =$ 1 GeV, $c_{YY} = 1.4$",
 
     # 'ALP_Z_aa_0.5.GeV_cYY_1.0': "$m_ALP =$ 0.5 GeV, $c_{YY} = 1.0$",
     # 'ALP_Z_aa_1.GeV_cYY_1.0': "$m_ALP =$ 1 GeV, $c_{YY} = 1.0$",
@@ -475,11 +475,11 @@ procDictAdd={
     # "ALP_Z_aa_0.5.GeV_cYY_1.2": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 3.94, "kfactor": 1.0, "matchingEfficiency": 1.0},
 
     # for 0.6 below, cross section is actually 0.98597
-    "ALP_Z_aa_1.GeV_cYY_0.6": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    "ALP_Z_aa_1.GeV_cYY_0.8": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    "ALP_Z_aa_1.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    "ALP_Z_aa_1.GeV_cYY_1.2": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    "ALP_Z_aa_1.GeV_cYY_1.4": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # "ALP_Z_aa_1.GeV_cYY_0.6": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # "ALP_Z_aa_1.GeV_cYY_0.8": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
+     "ALP_Z_aa_1.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # "ALP_Z_aa_1.GeV_cYY_1.2": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # "ALP_Z_aa_1.GeV_cYY_1.4": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
 
     # "ALP_Z_aa_0.5.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
     # "ALP_Z_aa_1.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},

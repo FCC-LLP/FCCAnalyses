@@ -190,7 +190,7 @@ inputDir = "/eos/experiment/fcc/ee/analyses_storage/BSM/LLPs/ALPs_3photons/ALP_s
 
 #Optional: output directory, default is local dir
 # outputDir = "./stage1_ee_gaga_1million/"
-outputDir = "./stage1_sensitivity/"
+outputDir = "./stage1_output/"
 # outputDir = "./stage1_FSGenALP/"
 #outputDir = "/eos/user/j/jalimena/FCCeeLLP/"
 #outputDir = "output_stage1/"
