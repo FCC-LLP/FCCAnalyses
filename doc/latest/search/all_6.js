@@ -9,7 +9,7 @@ var searchData=
   ['exclusive_5fdmerge_5fmax_6',['exclusive_dmerge_max',['../structJetClustering_1_1FCCAnalysesJet.html#a1ce87f1978b3e0dcbc6c7bdb5d43d61c',1,'JetClustering::FCCAnalysesJet']]],
   ['exclusive_5fsequence_5fmeaningful_7',['exclusive_sequence_meaningful',['../classcontrib_1_1ValenciaPlugin.html#a56681fca6d9ac382cc6aa025b3c8942b',1,'contrib::ValenciaPlugin']]],
   ['exclusivejetclusteringhelper_8',['ExclusiveJetClusteringHelper',['../classjetClusteringHelper_1_1ExclusiveJetClusteringHelper.html',1,'jetClusteringHelper']]],
-  ['externalrecombiner_9',['externalrecombiner',['../classExternalRecombiner.html',1,'ExternalRecombiner'],['../classExternalRecombiner.html#a066b2d58327c143b2c3e9f4d06e7ed2f',1,'ExternalRecombiner::ExternalRecombiner()']]],
+  ['externalrecombiner_9',['ExternalRecombiner',['../classExternalRecombiner.html',1,'ExternalRecombiner'],['../classExternalRecombiner.html#a066b2d58327c143b2c3e9f4d06e7ed2f',1,'ExternalRecombiner::ExternalRecombiner()']]],
   ['externalrecombiner_2ecc_10',['ExternalRecombiner.cc',['../ExternalRecombiner_8cc.html',1,'']]],
   ['externalrecombiner_2eh_11',['ExternalRecombiner.h',['../ExternalRecombiner_8h.html',1,'']]]
 ];
