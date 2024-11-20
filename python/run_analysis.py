@@ -816,7 +816,8 @@ def run_histmaker(args, rdf_module, anapath):
 
         try:
             res, hweight = graph_function(dframe, process_name)
-        except cppyy.gbl.std.runtime_error:
+        except cppyy.gbl.std.runtime_error as err:
+            LOGGER.error(err)
             LOGGER.error('During loading of the analysis an error occurred!'
                          '\nAborting...')
             sys.exit(3)
@@ -885,7 +886,8 @@ def run_histmaker(args, rdf_module, anapath):
 
         LOGGER.info('Writing out process %s, nEvents processed %s',
                     process, f'{evtcount.GetValue():,}')
-        with ROOT.TFile(f'{output_dir}/{process}.root', 'RECREATE'):
+        with ROOT.TFile(os.path.join(output_dir, f'{process}.root'),
+                        'RECREATE'):
             for hist in hists_to_write.values():
                 if do_scale:
                     hist.Scale(scale * int_lumi)
