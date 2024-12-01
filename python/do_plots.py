@@ -131,6 +131,9 @@ def load_hists(var: str,
                 scale = determine_lumi_scaling(config,
                                                infile,
                                                config['scale_sig'])
+                if config['scale_sig'] == -1.:
+                    if(hist.Integral() != 0):
+                        scale = 1.0/hist.Integral()
             hist.Scale(scale)
             hist.Rebin(rebin)
 
@@ -562,8 +565,8 @@ def drawStack(config, name, ylabel, legend, leftText, rightText, formats,
     canvas = ROOT.TCanvas(name, name, 800, 800)
     canvas.SetLogy(logY)
     canvas.SetTicks(1, 1)
-    canvas.SetLeftMargin(0.14)
-    canvas.SetRightMargin(0.08)
+    canvas.SetLeftMargin(0.13)
+    canvas.SetRightMargin(0.10)
 
     sumhistos = histos[0].Clone()
     iterh = iter(histos)
@@ -743,11 +746,11 @@ def drawStack(config, name, ylabel, legend, leftText, rightText, formats,
     latex.SetTextSize(0.025)
     latex.DrawLatex(0.18, 0.66, text)
 
-    if config['scale_sig'] != 1.0:
-        text = '#bf{#it{Signal Scaling = ' + f'{config["scale_sig"]:.3g}' + \
-               '}}'
-        latex.SetTextSize(0.025)
-        latex.DrawLatex(0.18, 0.63, text)
+    # if config['scale_sig'] != 1.0:
+    #     text = '#bf{#it{Signal Scaling = ' + f'{config["scale_sig"]:.3g}' + \
+    #            '}}'
+    #     latex.SetTextSize(0.025)
+    #     latex.DrawLatex(0.18, 0.63, text)
 
     if config['scale_bkg'] != 1.0:
         text = '#bf{#it{Background Scaling = ' + \
@@ -756,7 +759,7 @@ def drawStack(config, name, ylabel, legend, leftText, rightText, formats,
         latex.DrawLatex(0.18, 0.63, text)
 
     canvas.RedrawAxis()
-    canvas.GetFrame().SetBorderSize(12)
+    canvas.GetFrame().SetBorderSize(5)
     canvas.Modified()
     canvas.Update()
 
@@ -807,8 +810,8 @@ def drawStack(config, name, ylabel, legend, leftText, rightText, formats,
 
         dy = 0
         text = '#bf{#it{' + 'Process' + '}}'
-        latex.SetTextSize(0.035)
-        latex.DrawLatex(0.18, 0.45, text)
+        latex.SetTextSize(0.025)
+        latex.DrawLatex(0.18, 0.6, text)
 
         text = '#bf{#it{' + 'Yields' + '}}'
         latex.SetTextSize(0.035)
@@ -982,7 +985,7 @@ def run(args):
     if config['int_lumi_label'] is None:
         if config['int_lumi'] >= 1e6:
             int_lumi_label = config['int_lumi'] / 1e6
-            config['int_lumi_label'] = f'L = {int_lumi_label:.2g} ab^{{-1}}'
+            config['int_lumi_label'] = f'L = {int_lumi_label:.5g} ab^{{-1}}'
         elif config['int_lumi'] >= 1e3:
             int_lumi_label = config['int_lumi'] / 1e3
             config['int_lumi_label'] = f'L = {int_lumi_label:.2g} fb^{{-1}}'
