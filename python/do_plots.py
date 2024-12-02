@@ -261,10 +261,10 @@ def runPlots(config: dict[str, any],
 
     # Below are settings for separate signal and background legends
     if config['split_leg']:
-        legsize = 0.04 * (len(hsignal))
-        legsize2 = 0.04 * (len(hbackgrounds))
-        leg = ROOT.TLegend(0.15, 0.60 - legsize, 0.50, 0.62)
-        leg2 = ROOT.TLegend(0.60, 0.60 - legsize2, 0.88, 0.62)
+        legsize = 0.025 * (len(hsignal))
+        legsize2 = 0.025 * (len(hbackgrounds))
+        leg = ROOT.TLegend(0.15, 0.7 - legsize, 0.50, 0.72)
+        leg2 = ROOT.TLegend(0.60, 0.88 - legsize2, 0.88, 0.90)
 
         if config['leg_position'][0] is not None and \
                 config['leg_position'][2] is not None:
@@ -714,37 +714,37 @@ def drawStack(config, name, ylabel, legend, leftText, rightText, formats,
     latex = ROOT.TLatex()
     latex.SetNDC()
     latex.SetTextAlign(31)
-    latex.SetTextSize(0.04)
+    latex.SetTextSize(0.03)
 
     text = '#it{' + leftText + '}'
-    latex.DrawLatex(0.90, 0.94, text)
+    latex.DrawLatex(0.94, 0.92, text)
 
     text = '#it{'+customLabel+'}'
     latex.SetTextAlign(12)
     latex.SetNDC(ROOT.kTRUE)
-    latex.SetTextSize(0.04)
-    latex.DrawLatex(0.18, 0.85, text)
+    latex.SetTextSize(0.03)
+    latex.DrawLatex(0.18, 0.89, text)
 
     rightText = re.split(",", rightText)
     text = '#bf{#it{' + rightText[0] + '}}'
 
     latex.SetTextAlign(12)
     latex.SetNDC(ROOT.kTRUE)
-    latex.SetTextSize(0.04)
-    latex.DrawLatex(0.18, 0.81, text)
+    latex.SetTextSize(0.03)
+    latex.DrawLatex(0.18, 0.86, text)
 
     rightText[1] = rightText[1].replace("   ", "")
     text = '#bf{#it{' + rightText[1] + '}}'
-    latex.SetTextSize(0.035)
-    latex.DrawLatex(0.18, 0.76, text)
+    latex.SetTextSize(0.03)
+    latex.DrawLatex(0.18, 0.83, text)
 
     text = '#bf{#it{' + ana_tex + '}}'
-    latex.SetTextSize(0.04)
-    latex.DrawLatex(0.18, 0.71, text)
+    latex.SetTextSize(0.03)
+    latex.DrawLatex(0.18, 0.80, text)
 
     text = '#bf{#it{' + extralab + '}}'
     latex.SetTextSize(0.025)
-    latex.DrawLatex(0.18, 0.66, text)
+    latex.DrawLatex(0.18, 0.77, text)
 
     # if config['scale_sig'] != 1.0:
     #     text = '#bf{#it{Signal Scaling = ' + f'{config["scale_sig"]:.3g}' + \
