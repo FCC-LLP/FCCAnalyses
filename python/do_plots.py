@@ -714,7 +714,7 @@ def drawStack(config, name, ylabel, legend, leftText, rightText, formats,
     latex = ROOT.TLatex()
     latex.SetNDC()
     latex.SetTextAlign(31)
-    latex.SetTextSize(0.03)
+    latex.SetTextSize(0.04)
 
     text = '#it{' + leftText + '}'
     latex.DrawLatex(0.94, 0.92, text)
