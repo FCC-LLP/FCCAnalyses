@@ -1,17 +1,19 @@
 #Input directory where the files produced at the stage1 level are
 # inputDir = "./output_stage1/"
 #inputDir = "/eos/user/j/jalimena/FCCeeLLP/"
-inputDir = "./stage1_output/"
+#inputDir = "./stage1_output/"
+inputDir = "/eos/user/e/ebakhish/stage1_output_new_pythia_samples/"
 
 #Output directory where the files produced at the final-selection level are
-outputDir = "./final_output/"
+#outputDir = "./final_output/"
+outputDir = "/eos/user/e/ebakhish/final_output_new_pythia_samples/"
 #outputDir  = "output_finalSel/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
-#intLumi = 150e6 #pb^-1
+intLumi = 150e6 #pb^-1
 
 #Scale event yields by intLumi and cross section (optional)
-#doScale = True
+doScale = True
 
 #Save event yields in a table (optional)
 saveTabular = True
@@ -142,21 +144,21 @@ processList = {
 
     # 'ALP_Z_aa_1.GeV_cYY_0.6':{},
     # 'ALP_Z_aa_1.GeV_cYY_0.8':{},
-     'ALP_Z_aa_1.GeV_cYY_1.0':{},
-    # 'ALP_Z_aa_1.GeV_cYY_1.2':{},
-    # 'ALP_Z_aa_1.GeV_cYY_1.4':{},
+    #  'ALP_Z_aa_1.GeV_cYY_1.0':{},
+    # # 'ALP_Z_aa_1.GeV_cYY_1.2':{},
+    # # 'ALP_Z_aa_1.GeV_cYY_1.4':{},
 
-    # 'ALP_Z_aa_0.5.GeV_cYY_1.0':{},
-    # 'ALP_Z_aa_1.GeV_cYY_1.0':{},
-    # 'ALP_Z_aa_1.5.GeV_cYY_1.0':{},
+    #  'ALP_Z_aa_0.5.GeV_cYY_1.0':{},
+    # # 'ALP_Z_aa_1.GeV_cYY_1.0':{},
+    # # 'ALP_Z_aa_1.5.GeV_cYY_1.0':{},
     # # 'ALP_Z_aa_2.GeV_cYY_1.0':{},
-    # 'ALP_Z_aa_3.GeV_cYY_1.0':{},
-    # # 'ALP_Z_aa_4.GeV_cYY_1.0':{},
-    # 'ALP_Z_aa_5.GeV_cYY_1.0':{},
-    # # 'ALP_Z_aa_8.GeV_cYY_1.0':{},
+    # # 'ALP_Z_aa_3.GeV_cYY_1.0':{},
+    # # # 'ALP_Z_aa_4.GeV_cYY_1.0':{},
+    #  'ALP_Z_aa_5.GeV_cYY_1.0':{},
+    #  'ALP_Z_aa_8.GeV_cYY_1.0':{},
 
-    # 'ALP_Z_aa_0.6.GeV_cYY_1.0':{},
-    # 'ALP_Z_aa_0.8.GeV_cYY_1.0':{},
+    # # 'ALP_Z_aa_0.6.GeV_cYY_1.0':{},
+    #  'ALP_Z_aa_0.8.GeV_cYY_1.0':{},
     # 'ALP_Z_aa_1.GeV_cYY_1.0':{},
     # 'ALP_Z_aa_1.2.GeV_cYY_1.0':{},
     # 'ALP_Z_aa_1.4.GeV_cYY_1.0':{},
@@ -184,6 +186,14 @@ processList = {
     # 'ALP_Z_aa_20.GeV_cYY_0.5':{},
     # 'ALP_Z_aa_25.GeV_cYY_0.5':{},
     # 'ALP_Z_aa_30.GeV_cYY_0.5':{},
+
+
+    ####     using my new pythia samples        ####
+    'ALP_Z_aa_0p5GeV_cYY1p0':{},
+    'ALP_Z_aa_0p8GeV_cYY1p0':{},
+    'ALP_Z_aa_1p0GeV_cYY1p0':{},
+    'ALP_Z_aa_5p0GeV_cYY1p0':{},
+    'ALP_Z_aa_8p0GeV_cYY1p0':{},
 }
 
 ###Dictionary for prettier names of processes (optional)
@@ -310,22 +320,22 @@ processLabels = {
 
     # 'ALP_Z_aa_1.GeV_cYY_0.6': "$m_ALP =$ 1 GeV, $c_{YY} = 0.6$",
     # 'ALP_Z_aa_1.GeV_cYY_0.8': "$m_ALP =$ 1 GeV, $c_{YY} = 0.8$",
-     'ALP_Z_aa_1.GeV_cYY_1.0': "$m_ALP =$ 1 GeV, $c_{YY} = 1.0$",
-    # 'ALP_Z_aa_1.GeV_cYY_1.2': "$m_ALP =$ 1 GeV, $c_{YY} = 1.2$",
-    # 'ALP_Z_aa_1.GeV_cYY_1.4': "$m_ALP =$ 1 GeV, $c_{YY} = 1.4$",
+    #  'ALP_Z_aa_1.GeV_cYY_1.0': "$m_ALP =$ 1 GeV, $c_{YY} = 1.0$",
+    # # 'ALP_Z_aa_1.GeV_cYY_1.2': "$m_ALP =$ 1 GeV, $c_{YY} = 1.2$",
+    # # 'ALP_Z_aa_1.GeV_cYY_1.4': "$m_ALP =$ 1 GeV, $c_{YY} = 1.4$",
 
-    # 'ALP_Z_aa_0.5.GeV_cYY_1.0': "$m_ALP =$ 0.5 GeV, $c_{YY} = 1.0$",
-    # 'ALP_Z_aa_1.GeV_cYY_1.0': "$m_ALP =$ 1 GeV, $c_{YY} = 1.0$",
-    # 'ALP_Z_aa_1.5.GeV_cYY_1.0': "$m_ALP =$ 1.5 GeV, $c_{YY} = 1.0$",
+    #  'ALP_Z_aa_0.5.GeV_cYY_1.0': "$m_ALP =$ 0.5 GeV, $c_{YY} = 1.0$",
+    # # 'ALP_Z_aa_1.GeV_cYY_1.0': "$m_ALP =$ 1 GeV, $c_{YY} = 1.0$",
+    # # 'ALP_Z_aa_1.5.GeV_cYY_1.0': "$m_ALP =$ 1.5 GeV, $c_{YY} = 1.0$",
     # # 'ALP_Z_aa_2.GeV_cYY_1.0': "$m_ALP =$ 2 GeV, $c_{YY} = 1.0$",
-    # 'ALP_Z_aa_3.GeV_cYY_1.0': "$m_ALP =$ 3 GeV, $c_{YY} = 1.0$",
-    # # 'ALP_Z_aa_4.GeV_cYY_1.0': "$m_ALP =$ 4 GeV, $c_{YY} = 1.0$",
-    # 'ALP_Z_aa_5.GeV_cYY_1.0': "$m_ALP =$ 5 GeV, $c_{YY} = 1.0$",
-    # # 'ALP_Z_aa_8.GeV_cYY_1.0': "$m_ALP =$ 8 GeV, $c_{YY} = 1.0$",
+    # # 'ALP_Z_aa_3.GeV_cYY_1.0': "$m_ALP =$ 3 GeV, $c_{YY} = 1.0$",
+    # # # 'ALP_Z_aa_4.GeV_cYY_1.0': "$m_ALP =$ 4 GeV, $c_{YY} = 1.0$",
+    #  'ALP_Z_aa_5.GeV_cYY_1.0': "$m_ALP =$ 5 GeV, $c_{YY} = 1.0$",
+    #  'ALP_Z_aa_8.GeV_cYY_1.0': "$m_ALP =$ 8 GeV, $c_{YY} = 1.0$",
 
-    # 'ALP_Z_aa_0.6.GeV_cYY_1.0': "$m_ALP =$ 0.6 GeV, $c_{YY} = 1.0$",
-    # 'ALP_Z_aa_0.8.GeV_cYY_1.0': "$m_ALP =$ 0.8 GeV, $c_{YY} = 1.0$",
-    # 'ALP_Z_aa_1.GeV_cYY_1.0': "$m_ALP =$ 1 GeV, $c_{YY} = 1.0$",
+    # # 'ALP_Z_aa_0.6.GeV_cYY_1.0': "$m_ALP =$ 0.6 GeV, $c_{YY} = 1.0$",
+    #  'ALP_Z_aa_0.8.GeV_cYY_1.0': "$m_ALP =$ 0.8 GeV, $c_{YY} = 1.0$",
+    # # 'ALP_Z_aa_1.GeV_cYY_1.0': "$m_ALP =$ 1 GeV, $c_{YY} = 1.0$",
     # 'ALP_Z_aa_1.2.GeV_cYY_1.0': "$m_ALP =$ 1.2 GeV, $c_{YY} = 1.0$",
     # 'ALP_Z_aa_1.4.GeV_cYY_1.0': "$m_ALP =$ 1.4 GeV, $c_{YY} = 1.0$",
 
@@ -352,6 +362,14 @@ processLabels = {
     # 'ALP_Z_aa_20.GeV_cYY_0.5': "$m_ALP =$ 20 GeV, $c_{YY} = 0.5$",
     # 'ALP_Z_aa_25.GeV_cYY_0.5': "$m_ALP =$ 25 GeV, $c_{YY} = 0.5$",
     # 'ALP_Z_aa_30.GeV_cYY_0.5': "$m_ALP =$ 30 GeV, $c_{YY} = 0.5$",
+
+
+    'ALP_Z_aa_0p5GeV_cYY1p0': "$m_ALP =$ 0.5 GeV, $c_{YY} = 1$",
+    'ALP_Z_aa_0p8GeV_cYY1p0': "$m_ALP =$ 0.8 GeV, $c_{YY} = 1$",
+    'ALP_Z_aa_1p0GeV_cYY1p0': "$m_ALP =$ 1 GeV, $c_{YY} = 1$",
+    'ALP_Z_aa_5p0GeV_cYY1p0': "$m_ALP =$ 5 GeV, $c_{YY} = 1$",
+    'ALP_Z_aa_8p0GeV_cYY1p0': "$m_ALP =$ 8 GeV, $c_{YY} = 1$",
+
 }
 
 #Link to the dictonary that contains all the cross section information etc...
@@ -477,23 +495,23 @@ procDictAdd={
     # for 0.6 below, cross section is actually 0.98597
     # "ALP_Z_aa_1.GeV_cYY_0.6": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
     # "ALP_Z_aa_1.GeV_cYY_0.8": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
-     "ALP_Z_aa_1.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    # "ALP_Z_aa_1.GeV_cYY_1.2": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    # "ALP_Z_aa_1.GeV_cYY_1.4": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    #  "ALP_Z_aa_1.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.733, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # # "ALP_Z_aa_1.GeV_cYY_1.2": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # # "ALP_Z_aa_1.GeV_cYY_1.4": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
 
-    # "ALP_Z_aa_0.5.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    # "ALP_Z_aa_1.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    # "ALP_Z_aa_1.5.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    # # "ALP_Z_aa_2.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    # "ALP_Z_aa_3.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    # # "ALP_Z_aa_4.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    # "ALP_Z_aa_5.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    # # "ALP_Z_aa_8.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    #  "ALP_Z_aa_0.5.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.733, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # # "ALP_Z_aa_1.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # # "ALP_Z_aa_1.5.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # # "ALP_Z_aa_2.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.73, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # # "ALP_Z_aa_3.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # # # "ALP_Z_aa_4.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    #  "ALP_Z_aa_5.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.709, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    #  "ALP_Z_aa_8.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.671, "kfactor": 1.0, "matchingEfficiency": 1.0},
 
-    # "ALP_Z_aa_0.6.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    # "ALP_Z_aa_0.8.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # # "ALP_Z_aa_0.6.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    #  "ALP_Z_aa_0.8.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.733, "kfactor": 1.0, "matchingEfficiency": 1.0},
     # "ALP_Z_aa_1.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    # "ALP_Z_aa_1.2.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # "ALP_Z_aa_1.2.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.733, "kfactor": 1.0, "matchingEfficiency": 1.0},
     # "ALP_Z_aa_1.4.GeV_cYY_1.0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 0.027, "kfactor": 1.0, "matchingEfficiency": 1.0},
 
     # 'ALP_Z_aa_3.GeV_cYY_0.1':{"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.744e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
@@ -519,6 +537,14 @@ procDictAdd={
     # 'ALP_Z_aa_20.GeV_cYY_0.5': {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.744e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
     # 'ALP_Z_aa_25.GeV_cYY_0.5': {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.744e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
     # 'ALP_Z_aa_30.GeV_cYY_0.5': {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.744e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
+
+####     using my new pythia samples        ####
+
+    "ALP_Z_aa_0p5GeV_cYY1p0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.733, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    "ALP_Z_aa_0p8GeV_cYY1p0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.733, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    "ALP_Z_aa_1p0GeV_cYY1p0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.733, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    "ALP_Z_aa_5p0GeV_cYY1p0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.709, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    "ALP_Z_aa_8p0GeV_cYY1p0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.671, "kfactor": 1.0, "matchingEfficiency": 1.0},
 }
 
 #Number of CPUs to use
@@ -614,7 +640,7 @@ histoList = {
     # "FSGenAntiNeutrino_eta":           {"name":"FSGenAntiNeutrino_eta",          "title":"Final state gen anti-neutrinos #eta",        "bin":60, "xmin":-3,"xmax":3},
     # "FSGenAntiNeutrino_theta":         {"name":"FSGenAntiNeutrino_theta",        "title":"Final state gen anti-neutrinos #theta",      "bin":64, "xmin":0,"xmax":3.2},
     # "FSGenAntiNeutrino_phi":           {"name":"FSGenAntiNeutrino_phi",          "title":"Final state gen anti-neutrinos #phi",        "bin":64, "xmin":-3.2,"xmax":3.2},
-
+    "FSGenALP_p":                      {"name":"FSGenALP_p",                     "title":"Final state gen ALP p [GeV]",               "bin":100,"xmin":0 ,"xmax":50},
     "FSGenPhoton_e":                   {"name":"FSGenPhoton_e",                  "title":"Final state gen photons energy [GeV]",       "bin":100,"xmin":0 ,"xmax":50},
     "FSGenPhoton_p":                   {"name":"FSGenPhoton_p",                  "title":"Final state gen photons p [GeV]",            "bin":100,"xmin":0 ,"xmax":50},
     "FSGenPhoton_pt":                  {"name":"FSGenPhoton_pt",                 "title":"Final state gen photons p_{T} [GeV]",        "bin":100,"xmin":0 ,"xmax":50},
@@ -670,10 +696,10 @@ histoList = {
     "GenALP_eta":      {"name":"GenALP_eta",      "title":"Gen ALP #eta",            "bin":60, "xmin":-3,"xmax":3},
     "GenALP_theta":    {"name":"GenALP_theta",    "title":"Gen ALP #theta",          "bin":64, "xmin":0,"xmax":3.2},
     "GenALP_phi":      {"name":"GenALP_phi",      "title":"Gen ALP #phi",            "bin":64, "xmin":-3.2,"xmax":3.2},
-    "GenALP_lifetime_xy": {"name":"GenALP_lifetime_xy", "title":"Gen ALP #tau_{xy} [s]",        "bin":100,"xmin":0 ,"xmax":10E-15},
-    "GenALP_lifetime_xyz": {"name":"GenALP_lifetime_xyz", "title":"Gen ALP #tau_{xyz} [s]",        "bin":100,"xmin":0 ,"xmax":50E-15},
+    "GenALP_lifetime_xy": {"name":"GenALP_lifetime_xy", "title":"Gen ALP #tau_{xy} [s]",        "bin":100,"xmin":0 ,"xmax":1E-11},
+    "GenALP_lifetime_xyz": {"name":"GenALP_lifetime_xyz", "title":"Gen ALP #tau_{xyz} [s]",        "bin":100,"xmin":0 ,"xmax":1E-11},
     "GenALP_Lxy":      {"name":"GenALP_Lxy",      "title":"Gen ALP L_{xy} [mm]",     "bin":100,"xmin":0 ,"xmax":10},
-    "GenALP_Lxyz":     {"name":"GenALP_Lxyz",     "title":"Gen ALP L_{xyz} [mm]",    "bin":100,"xmin":0 ,"xmax":5E5},
+    "GenALP_Lxyz":     {"name":"GenALP_Lxyz",     "title":"Gen ALP L_{xyz} [mm]",    "bin":100,"xmin":0 ,"xmax":10},
     "GenALP_vertex_x": {"name":"GenALP_vertex_x", "title":"Gen ALP production vertex x [mm]",   "bin":100,"xmin":-1000 ,"xmax":1000},
     "GenALP_vertex_y": {"name":"GenALP_vertex_y", "title":"Gen ALP production vertex y [mm]",   "bin":100,"xmin":-1000 ,"xmax":1000},
     "GenALP_vertex_z": {"name":"GenALP_vertex_z", "title":"Gen ALP production vertex z [mm]",   "bin":100,"xmin":-1000 ,"xmax":1000},
@@ -718,7 +744,7 @@ histoList = {
     "GenALPPhoton1_time":      {"name":"GenALPPhoton1_time",     "title":"Gen photon_{1} time [s]",                          "bin":100, "xmin":0, "xmax":0.1E-12},
     "GenALPPhoton2_time":      {"name":"GenALPPhoton2_time",     "title":"Gen photon_{2} time [s]",                          "bin":100, "xmin":0, "xmax":250E-14},
 
-    "GenALP_observed_lifetime_xyz": {"name":"GenALP_observed_lifetime_xyz", "title":"Gen ALP #tau_{xyz, lab}", "bin":100, "xmin":0, "xmax":1E-12},
+    "GenALP_observed_lifetime_xyz": {"name":"GenALP_observed_lifetime_xyz", "title":"Gen ALP #tau_{xyz, lab} [s]", "bin":100, "xmin":0, "xmax":1E-12},
 
     "GenALPPhoton1_vertex_x": {"name":"GenALPPhoton1_vertex_x", "title":"Gen photon_{1} production vertex x [mm]",      "bin":100,"xmin":-1000 ,"xmax":1000},
     "GenALPPhoton1_vertex_y": {"name":"GenALPPhoton1_vertex_y", "title":"Gen photon_{1} production vertex y [mm]",      "bin":100,"xmin":-1000 ,"xmax":1000},

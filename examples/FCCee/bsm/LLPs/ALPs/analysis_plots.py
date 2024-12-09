@@ -14,7 +14,7 @@ ana_tex        = 'e^{+}e^{-} #rightarrow Z #rightarrow #gamma ALP #rightarrow 3#
 delphesVersion = ''
 energy         = 91
 collider       = 'FCC-ee'
-inputDir       = './final_output/'
+inputDir       = '/eos/user/e/ebakhish/final_output_new_pythia_samples/'
 #formats        = ['png','pdf']
 # formats        = ['pdf']
 formats = ['png']
@@ -22,7 +22,9 @@ formats = ['png']
 yaxis          = ['log']
 # yaxis          = ['lin','log']
 stacksig       = ['nostack']
-outdir         = './plots_output/'
+#outdir         = './plots_output/'
+outdir         = './plots_output_new_pythia_samples/'
+#outdir = '/eos/user/e/ebakhish/plots_output_new_pythia_samples/'
 splitLeg       = True
 
 variables = [
@@ -93,7 +95,7 @@ variables = [
     # "FSGen_Lxyz",
     # "FSGen_lifetime_xy",
     # "FSGen_lifetime_xyz",
-
+    "FSGenALP_p",
     "FSGenPhoton0_e",
     "FSGenPhoton1_e",
     "FSGenPhoton2_e",
@@ -368,18 +370,18 @@ colors = {}
 # colors['ALP_Z_aa_1.GeV_cYY_1.2'] = ROOT.kViolet
 # colors['ALP_Z_aa_1.GeV_cYY_1.4'] = ROOT.kCyan
 
-colors['ALP_Z_aa_0.5.GeV_cYY_1.0'] = ROOT.kRed
+# colors['ALP_Z_aa_0.5.GeV_cYY_1.0'] = ROOT.kRed
 # colors['ALP_Z_aa_1.GeV_cYY_1.0'] = ROOT.kGreen
 # colors['ALP_Z_aa_1.5.GeV_cYY_1.0'] = ROOT.kBlue
 # colors['ALP_Z_aa_2.GeV_cYY_1.0'] = ROOT.kBlue
 # colors['ALP_Z_aa_3.GeV_cYY_1.0'] = ROOT.kViolet
 # colors['ALP_Z_aa_4.GeV_cYY_1.0'] = ROOT.kViolet
-colors['ALP_Z_aa_5.GeV_cYY_1.0'] = ROOT.kGreen
-colors['ALP_Z_aa_8.GeV_cYY_1.0'] = ROOT.kViolet
+# colors['ALP_Z_aa_5.GeV_cYY_1.0'] = ROOT.kGreen
+# colors['ALP_Z_aa_8.GeV_cYY_1.0'] = ROOT.kViolet
 
-# colors['ALP_Z_aa_0.6.GeV_cYY_1.0'] = ROOT.kOrange
-colors['ALP_Z_aa_0.8.GeV_cYY_1.0'] = ROOT.kAzure
-colors['ALP_Z_aa_1.GeV_cYY_1.0'] = ROOT.kCyan
+# # colors['ALP_Z_aa_0.6.GeV_cYY_1.0'] = ROOT.kOrange
+# colors['ALP_Z_aa_0.8.GeV_cYY_1.0'] = ROOT.kAzure
+# colors['ALP_Z_aa_1.GeV_cYY_1.0'] = ROOT.kCyan
 # colors['ALP_Z_aa_1.2.GeV_cYY_1.0'] = ROOT.kGreen
 # colors['ALP_Z_aa_1.4.GeV_cYY_1.0'] = ROOT.kMagenta
 
@@ -419,6 +421,19 @@ colors['ALP_Z_aa_1.GeV_cYY_1.0'] = ROOT.kCyan
 # colors['ee_aaa'] = ROOT.kYellow
 # colors['ee_aaaa'] = ROOT.kCyan
 
+###for my analysis###E
+# colors['ALP_Z_aa_0.5.GeV_cYY_1.0'] = ROOT.kRed
+# colors['ALP_Z_aa_0.8.GeV_cYY_1.0'] = ROOT.kGreen
+# colors['ALP_Z_aa_1.GeV_cYY_1.0'] = ROOT.kCyan
+# colors['ALP_Z_aa_5.GeV_cYY_1.0'] = ROOT.kAzure
+# colors['ALP_Z_aa_8.GeV_cYY_1.0'] = ROOT.kViolet
+colors['ALP_Z_aa_0p5GeV_cYY1p0'] = ROOT.kRed
+colors['ALP_Z_aa_0p8GeV_cYY1p0'] = ROOT.kGreen
+colors['ALP_Z_aa_1p0GeV_cYY1p0'] = ROOT.kCyan
+colors['ALP_Z_aa_5p0GeV_cYY1p0'] = ROOT.kAzure
+colors['ALP_Z_aa_8p0GeV_cYY1p0'] = ROOT.kViolet
+
+
 plots = {}
 plots['ALP'] = {'signal':{
     # 'ALP_Z_aa_0.316.GeV_cYY_0.00006':['ALP_Z_aa_0.316.GeV_cYY_0.00006'],
@@ -449,15 +464,15 @@ plots['ALP'] = {'signal':{
     # 'ALP_Z_aa_1.GeV_cYY_1.2':['ALP_Z_aa_1.GeV_cYY_1.2'],
     # 'ALP_Z_aa_1.GeV_cYY_1.4':['ALP_Z_aa_1.GeV_cYY_1.4'],
 
-     'ALP_Z_aa_0.5.GeV_cYY_1.0':['ALP_Z_aa_0.5.GeV_cYY_1.0'],
-     'ALP_Z_aa_0.8.GeV_cYY_1.0':['ALP_Z_aa_0.8.GeV_cYY_1.0'],
-     'ALP_Z_aa_1.GeV_cYY_1.0':['ALP_Z_aa_1.GeV_cYY_1.0'],
-    # 'ALP_Z_aa_1.5.GeV_cYY_1.0':['ALP_Z_aa_1.5.GeV_cYY_1.0'],
-    # 'ALP_Z_aa_2.GeV_cYY_1.0':['ALP_Z_aa_2.GeV_cYY_1.0'],
-    # 'ALP_Z_aa_3.GeV_cYY_1.0':['ALP_Z_aa_3.GeV_cYY_1.0'],
-    # 'ALP_Z_aa_4.GeV_cYY_1.0':['ALP_Z_aa_4.GeV_cYY_1.0'],
-     'ALP_Z_aa_5.GeV_cYY_1.0':['ALP_Z_aa_5.GeV_cYY_1.0'],
-     'ALP_Z_aa_8.GeV_cYY_1.0':['ALP_Z_aa_8.GeV_cYY_1.0'],
+    #  'ALP_Z_aa_0.5.GeV_cYY_1.0':['ALP_Z_aa_0.5.GeV_cYY_1.0'],
+    #  'ALP_Z_aa_0.8.GeV_cYY_1.0':['ALP_Z_aa_0.8.GeV_cYY_1.0'],
+    #  'ALP_Z_aa_1.GeV_cYY_1.0':['ALP_Z_aa_1.GeV_cYY_1.0'],
+    # # 'ALP_Z_aa_1.5.GeV_cYY_1.0':['ALP_Z_aa_1.5.GeV_cYY_1.0'],
+    # # 'ALP_Z_aa_2.GeV_cYY_1.0':['ALP_Z_aa_2.GeV_cYY_1.0'],
+    # # 'ALP_Z_aa_3.GeV_cYY_1.0':['ALP_Z_aa_3.GeV_cYY_1.0'],
+    # # 'ALP_Z_aa_4.GeV_cYY_1.0':['ALP_Z_aa_4.GeV_cYY_1.0'],
+    #  'ALP_Z_aa_5.GeV_cYY_1.0':['ALP_Z_aa_5.GeV_cYY_1.0'],
+    #  'ALP_Z_aa_8.GeV_cYY_1.0':['ALP_Z_aa_8.GeV_cYY_1.0'],
 
     # 'ALP_Z_aa_0.6.GeV_cYY_1.0':['ALP_Z_aa_0.6.GeV_cYY_1.0'],
     # 'ALP_Z_aa_1.GeV_cYY_1.0':['ALP_Z_aa_1.GeV_cYY_1.0'],
@@ -489,6 +504,15 @@ plots['ALP'] = {'signal':{
     # 'ALP_Z_aa_30.GeV_cYY_0.5':['ALP_Z_aa_30.GeV_cYY_0.5'],
 
     # 'ee_Z_ALPga_gagaga':['ee_Z_ALPga_gagaga'],
+
+
+
+    ###  my signals  ###
+    'ALP_Z_aa_0p5GeV_cYY1p0':['ALP_Z_aa_0p5GeV_cYY1p0'],
+    'ALP_Z_aa_0p8GeV_cYY1p0':['ALP_Z_aa_0p8GeV_cYY1p0'],
+    'ALP_Z_aa_1p0GeV_cYY1p0':['ALP_Z_aa_1p0GeV_cYY1p0'],
+    'ALP_Z_aa_5p0GeV_cYY1p0':['ALP_Z_aa_5p0GeV_cYY1p0'],
+    'ALP_Z_aa_8p0GeV_cYY1p0':['ALP_Z_aa_8p0GeV_cYY1p0'],
     },
     'backgrounds':{
         # 'p8_ee_Zee_ecm91':['p8_ee_Zee_ecm91'],
@@ -533,15 +557,15 @@ legend = {}
 # legend['ALP_Z_aa_1.GeV_cYY_1.2'] = 'm_{ALP} = 1 GeV, c_{#gamma#gamma} = 1.2'
 # legend['ALP_Z_aa_1.GeV_cYY_1.4'] = 'm_{ALP} = 1 GeV, c_{#gamma#gamma} = 1.4'
 
-legend['ALP_Z_aa_0.5.GeV_cYY_1.0'] = 'm_{ALP} = 0.5 GeV, c_{#gamma#gamma} = 1.0'
-legend['ALP_Z_aa_0.8.GeV_cYY_1.0'] = 'm_{ALP} = 0.8 GeV, c_{#gamma#gamma} = 1.0'
-legend['ALP_Z_aa_1.GeV_cYY_1.0'] = 'm_{ALP} = 1 GeV, c_{#gamma#gamma} = 1.0'
-# legend['ALP_Z_aa_1.5.GeV_cYY_1.0'] = 'm_{ALP} = 1.5 GeV, c_{YY} = 1.0'
-# legend['ALP_Z_aa_2.GeV_cYY_1.0'] = 'm_{ALP} = 2 GeV, c_{YY} = 1.0'
-# legend['ALP_Z_aa_3.GeV_cYY_1.0'] = 'm_{ALP} = 3 GeV, c_{YY} = 1.0'
-# legend['ALP_Z_aa_4.GeV_cYY_1.0'] = 'm_{ALP} = 4 GeV, c_{YY} = 1.0'
-legend['ALP_Z_aa_5.GeV_cYY_1.0'] = 'm_{ALP} = 5 GeV, c_{#gamma#gamma} = 1.0'
-legend['ALP_Z_aa_8.GeV_cYY_1.0'] = 'm_{ALP} = 8 GeV, c_{#gamma#gamma} = 1.0'
+# legend['ALP_Z_aa_0.5.GeV_cYY_1.0'] = 'm_{ALP} = 0.5 GeV, c_{#gamma#gamma} = 1.0'
+# legend['ALP_Z_aa_0.8.GeV_cYY_1.0'] = 'm_{ALP} = 0.8 GeV, c_{#gamma#gamma} = 1.0'
+# legend['ALP_Z_aa_1.GeV_cYY_1.0'] = 'm_{ALP} = 1 GeV, c_{#gamma#gamma} = 1.0'
+# # legend['ALP_Z_aa_1.5.GeV_cYY_1.0'] = 'm_{ALP} = 1.5 GeV, c_{YY} = 1.0'
+# # legend['ALP_Z_aa_2.GeV_cYY_1.0'] = 'm_{ALP} = 2 GeV, c_{YY} = 1.0'
+# # legend['ALP_Z_aa_3.GeV_cYY_1.0'] = 'm_{ALP} = 3 GeV, c_{YY} = 1.0'
+# # legend['ALP_Z_aa_4.GeV_cYY_1.0'] = 'm_{ALP} = 4 GeV, c_{YY} = 1.0'
+# legend['ALP_Z_aa_5.GeV_cYY_1.0'] = 'm_{ALP} = 5 GeV, c_{#gamma#gamma} = 1.0'
+# legend['ALP_Z_aa_8.GeV_cYY_1.0'] = 'm_{ALP} = 8 GeV, c_{#gamma#gamma} = 1.0'
 
 # legend['ALP_Z_aa_0.6.GeV_cYY_1.0'] = 'm_{ALP} = 0.6 GeV, c_{#gamma#gamma} = 1.0'
 # legend['ALP_Z_aa_1.GeV_cYY_1.0'] = 'm_{ALP} = 1 GeV, c_{#gamma#gamma} = 1.0'
@@ -583,3 +607,11 @@ legend['ALP_Z_aa_8.GeV_cYY_1.0'] = 'm_{ALP} = 8 GeV, c_{#gamma#gamma} = 1.0'
 # legend['ee_aa'] = 'e^{+}e^{-} #rightarrow #gamma#gamma'
 # legend['ee_aaa'] = 'e^{+}e^{-} #rightarrow #gamma#gamma#gamma'
 # legend['ee_aaaa'] = 'e^{+}e^{-} #rightarrow #gamma#gamma#gamma#gamma'
+
+
+###  my legend ###
+legend['ALP_Z_aa_0p5GeV_cYY1p0'] = 'm_{ALP} = 0.5 GeV, c_{#gamma#gamma} = 1.0'
+legend['ALP_Z_aa_0p8GeV_cYY1p0'] = 'm_{ALP} = 0.8 GeV, c_{#gamma#gamma} = 1.0'
+legend['ALP_Z_aa_1p0GeV_cYY1p0'] = 'm_{ALP} = 1 GeV, c_{#gamma#gamma} = 1.0'
+legend['ALP_Z_aa_5p0GeV_cYY1p0'] = 'm_{ALP} = 5 GeV, c_{#gamma#gamma} = 1.0'
+legend['ALP_Z_aa_8p0GeV_cYY1p0'] = 'm_{ALP} = 8 GeV, c_{#gamma#gamma} = 1.0'

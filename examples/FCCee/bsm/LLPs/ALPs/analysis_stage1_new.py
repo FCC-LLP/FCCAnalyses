@@ -16,7 +16,7 @@ processList = {
 
         #privately-produced signals
 
-        # 'ALP_Z_aa_0.01.GeV_cYY_0.00006':{},
+        # 'ALP_Z_aa_0.01.GeV_cYY_0.00006':{},     #10 000 events generated for this paragraph
         # 'ALP_Z_aa_0.01.GeV_cYY_0.00019':{},
         # 'ALP_Z_aa_0.01.GeV_cYY_0.0006':{},
         # 'ALP_Z_aa_0.01.GeV_cYY_0.0019':{},
@@ -124,7 +124,7 @@ processList = {
 
         # 'ALP_Z_aa_1.GeV_cYY_0.6':{},
         # 'ALP_Z_aa_1.GeV_cYY_0.8':{},
-        'ALP_Z_aa_1.GeV_cYY_1.0':{},
+        # 'ALP_Z_aa_1.GeV_cYY_1.0':{},
         # 'ALP_Z_aa_1.GeV_cYY_1.2':{},
         # 'ALP_Z_aa_1.GeV_cYY_1.4':{},
 
@@ -133,9 +133,10 @@ processList = {
         # 'ALP_Z_aa_1.5.GeV_cYY_1.0':{},
         # 'ALP_Z_aa_2.GeV_cYY_1.0':{},
         # 'ALP_Z_aa_2.1.GeV_cYY_1.0':{},
-        # 'ALP_Z_aa_3.GeV_cYY_1.0':{},
+        #'ALP_Z_aa_3.GeV_cYY_1.0':{},
         # 'ALP_Z_aa_4.GeV_cYY_1.0':{},
         # 'ALP_Z_aa_5.GeV_cYY_1.0':{},
+        # 'ALP_5GeV_1p0_bug_new':{},
         # 'ALP_Z_aa_8.GeV_cYY_1.0':{},
 
         # 'ALP_Z_aa_0.6.GeV_cYY_1.0':{},
@@ -172,6 +173,15 @@ processList = {
 
         #test
         #'p8_ee_Zee_ecm91':{'fraction':0.000001},
+
+
+
+        ####     using the new pythia samples        ####
+        'ALP_Z_aa_0p5GeV_cYY1p0':{},
+        'ALP_Z_aa_0p8GeV_cYY1p0':{},
+        'ALP_Z_aa_1p0GeV_cYY1p0':{},
+        'ALP_Z_aa_5p0GeV_cYY1p0':{},
+        'ALP_Z_aa_8p0GeV_cYY1p0':{},
 }
 
 #Production tag. This points to the yaml files for getting sample statistics
@@ -186,11 +196,14 @@ processList = {
 # inputDir = "./root_files_for_input/"
 # inputDir = "./"
 # inputDir = "/eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/wzp6_gaga_ee_60_ecm240/"
-inputDir = "/eos/experiment/fcc/ee/analyses_storage/BSM/LLPs/ALPs_3photons/ALP_sample_creation/"
+#inputDir = "/eos/experiment/fcc/ee/analyses_storage/BSM/LLPs/ALPs_3photons/ALP_sample_creation/"
+inputDir = "/eos/user/e/ebakhish/new_pythia_output_for_MGsamples/"
+#inputDir = "./ALP_sample_creation/"
 
 #Optional: output directory, default is local dir
 # outputDir = "./stage1_ee_gaga_1million/"
-outputDir = "./stage1_output/"
+#outputDir = "/eos/user/e/ebakhish/stage1_output_roots_testing_samples/"
+outputDir = "/eos/user/e/ebakhish/stage1_output_new_pythia_samples/"
 # outputDir = "./stage1_FSGenALP/"
 #outputDir = "/eos/user/j/jalimena/FCCeeLLP/"
 #outputDir = "output_stage1/"
@@ -230,8 +243,11 @@ class RDFanalysis():
               # Following code is written specifically for the ALP study
                 ####################################################################################################
                 .Alias("Particle1", "_Particle_daughters.index")
-                .Alias("MCRecoAssociations0", "_MCRecoAssociations_rec.index")
-                .Alias("MCRecoAssociations1", "_MCRecoAssociations_sim.index")
+             #this part of the analysis changed in pythia/delphes,which changes how the output looks
+                # .Alias("MCRecoAssociations0", "_MCRecoAssociations_rec.index")
+                # .Alias("MCRecoAssociations1", "_MCRecoAssociations_sim.index")
+                .Alias("MCRecoAssociations0", "_MCRecoAssociations_from.index") 
+                .Alias("MCRecoAssociations1", "_MCRecoAssociations_to.index")
 
                 ##### Added branch for MCParticle; finding PID of the MC particle for ALP
                 .Define("GenALP_PID", "MCParticle::sel_pdgID(9000005, false)(Particle)")
@@ -240,7 +256,7 @@ class RDFanalysis():
                 .Define("All_n_GenALP", "MCParticle::get_n(GenALP_PID)")
 
                 .Define("AllGenALP_mass", "MCParticle::get_mass(GenALP_PID)") #finding the generator mass of the ALP through separate ALP branch
-                .Define("AllGenALP_e", "MCParticle::get_e(GenALP_PID)")
+                .Define("AllGenALP_e", "MCParticle::get_e(GenALP_PID)")     #energy of the ALP
                 .Define("AllGenALP_p", "MCParticle::get_p(GenALP_PID)")
                 .Define("AllGenALP_pt", "MCParticle::get_pt(GenALP_PID)")    #finding the pt of the ALP thorugh separate ALP branch
                 .Define("AllGenALP_px", "MCParticle::get_px(GenALP_PID)")
@@ -279,33 +295,33 @@ class RDFanalysis():
                 .Define("FSGenPositron_theta", "MCParticle::get_theta(FSGenPositron)")
                 .Define("FSGenPositron_phi", "MCParticle::get_phi(FSGenPositron)")
 
-                #all final state gen neutrinos
-                .Define("GenNeutrino_PID", "MCParticle::sel_pdgID(12, false)(Particle)")
-                .Define("FSGenNeutrino", "MCParticle::sel_genStatus(1)(GenNeutrino_PID)") #gen status==1 means final state particle (FS)
-                .Define("n_FSGenNeutrino", "MCParticle::get_n(FSGenNeutrino)")
-                .Define("FSGenNeutrino_e", "MCParticle::get_e(FSGenNeutrino)")
-                .Define("FSGenNeutrino_p", "MCParticle::get_p(FSGenNeutrino)")
-                .Define("FSGenNeutrino_pt", "MCParticle::get_pt(FSGenNeutrino)")
-                .Define("FSGenNeutrino_px", "MCParticle::get_px(FSGenNeutrino)")
-                .Define("FSGenNeutrino_py", "MCParticle::get_py(FSGenNeutrino)")
-                .Define("FSGenNeutrino_pz", "MCParticle::get_pz(FSGenNeutrino)")
-                .Define("FSGenNeutrino_eta", "MCParticle::get_eta(FSGenNeutrino)")
-                .Define("FSGenNeutrino_theta", "MCParticle::get_theta(FSGenNeutrino)")
-                .Define("FSGenNeutrino_phi", "MCParticle::get_phi(FSGenNeutrino)")
+                # #all final state gen neutrinos
+                # .Define("GenNeutrino_PID", "MCParticle::sel_pdgID(12, false)(Particle)")
+                # .Define("FSGenNeutrino", "MCParticle::sel_genStatus(1)(GenNeutrino_PID)") #gen status==1 means final state particle (FS)
+                # .Define("n_FSGenNeutrino", "MCParticle::get_n(FSGenNeutrino)")
+                # .Define("FSGenNeutrino_e", "MCParticle::get_e(FSGenNeutrino)")
+                # .Define("FSGenNeutrino_p", "MCParticle::get_p(FSGenNeutrino)")
+                # .Define("FSGenNeutrino_pt", "MCParticle::get_pt(FSGenNeutrino)")
+                # .Define("FSGenNeutrino_px", "MCParticle::get_px(FSGenNeutrino)")
+                # .Define("FSGenNeutrino_py", "MCParticle::get_py(FSGenNeutrino)")
+                # .Define("FSGenNeutrino_pz", "MCParticle::get_pz(FSGenNeutrino)")
+                # .Define("FSGenNeutrino_eta", "MCParticle::get_eta(FSGenNeutrino)")
+                # .Define("FSGenNeutrino_theta", "MCParticle::get_theta(FSGenNeutrino)")
+                # .Define("FSGenNeutrino_phi", "MCParticle::get_phi(FSGenNeutrino)")
 
-                #all final state gen anti-neutrinos
-                .Define("GenAntiNeutrino_PID", "MCParticle::sel_pdgID(-12, false)(Particle)")
-                .Define("FSGenAntiNeutrino", "MCParticle::sel_genStatus(1)(GenAntiNeutrino_PID)") #gen status==1 means final state particle (FS)
-                .Define("n_FSGenAntiNeutrino", "MCParticle::get_n(FSGenAntiNeutrino)")
-                .Define("FSGenAntiNeutrino_e", "MCParticle::get_e(FSGenAntiNeutrino)")
-                .Define("FSGenAntiNeutrino_p", "MCParticle::get_p(FSGenAntiNeutrino)")
-                .Define("FSGenAntiNeutrino_pt", "MCParticle::get_pt(FSGenAntiNeutrino)")
-                .Define("FSGenAntiNeutrino_px", "MCParticle::get_px(FSGenAntiNeutrino)")
-                .Define("FSGenAntiNeutrino_py", "MCParticle::get_py(FSGenAntiNeutrino)")
-                .Define("FSGenAntiNeutrino_pz", "MCParticle::get_pz(FSGenAntiNeutrino)")
-                .Define("FSGenAntiNeutrino_eta", "MCParticle::get_eta(FSGenAntiNeutrino)")
-                .Define("FSGenAntiNeutrino_theta", "MCParticle::get_theta(FSGenAntiNeutrino)")
-                .Define("FSGenAntiNeutrino_phi", "MCParticle::get_phi(FSGenAntiNeutrino)")
+                # #all final state gen anti-neutrinos
+                # .Define("GenAntiNeutrino_PID", "MCParticle::sel_pdgID(-12, false)(Particle)")
+                # .Define("FSGenAntiNeutrino", "MCParticle::sel_genStatus(1)(GenAntiNeutrino_PID)") #gen status==1 means final state particle (FS)
+                # .Define("n_FSGenAntiNeutrino", "MCParticle::get_n(FSGenAntiNeutrino)")
+                # .Define("FSGenAntiNeutrino_e", "MCParticle::get_e(FSGenAntiNeutrino)")
+                # .Define("FSGenAntiNeutrino_p", "MCParticle::get_p(FSGenAntiNeutrino)")
+                # .Define("FSGenAntiNeutrino_pt", "MCParticle::get_pt(FSGenAntiNeutrino)")
+                # .Define("FSGenAntiNeutrino_px", "MCParticle::get_px(FSGenAntiNeutrino)")
+                # .Define("FSGenAntiNeutrino_py", "MCParticle::get_py(FSGenAntiNeutrino)")
+                # .Define("FSGenAntiNeutrino_pz", "MCParticle::get_pz(FSGenAntiNeutrino)")
+                # .Define("FSGenAntiNeutrino_eta", "MCParticle::get_eta(FSGenAntiNeutrino)")
+                # .Define("FSGenAntiNeutrino_theta", "MCParticle::get_theta(FSGenAntiNeutrino)")
+                # .Define("FSGenAntiNeutrino_phi", "MCParticle::get_phi(FSGenAntiNeutrino)")
 
                 #all final state gen photons
                 .Define("GenPhoton_PID", "MCParticle::sel_pdgID(22, false)(Particle)")
@@ -337,8 +353,8 @@ class RDFanalysis():
 
                 # Calculating the lifetime of the ALP
                 # Definition: t = Lxy * branchGenPtcl.At(i).Mass / (branchGenPtcl.At(i).PT * 1000 * 3E8)
-                .Define("FSGen_lifetime_xy", "return ( FSGen_Lxy.at(0) * AllGenALP_mass / (AllGenALP_pt * 3E8 * 1000))" )
-                .Define("FSGen_lifetime_xyz", "return ( FSGen_Lxy.at(0) * AllGenALP_mass / (AllGenALP_p * 3E8 * 1000))" )
+                # .Define("FSGen_lifetime_xy", "return ( FSGen_Lxy.at(0) * AllGenALP_mass / (AllGenALP_pt * 3E8 * 1000))" )
+                # .Define("FSGen_lifetime_xyz", "return ( FSGen_Lxy.at(0) * AllGenALP_mass / (AllGenALP_p * 3E8 * 1000))" )
 
                 # Separating the three first final state photons
                 # Returns -2 if the number of final state photons != 2, and therefore will be shown as -2 in the plots
@@ -438,7 +454,7 @@ class RDFanalysis():
                 .Define("FSGenPhoton2_px_if_GenALP_px_neg", "if (GenALP_px[0] < 0) {return FSGenPhoton2_px;} else {return -50.0f;}")
 
                 .Define("n_GenALP", "MCParticle::get_n( GenALP )")
-                .Define("GenALP_time", "MCParticle::get_time( GenALP )")
+                .Define("GenALP_time", "MCParticle::get_time( GenALP )")        #time at which ALP decays from Z
                 .Define("GenALP_pdg", "MCParticle::get_pdg( GenALP )")
                 .Define("GenALP_endPoint_x", "MCParticle::get_endPoint_x")
 
@@ -773,8 +789,8 @@ class RDFanalysis():
                         "FSGenPhoton_vertex_z",
                         # # "n_FSGenElectron_forFS2GenPhotons",
                         # # "n_FSGenPositron_forFS2GenPhotons",
-                        # "FSGen_Lxy",
-                        # "FSGen_Lxyz",
+                        "FSGen_Lxy",
+                        "FSGen_Lxyz",
                         # "FSGen_lifetime_xy",
                         # "FSGen_lifetime_xyz",
                         # "n_FSGenPositron",
