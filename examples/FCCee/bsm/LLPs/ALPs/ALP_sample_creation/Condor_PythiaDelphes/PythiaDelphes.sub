@@ -2,13 +2,13 @@
 
 Universe              = vanilla
 executable            = runPythiaDelphesCondor.sh
-arguments             = $(ProcId) 7.7 7.7 100
+arguments             = $(ProcId) 1.0 1.0 10000
 GetEnv                = True
 output                = output/$(ClusterId).$(ProcId).out
 error                 = error/$(ClusterId).$(ProcId).err
 log                   = log/$(ClusterId).log
-#requirements 	        = ( OpSysAndVer == "RedHat9")
+requirements 	        = ( OpSysAndVer == "RedHat9")
 # request_memory        = 4 GB
 +JobFlavour           = "espresso"
 
-queue 2
+queue 10
