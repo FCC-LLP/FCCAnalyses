@@ -10,7 +10,7 @@ outputDir = "/eos/user/e/ebakhish/final_output_new_pythia_samples/"
 #outputDir  = "output_finalSel/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
-intLumi = 150e6 #pb^-1
+intLumi = 205e6 #pb^-1
 
 #Scale event yields by intLumi and cross section (optional)
 doScale = True
