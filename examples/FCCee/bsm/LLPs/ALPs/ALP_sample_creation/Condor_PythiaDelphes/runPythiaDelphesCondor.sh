@@ -24,6 +24,20 @@ if [ ! -d "/eos/user/e/ebakhish/MG/Pythia_Output/${baseoutputdir}" ]; then
     mkdir -p "/eos/user/e/ebakhish/MG/Pythia_Output/${baseoutputdir}"  
 fi
 
-# quick command to run DelphesPythia8_EDM4HEP
-# needs one input for the name of the output root-file
-DelphesPythia8_EDM4HEP /afs/cern.ch/user/e/ebakhish/FCC-config/FCCee/Delphes/card_IDEA.tcl /afs/cern.ch/user/e/ebakhish/FCC-config/FCCee/Delphes/edm4hep_IDEA.tcl $temp_pythiacard /eos/user/e/ebakhish/MG/Pythia_Output/${baseoutputdir}/${MGfiledir}.root
+
+
+
+# only run following command if the MadGraph output was successful
+
+if [ -d "/eos/user/e/ebakhish/MG/MGOutput/$MGfiledir/Events/run_01" ]; then
+    # quick command to run DelphesPythia8_EDM4HEP
+    # needs one input for the name of the output root-file
+    DelphesPythia8_EDM4HEP /afs/cern.ch/user/e/ebakhish/FCC-config/FCCee/Delphes/card_IDEA.tcl /afs/cern.ch/user/e/ebakhish/FCC-config/FCCee/Delphes/edm4hep_IDEA.tcl $temp_pythiacard /eos/user/e/ebakhish/MG/Pythia_Output/${baseoutputdir}/${MGfiledir}.root
+else 
+    echo "/$MGfiledir/Events/run_01 does not exist"
+fi
+
+
+# # quick command to run DelphesPythia8_EDM4HEP
+# # needs one input for the name of the output root-file
+# DelphesPythia8_EDM4HEP /afs/cern.ch/user/e/ebakhish/FCC-config/FCCee/Delphes/card_IDEA.tcl /afs/cern.ch/user/e/ebakhish/FCC-config/FCCee/Delphes/edm4hep_IDEA.tcl $temp_pythiacard /eos/user/e/ebakhish/MG/Pythia_Output/${baseoutputdir}/${MGfiledir}.root
