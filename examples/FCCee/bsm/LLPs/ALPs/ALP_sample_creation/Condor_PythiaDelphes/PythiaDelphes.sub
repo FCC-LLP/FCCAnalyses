@@ -2,7 +2,7 @@
 
 Universe              = vanilla
 executable            = runPythiaDelphesCondor.sh
-arguments             = $(ProcId) 1.0 1.0 10000
+arguments             = $(ProcId) 1.0 1.0 100000
 GetEnv                = True
 output                = output/$(ClusterId).$(ProcId).out
 error                 = error/$(ClusterId).$(ProcId).err
@@ -11,4 +11,6 @@ log                   = log/$(ClusterId).log
 # request_memory        = 4 GB
 +JobFlavour           = "espresso"
 
-queue 10
+queue 100
+
+#if running this for the same sample: to avoid overwriting existing samples change $MGfiledir in runPythiaDelphesCondor.sh

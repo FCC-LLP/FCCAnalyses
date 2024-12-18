@@ -2,7 +2,7 @@
 
 Universe              = vanilla
 executable            = mg.sh
-arguments             = $(ProcId) 1.0 1.0 10000
+arguments             = $(ProcId) 2.0 1.0 100000
 GetEnv                = True
 output                = output/$(ClusterId).$(ProcId).out
 error                 = error/$(ClusterId).$(ProcId).err
