@@ -14,7 +14,7 @@ MGfiledir="${baseoutputdir}_${job_number}"
 
 #input .lhe files for the pythia run
 inputfile="/eos/user/e/ebakhish/MG/MGOutput/${baseoutputdir}/${MGfiledir}/Events/run_01/unweighted_events.lhe.gz"
-pythiacard=/afs/cern.ch/user/e/ebakhish/FCCAnalyses/examples/FCCee/bsm/LLPs/ALPs/ALP_sample_creation/ALP_pythia.cmnd
+pythiacard=/afs/cern.ch/user/e/ebakhish/FCCAnalyses/examples/FCCee/bsm/LLPs/ALPs/ALP_sample_creation/ALP_pythia_sample.cmnd
 temp_pythiacard="/eos/user/e/ebakhish/MG/Pythiacards/ALP_pythia_${MGfiledir}.cmnd"
 #outputfile= "/eos/user/e/ebakhish/MG/Pythia_Output/${MGfiledir}"
 
