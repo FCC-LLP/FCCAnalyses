@@ -14,7 +14,7 @@ ana_tex        = 'e^{+}e^{-} #rightarrow Z #rightarrow #gamma ALP #rightarrow 3#
 delphesVersion = ''
 energy         = 91
 collider       = 'FCC-ee'
-inputDir       = '/eos/user/e/ebakhish/final_output_new_pythia_samples/'
+inputDir       = '/eos/user/e/ebakhish/final_output/masses_different/'
 #formats        = ['png','pdf']
 # formats        = ['pdf']
 formats = ['png']
@@ -23,7 +23,7 @@ yaxis          = ['log']
 # yaxis          = ['lin','log']
 stacksig       = ['nostack']
 #outdir         = './plots_output/'
-outdir         = './plots_output_new_pythia_samples/'
+outdir         = './plots_output/masses_different/'
 #outdir = '/eos/user/e/ebakhish/plots_output_new_pythia_samples/'
 splitLeg       = True
 
@@ -427,11 +427,23 @@ colors = {}
 # colors['ALP_Z_aa_1.GeV_cYY_1.0'] = ROOT.kCyan
 # colors['ALP_Z_aa_5.GeV_cYY_1.0'] = ROOT.kAzure
 # colors['ALP_Z_aa_8.GeV_cYY_1.0'] = ROOT.kViolet
-colors['ALP_Z_aa_0p5GeV_cYY1p0'] = ROOT.kRed
-colors['ALP_Z_aa_0p8GeV_cYY1p0'] = ROOT.kGreen
-colors['ALP_Z_aa_1p0GeV_cYY1p0'] = ROOT.kCyan
-colors['ALP_Z_aa_5p0GeV_cYY1p0'] = ROOT.kAzure
-colors['ALP_Z_aa_8p0GeV_cYY1p0'] = ROOT.kViolet
+
+
+# colors['ALP_Z_aa_0p5GeV_cYY1p0'] = ROOT.kRed
+# colors['ALP_Z_aa_0p8GeV_cYY1p0'] = ROOT.kGreen
+# colors['ALP_Z_aa_1p0GeV_cYY1p0'] = ROOT.kCyan
+# colors['ALP_Z_aa_5p0GeV_cYY1p0'] = ROOT.kAzure
+# colors['ALP_Z_aa_8p0GeV_cYY1p0'] = ROOT.kViolet
+
+
+colors['ALP_Z_aa_0p01GeV_cYY1p0']= ROOT.kRed
+colors['ALP_Z_aa_0p1GeV_cYY1p0']= ROOT.kGreen
+colors['ALP_Z_aa_0p5GeV_cYY1p0']= ROOT.kBlue
+colors['ALP_Z_aa_1p0GeV_cYY1p0']= ROOT.kMagenta
+colors['ALP_Z_aa_5p0GeV_cYY1p0']= ROOT.kCyan
+colors['ALP_Z_aa_10p0GeV_cYY1p0']= ROOT.kOrange
+colors['ALP_Z_aa_20p0GeV_cYY1p0']= ROOT.kViolet
+colors['ALP_Z_aa_30p0GeV_cYY1p0']= ROOT.kTeal
 
 
 plots = {}
@@ -508,11 +520,24 @@ plots['ALP'] = {'signal':{
 
 
     ###  my signals  ###
+    # 'ALP_Z_aa_0p5GeV_cYY1p0':['ALP_Z_aa_0p5GeV_cYY1p0'],
+    # 'ALP_Z_aa_0p8GeV_cYY1p0':['ALP_Z_aa_0p8GeV_cYY1p0'],
+    # 'ALP_Z_aa_1p0GeV_cYY1p0':['ALP_Z_aa_1p0GeV_cYY1p0'],
+    # 'ALP_Z_aa_5p0GeV_cYY1p0':['ALP_Z_aa_5p0GeV_cYY1p0'],
+    # 'ALP_Z_aa_8p0GeV_cYY1p0':['ALP_Z_aa_8p0GeV_cYY1p0'],
+
+
+    'ALP_Z_aa_0p01GeV_cYY1p0':['ALP_Z_aa_0p01GeV_cYY1p0'],
+    'ALP_Z_aa_0p1GeV_cYY1p0':['ALP_Z_aa_0p1GeV_cYY1p0'],
     'ALP_Z_aa_0p5GeV_cYY1p0':['ALP_Z_aa_0p5GeV_cYY1p0'],
-    'ALP_Z_aa_0p8GeV_cYY1p0':['ALP_Z_aa_0p8GeV_cYY1p0'],
     'ALP_Z_aa_1p0GeV_cYY1p0':['ALP_Z_aa_1p0GeV_cYY1p0'],
     'ALP_Z_aa_5p0GeV_cYY1p0':['ALP_Z_aa_5p0GeV_cYY1p0'],
-    'ALP_Z_aa_8p0GeV_cYY1p0':['ALP_Z_aa_8p0GeV_cYY1p0'],
+    'ALP_Z_aa_10p0GeV_cYY1p0':['ALP_Z_aa_10p0GeV_cYY1p0'],
+    'ALP_Z_aa_20p0GeV_cYY1p0':['ALP_Z_aa_20p0GeV_cYY1p0'],
+    'ALP_Z_aa_30p0GeV_cYY1p0':['ALP_Z_aa_30p0GeV_cYY1p0'],
+
+
+
     },
     'backgrounds':{
         # 'p8_ee_Zee_ecm91':['p8_ee_Zee_ecm91'],
@@ -610,8 +635,19 @@ legend = {}
 
 
 ###  my legend ###
+# legend['ALP_Z_aa_0p5GeV_cYY1p0'] = 'm_{ALP} = 0.5 GeV, c_{#gamma#gamma} = 1.0'
+# legend['ALP_Z_aa_0p8GeV_cYY1p0'] = 'm_{ALP} = 0.8 GeV, c_{#gamma#gamma} = 1.0'
+# legend['ALP_Z_aa_1p0GeV_cYY1p0'] = 'm_{ALP} = 1 GeV, c_{#gamma#gamma} = 1.0'
+# legend['ALP_Z_aa_5p0GeV_cYY1p0'] = 'm_{ALP} = 5 GeV, c_{#gamma#gamma} = 1.0'
+# legend['ALP_Z_aa_8p0GeV_cYY1p0'] = 'm_{ALP} = 8 GeV, c_{#gamma#gamma} = 1.0'
+
+legend['ALP_Z_aa_0p01GeV_cYY1p0'] = 'm_{ALP} = 0.01 GeV, c_{#gamma#gamma} = 1.0'
+legend['ALP_Z_aa_0p1GeV_cYY1p0'] = 'm_{ALP} = 0.1 GeV, c_{#gamma#gamma} = 1.0'
 legend['ALP_Z_aa_0p5GeV_cYY1p0'] = 'm_{ALP} = 0.5 GeV, c_{#gamma#gamma} = 1.0'
-legend['ALP_Z_aa_0p8GeV_cYY1p0'] = 'm_{ALP} = 0.8 GeV, c_{#gamma#gamma} = 1.0'
 legend['ALP_Z_aa_1p0GeV_cYY1p0'] = 'm_{ALP} = 1 GeV, c_{#gamma#gamma} = 1.0'
 legend['ALP_Z_aa_5p0GeV_cYY1p0'] = 'm_{ALP} = 5 GeV, c_{#gamma#gamma} = 1.0'
-legend['ALP_Z_aa_8p0GeV_cYY1p0'] = 'm_{ALP} = 8 GeV, c_{#gamma#gamma} = 1.0'
+legend['ALP_Z_aa_10p0GeV_cYY1p0'] = 'm_{ALP} = 10 GeV, c_{#gamma#gamma} = 1.0'
+legend['ALP_Z_aa_20p0GeV_cYY1p0'] = 'm_{ALP} = 20 GeV, c_{#gamma#gamma} = 1.0'
+legend['ALP_Z_aa_30p0GeV_cYY1p0'] = 'm_{ALP} = 30 GeV, c_{#gamma#gamma} = 1.0'
+
+

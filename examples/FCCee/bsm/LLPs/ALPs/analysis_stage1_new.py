@@ -176,12 +176,28 @@ processList = {
 
 
 
-        ####     using the new pythia samples        ####
-        'ALP_Z_aa_0p5GeV_cYY1p0':{},
-        'ALP_Z_aa_0p8GeV_cYY1p0':{},
-        'ALP_Z_aa_1p0GeV_cYY1p0':{},
-        'ALP_Z_aa_5p0GeV_cYY1p0':{},
-        'ALP_Z_aa_8p0GeV_cYY1p0':{},
+        ####  private samples, 1Mio events  -El     ####
+        # 'ALP_Z_aa_0p5GeV_cYY1p0':{},
+        # 'ALP_Z_aa_0p8GeV_cYY1p0':{},
+        # 'ALP_Z_aa_1p0GeV_cYY1p0':{},
+        # 'ALP_Z_aa_5p0GeV_cYY1p0':{},
+        # 'ALP_Z_aa_8p0GeV_cYY1p0':{},
+
+
+        # 'ALP_Z_aa_0p01GeV_cYY1p0':{},
+        # 'ALP_Z_aa_0p1GeV_cYY1p0':{},
+        # 'ALP_Z_aa_0p5GeV_cYY1p0':{},
+        # 'ALP_Z_aa_1p0GeV_cYY1p0':{},
+        # 'ALP_Z_aa_5p0GeV_cYY1p0':{},
+        # 'ALP_Z_aa_10p0GeV_cYY1p0':{},
+        # 'ALP_Z_aa_15p0GeV_cYY1p0':{},        
+        # 'ALP_Z_aa_20p0GeV_cYY1p0':{'chunks':100},
+        # 'ALP_Z_aa_30p0GeV_cYY1p0':{'chunks':100},
+
+       
+        'ALP_Z_aa_1p0GeV_cYY1p6':{},
+
+
 }
 
 #Production tag. This points to the yaml files for getting sample statistics
@@ -197,16 +213,16 @@ processList = {
 # inputDir = "./"
 # inputDir = "/eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/wzp6_gaga_ee_60_ecm240/"
 #inputDir = "/eos/experiment/fcc/ee/analyses_storage/BSM/LLPs/ALPs_3photons/ALP_sample_creation/"
-inputDir = "/eos/user/e/ebakhish/new_pythia_output_for_MGsamples/"
+inputDir = "/eos/user/e/ebakhish/MG/Pythia_Output/"
 #inputDir = "./ALP_sample_creation/"
 
 #Optional: output directory, default is local dir
 # outputDir = "./stage1_ee_gaga_1million/"
 #outputDir = "/eos/user/e/ebakhish/stage1_output_roots_testing_samples/"
-outputDir = "/eos/user/e/ebakhish/stage1_output_new_pythia_samples/"
+# outputDir = "/eos/user/e/ebakhish/stage1_output/masses_different/v2/"
+outputDir = "/eos/user/e/ebakhish/stage1_output/couplings_different/"
 # outputDir = "./stage1_FSGenALP/"
 #outputDir = "/eos/user/j/jalimena/FCCeeLLP/"
-#outputDir = "output_stage1/"
 
 #outputDirEos = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/ALPs_3photons/winter2023/output_stage1/"
 #outputDirEos = "/eos/user/j/jalimena/FCCeeLLP/"
@@ -216,11 +232,12 @@ outputDir = "/eos/user/e/ebakhish/stage1_output_new_pythia_samples/"
 nCPUS       = 4
 
 #Optional running on HTCondor, default is False
-runBatch    = False
-#runBatch    = True
+# runBatch    = False
+runBatch    = True
 
 #Optional batch queue name when running on HTCondor, default is workday
 batchQueue = "longlunch"
+# batchQueue = "espresso"
 
 #Optional computing account when running on HTCondor, default is group_u_FCC.local_gen
 compGroup = "group_u_FCC.local_gen"
@@ -589,6 +606,7 @@ class RDFanalysis():
                 .Define("RecoALPPhotons_deltaR", "return sqrt(RecoALPPhotons_deltaEta*RecoALPPhotons_deltaEta  + RecoALPPhotons_deltaPhi*RecoALPPhotons_deltaPhi)")
                 .Define("RecoALPPhotons_deltaR2", "ReconstructedParticle::get_delta_r(RecoALPPhoton1)")
 
+
                 .Define("n_RecoALPPhoton1", "ReconstructedParticle::get_n( RecoALPPhoton1 )")
                 .Define("n_RecoALPPhoton2", "ReconstructedParticle::get_n( RecoALPPhoton2 )")
                 # .Define("RecoALPPhoton1_time", "ReconstructedParticle::get_time( RecoALPPhoton1 )")
@@ -726,6 +744,24 @@ class RDFanalysis():
                 .Define("RecoPhoton0_pz", "if (n_RecoPhotons ==3) {return RecoPhoton_pz.at(0);} else {return (-2.0f); }")
                 .Define("RecoPhoton1_pz", "if (n_RecoPhotons ==3) {return RecoPhoton_pz.at(1);} else {return (-2.0f); }")
                 .Define("RecoPhoton2_pz", "if (n_RecoPhotons ==3) {return RecoPhoton_pz.at(2);} else {return (-2.0f); }")
+                # .Define("RecoPhoton0_e", "return RecoPhoton_e.at(0)")
+                # .Define("RecoPhoton1_e", "return RecoPhoton_e.at(1)")
+                # .Define("RecoPhoton2_e", "return RecoPhoton_e.at(2)")
+                # .Define("RecoPhoton0_p", "return RecoPhoton_p.at(0)")
+                # .Define("RecoPhoton1_p", "return RecoPhoton_p.at(1)")
+                # .Define("RecoPhoton2_p", "return RecoPhoton_p.at(2)")
+                # .Define("RecoPhoton0_pt", "return RecoPhoton_pt.at(0)")
+                # .Define("RecoPhoton1_pt", "return RecoPhoton_pt.at(1)")
+                # .Define("RecoPhoton2_pt", "return RecoPhoton_pt.at(2)")
+                # .Define("RecoPhoton0_px", "return RecoPhoton_px.at(0)")
+                # .Define("RecoPhoton1_px", "return RecoPhoton_px.at(1)")
+                # .Define("RecoPhoton2_px", "return RecoPhoton_px.at(2)")
+                # .Define("RecoPhoton0_py", "return RecoPhoton_py.at(0)")
+                # .Define("RecoPhoton1_py", "return RecoPhoton_py.at(1)")
+                # .Define("RecoPhoton2_py", "return RecoPhoton_py.at(2)")
+                # .Define("RecoPhoton0_pz", "return RecoPhoton_pz.at(0)")
+                # .Define("RecoPhoton1_pz", "return RecoPhoton_pz.at(1)")
+                # .Define("RecoPhoton2_pz", "return RecoPhoton_pz.at(2)")
 
                 .Define("RecoPhoton1_px_if_RecoPhoton2_px_pos", "if (RecoPhoton2_px > 0) {return RecoPhoton1_px;} else {return -50.0f;}")
                 .Define("RecoPhoton1_pz_if_RecoPhoton2_pz_pos", "if (RecoPhoton2_pz > 0) {return RecoPhoton1_pz;} else {return -50.0f;}")

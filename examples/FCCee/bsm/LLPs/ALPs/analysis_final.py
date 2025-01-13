@@ -2,11 +2,11 @@
 # inputDir = "./output_stage1/"
 #inputDir = "/eos/user/j/jalimena/FCCeeLLP/"
 #inputDir = "./stage1_output/"
-inputDir = "/eos/user/e/ebakhish/stage1_output_new_pythia_samples/"
+inputDir = "/eos/user/e/ebakhish/stage1_output/masses_different/"
 
 #Output directory where the files produced at the final-selection level are
 #outputDir = "./final_output/"
-outputDir = "/eos/user/e/ebakhish/final_output_new_pythia_samples/"
+outputDir = "/eos/user/e/ebakhish/final_output/masses_different/"
 #outputDir  = "output_finalSel/"
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
@@ -188,12 +188,21 @@ processList = {
     # 'ALP_Z_aa_30.GeV_cYY_0.5':{},
 
 
-    ####     using my new pythia samples        ####
-    'ALP_Z_aa_0p5GeV_cYY1p0':{},
-    'ALP_Z_aa_0p8GeV_cYY1p0':{},
-    'ALP_Z_aa_1p0GeV_cYY1p0':{},
-    'ALP_Z_aa_5p0GeV_cYY1p0':{},
-    'ALP_Z_aa_8p0GeV_cYY1p0':{},
+    ####     using my new pythia samples  -E      ####
+    # 'ALP_Z_aa_0p5GeV_cYY1p0':{},
+    # 'ALP_Z_aa_0p8GeV_cYY1p0':{},
+    # 'ALP_Z_aa_1p0GeV_cYY1p0':{},
+    # 'ALP_Z_aa_5p0GeV_cYY1p0':{},
+    # 'ALP_Z_aa_8p0GeV_cYY1p0':{},
+
+    # 'ALP_Z_aa_0p01GeV_cYY1p0':{},
+    # 'ALP_Z_aa_0p1GeV_cYY1p0':{},
+    # 'ALP_Z_aa_0p5GeV_cYY1p0':{},
+    # 'ALP_Z_aa_1p0GeV_cYY1p0':{},
+    # 'ALP_Z_aa_5p0GeV_cYY1p0':{},
+    # 'ALP_Z_aa_10p0GeV_cYY1p0':{},
+    'ALP_Z_aa_20p0GeV_cYY1p0':{},
+    # 'ALP_Z_aa_30p0GeV_cYY1p0':{},
 }
 
 ###Dictionary for prettier names of processes (optional)
@@ -364,11 +373,20 @@ processLabels = {
     # 'ALP_Z_aa_30.GeV_cYY_0.5': "$m_ALP =$ 30 GeV, $c_{YY} = 0.5$",
 
 
-    'ALP_Z_aa_0p5GeV_cYY1p0': "$m_ALP =$ 0.5 GeV, $c_{YY} = 1$",
-    'ALP_Z_aa_0p8GeV_cYY1p0': "$m_ALP =$ 0.8 GeV, $c_{YY} = 1$",
-    'ALP_Z_aa_1p0GeV_cYY1p0': "$m_ALP =$ 1 GeV, $c_{YY} = 1$",
-    'ALP_Z_aa_5p0GeV_cYY1p0': "$m_ALP =$ 5 GeV, $c_{YY} = 1$",
-    'ALP_Z_aa_8p0GeV_cYY1p0': "$m_ALP =$ 8 GeV, $c_{YY} = 1$",
+    # 'ALP_Z_aa_0p5GeV_cYY1p0': "$m_ALP =$ 0.5 GeV, $c_{YY} = 1$",
+    # 'ALP_Z_aa_0p8GeV_cYY1p0': "$m_ALP =$ 0.8 GeV, $c_{YY} = 1$",
+    # 'ALP_Z_aa_1p0GeV_cYY1p0': "$m_ALP =$ 1 GeV, $c_{YY} = 1$",
+    # 'ALP_Z_aa_5p0GeV_cYY1p0': "$m_ALP =$ 5 GeV, $c_{YY} = 1$",
+    # 'ALP_Z_aa_8p0GeV_cYY1p0': "$m_ALP =$ 8 GeV, $c_{YY} = 1$",
+
+    # 'ALP_Z_aa_0p01GeV_cYY1p0': "$m_ALP =$ 0.01 GeV, $c_{YY} = 1$",
+    # 'ALP_Z_aa_0p1GeV_cYY1p0': "$m_ALP =$ 0.1 GeV, $c_{YY} = 1$",
+    # 'ALP_Z_aa_0p5GeV_cYY1p0': "$m_ALP =$ 0.5 GeV, $c_{YY} = 1$",
+    # 'ALP_Z_aa_1p0GeV_cYY1p0': "$m_ALP =$ 1.00 GeV, $c_{YY} = 1$",
+    # 'ALP_Z_aa_5p0GeV_cYY1p0': "$m_ALP =$ 5.00 GeV, $c_{YY} = 1$",
+    # 'ALP_Z_aa_10p0GeV_cYY1p0': "$m_ALP =$ 10.00 GeV, $c_{YY} = 1$",
+    'ALP_Z_aa_20p0GeV_cYY1p0': "$m_ALP =$ 20.00 GeV, $c_{YY} = 1$",
+    # 'ALP_Z_aa_30p0GeV_cYY1p0': "$m_ALP =$ 30.00 GeV, $c_{YY} = 1$",
 
 }
 
@@ -540,11 +558,25 @@ procDictAdd={
 
 ####     using my new pythia samples        ####
 
-    "ALP_Z_aa_0p5GeV_cYY1p0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.733, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    "ALP_Z_aa_0p8GeV_cYY1p0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.733, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    "ALP_Z_aa_1p0GeV_cYY1p0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.733, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    "ALP_Z_aa_5p0GeV_cYY1p0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.709, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    "ALP_Z_aa_8p0GeV_cYY1p0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.671, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # "ALP_Z_aa_0p5GeV_cYY1p0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.733, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # "ALP_Z_aa_0p8GeV_cYY1p0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.733, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # "ALP_Z_aa_1p0GeV_cYY1p0": {"numberOfEvents": 100, "sumOfWeights": 100, "crossSection": 2.733, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # "ALP_Z_aa_5p0GeV_cYY1p0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.709, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # "ALP_Z_aa_8p0GeV_cYY1p0": {"numberOfEvents": 100000, "sumOfWeights": 100000, "crossSection": 2.671, "kfactor": 1.0, "matchingEfficiency": 1.0},
+
+    # "ALP_Z_aa_0p01GeV_cYY1p0": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 2.74, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # "ALP_Z_aa_0p1GeV_cYY1p0": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 2.74, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # "ALP_Z_aa_0p5GeV_cYY1p0": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 2.74, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # "ALP_Z_aa_1p0GeV_cYY1p0": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 2.739, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # "ALP_Z_aa_5p0GeV_cYY1p0": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 2.715, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # "ALP_Z_aa_10p0GeV_cYY1p0": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 2.642, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    "ALP_Z_aa_20p0GeV_cYY1p0": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 2.363, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # "ALP_Z_aa_30p0GeV_cYY1p0": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 1.943, "kfactor": 1.0, "matchingEfficiency": 1.0},
+
+
+
+
+
 }
 
 #Number of CPUs to use
