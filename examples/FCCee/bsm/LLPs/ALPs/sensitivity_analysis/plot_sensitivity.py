@@ -594,7 +594,7 @@ if __name__=="__main__":
     ana_tex        = 'e^{+}e^{-} #rightarrow Z #rightarrow #gamma ALP #rightarrow 3#gamma'
     collider       = 'FCC-ee'
     energy         = 91
-    intLumi        = 150
+    intLumi        = 205
 
     output_dir = "plots_sensitivity/"
     plotting = Plotting(ana_tex,energy,intLumi,output_dir)
