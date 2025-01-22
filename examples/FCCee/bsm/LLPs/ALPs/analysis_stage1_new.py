@@ -176,7 +176,7 @@ processList = {
 
 
 
-        ####  private samples, 1Mio events  -El     ####
+        #########  private samples, 1Mio events  -El     ########
         # 'ALP_Z_aa_0p5GeV_cYY1p0':{},
         # 'ALP_Z_aa_0p8GeV_cYY1p0':{},
         # 'ALP_Z_aa_1p0GeV_cYY1p0':{},
@@ -184,18 +184,40 @@ processList = {
         # 'ALP_Z_aa_8p0GeV_cYY1p0':{},
 
 
+        # 'ALP_Z_aa_0p001GeV_cYY1p0':{},
         # 'ALP_Z_aa_0p01GeV_cYY1p0':{},
         # 'ALP_Z_aa_0p1GeV_cYY1p0':{},
         # 'ALP_Z_aa_0p5GeV_cYY1p0':{},
+        # 'ALP_Z_aa_0p8GeV_cYY1p0':{},
         # 'ALP_Z_aa_1p0GeV_cYY1p0':{},
+        # 'ALP_Z_aa_2p0GeV_cYY1p0':{},
+        # 'ALP_Z_aa_3p0GeV_cYY1p0':{},
         # 'ALP_Z_aa_5p0GeV_cYY1p0':{},
         # 'ALP_Z_aa_10p0GeV_cYY1p0':{},
         # 'ALP_Z_aa_15p0GeV_cYY1p0':{},        
         # 'ALP_Z_aa_20p0GeV_cYY1p0':{'chunks':100},
-        # 'ALP_Z_aa_30p0GeV_cYY1p0':{'chunks':100},
+        # 'ALP_Z_aa_30p0GeV_cYY1p0':{},
 
        
-        'ALP_Z_aa_1p0GeV_cYY1p6':{},
+        # 'ALP_Z_aa_1p0GeV_cYY0p001':{},
+        # 'ALP_Z_aa_1p0GeV_cYY0p01':{},
+        # 'ALP_Z_aa_1p0GeV_cYY0p1':{},
+        # 'ALP_Z_aa_1p0GeV_cYY0p4':{},
+        # 'ALP_Z_aa_1p0GeV_cYY0p7':{},
+        # 'ALP_Z_aa_1p0GeV_cYY1p3':{},
+        # 'ALP_Z_aa_1p0GeV_cYY1p6':{},
+
+        #########  private backgrounds, 1Mio events  -El     ########
+        # 'background_ee_aa':{},
+        # 'background_ee_aaa':{},
+        # 'background_ee_aaaa':{},
+        # 'background_ee_ee':{},
+        'background_ee_eea':{},
+        # 'background_ee_eeaa':{},
+        # 'background_ee_eeaaa':{},
+
+
+
 
 
 }
@@ -213,14 +235,19 @@ processList = {
 # inputDir = "./"
 # inputDir = "/eos/experiment/fcc/ee/generation/DelphesEvents/winter2023/IDEA/wzp6_gaga_ee_60_ecm240/"
 #inputDir = "/eos/experiment/fcc/ee/analyses_storage/BSM/LLPs/ALPs_3photons/ALP_sample_creation/"
-inputDir = "/eos/user/e/ebakhish/MG/Pythia_Output/"
+# inputDir = "/eos/user/e/ebakhish/MG/Pythia_Output/"
+inputDir = "/eos/user/e/ebakhish/MG/Pythia_Output/Backgrounds/"
 #inputDir = "./ALP_sample_creation/"
 
 #Optional: output directory, default is local dir
 # outputDir = "./stage1_ee_gaga_1million/"
 #outputDir = "/eos/user/e/ebakhish/stage1_output_roots_testing_samples/"
-# outputDir = "/eos/user/e/ebakhish/stage1_output/masses_different/v2/"
-outputDir = "/eos/user/e/ebakhish/stage1_output/couplings_different/"
+# outputDir = "/eos/user/e/ebakhish/stage1_output/masses_different/"
+# outputDir = "/eos/user/e/ebakhish/stage1_output/couplings_different/"
+# outputDir = "/eos/user/e/ebakhish/stage1_output/with_background/"
+outputDir = "/eos/user/e/ebakhish/stage1_output/background/"
+
+
 # outputDir = "./stage1_FSGenALP/"
 #outputDir = "/eos/user/j/jalimena/FCCeeLLP/"
 
@@ -375,22 +402,22 @@ class RDFanalysis():
 
                 # Separating the three first final state photons
                 # Returns -2 if the number of final state photons != 2, and therefore will be shown as -2 in the plots
-                .Define("FSGenPhoton0_e", "return FSGenPhoton_e.at(0)")
+                .Define("FSGenPhoton0_e", "if (n_FSGenPhoton >= 1) {return FSGenPhoton_e.at(0);} else {return (-2.0f); }")
                 .Define("FSGenPhoton1_e", "if (n_FSGenPhoton >= 2) {return FSGenPhoton_e.at(1);} else {return (-2.0f); }")
                 .Define("FSGenPhoton2_e", "if (n_FSGenPhoton >= 3) {return FSGenPhoton_e.at(2);} else {return (-2.0f); }")
-                .Define("FSGenPhoton0_p", "return FSGenPhoton_p.at(0)")
+                .Define("FSGenPhoton0_p", "if (n_FSGenPhoton >= 1) {return FSGenPhoton_p.at(0);} else {return (-2.0f); }")
                 .Define("FSGenPhoton1_p", "if (n_FSGenPhoton >= 2) {return FSGenPhoton_p.at(1);} else {return (-2.0f); }")
                 .Define("FSGenPhoton2_p", "if (n_FSGenPhoton >= 3) {return FSGenPhoton_p.at(2);} else {return (-2.0f); }")
-                .Define("FSGenPhoton0_pt", "return FSGenPhoton_pt.at(0)")
+                .Define("FSGenPhoton0_pt", "if (n_FSGenPhoton >= 1) {return FSGenPhoton_pt.at(0);} else {return (-2.0f); }")
                 .Define("FSGenPhoton1_pt", "if (n_FSGenPhoton >= 2) {return FSGenPhoton_pt.at(1);} else {return (-2.0f); }")
                 .Define("FSGenPhoton2_pt", "if (n_FSGenPhoton >= 3) {return FSGenPhoton_pt.at(2);} else {return (-2.0f); }")
-                .Define("FSGenPhoton0_px", "return FSGenPhoton_px.at(0)")
+                .Define("FSGenPhoton0_px", "if (n_FSGenPhoton >= 1) {return FSGenPhoton_px.at(0);} else {return (-2.0f); }")
                 .Define("FSGenPhoton1_px", "if (n_FSGenPhoton >= 2) {return FSGenPhoton_px.at(1);} else {return (-2.0f); }")
                 .Define("FSGenPhoton2_px", "if (n_FSGenPhoton >= 3) {return FSGenPhoton_px.at(2);} else {return (-2.0f); }")
-                .Define("FSGenPhoton0_py", "return FSGenPhoton_py.at(0)")
+                .Define("FSGenPhoton0_py", "if (n_FSGenPhoton >= 1) {return FSGenPhoton_py.at(0);} else {return (-2.0f); }")
                 .Define("FSGenPhoton1_py", "if (n_FSGenPhoton >= 2) {return FSGenPhoton_py.at(1);} else {return (-2.0f); }")
                 .Define("FSGenPhoton2_py", "if (n_FSGenPhoton >= 3) {return FSGenPhoton_py.at(2);} else {return (-2.0f); }")
-                .Define("FSGenPhoton0_pz", "return FSGenPhoton_pz.at(0)")
+                .Define("FSGenPhoton0_pz", "if (n_FSGenPhoton >= 1) {return FSGenPhoton_pz.at(0);} else {return (-2.0f); }")
                 .Define("FSGenPhoton1_pz", "if (n_FSGenPhoton >= 2) {return FSGenPhoton_pz.at(1);} else {return (-2.0f); }")
                 .Define("FSGenPhoton2_pz", "if (n_FSGenPhoton >= 3) {return FSGenPhoton_pz.at(2);} else {return (-2.0f); }")
 
@@ -567,7 +594,7 @@ class RDFanalysis():
 
                 # Now we reconstruct the ALP reco decay vertex using the reco'ed tracks
                 # First the full object, of type Vertexing::FCCAnalysesVertex
-                .Define("RecoALPDecayVertexObject",   "VertexFitterSimple::VertexFitter_Tk( 2, RecoALPTracks)" )
+                .Define("RecoALPDecayVertexObject",   "VertexFitterSimple::VertexFitter_Tk( 2, RecoALPTracks)" ) #tk=track
 
                 # from which we extract the edm4hep::VertexData object, which contains the vertex position in mm
                 .Define("RecoALPDecayVertex",  "VertexingUtils::get_VertexData( RecoALPDecayVertexObject )")
@@ -726,24 +753,24 @@ class RDFanalysis():
 
                 .Define("RecoPhoton_reference_point_x", "ReconstructedParticle::get_reference_point_x(RecoPhotons)")
 
-                .Define("RecoPhoton0_e", "if (n_RecoPhotons ==3) {return RecoPhoton_e.at(0);} else {return (-2.0f); }")
-                .Define("RecoPhoton1_e", "if (n_RecoPhotons ==3) {return RecoPhoton_e.at(1);} else {return (-2.0f); }")
-                .Define("RecoPhoton2_e", "if (n_RecoPhotons ==3) {return RecoPhoton_e.at(2);} else {return (-2.0f); }")
-                .Define("RecoPhoton0_p", "if (n_RecoPhotons ==3) {return RecoPhoton_p.at(0);} else {return (-2.0f); }")
-                .Define("RecoPhoton1_p", "if (n_RecoPhotons ==3) {return RecoPhoton_p.at(1);} else {return (-2.0f); }")
-                .Define("RecoPhoton2_p", "if (n_RecoPhotons ==3) {return RecoPhoton_p.at(2);} else {return (-2.0f); }")
-                .Define("RecoPhoton0_pt", "if (n_RecoPhotons ==3) {return RecoPhoton_pt.at(0);} else {return (-2.0f); }")
-                .Define("RecoPhoton1_pt", "if (n_RecoPhotons ==3) {return RecoPhoton_pt.at(1);} else {return (-2.0f); }")
-                .Define("RecoPhoton2_pt", "if (n_RecoPhotons ==3) {return RecoPhoton_pt.at(2);} else {return (-2.0f); }")
-                .Define("RecoPhoton0_px", "if (n_RecoPhotons ==3) {return RecoPhoton_px.at(0);} else {return (-2.0f); }")
-                .Define("RecoPhoton1_px", "if (n_RecoPhotons ==3) {return RecoPhoton_px.at(1);} else {return (-2.0f); }")
-                .Define("RecoPhoton2_px", "if (n_RecoPhotons ==3) {return RecoPhoton_px.at(2);} else {return (-2.0f); }")
-                .Define("RecoPhoton0_py", "if (n_RecoPhotons ==3) {return RecoPhoton_py.at(0);} else {return (-2.0f); }")
-                .Define("RecoPhoton1_py", "if (n_RecoPhotons ==3) {return RecoPhoton_py.at(1);} else {return (-2.0f); }")
-                .Define("RecoPhoton2_py", "if (n_RecoPhotons ==3) {return RecoPhoton_py.at(2);} else {return (-2.0f); }")
-                .Define("RecoPhoton0_pz", "if (n_RecoPhotons ==3) {return RecoPhoton_pz.at(0);} else {return (-2.0f); }")
-                .Define("RecoPhoton1_pz", "if (n_RecoPhotons ==3) {return RecoPhoton_pz.at(1);} else {return (-2.0f); }")
-                .Define("RecoPhoton2_pz", "if (n_RecoPhotons ==3) {return RecoPhoton_pz.at(2);} else {return (-2.0f); }")
+                .Define("RecoPhoton0_e", "if (n_RecoPhotons >= 1) {return RecoPhoton_e.at(0);} else {return (-2.0f); }")
+                .Define("RecoPhoton1_e", "if (n_RecoPhotons >= 2) {return RecoPhoton_e.at(1);} else {return (-2.0f); }")
+                .Define("RecoPhoton2_e", "if (n_RecoPhotons >= 3) {return RecoPhoton_e.at(2);} else {return (-2.0f); }")
+                .Define("RecoPhoton0_p", "if (n_RecoPhotons >= 1) {return RecoPhoton_p.at(0);} else {return (-2.0f); }")
+                .Define("RecoPhoton1_p", "if (n_RecoPhotons >= 2) {return RecoPhoton_p.at(1);} else {return (-2.0f); }")
+                .Define("RecoPhoton2_p", "if (n_RecoPhotons >= 3) {return RecoPhoton_p.at(2);} else {return (-2.0f); }")
+                .Define("RecoPhoton0_pt", "if (n_RecoPhotons >= 1) {return RecoPhoton_pt.at(0);} else {return (-2.0f); }")
+                .Define("RecoPhoton1_pt", "if (n_RecoPhotons >= 2) {return RecoPhoton_pt.at(1);} else {return (-2.0f); }")
+                .Define("RecoPhoton2_pt", "if (n_RecoPhotons >= 3) {return RecoPhoton_pt.at(2);} else {return (-2.0f); }")
+                .Define("RecoPhoton0_px", "if (n_RecoPhotons >= 1) {return RecoPhoton_px.at(0);} else {return (-2.0f); }")
+                .Define("RecoPhoton1_px", "if (n_RecoPhotons >= 2) {return RecoPhoton_px.at(1);} else {return (-2.0f); }")
+                .Define("RecoPhoton2_px", "if (n_RecoPhotons >= 3) {return RecoPhoton_px.at(2);} else {return (-2.0f); }")
+                .Define("RecoPhoton0_py", "if (n_RecoPhotons >= 1) {return RecoPhoton_py.at(0);} else {return (-2.0f); }")
+                .Define("RecoPhoton1_py", "if (n_RecoPhotons >= 2) {return RecoPhoton_py.at(1);} else {return (-2.0f); }")
+                .Define("RecoPhoton2_py", "if (n_RecoPhotons >= 3) {return RecoPhoton_py.at(2);} else {return (-2.0f); }")
+                .Define("RecoPhoton0_pz", "if (n_RecoPhotons >= 1) {return RecoPhoton_pz.at(0);} else {return (-2.0f); }")
+                .Define("RecoPhoton1_pz", "if (n_RecoPhotons >= 2) {return RecoPhoton_pz.at(1);} else {return (-2.0f); }")
+                .Define("RecoPhoton2_pz", "if (n_RecoPhotons >= 3) {return RecoPhoton_pz.at(2);} else {return (-2.0f); }")
                 # .Define("RecoPhoton0_e", "return RecoPhoton_e.at(0)")
                 # .Define("RecoPhoton1_e", "return RecoPhoton_e.at(1)")
                 # .Define("RecoPhoton2_e", "return RecoPhoton_e.at(2)")
