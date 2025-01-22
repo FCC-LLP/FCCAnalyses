@@ -7,6 +7,8 @@ intLumi        = 205.0e+06 #in pb-1
 ###If scaleSig=0 or scaleBack=0, we don't apply any additional scaling, on top of the normalization to cross section and integrated luminosity, as defined in finalSel.py
 ###If scaleSig or scaleBack is equal to -1, plots will be normalized to 1
 scaleSig       = -1.
+scaleBkg       = -1.
+
 # scaleBack      = 1.
 ana_tex        = 'e^{+}e^{-} #rightarrow Z #rightarrow #gamma ALP #rightarrow 3#gamma'
 #ana_tex        = ''
@@ -14,7 +16,13 @@ ana_tex        = 'e^{+}e^{-} #rightarrow Z #rightarrow #gamma ALP #rightarrow 3#
 delphesVersion = ''
 energy         = 91
 collider       = 'FCC-ee'
-inputDir       = '/eos/user/e/ebakhish/final_output/masses_different/'
+# inputDir       = '/eos/user/e/ebakhish/final_output/masses_different/'
+# inputDir       = '/eos/user/e/ebakhish/final_output/couplings_different/'
+# inputDir       = '/eos/user/e/ebakhish/final_output/with_background/'
+# inputDir       = '/eos/user/e/ebakhish/final_output/with_background/'
+inputDir       = '/eos/user/e/ebakhish/final_output/background/'
+
+
 #formats        = ['png','pdf']
 # formats        = ['pdf']
 formats = ['png']
@@ -23,8 +31,12 @@ yaxis          = ['log']
 # yaxis          = ['lin','log']
 stacksig       = ['nostack']
 #outdir         = './plots_output/'
-outdir         = './plots_output/masses_different/'
-#outdir = '/eos/user/e/ebakhish/plots_output_new_pythia_samples/'
+# outdir         = './plots_output/testing/'
+# outdir = '/eos/user/e/ebakhish/plots_output/couplings_different/'
+# outdir = '/eos/user/e/ebakhish/plots_output/masses_different/'
+outdir = '/eos/user/e/ebakhish/plots_output/background_3combined_normalized/'
+# outdir         = './plots_output/couplings_different/'
+
 splitLeg       = True
 
 variables = [
@@ -435,15 +447,37 @@ colors = {}
 # colors['ALP_Z_aa_5p0GeV_cYY1p0'] = ROOT.kAzure
 # colors['ALP_Z_aa_8p0GeV_cYY1p0'] = ROOT.kViolet
 
-
-colors['ALP_Z_aa_0p01GeV_cYY1p0']= ROOT.kRed
+colors['ALP_Z_aa_0p001GeV_cYY1p0']= ROOT.kRed
+colors['ALP_Z_aa_0p01GeV_cYY1p0']= ROOT.kOrange
 colors['ALP_Z_aa_0p1GeV_cYY1p0']= ROOT.kGreen
-colors['ALP_Z_aa_0p5GeV_cYY1p0']= ROOT.kBlue
-colors['ALP_Z_aa_1p0GeV_cYY1p0']= ROOT.kMagenta
-colors['ALP_Z_aa_5p0GeV_cYY1p0']= ROOT.kCyan
-colors['ALP_Z_aa_10p0GeV_cYY1p0']= ROOT.kOrange
-colors['ALP_Z_aa_20p0GeV_cYY1p0']= ROOT.kViolet
-colors['ALP_Z_aa_30p0GeV_cYY1p0']= ROOT.kTeal
+colors['ALP_Z_aa_0p5GeV_cYY1p0']= ROOT.kGreen+3
+colors['ALP_Z_aa_0p8GeV_cYY1p0']= ROOT.kMagenta
+colors['ALP_Z_aa_1p0GeV_cYY1p0']= ROOT.kCyan
+colors['ALP_Z_aa_3p0GeV_cYY1p0']= ROOT.kViolet
+colors['ALP_Z_aa_5p0GeV_cYY1p0']= ROOT.kViolet+7
+# colors['ALP_Z_aa_10p0GeV_cYY1p0']= ROOT.kOrange
+# colors['ALP_Z_aa_20p0GeV_cYY1p0']= ROOT.kViolet
+# colors['ALP_Z_aa_30p0GeV_cYY1p0']= ROOT.kTeal
+
+
+colors['ALP_Z_aa_1p0GeV_cYY0p001']=ROOT.kRed
+colors['ALP_Z_aa_1p0GeV_cYY0p01']=ROOT.kOrange
+colors['ALP_Z_aa_1p0GeV_cYY0p1']=ROOT.kGreen
+colors['ALP_Z_aa_1p0GeV_cYY0p4']=ROOT.kGreen+3
+colors['ALP_Z_aa_1p0GeV_cYY0p7']=ROOT.kMagenta+2
+colors['ALP_Z_aa_1p0GeV_cYY1p0']=ROOT.kCyan
+colors['ALP_Z_aa_1p0GeV_cYY1p3']=ROOT.kViolet
+colors['ALP_Z_aa_1p0GeV_cYY1p6']=ROOT.kViolet+7
+
+
+#backgrounds
+colors['background_ee_aa'] = ROOT.kGray
+colors['background_ee_aaa'] = ROOT.kGray
+colors['background_ee_aaaa'] = ROOT.kGray
+colors['background_ee_ee'] = ROOT.kGray
+colors['background_ee_eea'] = ROOT.kGray
+colors['background_ee_eeaa'] = ROOT.kGray+2
+colors['background_ee_eeaaa'] = ROOT.kGray+3
 
 
 plots = {}
@@ -526,15 +560,27 @@ plots['ALP'] = {'signal':{
     # 'ALP_Z_aa_5p0GeV_cYY1p0':['ALP_Z_aa_5p0GeV_cYY1p0'],
     # 'ALP_Z_aa_8p0GeV_cYY1p0':['ALP_Z_aa_8p0GeV_cYY1p0'],
 
+    # 'ALP_Z_aa_0p001GeV_cYY1p0':['ALP_Z_aa_0p001GeV_cYY1p0'],
+    # 'ALP_Z_aa_0p01GeV_cYY1p0':['ALP_Z_aa_0p01GeV_cYY1p0'],
+    # 'ALP_Z_aa_0p1GeV_cYY1p0':['ALP_Z_aa_0p1GeV_cYY1p0'],
+    # 'ALP_Z_aa_0p5GeV_cYY1p0':['ALP_Z_aa_0p5GeV_cYY1p0'],
+    # 'ALP_Z_aa_0p8GeV_cYY1p0':['ALP_Z_aa_0p8GeV_cYY1p0'],
+    # 'ALP_Z_aa_1p0GeV_cYY1p0':['ALP_Z_aa_1p0GeV_cYY1p0'],
+    # 'ALP_Z_aa_3p0GeV_cYY1p0':['ALP_Z_aa_3p0GeV_cYY1p0'],
+    # 'ALP_Z_aa_5p0GeV_cYY1p0':['ALP_Z_aa_5p0GeV_cYY1p0'],
+    # 'ALP_Z_aa_10p0GeV_cYY1p0':['ALP_Z_aa_10p0GeV_cYY1p0'],
+    # 'ALP_Z_aa_20p0GeV_cYY1p0':['ALP_Z_aa_20p0GeV_cYY1p0'],
+    # 'ALP_Z_aa_30p0GeV_cYY1p0':['ALP_Z_aa_30p0GeV_cYY1p0'],
 
-    'ALP_Z_aa_0p01GeV_cYY1p0':['ALP_Z_aa_0p01GeV_cYY1p0'],
-    'ALP_Z_aa_0p1GeV_cYY1p0':['ALP_Z_aa_0p1GeV_cYY1p0'],
-    'ALP_Z_aa_0p5GeV_cYY1p0':['ALP_Z_aa_0p5GeV_cYY1p0'],
-    'ALP_Z_aa_1p0GeV_cYY1p0':['ALP_Z_aa_1p0GeV_cYY1p0'],
-    'ALP_Z_aa_5p0GeV_cYY1p0':['ALP_Z_aa_5p0GeV_cYY1p0'],
-    'ALP_Z_aa_10p0GeV_cYY1p0':['ALP_Z_aa_10p0GeV_cYY1p0'],
-    'ALP_Z_aa_20p0GeV_cYY1p0':['ALP_Z_aa_20p0GeV_cYY1p0'],
-    'ALP_Z_aa_30p0GeV_cYY1p0':['ALP_Z_aa_30p0GeV_cYY1p0'],
+
+    # 'ALP_Z_aa_1p0GeV_cYY0p001':['ALP_Z_aa_1p0GeV_cYY0p001'],
+    # 'ALP_Z_aa_1p0GeV_cYY0p01':['ALP_Z_aa_1p0GeV_cYY0p01'],
+    # 'ALP_Z_aa_1p0GeV_cYY0p1':['ALP_Z_aa_1p0GeV_cYY0p1'],
+    # 'ALP_Z_aa_1p0GeV_cYY0p4':['ALP_Z_aa_1p0GeV_cYY0p4'],
+    # 'ALP_Z_aa_1p0GeV_cYY0p7':['ALP_Z_aa_1p0GeV_cYY0p7'],
+    # 'ALP_Z_aa_1p0GeV_cYY1p0':['ALP_Z_aa_1p0GeV_cYY1p0'],
+    # 'ALP_Z_aa_1p0GeV_cYY1p3':['ALP_Z_aa_1p0GeV_cYY1p3'],
+    # 'ALP_Z_aa_1p0GeV_cYY1p6':['ALP_Z_aa_1p0GeV_cYY1p6'],
 
 
 
@@ -549,6 +595,15 @@ plots['ALP'] = {'signal':{
         # 'ee_aa':['ee_aa'],
         # 'ee_aaa':['ee_aaa'],
         # 'ee_aaaa':['ee_aaaa'],
+
+
+        # 'background_ee_aa':['background_ee_aa'],
+        # 'background_ee_aaa':['background_ee_aaa'],
+        # 'background_ee_aaaa':['background_ee_aaaa'],
+        # 'background_ee_ee':['background_ee_ee'],
+        'background_ee_eea':['background_ee_eea'],
+        'background_ee_eeaa':['background_ee_eeaa'],
+        'background_ee_eeaaa':['background_ee_eeaaa'],
     },
 }
 
@@ -641,13 +696,33 @@ legend = {}
 # legend['ALP_Z_aa_5p0GeV_cYY1p0'] = 'm_{ALP} = 5 GeV, c_{#gamma#gamma} = 1.0'
 # legend['ALP_Z_aa_8p0GeV_cYY1p0'] = 'm_{ALP} = 8 GeV, c_{#gamma#gamma} = 1.0'
 
-legend['ALP_Z_aa_0p01GeV_cYY1p0'] = 'm_{ALP} = 0.01 GeV, c_{#gamma#gamma} = 1.0'
-legend['ALP_Z_aa_0p1GeV_cYY1p0'] = 'm_{ALP} = 0.1 GeV, c_{#gamma#gamma} = 1.0'
-legend['ALP_Z_aa_0p5GeV_cYY1p0'] = 'm_{ALP} = 0.5 GeV, c_{#gamma#gamma} = 1.0'
-legend['ALP_Z_aa_1p0GeV_cYY1p0'] = 'm_{ALP} = 1 GeV, c_{#gamma#gamma} = 1.0'
-legend['ALP_Z_aa_5p0GeV_cYY1p0'] = 'm_{ALP} = 5 GeV, c_{#gamma#gamma} = 1.0'
-legend['ALP_Z_aa_10p0GeV_cYY1p0'] = 'm_{ALP} = 10 GeV, c_{#gamma#gamma} = 1.0'
-legend['ALP_Z_aa_20p0GeV_cYY1p0'] = 'm_{ALP} = 20 GeV, c_{#gamma#gamma} = 1.0'
-legend['ALP_Z_aa_30p0GeV_cYY1p0'] = 'm_{ALP} = 30 GeV, c_{#gamma#gamma} = 1.0'
+# legend['ALP_Z_aa_0p001GeV_cYY1p0'] = 'm_{ALP} = 0.001 GeV, c_{#gamma#gamma} = 1.0'
+# legend['ALP_Z_aa_0p01GeV_cYY1p0'] = 'm_{ALP} = 0.01 GeV, c_{#gamma#gamma} = 1.0'
+# legend['ALP_Z_aa_0p1GeV_cYY1p0'] = 'm_{ALP} = 0.1 GeV, c_{#gamma#gamma} = 1.0'
+# legend['ALP_Z_aa_0p5GeV_cYY1p0'] = 'm_{ALP} = 0.5 GeV, c_{#gamma#gamma} = 1.0'
+# legend['ALP_Z_aa_0p8GeV_cYY1p0'] = 'm_{ALP} = 0.8 GeV, c_{#gamma#gamma} = 1.0'
+# legend['ALP_Z_aa_1p0GeV_cYY1p0'] = 'm_{ALP} = 1 GeV, c_{#gamma#gamma} = 1.0'
+# legend['ALP_Z_aa_3p0GeV_cYY1p0'] = 'm_{ALP} = 3 GeV, c_{#gamma#gamma} = 1.0'
+# legend['ALP_Z_aa_5p0GeV_cYY1p0'] = 'm_{ALP} = 5 GeV, c_{#gamma#gamma} = 1.0'
+# legend['ALP_Z_aa_10p0GeV_cYY1p0'] = 'm_{ALP} = 10 GeV, c_{#gamma#gamma} = 1.0'
+# legend['ALP_Z_aa_20p0GeV_cYY1p0'] = 'm_{ALP} = 20 GeV, c_{#gamma#gamma} = 1.0'
+# legend['ALP_Z_aa_30p0GeV_cYY1p0'] = 'm_{ALP} = 30 GeV, c_{#gamma#gamma} = 1.0'
 
 
+# legend['ALP_Z_aa_1p0GeV_cYY0p001']='m_{ALP} = 1 GeV, c_{#gamma#gamma} = 0.001'
+# legend['ALP_Z_aa_1p0GeV_cYY0p01']='m_{ALP} = 1 GeV, c_{#gamma#gamma} = 0.01'
+# legend['ALP_Z_aa_1p0GeV_cYY0p1']= 'm_{ALP} = 1 GeV, c_{#gamma#gamma} = 0.1'
+# legend['ALP_Z_aa_1p0GeV_cYY0p4']='m_{ALP} = 1 GeV, c_{#gamma#gamma} = 0.4'
+# legend['ALP_Z_aa_1p0GeV_cYY0p7']='m_{ALP} = 1 GeV, c_{#gamma#gamma} = 0.7'
+# legend['ALP_Z_aa_1p0GeV_cYY1p0']='m_{ALP} = 1 GeV, c_{#gamma#gamma} = 1.0'
+# legend['ALP_Z_aa_1p0GeV_cYY1p3']='m_{ALP} = 1 GeV, c_{#gamma#gamma} = 1.3'
+# legend['ALP_Z_aa_1p0GeV_cYY1p6']='m_{ALP} = 1 GeV, c_{#gamma#gamma} = 1.6'
+
+
+# legend['background_ee_aa'] = 'e^{+}e^{-} #rightarrow #gamma#gamma'
+# legend['background_ee_aaa'] = 'e^{+}e^{-} #rightarrow #gamma#gamma#gamma'
+# legend['background_ee_aaaa'] = 'e^{+}e^{-} #rightarrow #gamma#gamma#gamma#gamma'
+# legend['background_ee_ee'] = 'e^{+}e^{-} #rightarrow ee'
+legend['background_ee_eea'] = 'e^{+}e^{-} #rightarrow ee#gamma'
+legend['background_ee_eeaa'] = 'e^{+}e^{-} #rightarrow ee#gamma#gamma'
+legend['background_ee_eeaaa'] = 'e^{+}e^{-} #rightarrow ee#gamma#gamma#gamma'

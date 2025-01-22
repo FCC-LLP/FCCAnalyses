@@ -143,7 +143,31 @@ def load_hists(var: str,
                 hist.Add(hsignal[s][0])
                 hsignal[s][0] = hist
 
+
     hbackgrounds = {}
+    total_background_integral = 0.0
+
+    for b in backgrounds:
+        hbackgrounds[b] = []
+        for filepathstem in backgrounds[b]:
+            infilepath = config['input_dir'] + filepathstem + '_' + sel + \
+                         '_histo.root'
+            if not os.path.isfile(infilepath):
+                LOGGER.info('File "%s" not found!\nSkipping it...', infilepath)
+                continue
+
+            with ROOT.TFile(infilepath) as infile:
+                hist = copy.deepcopy(infile.Get(var))
+                hist.SetDirectory(0)
+
+                # print('hist.integral:', hist.Integral())
+
+                total_background_integral += hist.Integral()
+
+
+    # LOGGER.info('total_background_integral: %f', total_background_integral)
+
+
     for b in backgrounds:
         hbackgrounds[b] = []
         for filepathstem in backgrounds[b]:
@@ -160,6 +184,12 @@ def load_hists(var: str,
                 scale = determine_lumi_scaling(config,
                                                infile,
                                                config['scale_bkg'])
+
+                if config['scale_bkg'] == -1.:
+                    if(total_background_integral != 0):
+                        scale = 1.0/total_background_integral
+
+
             hist.Scale(scale)
             hist.Rebin(rebin)
 
@@ -264,7 +294,7 @@ def runPlots(config: dict[str, any],
         legsize = 0.025 * (len(hsignal))
         legsize2 = 0.025 * (len(hbackgrounds))
         leg = ROOT.TLegend(0.15, 0.7 - legsize, 0.50, 0.72)
-        leg2 = ROOT.TLegend(0.60, 0.88 - legsize2, 0.88, 0.90)
+        leg2 = ROOT.TLegend(0.60, 0.86- legsize2, 0.88, 0.88)
 
         if config['leg_position'][0] is not None and \
                 config['leg_position'][2] is not None:
@@ -752,11 +782,11 @@ def drawStack(config, name, ylabel, legend, leftText, rightText, formats,
     #     latex.SetTextSize(0.025)
     #     latex.DrawLatex(0.18, 0.63, text)
 
-    if config['scale_bkg'] != 1.0:
-        text = '#bf{#it{Background Scaling = ' + \
-                f'{config["scale_bkg"]:.3g}' + '}}'
-        latex.SetTextSize(0.025)
-        latex.DrawLatex(0.18, 0.63, text)
+    # if config['scale_bkg'] != 1.0:
+    #     text = '#bf{#it{Background Scaling = ' + \
+    #             f'{config["scale_bkg"]:.3g}' + '}}'
+    #     latex.SetTextSize(0.025)
+    #     latex.DrawLatex(0.18, 0.63, text)
 
     canvas.RedrawAxis()
     canvas.GetFrame().SetBorderSize(5)
