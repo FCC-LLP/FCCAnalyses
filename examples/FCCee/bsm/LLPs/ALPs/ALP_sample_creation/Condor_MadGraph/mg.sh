@@ -1,4 +1,8 @@
 #!/bin/bash
+
+# *** run this with bash mg.sh <job_number> <mass> <coupling> <nevents> to create ALP signal events,
+# *** mass and coupling should always be denoted with a . for decimal (e.g. 0.3 for 0.3 GeV)
+
 job_number=$1
 mass=$2
 coupling=$3

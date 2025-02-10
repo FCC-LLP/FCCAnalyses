@@ -1,4 +1,8 @@
 #!/bin/bash
+
+# *** run this with bash runPythiaDelphesCondor.sh <job_number> <mass> <coupling> <nevents> to find the previously created ALP signal sample from MadGraph
+# *** and to run it through PythiaDelphes, mass and coupling should always be denoted with a . for decimal (e.g. 0.3 for 0.3 GeV)
+
 job_number=$1
 mass=$2
 coupling=$3
