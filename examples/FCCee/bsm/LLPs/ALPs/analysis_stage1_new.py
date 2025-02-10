@@ -207,14 +207,29 @@ processList = {
         # 'ALP_Z_aa_1p0GeV_cYY1p3':{},
         # 'ALP_Z_aa_1p0GeV_cYY1p6':{},
 
+
+        # 'ALP_Z_aa_0p1GeV_cYY1p6':{},
+
+        # 'ALP_Z_aa_1p0GeV_cYY1p0':{},
+
+        # 'ALP_Z_aa_3p0GeV_cYY0p4':{},
+
+        # 'ALP_Z_aa_10p0GeV_cYY0p03':{},
+
+
+        # 'ALP_Z_aa_30p0GeV_cYY0p002':{},
+        # 'ALP_Z_aa_30p0GeV_cYY0p0002':{},
+
+
+
         #########  private backgrounds, 1Mio events  -El     ########
-        # 'background_ee_aa':{},
-        # 'background_ee_aaa':{},
-        # 'background_ee_aaaa':{},
-        # 'background_ee_ee':{},
-        'background_ee_eea':{},
-        # 'background_ee_eeaa':{},
-        # 'background_ee_eeaaa':{},
+        'background_ee_aa1':{},
+        'background_ee_aaa1':{},
+        'background_ee_aaaa1':{},
+        'background_ee_ee':{},
+        'background_ee_eea1':{},
+        'background_ee_eeaa1':{},
+        'background_ee_eeaaa1':{},
 
 
 
@@ -244,8 +259,8 @@ inputDir = "/eos/user/e/ebakhish/MG/Pythia_Output/Backgrounds/"
 #outputDir = "/eos/user/e/ebakhish/stage1_output_roots_testing_samples/"
 # outputDir = "/eos/user/e/ebakhish/stage1_output/masses_different/"
 # outputDir = "/eos/user/e/ebakhish/stage1_output/couplings_different/"
-# outputDir = "/eos/user/e/ebakhish/stage1_output/with_background/"
-outputDir = "/eos/user/e/ebakhish/stage1_output/background/"
+outputDir = "/eos/user/e/ebakhish/stage1_output/background/all_bkg/"
+# outputDir = "/eos/user/e/ebakhish/stage1_output/final_signals/"
 
 
 # outputDir = "./stage1_FSGenALP/"
@@ -273,6 +288,16 @@ compGroup = "group_u_FCC.local_gen"
 class RDFanalysis():
         def analysers(df):
 
+                try:
+                        df = df.Alias("MCRecoAssociations0", "_MCRecoAssociations_from.index")
+                except:
+                        df = df.Alias("MCRecoAssociations0", "_RecoMCLink_from.index")
+
+                try:
+                        df = df.Alias("MCRecoAssociations1", "_MCRecoAssociations_to.index")
+                except:
+                        df = df.Alias("MCRecoAssociations1", "_RecoMCLink_to.index")
+
                 df2 = (df
 
                 #Access the various objects and their properties with the following syntax: .Define("<your_variable>", "<accessor_fct (name_object)>")
@@ -290,12 +315,14 @@ class RDFanalysis():
              #this part of the analysis changed in pythia/delphes,which changes how the output looks
                 # .Alias("MCRecoAssociations0", "_MCRecoAssociations_rec.index")
                 # .Alias("MCRecoAssociations1", "_MCRecoAssociations_sim.index")
-                .Alias("MCRecoAssociations0", "_MCRecoAssociations_from.index") 
-                .Alias("MCRecoAssociations1", "_MCRecoAssociations_to.index")
+          #####      .Alias("MCRecoAssociations0", "_MCRecoAssociations_from.index") 
+          #####      .Alias("MCRecoAssociations1", "_MCRecoAssociations_to.index")
+                # .Alias("MCRecoAssociations0", "_RecoMCLink_from.index")  #use this for newly produces samples since trees in pythia output root changed again
+                # .Alias("MCRecoAssociations1", "_RecoMCLink_to.index")
 
                 ##### Added branch for MCParticle; finding PID of the MC particle for ALP
                 .Define("GenALP_PID", "MCParticle::sel_pdgID(9000005, false)(Particle)")
-                .Define("GenALP_decay", "MCParticle::get_list_of_particles_from_decay(0, GenALP_PID, Particle1)")
+                # .Define("GenALP_decay", "MCParticle::get_list_of_particles_from_decay(0, GenALP_PID, Particle1)")
 
                 .Define("All_n_GenALP", "MCParticle::get_n(GenALP_PID)")
 
@@ -318,12 +345,26 @@ class RDFanalysis():
                 .Define("FSGenElectron_e", "MCParticle::get_e(FSGenElectron)")
                 .Define("FSGenElectron_p", "MCParticle::get_p(FSGenElectron)")
                 .Define("FSGenElectron_pt", "MCParticle::get_pt(FSGenElectron)")
-                .Define("FSGenElectron_px", "MCParticle::get_px(FSGenElectron)")
-                .Define("FSGenElectron_py", "MCParticle::get_py(FSGenElectron)")
+                # .Define("FSGenElectron_px", "MCParticle::get_px(FSGenElectron)")
+                # .Define("FSGenElectron_py", "MCParticle::get_py(FSGenElectron)")
                 .Define("FSGenElectron_pz", "MCParticle::get_pz(FSGenElectron)")
                 .Define("FSGenElectron_eta", "MCParticle::get_eta(FSGenElectron)")
                 .Define("FSGenElectron_theta", "MCParticle::get_theta(FSGenElectron)")
                 .Define("FSGenElectron_phi", "MCParticle::get_phi(FSGenElectron)")
+
+                #all final state gen electrons and positrons
+                .Define("GenElectronPositron_PID", "MCParticle::sel_pdgID(11, true)(Particle)") 
+                .Define("FSGenElectronPositron", "MCParticle::sel_genStatus(1)(GenElectronPositron_PID)") #gen status==1 means final state particle (FS)
+                .Define("n_FSGenElectronPositron", "MCParticle::get_n(FSGenElectronPositron)")
+                .Define("FSGenElectronPositron_e", "MCParticle::get_e(FSGenElectronPositron)")
+                .Define("FSGenElectronPositron_p", "MCParticle::get_p(FSGenElectronPositron)")
+                .Define("FSGenElectronPositron_pt", "MCParticle::get_pt(FSGenElectronPositron)")
+                .Define("FSGenElectronPositron_px", "MCParticle::get_px(FSGenElectronPositron)")
+                .Define("FSGenElectronPositron_py", "MCParticle::get_py(FSGenElectronPositron)")
+                .Define("FSGenElectronPositron_pz", "MCParticle::get_pz(FSGenElectronPositron)")
+                .Define("FSGenElectronPositron_eta", "MCParticle::get_eta(FSGenElectronPositron)")
+                .Define("FSGenElectronPositron_theta", "MCParticle::get_theta(FSGenElectronPositron)")
+                .Define("FSGenElectronPositron_phi", "MCParticle::get_phi(FSGenElectronPositron)")
 
                 #all final state gen positrons
                 .Define("GenPositron_PID", "MCParticle::sel_pdgID(-11, false)(Particle)")
@@ -380,6 +421,7 @@ class RDFanalysis():
                 .Define("FSGenPhoton_eta", "MCParticle::get_eta(FSGenPhoton)")
                 .Define("FSGenPhoton_theta", "MCParticle::get_theta(FSGenPhoton)")
                 .Define("FSGenPhoton_phi", "MCParticle::get_phi(FSGenPhoton)")
+
 
                 # Number of final state electrons and positrons when the number of final state photons is only 2
                 # Returns -2 if the number of final state photons != 2, and therefore will be shown as -2 in the plots
@@ -467,7 +509,7 @@ class RDFanalysis():
 
                 .Define("n_FSGenALP", "MCParticle::get_n( FSGenALP )")
 
-                # Kinematics of final state ALP (attempt Merlin)
+                # Kinematics of final state ALP (attempt Merlin) (ALP defined with PID, FS Pythia status)
                 .Define("FSGenALP_mass", "MCParticle::get_mass( FSGenALP )")
                 .Define("FSGenALP_e", "MCParticle::get_e( FSGenALP )")
                 .Define("FSGenALP_p", "MCParticle::get_p( FSGenALP )")
@@ -480,7 +522,7 @@ class RDFanalysis():
                 .Define("FSGenALP_phi", "MCParticle::get_phi( FSGenALP )")
                 .Define("FSGenALP_genStatus", "MCParticle::get_genStatus( FSGenALP )")
 
-                # Kinematics of the mother particle ALP
+                # Kinematics of the mother particle ALP (defined with 2 daughter photons)
                 .Define("GenALP_mass", "MCParticle::get_mass( GenALP )")
                 .Define("GenALP_e", "MCParticle::get_e( GenALP )")
                 .Define("GenALP_p", "MCParticle::get_p( GenALP )")
@@ -535,6 +577,7 @@ class RDFanalysis():
 
                 # .Define("GenALPPhotons_deltaR_2", "MCParticle::get_ALP_delta_r(GenALPPhoton1, GenALPPhoton2)")
                 .Define("FSGenPhotons_delta_r", "MCParticle::get_delta_r(FSGenPhoton)")
+                .Define("FSGenPhotons_min_delta_r", "MCParticle::get_min_delta_r(FSGenPhoton)")
 
                 .Define("GenALPPhoton1_time", "MCParticle::get_time( GenALPPhoton1 )")
                 .Define("GenALPPhoton2_time", "MCParticle::get_time( GenALPPhoton2 )")
@@ -630,9 +673,12 @@ class RDFanalysis():
 
                 .Define("RecoALPPhotons_deltaEta", "return abs(RecoALPPhoton1_eta - RecoALPPhoton2_eta)")
                 .Define("RecoALPPhotons_deltaPhi", "return RecoALPPhoton1_phi - RecoALPPhoton2_phi")
-                .Define("RecoALPPhotons_deltaR", "return sqrt(RecoALPPhotons_deltaEta*RecoALPPhotons_deltaEta  + RecoALPPhotons_deltaPhi*RecoALPPhotons_deltaPhi)")
-                .Define("RecoALPPhotons_deltaR2", "ReconstructedParticle::get_delta_r(RecoALPPhoton1)")
-
+                # .Define("RecoALPPhotons_deltaR", "return sqrt(RecoALPPhotons_deltaEta*RecoALPPhotons_deltaEta  + RecoALPPhotons_deltaPhi*RecoALPPhotons_deltaPhi)")
+                # .Define("RecoALPPhotons_deltaR", "ReconstructedParticle::get_delta_r(RecoALPPhoton1.at(0), RecoALPPhoton2.at(0))")
+                .Define("RecoALPPhotons_deltaR",
+                        "if (RecoALPPhoton1.size() > 0 && RecoALPPhoton2.size() > 0) { "
+                        "return ReconstructedParticle::get_delta_r(RecoALPPhoton1.at(0), RecoALPPhoton2.at(0)); "
+                        "} else { return -2.0f; }")     #if statement needed otherwise sometimes we have empty containers leading to an out of bounds request
 
                 .Define("n_RecoALPPhoton1", "ReconstructedParticle::get_n( RecoALPPhoton1 )")
                 .Define("n_RecoALPPhoton2", "ReconstructedParticle::get_n( RecoALPPhoton2 )")
@@ -640,12 +686,14 @@ class RDFanalysis():
                 # .Define("RecoALPPhoton2_time", "ReconstructedParticle::get_time( RecoALPPhoton2 )")
                 # add dxy, dz, dxyz, and uncertainties
 
-                # aa invariant mass
+                # aa invariant mass of ALP photons (matched to gen level)
                 .Define("RecoALP_aa_energy", "return (RecoALPPhoton1_e + RecoALPPhoton2_e)")
                 .Define("RecoALP_aa_px", "return (RecoALPPhoton1_px + RecoALPPhoton2_px)")
                 .Define("RecoALP_aa_py", "return (RecoALPPhoton1_py + RecoALPPhoton2_py)")
                 .Define("RecoALP_aa_pz", "return (RecoALPPhoton1_pz + RecoALPPhoton2_pz)")
                 .Define("RecoALP_aa_invMass", "return sqrt(RecoALP_aa_energy*RecoALP_aa_energy - RecoALP_aa_px*RecoALP_aa_px - RecoALP_aa_py*RecoALP_aa_py - RecoALP_aa_pz*RecoALP_aa_pz )")
+                .Define("RecoALP_aa_p", "return sqrt(RecoALP_aa_px*RecoALP_aa_px + RecoALP_aa_py*RecoALP_aa_py + RecoALP_aa_pz*RecoALP_aa_pz)")
+
 
                 #gen-reco
                 .Define("GenMinusRecoALPPhoton1_e",   "GenALPPhoton1_e-RecoALPPhoton1_e")
@@ -696,7 +744,7 @@ class RDFanalysis():
                 #OBJECT SELECTION: Consider only those objects that have pt > certain threshold
                 #.Define("selected_jets", "ReconstructedParticle::sel_pt(0.)(Jet)") #select only jets with a pt > 50 GeV
                 #.Define("selected_electrons", "ReconstructedParticle::sel_pt(0.)(electrons)") #select only electrons with a pt > 20 GeV
-                #.Define("selected_photons", "ReconstructedParticle::sel_pt(0.)(photons)") #select only photons with a pt > 20 GeV
+                # .Define("selected_photons", "ReconstructedParticle::sel_pt(10.0)(photons)") #select only photons with a pt > 10 GeV
                 #.Define("selected_muons", "ReconstructedParticle::sel_pt(0.)(muons)")
 
                 #.Define("n_selJets", "ReconstructedParticle::get_n(selected_jets)")
@@ -705,27 +753,37 @@ class RDFanalysis():
                 #.Define("n_selMuons", "ReconstructedParticle::get_n(selected_muons)")
 
                 #SIMPLE VARIABLES: Access the basic kinematic variables of the (selected) jets, works analogously for electrons, muons
-                .Define("RecoJet_e",      "ReconstructedParticle::get_e(Jet)")
-                .Define("RecoJet_p",      "ReconstructedParticle::get_p(Jet)") #momentum p
-                .Define("RecoJet_pt",      "ReconstructedParticle::get_pt(Jet)") #transverse momentum pt
-                .Define("RecoJet_px",      "ReconstructedParticle::get_px(Jet)")
-                .Define("RecoJet_py",      "ReconstructedParticle::get_py(Jet)")
-                .Define("RecoJet_pz",      "ReconstructedParticle::get_pz(Jet)")
-                .Define("RecoJet_eta",     "ReconstructedParticle::get_eta(Jet)") #pseudorapidity eta
-                .Define("RecoJet_theta",   "ReconstructedParticle::get_theta(Jet)")
-                .Define("RecoJet_phi",     "ReconstructedParticle::get_phi(Jet)") #polar angle in the transverse plane phi
-                .Define("RecoJet_charge",  "ReconstructedParticle::get_charge(Jet)")
+                # .Define("RecoJet_e",      "ReconstructedParticle::get_e(Jet)")
+                # .Define("RecoJet_p",      "ReconstructedParticle::get_p(Jet)") #momentum p
+                # .Define("RecoJet_pt",      "ReconstructedParticle::get_pt(Jet)") #transverse momentum pt
+                # .Define("RecoJet_px",      "ReconstructedParticle::get_px(Jet)")
+                # .Define("RecoJet_py",      "ReconstructedParticle::get_py(Jet)")
+                # .Define("RecoJet_pz",      "ReconstructedParticle::get_pz(Jet)")
+                # .Define("RecoJet_eta",     "ReconstructedParticle::get_eta(Jet)") #pseudorapidity eta
+                # .Define("RecoJet_theta",   "ReconstructedParticle::get_theta(Jet)")
+                # .Define("RecoJet_phi",     "ReconstructedParticle::get_phi(Jet)") #polar angle in the transverse plane phi
+                # .Define("RecoJet_charge",  "ReconstructedParticle::get_charge(Jet)")
 
                 .Define("RecoElectron_e",      "ReconstructedParticle::get_e(RecoElectrons)")
                 .Define("RecoElectron_p",      "ReconstructedParticle::get_p(RecoElectrons)")
                 .Define("RecoElectron_pt",      "ReconstructedParticle::get_pt(RecoElectrons)")
-                .Define("RecoElectron_px",      "ReconstructedParticle::get_px(RecoElectrons)")
-                .Define("RecoElectron_py",      "ReconstructedParticle::get_py(RecoElectrons)")
+                # .Define("RecoElectron_px",      "ReconstructedParticle::get_px(RecoElectrons)")
+                # .Define("RecoElectron_py",      "ReconstructedParticle::get_py(RecoElectrons)")
                 .Define("RecoElectron_pz",      "ReconstructedParticle::get_pz(RecoElectrons)")
                 .Define("RecoElectron_eta",     "ReconstructedParticle::get_eta(RecoElectrons)") #pseudorapidity eta
                 .Define("RecoElectron_theta",   "ReconstructedParticle::get_theta(RecoElectrons)")
                 .Define("RecoElectron_phi",     "ReconstructedParticle::get_phi(RecoElectrons)") #polar angle in the transverse plane phi
-                .Define("RecoElectron_charge",  "ReconstructedParticle::get_charge(RecoElectrons)")
+                # .Define("RecoElectron_charge",  "ReconstructedParticle::get_charge(RecoElectrons)")
+
+                # .Define("RecoElectronPositron_e",      "ReconstructedParticle::get_e(RecoElectronPositrons)")
+                # .Define("RecoElectronPositron_p",      "ReconstructedParticle::get_p(RecoElectronPositrons)")
+                # .Define("RecoElectronPositron_pt",      "ReconstructedParticle::get_pt(RecoElectronPositrons)")
+                # # .Define("RecoElectronPositron_px",      "ReconstructedParticle::get_px(RecoElectronPositrons)")
+                # # .Define("RecoElectronPositron_py",      "ReconstructedParticle::get_py(RecoElectronPositrons)")
+                # .Define("RecoElectronPositron_pz",      "ReconstructedParticle::get_pz(RecoElectronPositrons)")
+                # .Define("RecoElectronPositron_eta",     "ReconstructedParticle::get_eta(RecoElectronPositrons)") #pseudorapidity eta
+                # .Define("RecoElectronPositron_theta",   "ReconstructedParticle::get_theta(RecoElectronPositrons)")
+                # .Define("RecoElectronPositron_phi",     "ReconstructedParticle::get_phi(RecoElectronPositrons)") #polar angle in the transverse plane phi
 
                 .Define("RecoPhoton_e",      "ReconstructedParticle::get_e(RecoPhotons)")
                 .Define("RecoPhoton_p",      "ReconstructedParticle::get_p(RecoPhotons)")
@@ -748,10 +806,10 @@ class RDFanalysis():
                 # .Define("RecoPhotons_ALP_delta_phi", "ReconstructedParticle::get_ALP_delta_phi(RecoALPPhoton1, RecoALPPhoton2)")
                 # .Define("RecoPhotons_ALP_delta_eta", "ReconstructedParticle::get_ALP_delta_eta(RecoALPPhoton1, RecoALPPhoton2)")
 
-                .Define("RecoPhoton_y",       "ReconstructedParticle::get_y(RecoPhotons)")
+                # .Define("RecoPhoton_y",       "ReconstructedParticle::get_y(RecoPhotons)")
                 # .Define("RecoPhoton_time",    "ReconstructedParticle::get_time(RecoPhotons)")
 
-                .Define("RecoPhoton_reference_point_x", "ReconstructedParticle::get_reference_point_x(RecoPhotons)")
+                # .Define("RecoPhoton_reference_point_x", "ReconstructedParticle::get_reference_point_x(RecoPhotons)")
 
                 .Define("RecoPhoton0_e", "if (n_RecoPhotons >= 1) {return RecoPhoton_e.at(0);} else {return (-2.0f); }")
                 .Define("RecoPhoton1_e", "if (n_RecoPhotons >= 2) {return RecoPhoton_e.at(1);} else {return (-2.0f); }")
@@ -790,6 +848,15 @@ class RDFanalysis():
                 # .Define("RecoPhoton1_pz", "return RecoPhoton_pz.at(1)")
                 # .Define("RecoPhoton2_pz", "return RecoPhoton_pz.at(2)")
 
+                # invariant mass of photons (indices 1&2)
+                .Define("Reco_aa_energy", "return (RecoPhoton1_e + RecoPhoton2_e)")
+                .Define("Reco_aa_px", "return (RecoPhoton1_px + RecoPhoton2_px)")
+                .Define("Reco_aa_py", "return (RecoPhoton1_py + RecoPhoton2_py)")
+                .Define("Reco_aa_pz", "return (RecoPhoton1_pz + RecoPhoton2_pz)")
+                .Define("Reco_aa_invMass", "if (Reco_aa_energy != -4.0f && Reco_aa_px != -4.0f && Reco_aa_py != -4.0f && Reco_aa_pz != -4.0f) { return sqrt(Reco_aa_energy*Reco_aa_energy - Reco_aa_px*Reco_aa_px - Reco_aa_py*Reco_aa_py - Reco_aa_pz*Reco_aa_pz); } else { return -2.0f; }")
+                .Define("Reco_aa_p", "if (Reco_aa_px != -4.0f && Reco_aa_py != -4.0f && Reco_aa_pz != -4.0f) { return sqrt(Reco_aa_px*Reco_aa_px + Reco_aa_py*Reco_aa_py + Reco_aa_pz*Reco_aa_pz); } else { return -2.0f; }")
+
+
                 .Define("RecoPhoton1_px_if_RecoPhoton2_px_pos", "if (RecoPhoton2_px > 0) {return RecoPhoton1_px;} else {return -50.0f;}")
                 .Define("RecoPhoton1_pz_if_RecoPhoton2_pz_pos", "if (RecoPhoton2_pz > 0) {return RecoPhoton1_pz;} else {return -50.0f;}")
 
@@ -818,6 +885,226 @@ class RDFanalysis():
                 # .Define("RecoMissingEnergy_phi", "ReconstructedParticle::get_phi(MissingET)")
 
                 # .Define("CalorimeterHitsTime", "CalorimeterHits.time")
+
+
+        ##### OBJECT SELECTION: FSGenPhotons and RecoPhotons with selections that were made in MG cards regarding photons: eta<2.5 ####
+                .Define("FSGenPhoton_obj_sel_pt", "MCParticle::sel_pt(0.0)(FSGenPhoton)") #select only fs gen photons with a pt > 0 GeV
+                .Define("FSGenPhoton_obj_sel_pt_eta", "MCParticle::sel_eta(2.5)(FSGenPhoton_obj_sel_pt)") #select only photons with eta<2.5
+
+                .Define("RecoPhotons_obj_sel_pt", "ReconstructedParticle::sel_pt(0.0)(RecoPhotons)") #select only reco photons with a pt > 0 GeV
+                .Define("RecoPhotons_obj_sel_pt_eta", "ReconstructedParticle::sel_eta(2.5)(RecoPhotons_obj_sel_pt)") #select only photons with eta<2.5
+
+         #GEN LEVEL
+                .Define("FSGenPhoton_eta_obj_sel_pt_eta",     "MCParticle::get_eta(FSGenPhoton_obj_sel_pt_eta)") #pseudorapidity eta
+                .Define("FSGenPhoton_theta_obj_sel_pt_eta",   "MCParticle::get_theta(FSGenPhoton_obj_sel_pt_eta)")
+                .Define("FSGenPhoton_phi_obj_sel_pt_eta",     "MCParticle::get_phi(FSGenPhoton_obj_sel_pt_eta)") #polar angle in the transverse plane phi
+                .Define("FSGenPhotons_delta_eta_obj_sel_pt_eta", "MCParticle::get_delta_eta(FSGenPhoton_obj_sel_pt_eta)")
+                .Define("FSGenPhotons_delta_phi_obj_sel_pt_eta", "MCParticle::get_delta_phi(FSGenPhoton_obj_sel_pt_eta)")
+                .Define("FSGenPhotons_delta_r_obj_sel_pt_eta",   "MCParticle::get_delta_r(FSGenPhoton_obj_sel_pt_eta)")
+                .Define("FSGenPhotons_min_delta_r_obj_sel_pt_eta", "MCParticle::get_min_delta_r(FSGenPhoton_obj_sel_pt_eta)")
+                .Define("FSGenPhoton_pt_obj_sel_pt_eta",      "MCParticle::get_pt(FSGenPhoton_obj_sel_pt_eta)")
+                .Define("FSGenPhoton_e_obj_sel_pt_eta",      "MCParticle::get_e(FSGenPhoton_obj_sel_pt_eta)")
+                .Define("FSGenPhoton_p_obj_sel_pt_eta",      "MCParticle::get_p(FSGenPhoton_obj_sel_pt_eta)")
+                .Define("n_FSGenPhoton_obj_sel_pt_eta",  "MCParticle::get_n(FSGenPhoton_obj_sel_pt_eta)") #count how many photons are in the event in total
+
+                .Define("FSGenPhoton_pz_obj_sel_pt_eta",      "MCParticle::get_pz(FSGenPhoton_obj_sel_pt_eta)")
+                .Define("FSGenPhoton_py_obj_sel_pt_eta",      "MCParticle::get_py(FSGenPhoton_obj_sel_pt_eta)")
+                .Define("FSGenPhoton_px_obj_sel_pt_eta",      "MCParticle::get_px(FSGenPhoton_obj_sel_pt_eta)")
+                .Define("FSGenPhoton0_e_obj_sel_pt_eta", "if (n_FSGenPhoton_obj_sel_pt_eta >= 1) {return FSGenPhoton_e_obj_sel_pt_eta.at(0);} else {return (-2.0f); }")
+                .Define("FSGenPhoton1_e_obj_sel_pt_eta", "if (n_FSGenPhoton_obj_sel_pt_eta >= 2) {return FSGenPhoton_e_obj_sel_pt_eta.at(1);} else {return (-2.0f); }")
+                .Define("FSGenPhoton2_e_obj_sel_pt_eta", "if (n_FSGenPhoton_obj_sel_pt_eta >= 3) {return FSGenPhoton_e_obj_sel_pt_eta.at(2);} else {return (-2.0f); }")
+                .Define("FSGenPhoton0_p_obj_sel_pt_eta", "if (n_FSGenPhoton_obj_sel_pt_eta >= 1) {return FSGenPhoton_p_obj_sel_pt_eta.at(0);} else {return (-2.0f); }")
+                .Define("FSGenPhoton1_p_obj_sel_pt_eta", "if (n_FSGenPhoton_obj_sel_pt_eta >= 2) {return FSGenPhoton_p_obj_sel_pt_eta.at(1);} else {return (-2.0f); }")
+                .Define("FSGenPhoton2_p_obj_sel_pt_eta", "if (n_FSGenPhoton_obj_sel_pt_eta >= 3) {return FSGenPhoton_p_obj_sel_pt_eta.at(2);} else {return (-2.0f); }")
+                .Define("FSGenPhoton0_pt_obj_sel_pt_eta", "if (n_FSGenPhoton_obj_sel_pt_eta >= 1) {return FSGenPhoton_pt_obj_sel_pt_eta.at(0);} else {return (-2.0f); }")
+                .Define("FSGenPhoton1_pt_obj_sel_pt_eta", "if (n_FSGenPhoton_obj_sel_pt_eta >= 2) {return FSGenPhoton_pt_obj_sel_pt_eta.at(1);} else {return (-2.0f); }")
+                .Define("FSGenPhoton2_pt_obj_sel_pt_eta", "if (n_FSGenPhoton_obj_sel_pt_eta >= 3) {return FSGenPhoton_pt_obj_sel_pt_eta.at(2);} else {return (-2.0f); }")
+                .Define("FSGenPhoton0_pz_obj_sel_pt_eta", "if (n_FSGenPhoton_obj_sel_pt_eta >= 1) {return FSGenPhoton_pz_obj_sel_pt_eta.at(0);} else {return (-2.0f); }")
+                .Define("FSGenPhoton1_pz_obj_sel_pt_eta", "if (n_FSGenPhoton_obj_sel_pt_eta >= 2) {return FSGenPhoton_pz_obj_sel_pt_eta.at(1);} else {return (-2.0f); }")
+                .Define("FSGenPhoton2_pz_obj_sel_pt_eta", "if (n_FSGenPhoton_obj_sel_pt_eta >= 3) {return FSGenPhoton_pz_obj_sel_pt_eta.at(2);} else {return (-2.0f); }")
+                .Define("FSGenPhoton0_py_obj_sel_pt_eta", "if (n_FSGenPhoton_obj_sel_pt_eta >= 1) {return FSGenPhoton_py_obj_sel_pt_eta.at(0);} else {return (-2.0f); }")
+                .Define("FSGenPhoton1_py_obj_sel_pt_eta", "if (n_FSGenPhoton_obj_sel_pt_eta >= 2) {return FSGenPhoton_py_obj_sel_pt_eta.at(1);} else {return (-2.0f); }")
+                .Define("FSGenPhoton2_py_obj_sel_pt_eta", "if (n_FSGenPhoton_obj_sel_pt_eta >= 3) {return FSGenPhoton_py_obj_sel_pt_eta.at(2);} else {return (-2.0f); }")
+                .Define("FSGenPhoton0_px_obj_sel_pt_eta", "if (n_FSGenPhoton_obj_sel_pt_eta >= 1) {return FSGenPhoton_px_obj_sel_pt_eta.at(0);} else {return (-2.0f); }")
+                .Define("FSGenPhoton1_px_obj_sel_pt_eta", "if (n_FSGenPhoton_obj_sel_pt_eta >= 2) {return FSGenPhoton_px_obj_sel_pt_eta.at(1);} else {return (-2.0f); }")
+                .Define("FSGenPhoton2_px_obj_sel_pt_eta", "if (n_FSGenPhoton_obj_sel_pt_eta >= 3) {return FSGenPhoton_px_obj_sel_pt_eta.at(2);} else {return (-2.0f); }")
+
+                # invariant mass of photons
+                .Define("FSGen_aa_energy_obj_sel_pt_eta", "return (FSGenPhoton1_e_obj_sel_pt_eta + FSGenPhoton2_e_obj_sel_pt_eta)")
+                .Define("FSGen_aa_px_obj_sel_pt_eta", "return (FSGenPhoton1_px_obj_sel_pt_eta + FSGenPhoton2_px_obj_sel_pt_eta)")
+                .Define("FSGen_aa_py_obj_sel_pt_eta", "return (FSGenPhoton1_py_obj_sel_pt_eta + FSGenPhoton2_py_obj_sel_pt_eta)")
+                .Define("FSGen_aa_pz_obj_sel_pt_eta", "return (FSGenPhoton1_pz_obj_sel_pt_eta + FSGenPhoton2_pz_obj_sel_pt_eta)")
+                .Define("FSGen_aa_invMass_obj_sel_pt_eta", "if (FSGen_aa_energy_obj_sel_pt_eta != -4.0f && FSGen_aa_px_obj_sel_pt_eta != -4.0f && FSGen_aa_py_obj_sel_pt_eta != -4.0f && FSGen_aa_pz_obj_sel_pt_eta != -4.0f) { return sqrt(FSGen_aa_energy_obj_sel_pt_eta*FSGen_aa_energy_obj_sel_pt_eta - FSGen_aa_px_obj_sel_pt_eta*FSGen_aa_px_obj_sel_pt_eta - FSGen_aa_py_obj_sel_pt_eta*FSGen_aa_py_obj_sel_pt_eta - FSGen_aa_pz_obj_sel_pt_eta*FSGen_aa_pz_obj_sel_pt_eta); } else { return -2.0f; }") #invariant mass of the two photons
+                .Define("FSGen_aa_p_obj_sel_pt_eta", "if (FSGen_aa_px_obj_sel_pt_eta != -4.0f && FSGen_aa_py_obj_sel_pt_eta != -4.0f && FSGen_aa_pz_obj_sel_pt_eta != -4.0f) { return sqrt(FSGen_aa_px_obj_sel_pt_eta*FSGen_aa_px_obj_sel_pt_eta + FSGen_aa_py_obj_sel_pt_eta*FSGen_aa_py_obj_sel_pt_eta + FSGen_aa_pz_obj_sel_pt_eta*FSGen_aa_pz_obj_sel_pt_eta); } else { return -2.0f; }")
+
+
+
+         #RECO LEVEL
+                .Define("RecoPhoton_eta_obj_sel_pt_eta",     "ReconstructedParticle::get_eta(RecoPhotons_obj_sel_pt_eta)") #pseudorapidity eta
+                .Define("RecoPhoton_theta_obj_sel_pt_eta",   "ReconstructedParticle::get_theta(RecoPhotons_obj_sel_pt_eta)")
+                .Define("RecoPhoton_phi_obj_sel_pt_eta",     "ReconstructedParticle::get_phi(RecoPhotons_obj_sel_pt_eta)") #polar angle in the transverse plane phi
+                .Define("RecoPhotons_delta_eta_obj_sel_pt_eta", "ReconstructedParticle::get_delta_eta(RecoPhotons_obj_sel_pt_eta)")
+                .Define("RecoPhotons_delta_phi_obj_sel_pt_eta", "ReconstructedParticle::get_delta_phi(RecoPhotons_obj_sel_pt_eta)")
+                .Define("RecoPhotons_delta_r_obj_sel_pt_eta",   "ReconstructedParticle::get_delta_r(RecoPhotons_obj_sel_pt_eta)")
+                .Define("RecoPhotons_min_delta_r_obj_sel_pt_eta", "ReconstructedParticle::get_min_delta_r(RecoPhotons_obj_sel_pt_eta)")
+                .Define("RecoPhoton_pt_obj_sel_pt_eta",      "ReconstructedParticle::get_pt(RecoPhotons_obj_sel_pt_eta)")
+                .Define("RecoPhoton_e_obj_sel_pt_eta",      "ReconstructedParticle::get_e(RecoPhotons_obj_sel_pt_eta)")
+                .Define("RecoPhoton_p_obj_sel_pt_eta",      "ReconstructedParticle::get_p(RecoPhotons_obj_sel_pt_eta)")\
+                .Define("n_RecoPhotons_obj_sel_pt_eta",  "ReconstructedParticle::get_n(RecoPhotons_obj_sel_pt_eta)") #count how many photons are in the event in total
+                .Define("RecoPhoton_charge_obj_sel_pt_eta",  "ReconstructedParticle::get_charge(RecoPhotons_obj_sel_pt_eta)")
+
+                .Define("RecoPhoton_pz_obj_sel_pt_eta",      "ReconstructedParticle::get_pz(RecoPhotons_obj_sel_pt_eta)")
+                .Define("RecoPhoton_py_obj_sel_pt_eta",      "ReconstructedParticle::get_py(RecoPhotons_obj_sel_pt_eta)")
+                .Define("RecoPhoton_px_obj_sel_pt_eta",      "ReconstructedParticle::get_px(RecoPhotons_obj_sel_pt_eta)")
+                .Define("RecoPhoton0_e_obj_sel_pt_eta", "if (n_RecoPhotons_obj_sel_pt_eta >= 1) {return RecoPhoton_e_obj_sel_pt_eta.at(0);} else {return (-2.0f); }")
+                .Define("RecoPhoton1_e_obj_sel_pt_eta", "if (n_RecoPhotons_obj_sel_pt_eta >= 2) {return RecoPhoton_e_obj_sel_pt_eta.at(1);} else {return (-2.0f); }")
+                .Define("RecoPhoton2_e_obj_sel_pt_eta", "if (n_RecoPhotons_obj_sel_pt_eta >= 3) {return RecoPhoton_e_obj_sel_pt_eta.at(2);} else {return (-2.0f); }")
+                .Define("RecoPhoton0_p_obj_sel_pt_eta", "if (n_RecoPhotons_obj_sel_pt_eta >= 1) {return RecoPhoton_p_obj_sel_pt_eta.at(0);} else {return (-2.0f); }")
+                .Define("RecoPhoton1_p_obj_sel_pt_eta", "if (n_RecoPhotons_obj_sel_pt_eta >= 2) {return RecoPhoton_p_obj_sel_pt_eta.at(1);} else {return (-2.0f); }")
+                .Define("RecoPhoton2_p_obj_sel_pt_eta", "if (n_RecoPhotons_obj_sel_pt_eta >= 3) {return RecoPhoton_p_obj_sel_pt_eta.at(2);} else {return (-2.0f); }")
+                .Define("RecoPhoton0_pt_obj_sel_pt_eta", "if (n_RecoPhotons_obj_sel_pt_eta >= 1) {return RecoPhoton_pt_obj_sel_pt_eta.at(0);} else {return (-2.0f); }")
+                .Define("RecoPhoton1_pt_obj_sel_pt_eta", "if (n_RecoPhotons_obj_sel_pt_eta >= 2) {return RecoPhoton_pt_obj_sel_pt_eta.at(1);} else {return (-2.0f); }")
+                .Define("RecoPhoton2_pt_obj_sel_pt_eta", "if (n_RecoPhotons_obj_sel_pt_eta >= 3) {return RecoPhoton_pt_obj_sel_pt_eta.at(2);} else {return (-2.0f); }")
+                .Define("RecoPhoton0_pz_obj_sel_pt_eta", "if (n_RecoPhotons_obj_sel_pt_eta >= 1) {return RecoPhoton_pz_obj_sel_pt_eta.at(0);} else {return (-2.0f); }")
+                .Define("RecoPhoton1_pz_obj_sel_pt_eta", "if (n_RecoPhotons_obj_sel_pt_eta >= 2) {return RecoPhoton_pz_obj_sel_pt_eta.at(1);} else {return (-2.0f); }")
+                .Define("RecoPhoton2_pz_obj_sel_pt_eta", "if (n_RecoPhotons_obj_sel_pt_eta >= 3) {return RecoPhoton_pz_obj_sel_pt_eta.at(2);} else {return (-2.0f); }")
+                .Define("RecoPhoton0_py_obj_sel_pt_eta", "if (n_RecoPhotons_obj_sel_pt_eta >= 1) {return RecoPhoton_py_obj_sel_pt_eta.at(0);} else {return (-2.0f); }")
+                .Define("RecoPhoton1_py_obj_sel_pt_eta", "if (n_RecoPhotons_obj_sel_pt_eta >= 2) {return RecoPhoton_py_obj_sel_pt_eta.at(1);} else {return (-2.0f); }")
+                .Define("RecoPhoton2_py_obj_sel_pt_eta", "if (n_RecoPhotons_obj_sel_pt_eta >= 3) {return RecoPhoton_py_obj_sel_pt_eta.at(2);} else {return (-2.0f); }")
+                .Define("RecoPhoton0_px_obj_sel_pt_eta", "if (n_RecoPhotons_obj_sel_pt_eta >= 1) {return RecoPhoton_px_obj_sel_pt_eta.at(0);} else {return (-2.0f); }")
+                .Define("RecoPhoton1_px_obj_sel_pt_eta", "if (n_RecoPhotons_obj_sel_pt_eta >= 2) {return RecoPhoton_px_obj_sel_pt_eta.at(1);} else {return (-2.0f); }")
+                .Define("RecoPhoton2_px_obj_sel_pt_eta", "if (n_RecoPhotons_obj_sel_pt_eta >= 3) {return RecoPhoton_px_obj_sel_pt_eta.at(2);} else {return (-2.0f); }")
+
+                # invariant mass of photons calculated with indices photon1&photon2
+                .Define("Reco_aa_energy_obj_sel_pt_eta", "return (RecoPhoton1_e_obj_sel_pt_eta + RecoPhoton2_e_obj_sel_pt_eta)")
+                .Define("Reco_aa_px_obj_sel_pt_eta", "return (RecoPhoton1_px_obj_sel_pt_eta + RecoPhoton2_px_obj_sel_pt_eta)")
+                .Define("Reco_aa_py_obj_sel_pt_eta", "return (RecoPhoton1_py_obj_sel_pt_eta + RecoPhoton2_py_obj_sel_pt_eta)")
+                .Define("Reco_aa_pz_obj_sel_pt_eta", "return (RecoPhoton1_pz_obj_sel_pt_eta + RecoPhoton2_pz_obj_sel_pt_eta)")
+                .Define("Reco_aa_invMass_obj_sel_pt_eta", "if (Reco_aa_energy_obj_sel_pt_eta != -4.0f && Reco_aa_px_obj_sel_pt_eta != -4.0f && Reco_aa_py_obj_sel_pt_eta != -4.0f && Reco_aa_pz_obj_sel_pt_eta != -4.0f) { return sqrt(Reco_aa_energy_obj_sel_pt_eta*Reco_aa_energy_obj_sel_pt_eta - Reco_aa_px_obj_sel_pt_eta*Reco_aa_px_obj_sel_pt_eta - Reco_aa_py_obj_sel_pt_eta*Reco_aa_py_obj_sel_pt_eta - Reco_aa_pz_obj_sel_pt_eta*Reco_aa_pz_obj_sel_pt_eta); } else { return -2.0f; }")                
+                .Define("Reco_aa_p_obj_sel_pt_eta", "if (Reco_aa_px_obj_sel_pt_eta != -4.0f && Reco_aa_py_obj_sel_pt_eta != -4.0f && Reco_aa_pz_obj_sel_pt_eta != -4.0f) { return sqrt(Reco_aa_px_obj_sel_pt_eta*Reco_aa_px_obj_sel_pt_eta + Reco_aa_py_obj_sel_pt_eta*Reco_aa_py_obj_sel_pt_eta + Reco_aa_pz_obj_sel_pt_eta*Reco_aa_pz_obj_sel_pt_eta); } else { return -2.0f; }")
+
+        # test the new fucntion that picks the photons with mindeltaR
+                .Define("RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta",     "ReconstructedParticle::get_pidx_min_delta_r(RecoPhotons_obj_sel_pt_eta)") #photon index of mindeltaR
+
+                # .Define("verify_deltaR", 
+                #         "if (RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta.size() > 1 && RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta[0] != -1) { "
+                #         "return ReconstructedParticle::get_delta_r(RecoPhotons_obj_sel_pt_eta.at(RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta[0]), RecoPhotons_obj_sel_pt_eta.at(RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta[1]));"    
+                #         "} else { return -2.0f; }")
+
+                .Define("RecoPhoton1_pz_obj_sel_pt_eta_v2", 
+                        "if (RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta.size() > 1 && RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta[0] != -1) { "
+                        "return RecoPhoton_pz_obj_sel_pt_eta.at(RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta[0]); "
+                        "} else { return -2.0f; }")
+                .Define("RecoPhoton2_pz_obj_sel_pt_eta_v2", 
+                        "if (RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta.size() > 1 && RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta[1] != -1) { "
+                        "return RecoPhoton_pz_obj_sel_pt_eta.at(RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta[1]); "
+                        "} else { return -2.0f; }")            
+                .Define("RecoPhoton1_py_obj_sel_pt_eta_v2", 
+                        "if (RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta.size() > 1 && RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta[0] != -1) { "
+                        "return RecoPhoton_py_obj_sel_pt_eta.at(RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta[0]); "
+                        "} else { return -2.0f; }")
+                .Define("RecoPhoton2_py_obj_sel_pt_eta_v2", 
+                        "if (RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta.size() > 1 && RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta[1] != -1) { "
+                        "return RecoPhoton_py_obj_sel_pt_eta.at(RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta[1]); "
+                        "} else { return -2.0f; }")   
+                .Define("RecoPhoton1_px_obj_sel_pt_eta_v2", 
+                        "if (RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta.size() > 1 && RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta[0] != -1) { "
+                        "return RecoPhoton_px_obj_sel_pt_eta.at(RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta[0]); "
+                        "} else { return -2.0f; }")
+                .Define("RecoPhoton2_px_obj_sel_pt_eta_v2", 
+                        "if (RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta.size() > 1 && RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta[1] != -1) { "
+                        "return RecoPhoton_px_obj_sel_pt_eta.at(RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta[1]); "
+                        "} else { return -2.0f; }")   
+                .Define("RecoPhoton1_e_obj_sel_pt_eta_v2", 
+                        "if (RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta.size() > 1 && RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta[0] != -1) { "
+                        "return RecoPhoton_e_obj_sel_pt_eta.at(RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta[0]); "
+                        "} else { return -2.0f; }")
+                .Define("RecoPhoton2_e_obj_sel_pt_eta_v2", 
+                        "if (RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta.size() > 1 && RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta[1] != -1) { "
+                        "return RecoPhoton_e_obj_sel_pt_eta.at(RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta[1]); "
+                        "} else { return -2.0f; }")   
+
+
+
+                # invariant mass of photons calculated with photons with mindeltaR
+                .Define("Reco_aa_energy_obj_sel_pt_eta_v2", "return (RecoPhoton1_e_obj_sel_pt_eta_v2 + RecoPhoton2_e_obj_sel_pt_eta_v2)")
+                .Define("Reco_aa_px_obj_sel_pt_eta_v2", "return (RecoPhoton1_px_obj_sel_pt_eta_v2 + RecoPhoton2_px_obj_sel_pt_eta_v2)")
+                .Define("Reco_aa_py_obj_sel_pt_eta_v2", "return (RecoPhoton1_py_obj_sel_pt_eta_v2 + RecoPhoton2_py_obj_sel_pt_eta_v2)")
+                .Define("Reco_aa_pz_obj_sel_pt_eta_v2", "return (RecoPhoton1_pz_obj_sel_pt_eta_v2 + RecoPhoton2_pz_obj_sel_pt_eta_v2)")
+                .Define("Reco_aa_invMass_obj_sel_pt_eta_v2", "if (Reco_aa_energy_obj_sel_pt_eta_v2 != -4.0f && Reco_aa_px_obj_sel_pt_eta_v2 != -4.0f && Reco_aa_py_obj_sel_pt_eta_v2 != -4.0f && Reco_aa_pz_obj_sel_pt_eta_v2 != -4.0f) { return sqrt(Reco_aa_energy_obj_sel_pt_eta_v2*Reco_aa_energy_obj_sel_pt_eta_v2 - Reco_aa_px_obj_sel_pt_eta_v2*Reco_aa_px_obj_sel_pt_eta_v2 - Reco_aa_py_obj_sel_pt_eta_v2*Reco_aa_py_obj_sel_pt_eta_v2 - Reco_aa_pz_obj_sel_pt_eta_v2*Reco_aa_pz_obj_sel_pt_eta_v2); } else { return -2.0f; }")                
+                .Define("Reco_aa_p_obj_sel_pt_eta_v2", "if (Reco_aa_px_obj_sel_pt_eta_v2 != -4.0f && Reco_aa_py_obj_sel_pt_eta_v2 != -4.0f && Reco_aa_pz_obj_sel_pt_eta_v2 != -4.0f) { return sqrt(Reco_aa_px_obj_sel_pt_eta_v2*Reco_aa_px_obj_sel_pt_eta_v2 + Reco_aa_py_obj_sel_pt_eta_v2*Reco_aa_py_obj_sel_pt_eta_v2 + Reco_aa_pz_obj_sel_pt_eta_v2*Reco_aa_pz_obj_sel_pt_eta_v2); } else { return -2.0f; }")
+
+
+
+
+
+
+        #RECO ALP (MATCHED TO GEN)  ----
+                .Define("RecoALPPhoton1_obj_sel_pt", "ReconstructedParticle::sel_pt(0.0)(RecoALPPhoton1)") #select only reco photons with a pt > 0 GeV
+                .Define("RecoALPPhoton1_obj_sel_pt_eta", "ReconstructedParticle::sel_eta(2.5)(RecoALPPhoton1_obj_sel_pt)") #select only photons with eta<2.5
+                .Define("RecoALPPhoton2_obj_sel_pt", "ReconstructedParticle::sel_pt(0.0)(RecoALPPhoton2)") #select only reco photons with a pt > 0 GeV
+                .Define("RecoALPPhoton2_obj_sel_pt_eta", "ReconstructedParticle::sel_eta(2.5)(RecoALPPhoton2_obj_sel_pt)") #select only photons with eta<2.5
+
+                .Define("RecoALPPhoton1_e_obj_sel_pt_eta",  "ReconstructedParticle::get_e( RecoALPPhoton1_obj_sel_pt_eta )")
+                .Define("RecoALPPhoton2_e_obj_sel_pt_eta",  "ReconstructedParticle::get_e( RecoALPPhoton2_obj_sel_pt_eta)")
+                .Define("RecoALPPhoton1_p_obj_sel_pt_eta",  "ReconstructedParticle::get_p( RecoALPPhoton1_obj_sel_pt_eta )")
+                .Define("RecoALPPhoton2_p_obj_sel_pt_eta",  "ReconstructedParticle::get_p( RecoALPPhoton2_obj_sel_pt_eta)")
+                .Define("RecoALPPhoton1_pt_obj_sel_pt_eta",  "ReconstructedParticle::get_pt( RecoALPPhoton1_obj_sel_pt_eta )")
+                .Define("RecoALPPhoton2_pt_obj_sel_pt_eta",  "ReconstructedParticle::get_pt( RecoALPPhoton2_obj_sel_pt_eta)")
+                .Define("RecoALPPhoton1_px_obj_sel_pt_eta",  "ReconstructedParticle::get_px( RecoALPPhoton1_obj_sel_pt_eta )")
+                .Define("RecoALPPhoton2_px_obj_sel_pt_eta",  "ReconstructedParticle::get_px( RecoALPPhoton2_obj_sel_pt_eta)")
+                .Define("RecoALPPhoton1_py_obj_sel_pt_eta",  "ReconstructedParticle::get_py( RecoALPPhoton1_obj_sel_pt_eta )")
+                .Define("RecoALPPhoton2_py_obj_sel_pt_eta",  "ReconstructedParticle::get_py( RecoALPPhoton2_obj_sel_pt_eta)")
+                .Define("RecoALPPhoton1_pz_obj_sel_pt_eta",  "ReconstructedParticle::get_pz( RecoALPPhoton1_obj_sel_pt_eta )")
+                .Define("RecoALPPhoton2_pz_obj_sel_pt_eta",  "ReconstructedParticle::get_pz( RecoALPPhoton2_obj_sel_pt_eta)")
+                .Define("RecoALPPhoton1_eta_obj_sel_pt_eta",  "ReconstructedParticle::get_eta( RecoALPPhoton1_obj_sel_pt_eta )")
+                .Define("RecoALPPhoton2_eta_obj_sel_pt_eta",  "ReconstructedParticle::get_eta( RecoALPPhoton2_obj_sel_pt_eta)")
+                .Define("RecoALPPhoton1_phi_obj_sel_pt_eta",  "ReconstructedParticle::get_phi( RecoALPPhoton1_obj_sel_pt_eta )")
+                .Define("RecoALPPhoton2_phi_obj_sel_pt_eta",  "ReconstructedParticle::get_phi( RecoALPPhoton2_obj_sel_pt_eta)")
+                .Define("RecoALPPhotons_deltaEta_obj_sel_pt_eta",
+                        "if (RecoALPPhoton1_obj_sel_pt_eta.size() > 0 && RecoALPPhoton2_obj_sel_pt_eta.size() > 0) { "
+                        "return abs(RecoALPPhoton1_eta_obj_sel_pt_eta.at(0) - RecoALPPhoton2_eta_obj_sel_pt_eta.at(0)); "
+                        "} else { return -2.0f; }")
+                .Define("RecoALPPhotons_deltaPhi_obj_sel_pt_eta",
+                        "if (RecoALPPhoton1_obj_sel_pt_eta.size() > 0 && RecoALPPhoton2_obj_sel_pt_eta.size() > 0) { "
+                        "return abs(RecoALPPhoton1_phi_obj_sel_pt_eta.at(0) - RecoALPPhoton2_phi_obj_sel_pt_eta.at(0)); "
+                        "} else { return -2.0f; }")
+                # .Define("RecoALPPhotons_deltaR_obj_sel_pt_eta",
+                #         "if (RecoALPPhoton1_obj_sel_pt_eta.size() > 0 && RecoALPPhoton2_obj_sel_pt_eta.size() > 0) { "
+                #         "return sqrt(RecoALPPhotons_deltaEta_obj_sel_pt_eta*RecoALPPhotons_deltaEta_obj_sel_pt_eta  + RecoALPPhotons_deltaPhi_obj_sel_pt_eta*RecoALPPhotons_deltaPhi_obj_sel_pt_eta); "
+                #         "} else { return -2.0f; }")
+                .Define("RecoALPPhotons_deltaR_obj_sel_pt_eta",
+                        "if (RecoALPPhoton1_obj_sel_pt_eta.size() > 0 && RecoALPPhoton2_obj_sel_pt_eta.size() > 0) { "
+                        "return ReconstructedParticle::get_delta_r(RecoALPPhoton1_obj_sel_pt_eta.at(0), RecoALPPhoton2_obj_sel_pt_eta.at(0)); "
+                        "} else { return -2.0f; }") 
+                .Define("n_RecoALPPhoton1_obj_sel_pt_eta", "ReconstructedParticle::get_n( RecoALPPhoton1_obj_sel_pt_eta )")
+                .Define("n_RecoALPPhoton2_obj_sel_pt_eta", "ReconstructedParticle::get_n( RecoALPPhoton2_obj_sel_pt_eta)")
+
+                # # # aa invariant mass
+                .Define("RecoALP_aa_energy_obj_sel_pt_eta",
+                        "if (RecoALPPhoton1_obj_sel_pt_eta.size() > 0 && RecoALPPhoton2_obj_sel_pt_eta.size() > 0) { "
+                        "return (RecoALPPhoton1_e_obj_sel_pt_eta[0] + RecoALPPhoton2_e_obj_sel_pt_eta[0]); "
+                        "} else { return -2.0f; }") 
+                .Define("RecoALP_aa_px_obj_sel_pt_eta",
+                        "if (RecoALPPhoton1_obj_sel_pt_eta.size() > 0 && RecoALPPhoton2_obj_sel_pt_eta.size() > 0) { "
+                        "return (RecoALPPhoton1_px_obj_sel_pt_eta[0] + RecoALPPhoton2_px_obj_sel_pt_eta[0]); "
+                        "} else { return -2.0f; }") 
+                .Define("RecoALP_aa_py_obj_sel_pt_eta",
+                        "if (RecoALPPhoton1_obj_sel_pt_eta.size() > 0 && RecoALPPhoton2_obj_sel_pt_eta.size() > 0) { "
+                        "return (RecoALPPhoton1_py_obj_sel_pt_eta[0] + RecoALPPhoton2_py_obj_sel_pt_eta[0]); "
+                        "} else { return -2.0f; }") 
+                .Define("RecoALP_aa_pz_obj_sel_pt_eta",
+                        "if (RecoALPPhoton1_obj_sel_pt_eta.size() > 0 && RecoALPPhoton2_obj_sel_pt_eta.size() > 0) { "
+                        "return (RecoALPPhoton1_pz_obj_sel_pt_eta[0] + RecoALPPhoton2_pz_obj_sel_pt_eta[0]); "
+                        "} else { return -2.0f; }") 
+                .Define("RecoALP_aa_invMass_obj_sel_pt_eta",
+                        "if (RecoALPPhoton1_obj_sel_pt_eta.size() > 0 && RecoALPPhoton2_obj_sel_pt_eta.size() > 0 && RecoALP_aa_energy_obj_sel_pt_eta != -2.0f && RecoALP_aa_px_obj_sel_pt_eta != -2.0f && RecoALP_aa_py_obj_sel_pt_eta != -2.0f && RecoALP_aa_pz_obj_sel_pt_eta != -2.0f) { "
+                        "return sqrt(RecoALP_aa_energy_obj_sel_pt_eta*RecoALP_aa_energy_obj_sel_pt_eta - RecoALP_aa_px_obj_sel_pt_eta*RecoALP_aa_px_obj_sel_pt_eta - RecoALP_aa_py_obj_sel_pt_eta*RecoALP_aa_py_obj_sel_pt_eta - RecoALP_aa_pz_obj_sel_pt_eta*RecoALP_aa_pz_obj_sel_pt_eta ); "
+                        "} else { return -2.0f; }") 
+                .Define("RecoALP_aa_p_obj_sel_pt_eta",
+                        "if (RecoALPPhoton1_obj_sel_pt_eta.size() > 0 && RecoALPPhoton2_obj_sel_pt_eta.size() > 0 && RecoALP_aa_energy_obj_sel_pt_eta != -2.0f && RecoALP_aa_px_obj_sel_pt_eta!= -2.0f && RecoALP_aa_py_obj_sel_pt_eta != -2.0f && RecoALP_aa_pz_obj_sel_pt_eta != -2.0f) { "
+                        "return sqrt(RecoALP_aa_px_obj_sel_pt_eta*RecoALP_aa_px_obj_sel_pt_eta + RecoALP_aa_py_obj_sel_pt_eta*RecoALP_aa_py_obj_sel_pt_eta + RecoALP_aa_pz_obj_sel_pt_eta*RecoALP_aa_pz_obj_sel_pt_eta); "
+                        "} else { return -2.0f; }") 
                )
                 return df2
 
@@ -838,18 +1125,28 @@ class RDFanalysis():
                         "AllGenALP_phi",
                         "AllGenALP_genStatus",
                         "n_FSGenElectron",
-                        # "FSGenElectron_e",
-                        # "FSGenElectron_p",
-                        # "FSGenElectron_pt",
+                        "FSGenElectron_e",
+                        "FSGenElectron_p",
+                        "FSGenElectron_pt",
                         # "FSGenElectron_px",
                         # "FSGenElectron_py",
-                        # "FSGenElectron_pz",
-                        # "FSGenElectron_eta",
-                        # "FSGenElectron_theta",
-                        # "FSGenElectron_phi",
+                        "FSGenElectron_pz",
+                        "FSGenElectron_eta",
+                        "FSGenElectron_theta",
+                        "FSGenElectron_phi",
                         "FSGenPhoton_vertex_x",
                         "FSGenPhoton_vertex_y",
                         "FSGenPhoton_vertex_z",
+                        "n_FSGenElectronPositron",
+                        "FSGenElectronPositron_e",
+                        "FSGenElectronPositron_p",
+                        "FSGenElectronPositron_pt",
+                        "FSGenElectronPositron_px",
+                        "FSGenElectronPositron_py",
+                        "FSGenElectronPositron_pz",
+                        "FSGenElectronPositron_eta",
+                        "FSGenElectronPositron_theta",
+                        "FSGenElectronPositron_phi",
                         # # "n_FSGenElectron_forFS2GenPhotons",
                         # # "n_FSGenPositron_forFS2GenPhotons",
                         "FSGen_Lxy",
@@ -948,6 +1245,7 @@ class RDFanalysis():
 
                         # "GenALPPhotons_deltaR_2",
                         "FSGenPhotons_delta_r",
+                        "FSGenPhotons_min_delta_r",
 
                         "GenALPPhoton1_time",
                         "GenALPPhoton2_time",
@@ -1044,9 +1342,14 @@ class RDFanalysis():
                         "RecoALPPhotons_deltaEta",
                         "RecoALPPhotons_deltaPhi",
                         "RecoALPPhotons_deltaR",
-                        "RecoALPPhotons_deltaR2",
+                        # "RecoALPPhotons_deltaR2",
 
-                        # "RecoALP_aa_invMass",
+                        "RecoALP_aa_invMass",
+                        "RecoALP_aa_p",
+                        "RecoALP_aa_energy",
+                        "Reco_aa_invMass",
+                        "Reco_aa_p",
+
                         "GenMinusRecoALPPhoton1_e",
                         "GenMinusRecoALPPhoton2_e",
                         # "GenMinusRecoALPPhoton1_p",
@@ -1103,10 +1406,10 @@ class RDFanalysis():
                         # "RecoPhotons_ALP_delta_phi",
                         # "RecoPhotons_ALP_delta_eta",
 
-                        "RecoPhoton_y",
+                        # "RecoPhoton_y",
                         # "RecoPhoton_time",
 
-                        "RecoPhoton_reference_point_x",
+                        # "RecoPhoton_reference_point_x",
 
                         "RecoPhoton0_e",
                         "RecoPhoton1_e",
@@ -1132,15 +1435,15 @@ class RDFanalysis():
 
                         "RecoALPPhotons_delta_R3",
 
-                        # "RecoElectron_e",
-                        # "RecoElectron_p",
-                        # "RecoElectron_pt",
+                        "RecoElectron_e",
+                        "RecoElectron_p",
+                        "RecoElectron_pt",
                         # "RecoElectron_px",
                         # "RecoElectron_py",
-                        # "RecoElectron_pz",
-                        # "RecoElectron_eta",
-                        # "RecoElectron_theta",
-                        # "RecoElectron_phi",
+                        "RecoElectron_pz",
+                        "RecoElectron_eta",
+                        "RecoElectron_theta",
+                        "RecoElectron_phi",
                         # "RecoElectron_charge",
                         # "RecoMuon_e",
                         # "RecoMuon_p",
@@ -1161,6 +1464,102 @@ class RDFanalysis():
                         # "RecoMissingEnergy_eta",
                         # "RecoMissingEnergy_theta",
                         # "RecoMissingEnergy_phi",
+
+                #####  OBJECT SELECTION: FSGenPhotons and RecoPhotons with selection: p_t>10 GeV as threshold #### 
+                        "FSGenPhoton_eta_obj_sel_pt_eta",
+                        "FSGenPhoton_theta_obj_sel_pt_eta",
+                        "FSGenPhoton_phi_obj_sel_pt_eta",
+                        "FSGenPhotons_delta_eta_obj_sel_pt_eta",
+                        "FSGenPhotons_delta_phi_obj_sel_pt_eta",
+                        "FSGenPhotons_delta_r_obj_sel_pt_eta",
+                        "FSGenPhotons_min_delta_r_obj_sel_pt_eta",
+                        "FSGenPhoton_pt_obj_sel_pt_eta",
+                        "FSGenPhoton_e_obj_sel_pt_eta",
+                        "FSGenPhoton_p_obj_sel_pt_eta",
+                        "n_FSGenPhoton_obj_sel_pt_eta",
+                        "FSGenPhoton_pz_obj_sel_pt_eta",
+                        "FSGenPhoton0_e_obj_sel_pt_eta",
+                        "FSGenPhoton1_e_obj_sel_pt_eta",
+                        "FSGenPhoton2_e_obj_sel_pt_eta",
+                        "FSGenPhoton0_p_obj_sel_pt_eta",
+                        "FSGenPhoton1_p_obj_sel_pt_eta",
+                        "FSGenPhoton2_p_obj_sel_pt_eta",
+                        "FSGenPhoton0_pt_obj_sel_pt_eta",
+                        "FSGenPhoton1_pt_obj_sel_pt_eta",
+                        "FSGenPhoton2_pt_obj_sel_pt_eta",
+                        "FSGenPhoton0_pz_obj_sel_pt_eta",
+                        "FSGenPhoton1_pz_obj_sel_pt_eta",
+                        "FSGenPhoton2_pz_obj_sel_pt_eta",
+                        "FSGen_aa_invMass_obj_sel_pt_eta",
+                        "FSGen_aa_p_obj_sel_pt_eta",
+
+                        "RecoPhoton_eta_obj_sel_pt_eta",
+                        "RecoPhoton_theta_obj_sel_pt_eta",
+                        "RecoPhoton_phi_obj_sel_pt_eta",
+                        "RecoPhotons_delta_eta_obj_sel_pt_eta",
+                        "RecoPhotons_delta_phi_obj_sel_pt_eta",
+                        "RecoPhotons_delta_r_obj_sel_pt_eta",
+                        "RecoPhotons_min_delta_r_obj_sel_pt_eta",
+                        "RecoPhoton_pt_obj_sel_pt_eta",
+                        "RecoPhoton_e_obj_sel_pt_eta",
+                        "RecoPhoton_p_obj_sel_pt_eta",
+                        "n_RecoPhotons_obj_sel_pt_eta",
+                        "RecoPhoton_charge_obj_sel_pt_eta",
+                        "RecoPhoton_pz_obj_sel_pt_eta",
+                        "RecoPhoton0_e_obj_sel_pt_eta",
+                        "RecoPhoton1_e_obj_sel_pt_eta",
+                        "RecoPhoton2_e_obj_sel_pt_eta",
+                        "RecoPhoton0_p_obj_sel_pt_eta",
+                        "RecoPhoton1_p_obj_sel_pt_eta",
+                        "RecoPhoton2_p_obj_sel_pt_eta",
+                        "RecoPhoton0_pt_obj_sel_pt_eta",
+                        "RecoPhoton1_pt_obj_sel_pt_eta",
+                        "RecoPhoton2_pt_obj_sel_pt_eta",
+                        "RecoPhoton0_pz_obj_sel_pt_eta",
+                        "RecoPhoton1_pz_obj_sel_pt_eta",
+                        "RecoPhoton2_pz_obj_sel_pt_eta",
+                        "Reco_aa_invMass_obj_sel_pt_eta",
+                        "Reco_aa_p_obj_sel_pt_eta",
+
+
+
+                        "RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta",
+                        "RecoPhoton1_pz_obj_sel_pt_eta_v2",
+                        "RecoPhoton2_pz_obj_sel_pt_eta_v2",
+                        "Reco_aa_invMass_obj_sel_pt_eta_v2",
+                        "Reco_aa_p_obj_sel_pt_eta_v2",
+
+                        # "verify_deltaR",
+
+
+                #         #RECO ALP (MATCHED TO GEN)
+                        "RecoALPPhoton1_e_obj_sel_pt_eta",
+                        "RecoALPPhoton2_e_obj_sel_pt_eta",
+                        "RecoALPPhoton1_p_obj_sel_pt_eta",
+                        "RecoALPPhoton2_p_obj_sel_pt_eta",
+                        "RecoALPPhoton1_pt_obj_sel_pt_eta",
+                        "RecoALPPhoton2_pt_obj_sel_pt_eta",
+                        "RecoALPPhoton1_px_obj_sel_pt_eta",
+                        "RecoALPPhoton2_px_obj_sel_pt_eta",
+                        "RecoALPPhoton1_py_obj_sel_pt_eta",
+                        "RecoALPPhoton2_py_obj_sel_pt_eta",
+                        "RecoALPPhoton1_pz_obj_sel_pt_eta",
+                        "RecoALPPhoton2_pz_obj_sel_pt_eta",
+                        "RecoALPPhoton1_eta_obj_sel_pt_eta",
+                        "RecoALPPhoton2_eta_obj_sel_pt_eta",
+                        "RecoALPPhoton1_phi_obj_sel_pt_eta",
+                        "RecoALPPhoton2_phi_obj_sel_pt_eta",
+                        "RecoALPPhotons_deltaEta_obj_sel_pt_eta",
+                        "RecoALPPhotons_deltaPhi_obj_sel_pt_eta",
+                        "RecoALPPhotons_deltaR_obj_sel_pt_eta",
+                        "n_RecoALPPhoton1_obj_sel_pt_eta",
+                        "n_RecoALPPhoton2_obj_sel_pt_eta",
+                        "RecoALP_aa_energy_obj_sel_pt_eta",
+                        "RecoALP_aa_px_obj_sel_pt_eta",
+                        "RecoALP_aa_py_obj_sel_pt_eta",
+                        "RecoALP_aa_pz_obj_sel_pt_eta",
+                        "RecoALP_aa_invMass_obj_sel_pt_eta",
+                        "RecoALP_aa_p_obj_sel_pt_eta",
 		]
 
                 return branchList
