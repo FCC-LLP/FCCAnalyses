@@ -387,6 +387,15 @@ ROOT::VecOps::RVec<float> get_delta_r(ROOT::VecOps::RVec<edm4hep::ReconstructedP
   return result;
 }
 
+float get_delta_r(edm4hep::ReconstructedParticleData p1, edm4hep::ReconstructedParticleData p2) {
+  TLorentzVector tlv1;
+  tlv1.SetXYZM(p1.momentum.x, p1.momentum.y, p1.momentum.z, p1.mass);
+  TLorentzVector tlv2;
+  tlv2.SetXYZM(p2.momentum.x, p2.momentum.y, p2.momentum.z, p2.mass);
+  float delta_r = tlv1.DeltaR(tlv2);
+  return delta_r;
+}
+
 ROOT::VecOps::RVec<float> get_min_delta_r(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in) {
   ROOT::VecOps::RVec<float> result;
   float min_delta_r = 999;
@@ -406,10 +415,55 @@ ROOT::VecOps::RVec<float> get_min_delta_r(ROOT::VecOps::RVec<edm4hep::Reconstruc
   return result;
 }
 
+ROOT::VecOps::RVec<float> get_pidx_min_delta_r(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in) {
+  ROOT::VecOps::RVec<float> result;
+  float min_delta_r = 999;
+  int p1idx = -1;
+  int p2idx = -1;
+  for (int i = 0; i < in.size(); i++) {
+    TLorentzVector tlv1;
+    tlv1.SetXYZM(in[i].momentum.x, in[i].momentum.y, in[i].momentum.z, in[i].mass);
+    for (int j = i + 1; j < in.size(); j++) {
+      TLorentzVector tlv2;
+      tlv2.SetXYZM(in[j].momentum.x, in[j].momentum.y, in[j].momentum.z, in[j].mass);
+      float delta_r = tlv1.DeltaR(tlv2);
+      if (delta_r < min_delta_r) {
+        min_delta_r = delta_r;
+        p1idx = i;
+        p2idx = j;
+      }
+    }
+  }
+
+  if(p1idx > -1 && p2idx > -1) 
+    result.emplace_back(p1idx);
+    result.emplace_back(p2idx);
+    // std::cout << p1idx << " " << p2idx << std::endl;
+  return result;
+}
+
+
+
 ROOT::VecOps::RVec<float> get_reference_point_x(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in) {
   ROOT::VecOps::RVec<float> result;
   for (auto & p: in) {
     result.push_back(p.referencePoint.x);
+  }
+  return result;
+}
+
+ROOT::VecOps::RVec<float> get_reference_point_y(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in) {
+  ROOT::VecOps::RVec<float> result;
+  for (auto & p: in) {
+    result.push_back(p.referencePoint.y);
+  }
+  return result;
+}
+
+ROOT::VecOps::RVec<float> get_reference_point_z(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in) {
+  ROOT::VecOps::RVec<float> result;
+  for (auto & p: in) {
+    result.push_back(p.referencePoint.z);
   }
   return result;
 }

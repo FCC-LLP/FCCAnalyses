@@ -140,8 +140,14 @@ namespace ReconstructedParticle{
   /// return the delta r of the input ReconstructedParticles
   ROOT::VecOps::RVec<float> get_delta_r(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in);
 
+    /// return the delta r of the input ReconstructedParticles
+  float get_delta_r(edm4hep::ReconstructedParticleData p1, edm4hep::ReconstructedParticleData p2);
+
   /// return the minimum delta r of the input ReconstructedParticles
   ROOT::VecOps::RVec<float> get_min_delta_r(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in);
+
+  /// return the photon indices of the minimum delta r of the input ReconstructedParticles
+  ROOT::VecOps::RVec<float> get_pidx_min_delta_r(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in);
 
   /// return the energy of the input ReconstructedParticles
   ROOT::VecOps::RVec<float> get_reference_point_x(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in);
