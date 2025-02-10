@@ -39,6 +39,13 @@ namespace MCParticle{
     ROOT::VecOps::RVec<edm4hep::MCParticleData>  operator() (ROOT::VecOps::RVec<edm4hep::MCParticleData> in);
   };
 
+  /// select MCParticles with absolute pseudorapidity less than a max value
+  struct sel_eta {
+    sel_eta(float arg_min_eta);
+    float m_min_eta = 2.5; //> pseudorapidity threshold
+    ROOT::VecOps::RVec<edm4hep::MCParticleData>  operator() (ROOT::VecOps::RVec<edm4hep::MCParticleData> in);
+  };
+
   /// select MCParticles with their status
   struct sel_genStatus {
     sel_genStatus(int arg_status);
@@ -188,8 +195,17 @@ namespace MCParticle{
   /// return the phi of the input MCParticles
   ROOT::VecOps::RVec<float> get_phi(ROOT::VecOps::RVec<edm4hep::MCParticleData> in);
 
-  /// return the delta r of the input ReconstructedParticles
+  /// return the delta eta of the input MCParticles
+  ROOT::VecOps::RVec<float> get_delta_eta(ROOT::VecOps::RVec<edm4hep::MCParticleData> in);
+
+  /// return the delta phi of the input MCParticles
+  ROOT::VecOps::RVec<float> get_delta_phi(ROOT::VecOps::RVec<edm4hep::MCParticleData> in);
+
+  /// return the delta r of the input MCParticles
   ROOT::VecOps::RVec<float> get_delta_r(ROOT::VecOps::RVec<edm4hep::MCParticleData> in);
+
+   /// return the min delta r of the input MCParticles
+  ROOT::VecOps::RVec<float> get_min_delta_r(ROOT::VecOps::RVec<edm4hep::MCParticleData> in);
 
   /// return the energy of the input MCParticles
   ROOT::VecOps::RVec<float> get_e(ROOT::VecOps::RVec<edm4hep::MCParticleData> in);
