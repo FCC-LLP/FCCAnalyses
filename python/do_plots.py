@@ -188,7 +188,8 @@ def load_hists(var: str,
                 if config['scale_bkg'] == -1.:
                     if(total_background_integral != 0):
                         scale = 1.0/total_background_integral
-
+                    else:
+                        scale = 1.0
 
             hist.Scale(scale)
             hist.Rebin(rebin)
@@ -734,7 +735,7 @@ def drawStack(config, name, ylabel, legend, leftText, rightText, formats,
     if ymin <= 0 and logY:
         LOGGER.error('Log scale can\'t start at: %i', ymin)
         sys.exit(3)
-    # ymin=1e5
+    # ymin=10e-6
     h_dummy.SetMaximum(ymax)
     h_dummy.SetMinimum(ymin)
 

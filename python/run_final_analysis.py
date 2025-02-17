@@ -152,7 +152,8 @@ def save_tables(results: dict[str, dict[str, any]],
         for name in cut_names:
             cut_labels[name] = f'{name}'
 
-    cut_labels['all_events'] = 'All events'
+    # cut_labels['all_events'] = 'All events'
+    cut_labels = dict([("all_events", "All events")] + list(cut_labels.items()))
 
     with open(outpath, 'w', encoding='utf-8') as outfile:
         # Printing the number of events in format of a LaTeX table
