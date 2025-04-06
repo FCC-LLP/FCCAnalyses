@@ -735,7 +735,8 @@ def drawStack(config, name, ylabel, legend, leftText, rightText, formats,
     if ymin <= 0 and logY:
         LOGGER.error('Log scale can\'t start at: %i', ymin)
         sys.exit(3)
-    # ymin=10e-6
+    # ymin=10e-8
+    # ymax=10e4
     h_dummy.SetMaximum(ymax)
     h_dummy.SetMinimum(ymin)
 
