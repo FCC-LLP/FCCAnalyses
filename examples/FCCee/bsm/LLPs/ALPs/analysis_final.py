@@ -2,26 +2,17 @@
 # inputDir = "./output_stage1/"
 #inputDir = "/eos/user/j/jalimena/FCCeeLLP/"
 #inputDir = "./stage1_output/"
-# inputDir = "/eos/user/e/ebakhish/stage1_output/masses_different/"
-# inputDir = "/eos/user/e/ebakhish/stage1_output/couplings_different/"
-# inputDir = "/eos/user/e/ebakhish/stage1_output/background/background_obj_sel_pt_deltaR/"
-# inputDir = "/eos/user/e/ebakhish/stage1_output/final_signals/"
-inputDir = "/eos/user/e/ebakhish/stage1_output/background/all_bkg/"
-
-
+inputDir = "/eos/user/e/ebakhish/stage1_output/final_signals/"
 
 
 #Output directory where the files produced at the final-selection level are
 #outputDir = "./final_output/"
-# outputDir = "/eos/user/e/ebakhish/final_output/masses_different/"
-# outputDir = "/eos/user/e/ebakhish/final_output/couplings_different/"
-# outputDir = "/eos/user/e/ebakhish/final_output/background/obj_sel_p_10GeV_deltaR_0p4/"
-outputDir = "/eos/user/e/ebakhish/final_output/background/all_bkg/"
-# outputDir = "/eos/user/e/ebakhish/final_output/final_signals/"
+outputDir = "/eos/user/e/ebakhish/final_output/cut_flow_4sel/"
+
 
 #Integrated luminosity for scaling number of events (required only if setting doScale to true)
-# intLumi = 205e6 #pb^-1
-intLumi = 205e6*0.49   #pb^-1   #to take into account that the Z-pole run is actually spread over three center-of-mass energies
+# intLumi = 205e6 #pb^-1        #use this for only-photon-background
+intLumi = 205e6*0.49   #pb^-1   #use this for the signal event and for resonant z backgrounds to take into account that the Z-pole run is actually spread over three center-of-mass energies
 
 #Scale event yields by intLumi and cross section (optional)
 doScale = True
@@ -126,7 +117,7 @@ processList = {
 
 
 
-    ####     using my new pythia samples  -E      ####
+    ####     using my new pythia samples       ####
     # 'ALP_Z_aa_0p5GeV_cYY1p0':{},
     # 'ALP_Z_aa_0p8GeV_cYY1p0':{},
     # 'ALP_Z_aa_1p0GeV_cYY1p0':{},
@@ -142,13 +133,6 @@ processList = {
     # 'ALP_Z_aa_3p0GeV_cYY1p0':{},       
     # 'ALP_Z_aa_5p0GeV_cYY1p0':{},
 
-    # 'ALP_Z_aa_10p0GeV_cYY1p0':{},
-    # 'ALP_Z_aa_20p0GeV_cYY1p0':{},
-    # 'ALP_Z_aa_30p0GeV_cYY1p0':{},
-
-
-
-
     # 'ALP_Z_aa_1p0GeV_cYY0p001':{},
     # 'ALP_Z_aa_1p0GeV_cYY0p01':{},
     # 'ALP_Z_aa_1p0GeV_cYY0p1':{},
@@ -156,26 +140,130 @@ processList = {
     # 'ALP_Z_aa_1p0GeV_cYY0p7':{},
     # 'ALP_Z_aa_1p0GeV_cYY1p3':{},
     # 'ALP_Z_aa_1p0GeV_cYY1p6':{},
-
-    # 'ALP_Z_aa_0p1GeV_cYY1p6':{},
+######################################
 
     # 'ALP_Z_aa_1p0GeV_cYY1p0':{},
+    # 'ALP_Z_aa_0p1GeV_cYY1p0':{},
 
-    # 'ALP_Z_aa_3p0GeV_cYY0p4':{},
+######################################
 
-    # 'ALP_Z_aa_10p0GeV_cYY0p03':{},
+    # 'ALP_Z_aa_30p0GeV_cYY1p6': {},
+    # 'ALP_Z_aa_10p0GeV_cYY1p6': {},
+    # 'ALP_Z_aa_3p0GeV_cYY1p6': {},
+    # 'ALP_Z_aa_1p0GeV_cYY1p6': {},
+    # 'ALP_Z_aa_0p3GeV_cYY1p6': {},
+    # 'ALP_Z_aa_0p1GeV_cYY1p6': {},
+    # 'ALP_Z_aa_0p03GeV_cYY1p6': {},
+    # 'ALP_Z_aa_0p01GeV_cYY1p6': {},
 
-    # 'ALP_Z_aa_30p0GeV_cYY0p002':{},
-    # 'ALP_Z_aa_30p0GeV_cYY0p0002':{},
+    # 'ALP_Z_aa_30p0GeV_cYY0p4': {},
+    # 'ALP_Z_aa_10p0GeV_cYY0p4': {},
+    # 'ALP_Z_aa_3p0GeV_cYY0p4': {},
+    # 'ALP_Z_aa_1p0GeV_cYY0p4': {},
+    # 'ALP_Z_aa_0p3GeV_cYY0p4': {},
+    # 'ALP_Z_aa_0p1GeV_cYY0p4': {},
+    # 'ALP_Z_aa_0p03GeV_cYY0p4': {},
+    # 'ALP_Z_aa_0p01GeV_cYY0p4': {},
+
+    # 'ALP_Z_aa_30p0GeV_cYY0p1': {},
+    # 'ALP_Z_aa_10p0GeV_cYY0p1': {},
+    # 'ALP_Z_aa_3p0GeV_cYY0p1': {},
+    # 'ALP_Z_aa_1p0GeV_cYY0p1': {},
+    # 'ALP_Z_aa_0p3GeV_cYY0p1': {},
+    # 'ALP_Z_aa_0p1GeV_cYY0p1': {},
+    # 'ALP_Z_aa_0p03GeV_cYY0p1': {},
+    # 'ALP_Z_aa_0p01GeV_cYY0p1': {},
+
+    # 'ALP_Z_aa_30p0GeV_cYY0p03': {},
+    # 'ALP_Z_aa_10p0GeV_cYY0p03': {},
+    # 'ALP_Z_aa_3p0GeV_cYY0p03': {},
+    # 'ALP_Z_aa_1p0GeV_cYY0p03': {},
+    # 'ALP_Z_aa_0p3GeV_cYY0p03': {},
+    # 'ALP_Z_aa_0p1GeV_cYY0p03': {},
+    # 'ALP_Z_aa_0p03GeV_cYY0p03': {},
+    # 'ALP_Z_aa_0p01GeV_cYY0p03': {},
+
+    # 'ALP_Z_aa_30p0GeV_cYY0p009': {},
+    # 'ALP_Z_aa_10p0GeV_cYY0p009': {},
+    # 'ALP_Z_aa_3p0GeV_cYY0p009': {},
+    # 'ALP_Z_aa_1p0GeV_cYY0p009': {},
+    # 'ALP_Z_aa_0p3GeV_cYY0p009': {},
+    # 'ALP_Z_aa_0p1GeV_cYY0p009': {},
+    # 'ALP_Z_aa_0p03GeV_cYY0p009': {},
+    # 'ALP_Z_aa_0p01GeV_cYY0p009': {},
+
+    # 'ALP_Z_aa_30p0GeV_cYY0p002': {},
+    # 'ALP_Z_aa_10p0GeV_cYY0p002': {},
+    # 'ALP_Z_aa_3p0GeV_cYY0p002': {},
+    # 'ALP_Z_aa_1p0GeV_cYY0p002': {},
+    # 'ALP_Z_aa_0p3GeV_cYY0p002': {},
+    # 'ALP_Z_aa_0p1GeV_cYY0p002': {},
+    # 'ALP_Z_aa_0p03GeV_cYY0p002': {},
+    # 'ALP_Z_aa_0p01GeV_cYY0p002': {},
+
+    # 'ALP_Z_aa_30p0GeV_cYY0p0007': {},
+    # 'ALP_Z_aa_10p0GeV_cYY0p0007': {},
+    # 'ALP_Z_aa_3p0GeV_cYY0p0007': {},
+    # 'ALP_Z_aa_1p0GeV_cYY0p0007': {},
+    # 'ALP_Z_aa_0p3GeV_cYY0p0007': {},
+    # 'ALP_Z_aa_0p1GeV_cYY0p0007': {},
+    # 'ALP_Z_aa_0p03GeV_cYY0p0007': {},
+    # 'ALP_Z_aa_0p01GeV_cYY0p0007': {},
+
+    # 'ALP_Z_aa_30p0GeV_cYY0p0002': {},
+    # 'ALP_Z_aa_10p0GeV_cYY0p0002': {},
+    # 'ALP_Z_aa_3p0GeV_cYY0p0002': {},
+    # 'ALP_Z_aa_1p0GeV_cYY0p0002': {},
+    # 'ALP_Z_aa_0p3GeV_cYY0p0002': {},
+    # 'ALP_Z_aa_0p1GeV_cYY0p0002': {},
+    # 'ALP_Z_aa_0p03GeV_cYY0p0002': {},
+    # 'ALP_Z_aa_0p01GeV_cYY0p0002': {},
+
+    # 'ALP_Z_aa_30p0GeV_cYY0p00005': {},
+    # 'ALP_Z_aa_10p0GeV_cYY0p00005': {},
+    # 'ALP_Z_aa_3p0GeV_cYY0p00005': {},
+    # 'ALP_Z_aa_1p0GeV_cYY0p00005': {},
+    # 'ALP_Z_aa_0p3GeV_cYY0p00005': {},
+    # 'ALP_Z_aa_0p1GeV_cYY0p00005': {},
+    # 'ALP_Z_aa_0p03GeV_cYY0p00005': {},
+    # 'ALP_Z_aa_0p01GeV_cYY0p00005': {},
+
+    # 'ALP_Z_aa_30p0GeV_cYY0p00001': {},
+    # 'ALP_Z_aa_10p0GeV_cYY0p00001': {},
+    # 'ALP_Z_aa_3p0GeV_cYY0p00001': {},
+    # 'ALP_Z_aa_1p0GeV_cYY0p00001': {},
+    # 'ALP_Z_aa_0p3GeV_cYY0p00001': {},
+    # 'ALP_Z_aa_0p1GeV_cYY0p00001': {},
+    # 'ALP_Z_aa_0p03GeV_cYY0p00001': {},
+    # 'ALP_Z_aa_0p01GeV_cYY0p00001': {},
+
+    # 'ALP_Z_aa_30p0GeV_cYY0p000004': {},
+    # 'ALP_Z_aa_10p0GeV_cYY0p000004': {},
+    # 'ALP_Z_aa_3p0GeV_cYY0p000004': {},
+    # 'ALP_Z_aa_1p0GeV_cYY0p000004': {},
+    # 'ALP_Z_aa_0p3GeV_cYY0p000004': {},
+    # 'ALP_Z_aa_0p1GeV_cYY0p000004': {},
+    # 'ALP_Z_aa_0p03GeV_cYY0p000004': {},
+    # 'ALP_Z_aa_0p01GeV_cYY0p000004': {},
+
+    # 'ALP_Z_aa_30p0GeV_cYY0p000001': {},
+    # 'ALP_Z_aa_10p0GeV_cYY0p000001': {},
+    # 'ALP_Z_aa_3p0GeV_cYY0p000001': {},
+    # 'ALP_Z_aa_1p0GeV_cYY0p000001': {},
+    # 'ALP_Z_aa_0p3GeV_cYY0p000001': {},
+    # 'ALP_Z_aa_0p1GeV_cYY0p000001': {},
+    # 'ALP_Z_aa_0p03GeV_cYY0p000001': {},
+    # 'ALP_Z_aa_0p01GeV_cYY0p000001': {},
+
 
     #####Background######
-    'background_ee_aa1':{},
-    'background_ee_aaa1':{},
-    'background_ee_aaaa1':{},
-    'background_ee_ee':{},
-    'background_ee_eea1':{},
-    'background_ee_eeaa1':{},
-    'background_ee_eeaaa1':{},
+    # 'background_ee_aa1':{},
+    # 'background_ee_aaa1':{},
+    # 'background_ee_aaaa1':{},
+    # 'background_ee_ee':{},
+    # 'background_ee_eea1':{},
+    # 'background_ee_eeaa1':{},
+    # 'background_ee_eeaaa1':{},
 
     
  
@@ -206,21 +294,6 @@ processLabels = {
     'background_ee_eeaaa1':"$\rightarrow$ ee#gamma#gamma#gamma",
 
     #signals
-
-
-    'ALP_Z_aa_0p1GeV_cYY1p6':"$m_ALP =$ 0.1 GeV, $c_{YY} = 1.6$",
-
-    'ALP_Z_aa_1p0GeV_cYY1p0':"$m_ALP =$ 1.0 GeV, $c_{YY} = 1.0$",
-
-    'ALP_Z_aa_3p0GeV_cYY0p4':"$m_ALP =$ 3.0 GeV, $c_{YY} = 0.4$",
-
-    'ALP_Z_aa_10p0GeV_cYY0p03':"$m_ALP =$ 10.0 GeV, $c_{YY} = 0.03$",
-
-    'ALP_Z_aa_30p0GeV_cYY0p002':"$m_ALP =$ 30.0 GeV, $c_{YY} = 0.002$",
-
-    'ALP_Z_aa_30p0GeV_cYY0p0002':"$m_ALP =$ 30.0 GeV, $c_{YY} = 0.0002$",
-
-
 
     # 'ALP_Z_aa_0.01.GeV_cYY_0.00006':"$m_ALP =$ 0.01 GeV, $c_{YY} = 0.00006$",
     # 'ALP_Z_aa_0.01.GeV_cYY_0.0006':"$m_ALP =$ 0.01 GeV, $c_{YY} = 0.0006$",
@@ -309,33 +382,118 @@ processLabels = {
 
 
 
-    # 'ALP_Z_aa_0p5GeV_cYY1p0': "$m_ALP =$ 0.5 GeV, $c_{YY} = 1$",
-    # 'ALP_Z_aa_0p8GeV_cYY1p0': "$m_ALP =$ 0.8 GeV, $c_{YY} = 1$",
-    # 'ALP_Z_aa_1p0GeV_cYY1p0': "$m_ALP =$ 1 GeV, $c_{YY} = 1$",
-    # 'ALP_Z_aa_5p0GeV_cYY1p0': "$m_ALP =$ 5 GeV, $c_{YY} = 1$",
-    # 'ALP_Z_aa_8p0GeV_cYY1p0': "$m_ALP =$ 8 GeV, $c_{YY} = 1$",
 
-    # 'ALP_Z_aa_0p001GeV_cYY1p0': "$m_ALP =$ 0.001 GeV, $c_{YY} = 1$",
-    # 'ALP_Z_aa_0p01GeV_cYY1p0': "$m_ALP =$ 0.01 GeV, $c_{YY} = 1$",
-    # 'ALP_Z_aa_0p1GeV_cYY1p0': "$m_ALP =$ 0.1 GeV, $c_{YY} = 1$",
-    # 'ALP_Z_aa_0p5GeV_cYY1p0': "$m_ALP =$ 0.5 GeV, $c_{YY} = 1$",
-    # 'ALP_Z_aa_0p8GeV_cYY1p0': "$m_ALP =$ 0.8 GeV, $c_{YY} = 1$",    
-    # 'ALP_Z_aa_1p0GeV_cYY1p0': "$m_ALP =$ 1.00 GeV, $c_{YY} = 1$",
-    # # 'ALP_Z_aa_2p0GeV_cYY1p0': "$m_ALP =$ 2.00 GeV, $c_{YY} = 1$",
-    # 'ALP_Z_aa_3p0GeV_cYY1p0': "$m_ALP =$ 3.00 GeV, $c_{YY} = 1$",
-    # 'ALP_Z_aa_5p0GeV_cYY1p0': "$m_ALP =$ 5.00 GeV, $c_{YY} = 1$",
-    # 'ALP_Z_aa_10p0GeV_cYY1p0': "$m_ALP =$ 10.00 GeV, $c_{YY} = 1$",
-    # 'ALP_Z_aa_20p0GeV_cYY1p0': "$m_ALP =$ 20.00 GeV, $c_{YY} = 1$",
-    # 'ALP_Z_aa_30p0GeV_cYY1p0': "$m_ALP =$ 30.00 GeV, $c_{YY} = 1$",
+    # 'ALP_Z_aa_30p0GeV_cYY1p6': "$m_{ALP} =$ 30.0 GeV, $c_{YY} = 1.6$",
+    # 'ALP_Z_aa_10p0GeV_cYY1p6': "$m_{ALP} =$ 10.0 GeV, $c_{YY} = 1.6$",
+    # 'ALP_Z_aa_3p0GeV_cYY1p6': "$m_{ALP} =$ 3.0 GeV, $c_{YY} = 1.6$",
+    # 'ALP_Z_aa_1p0GeV_cYY1p6': "$m_{ALP} =$ 1.0 GeV, $c_{YY} = 1.6$",
+    # 'ALP_Z_aa_0p3GeV_cYY1p6': "$m_{ALP} =$ 0.3 GeV, $c_{YY} = 1.6$",
+    # 'ALP_Z_aa_0p1GeV_cYY1p6': "$m_{ALP} =$ 0.1 GeV, $c_{YY} = 1.6$",
+    # 'ALP_Z_aa_0p03GeV_cYY1p6': "$m_{ALP} =$ 0.03 GeV, $c_{YY} = 1.6$",
+    # 'ALP_Z_aa_0p01GeV_cYY1p6': "$m_{ALP} =$ 0.01 GeV, $c_{YY} = 1.6$",
+
+    # 'ALP_Z_aa_30p0GeV_cYY0p4': "$m_{ALP} =$ 30.0 GeV, $c_{YY} = 0.4$",
+    # 'ALP_Z_aa_10p0GeV_cYY0p4': "$m_{ALP} =$ 10.0 GeV, $c_{YY} = 0.4$",
+    # 'ALP_Z_aa_3p0GeV_cYY0p4': "$m_{ALP} =$ 3.0 GeV, $c_{YY} = 0.4$",
+    # 'ALP_Z_aa_1p0GeV_cYY0p4': "$m_{ALP} =$ 1.0 GeV, $c_{YY} = 0.4$",
+    # 'ALP_Z_aa_0p3GeV_cYY0p4': "$m_{ALP} =$ 0.3 GeV, $c_{YY} = 0.4$",
+    # 'ALP_Z_aa_0p1GeV_cYY0p4': "$m_{ALP} =$ 0.1 GeV, $c_{YY} = 0.4$",
+    # 'ALP_Z_aa_0p03GeV_cYY0p4': "$m_{ALP} =$ 0.03 GeV, $c_{YY} = 0.4$",
+    # 'ALP_Z_aa_0p01GeV_cYY0p4': "$m_{ALP} =$ 0.01 GeV, $c_{YY} = 0.4$",
+
+    # 'ALP_Z_aa_30p0GeV_cYY0p1': "$m_{ALP} =$ 30.0 GeV, $c_{YY} = 0.1$",
+    # 'ALP_Z_aa_10p0GeV_cYY0p1': "$m_{ALP} =$ 10.0 GeV, $c_{YY} = 0.1$",
+    # 'ALP_Z_aa_3p0GeV_cYY0p1': "$m_{ALP} =$ 3.0 GeV, $c_{YY} = 0.1$",
+    # 'ALP_Z_aa_1p0GeV_cYY0p1': "$m_{ALP} =$ 1.0 GeV, $c_{YY} = 0.1$",
+    # 'ALP_Z_aa_0p3GeV_cYY0p1': "$m_{ALP} =$ 0.3 GeV, $c_{YY} = 0.1$",
+    # 'ALP_Z_aa_0p1GeV_cYY0p1': "$m_{ALP} =$ 0.1 GeV, $c_{YY} = 0.1$",
+    # 'ALP_Z_aa_0p03GeV_cYY0p1': "$m_{ALP} =$ 0.03 GeV, $c_{YY} = 0.1$",
+    # 'ALP_Z_aa_0p01GeV_cYY0p1': "$m_{ALP} =$ 0.01 GeV, $c_{YY} = 0.1$",
+
+    # 'ALP_Z_aa_30p0GeV_cYY0p03': "$m_{ALP} =$ 30.0 GeV, $c_{YY} = 0.03$",
+    # 'ALP_Z_aa_10p0GeV_cYY0p03': "$m_{ALP} =$ 10.0 GeV, $c_{YY} = 0.03$",
+    # 'ALP_Z_aa_3p0GeV_cYY0p03': "$m_{ALP} =$ 3.0 GeV, $c_{YY} = 0.03$",
+    # 'ALP_Z_aa_1p0GeV_cYY0p03': "$m_{ALP} =$ 1.0 GeV, $c_{YY} = 0.03$",
+    # 'ALP_Z_aa_0p3GeV_cYY0p03': "$m_{ALP} =$ 0.3 GeV, $c_{YY} = 0.03$",
+    # 'ALP_Z_aa_0p1GeV_cYY0p03': "$m_{ALP} =$ 0.1 GeV, $c_{YY} = 0.03$",
+    # 'ALP_Z_aa_0p03GeV_cYY0p03': "$m_{ALP} =$ 0.03 GeV, $c_{YY} = 0.03$",
+    # 'ALP_Z_aa_0p01GeV_cYY0p03': "$m_{ALP} =$ 0.01 GeV, $c_{YY} = 0.03$",
+
+    # 'ALP_Z_aa_30p0GeV_cYY0p009': "$m_{ALP} =$ 30.0 GeV, $c_{YY} = 0.009$",
+    # 'ALP_Z_aa_10p0GeV_cYY0p009': "$m_{ALP} =$ 10.0 GeV, $c_{YY} = 0.009$",
+    # 'ALP_Z_aa_3p0GeV_cYY0p009': "$m_{ALP} =$ 3.0 GeV, $c_{YY} = 0.009$",
+    # 'ALP_Z_aa_1p0GeV_cYY0p009': "$m_{ALP} =$ 1.0 GeV, $c_{YY} = 0.009$",
+    # 'ALP_Z_aa_0p3GeV_cYY0p009': "$m_{ALP} =$ 0.3 GeV, $c_{YY} = 0.009$",
+    # 'ALP_Z_aa_0p1GeV_cYY0p009': "$m_{ALP} =$ 0.1 GeV, $c_{YY} = 0.009$",
+    # 'ALP_Z_aa_0p03GeV_cYY0p009': "$m_{ALP} =$ 0.03 GeV, $c_{YY} = 0.009$",
+    # 'ALP_Z_aa_0p01GeV_cYY0p009': "$m_{ALP} =$ 0.01 GeV, $c_{YY} = 0.009$",
+
+    # 'ALP_Z_aa_30p0GeV_cYY0p002': "$m_{ALP} =$ 30.0 GeV, $c_{YY} = 0.002$",
+    # 'ALP_Z_aa_10p0GeV_cYY0p002': "$m_{ALP} =$ 10.0 GeV, $c_{YY} = 0.002$",
+    # 'ALP_Z_aa_3p0GeV_cYY0p002': "$m_{ALP} =$ 3.0 GeV, $c_{YY} = 0.002$",
+    # 'ALP_Z_aa_1p0GeV_cYY0p002': "$m_{ALP} =$ 1.0 GeV, $c_{YY} = 0.002$",
+    # 'ALP_Z_aa_0p3GeV_cYY0p002': "$m_{ALP} =$ 0.3 GeV, $c_{YY} = 0.002$",
+    # 'ALP_Z_aa_0p1GeV_cYY0p002': "$m_{ALP} =$ 0.1 GeV, $c_{YY} = 0.002$",
+    # 'ALP_Z_aa_0p03GeV_cYY0p002': "$m_{ALP} =$ 0.03 GeV, $c_{YY} = 0.002$",
+    # 'ALP_Z_aa_0p01GeV_cYY0p002': "$m_{ALP} =$ 0.01 GeV, $c_{YY} = 0.002$",
+
+    # 'ALP_Z_aa_30p0GeV_cYY0p0007': "$m_{ALP} =$ 30.0 GeV, $c_{YY} = 0.0007$",
+    # 'ALP_Z_aa_10p0GeV_cYY0p0007': "$m_{ALP} =$ 10.0 GeV, $c_{YY} = 0.0007$",
+    # 'ALP_Z_aa_3p0GeV_cYY0p0007': "$m_{ALP} =$ 3.0 GeV, $c_{YY} = 0.0007$",
+    # 'ALP_Z_aa_1p0GeV_cYY0p0007': "$m_{ALP} =$ 1.0 GeV, $c_{YY} = 0.0007$",
+    # 'ALP_Z_aa_0p3GeV_cYY0p0007': "$m_{ALP} =$ 0.3 GeV, $c_{YY} = 0.0007$",
+    # 'ALP_Z_aa_0p1GeV_cYY0p0007': "$m_{ALP} =$ 0.1 GeV, $c_{YY} = 0.0007$",
+    # 'ALP_Z_aa_0p03GeV_cYY0p0007': "$m_{ALP} =$ 0.03 GeV, $c_{YY} = 0.0007$",
+    # 'ALP_Z_aa_0p01GeV_cYY0p0007': "$m_{ALP} =$ 0.01 GeV, $c_{YY} = 0.0007$",
+
+    # 'ALP_Z_aa_30p0GeV_cYY0p0002': "$m_{ALP} =$ 30.0 GeV, $c_{YY} = 0.0002$",
+    # 'ALP_Z_aa_10p0GeV_cYY0p0002': "$m_{ALP} =$ 10.0 GeV, $c_{YY} = 0.0002$",
+    # 'ALP_Z_aa_3p0GeV_cYY0p0002': "$m_{ALP} =$ 3.0 GeV, $c_{YY} = 0.0002$",
+    # 'ALP_Z_aa_1p0GeV_cYY0p0002': "$m_{ALP} =$ 1.0 GeV, $c_{YY} = 0.0002$",
+    # 'ALP_Z_aa_0p3GeV_cYY0p0002': "$m_{ALP} =$ 0.3 GeV, $c_{YY} = 0.0002$",
+    # 'ALP_Z_aa_0p1GeV_cYY0p0002': "$m_{ALP} =$ 0.1 GeV, $c_{YY} = 0.0002$",
+    # 'ALP_Z_aa_0p03GeV_cYY0p0002': "$m_{ALP} =$ 0.03 GeV, $c_{YY} = 0.0002$",
+    # 'ALP_Z_aa_0p01GeV_cYY0p0002': "$m_{ALP} =$ 0.01 GeV, $c_{YY} = 0.0002$",
+
+    # 'ALP_Z_aa_30p0GeV_cYY0p00005': "$m_{ALP} =$ 30.0 GeV, $c_{YY} = 0.00005$",
+    # 'ALP_Z_aa_10p0GeV_cYY0p00005': "$m_{ALP} =$ 10.0 GeV, $c_{YY} = 0.00005$",
+    # 'ALP_Z_aa_3p0GeV_cYY0p00005': "$m_{ALP} =$ 3.0 GeV, $c_{YY} = 0.00005$",
+    # 'ALP_Z_aa_1p0GeV_cYY0p00005': "$m_{ALP} =$ 1.0 GeV, $c_{YY} = 0.00005$",
+    # 'ALP_Z_aa_0p3GeV_cYY0p00005': "$m_{ALP} =$ 0.3 GeV, $c_{YY} = 0.00005$",
+    # 'ALP_Z_aa_0p1GeV_cYY0p00005': "$m_{ALP} =$ 0.1 GeV, $c_{YY} = 0.00005$",
+    # 'ALP_Z_aa_0p03GeV_cYY0p00005': "$m_{ALP} =$ 0.03 GeV, $c_{YY} = 0.00005$",
+    # 'ALP_Z_aa_0p01GeV_cYY0p00005': "$m_{ALP} =$ 0.01 GeV, $c_{YY} = 0.00005$",
+
+    # 'ALP_Z_aa_30p0GeV_cYY0p00001': "$m_{ALP} =$ 30.0 GeV, $c_{YY} = 0.00001$",
+    # 'ALP_Z_aa_10p0GeV_cYY0p00001': "$m_{ALP} =$ 10.0 GeV, $c_{YY} = 0.00001$",
+    # 'ALP_Z_aa_3p0GeV_cYY0p00001': "$m_{ALP} =$ 3.0 GeV, $c_{YY} = 0.00001$",
+    # 'ALP_Z_aa_1p0GeV_cYY0p00001': "$m_{ALP} =$ 1.0 GeV, $c_{YY} = 0.00001$",
+    # 'ALP_Z_aa_0p3GeV_cYY0p00001': "$m_{ALP} =$ 0.3 GeV, $c_{YY} = 0.00001$",
+    # 'ALP_Z_aa_0p1GeV_cYY0p00001': "$m_{ALP} =$ 0.1 GeV, $c_{YY} = 0.00001$",
+    # 'ALP_Z_aa_0p03GeV_cYY0p00001': "$m_{ALP} =$ 0.03 GeV, $c_{YY} = 0.00001$",
+    # 'ALP_Z_aa_0p01GeV_cYY0p00001': "$m_{ALP} =$ 0.01 GeV, $c_{YY} = 0.00001$",
+
+    # 'ALP_Z_aa_30p0GeV_cYY0p000004': "$m_{ALP} =$ 30.0 GeV, $c_{YY} = 0.000004$",
+    # 'ALP_Z_aa_10p0GeV_cYY0p000004': "$m_{ALP} =$ 10.0 GeV, $c_{YY} = 0.000004$",
+    # 'ALP_Z_aa_3p0GeV_cYY0p000004': "$m_{ALP} =$ 3.0 GeV, $c_{YY} = 0.000004$",
+    # 'ALP_Z_aa_1p0GeV_cYY0p000004': "$m_{ALP} =$ 1.0 GeV, $c_{YY} = 0.000004$",
+    # 'ALP_Z_aa_0p3GeV_cYY0p000004': "$m_{ALP} =$ 0.3 GeV, $c_{YY} = 0.000004$",
+    # 'ALP_Z_aa_0p1GeV_cYY0p000004': "$m_{ALP} =$ 0.1 GeV, $c_{YY} = 0.000004$",
+    # 'ALP_Z_aa_0p03GeV_cYY0p000004': "$m_{ALP} =$ 0.03 GeV, $c_{YY} = 0.000004$",
+    # 'ALP_Z_aa_0p01GeV_cYY0p000004': "$m_{ALP} =$ 0.01 GeV, $c_{YY} = 0.000004$",
+
+    # 'ALP_Z_aa_30p0GeV_cYY0p000001': "$m_{ALP} =$ 30.0 GeV, $c_{YY} = 0.000001$",
+    # 'ALP_Z_aa_10p0GeV_cYY0p000001': "$m_{ALP} =$ 10.0 GeV, $c_{YY} = 0.000001$",
+    # 'ALP_Z_aa_3p0GeV_cYY0p000001': "$m_{ALP} =$ 3.0 GeV, $c_{YY} = 0.000001$",
+    # 'ALP_Z_aa_1p0GeV_cYY0p000001': "$m_{ALP} =$ 1.0 GeV, $c_{YY} = 0.000001$",
+    # 'ALP_Z_aa_0p3GeV_cYY0p000001': "$m_{ALP} =$ 0.3 GeV, $c_{YY} = 0.000001$",
+    # 'ALP_Z_aa_0p1GeV_cYY0p000001': "$m_{ALP} =$ 0.1 GeV, $c_{YY} = 0.000001$",
+    # 'ALP_Z_aa_0p03GeV_cYY0p000001': "$m_{ALP} =$ 0.03 GeV, $c_{YY} = 0.000001$",
+    # 'ALP_Z_aa_0p01GeV_cYY0p000001': "$m_{ALP} =$ 0.01 GeV, $c_{YY} = 0.000001$",
 
 
-    # 'ALP_Z_aa_1p0GeV_cYY0p001': "$m_ALP =$ 1.00 GeV, $c_{YY} = 0.001$",
-    # 'ALP_Z_aa_1p0GeV_cYY0p01': "$m_ALP =$ 1.00 GeV, $c_{YY} = 0.01$",
-    # 'ALP_Z_aa_1p0GeV_cYY0p1': "$m_ALP =$ 1.00 GeV, $c_{YY} = 0.1$",
-    # 'ALP_Z_aa_1p0GeV_cYY0p4': "$m_ALP =$ 1.00 GeV, $c_{YY} = 0.4$",
-    # 'ALP_Z_aa_1p0GeV_cYY0p7': "$m_ALP =$ 1.00 GeV, $c_{YY} = 0.7$",
-    # 'ALP_Z_aa_1p0GeV_cYY1p3': "$m_ALP =$ 1.00 GeV, $c_{YY} = 1.3$",
-    # 'ALP_Z_aa_1p0GeV_cYY1p6': "$m_ALP =$ 1.00 GeV, $c_{YY} = 1.6$",
+    # 'ALP_Z_aa_1p0GeV_cYY1p0':"$m_{ALP} =$ 1.0 GeV, $c_{YY} = 1.0$",
+    # 'ALP_Z_aa_0p1GeV_cYY1p0':"$m_{ALP} =$ 0.1 GeV, $c_{YY} = 1.0$",
 
 }
 
@@ -353,36 +511,17 @@ procDictAdd={
     # "ee_gaga_test": {"numberOfEvents": 10000, "sumOfWeights": 10000, "crossSection": 4.563, "kfactor": 1.0, "matchingEfficiency": 1.0},
     # "ee_aa": {"numberOfEvents": 1000000, "sumOfWeights": 100000, "crossSection": 57.3, "kfactor": 1.0, "matchingEfficiency": 1.0},
 
-    # "background_ee_aa": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 57.32, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    # "background_ee_aaa": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.4624, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    # "background_ee_aaaa": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.001119, "kfactor": 1.0, "matchingEfficiency": 1.0},
+
+    # "background_ee_aa1": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 67.25 , "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # "background_ee_aaa1": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 2.995 , "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # "background_ee_aaaa1": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.06271, "kfactor": 1.0, "matchingEfficiency": 1.0},
     # "background_ee_ee": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 4500, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    # "background_ee_eea": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 29.76, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    # "background_ee_eeaa": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.09864, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    # "background_ee_eeaaa": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.000111, "kfactor": 1.0, "matchingEfficiency": 1.0},
-
-    "background_ee_aa1": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 67.25 , "kfactor": 1.0, "matchingEfficiency": 1.0},
-    "background_ee_aaa1": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 2.995 , "kfactor": 1.0, "matchingEfficiency": 1.0},
-    "background_ee_aaaa1": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.06271, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    "background_ee_ee": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 4500, "kfactor": 1.0, "matchingEfficiency": 1.0},
-    "background_ee_eea1": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 118.4 , "kfactor": 1.0, "matchingEfficiency": 1.0},
-    "background_ee_eeaa1": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 1.993 , "kfactor": 1.0, "matchingEfficiency": 1.0},
-    "background_ee_eeaaa1": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.02369, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # "background_ee_eea1": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 118.4 , "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # "background_ee_eeaa1": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 1.993 , "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # "background_ee_eeaaa1": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.02369, "kfactor": 1.0, "matchingEfficiency": 1.0},
 
 
-
-
-    'ALP_Z_aa_0p1GeV_cYY1p6':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 7.014 , "kfactor": 1.0, "matchingEfficiency": 1.0},
-
-    'ALP_Z_aa_1p0GeV_cYY1p0':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 2.739 , "kfactor": 1.0, "matchingEfficiency": 1.0},
-
-    'ALP_Z_aa_3p0GeV_cYY0p4':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.437 , "kfactor": 1.0, "matchingEfficiency": 1.0},
-
-    'ALP_Z_aa_10p0GeV_cYY0p03':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.002378  , "kfactor": 1.0, "matchingEfficiency": 1.0},
-
-    'ALP_Z_aa_30p0GeV_cYY0p002':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 7.772e-06  , "kfactor": 1.0, "matchingEfficiency": 1.0},
-    'ALP_Z_aa_30p0GeV_cYY0p0002':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 7.772e-08 , "kfactor": 1.0, "matchingEfficiency": 1.0},
-
+###########################################
 
 
     # "ALP_Z_aa_0.01.GeV_cYY_0.00006": {"numberOfEvents": 10000, "sumOfWeights": 10000, "crossSection": 1, "kfactor": 1.0, "matchingEfficiency": 1.0},
@@ -541,6 +680,108 @@ procDictAdd={
     # "ALP_Z_aa_1p0GeV_cYY1p6": {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 7.011, "kfactor": 1.0, "matchingEfficiency": 1.0},
 
 
+
+
+    # 'ALP_Z_aa_30p0GeV_cYY1p6': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 4.974, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_10p0GeV_cYY1p6': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 6.764, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_3p0GeV_cYY1p6': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 6.991, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_1p0GeV_cYY1p6': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 7.011, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p3GeV_cYY1p6': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 7.014, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p1GeV_cYY1p6': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 7.014, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p03GeV_cYY1p6': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 7.014, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p01GeV_cYY1p6': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 7.014, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_30p0GeV_cYY0p4': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.3109, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_10p0GeV_cYY0p4': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.4228, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_3p0GeV_cYY0p4': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.437, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_1p0GeV_cYY0p4': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.4382, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p3GeV_cYY0p4': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.4384, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p1GeV_cYY0p4': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.4384, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p03GeV_cYY0p4': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.4384, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p01GeV_cYY0p4': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.4384, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_30p0GeV_cYY0p1': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.01943, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_10p0GeV_cYY0p1': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.02642, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_3p0GeV_cYY0p1': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.02731, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_1p0GeV_cYY0p1': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.02739, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p3GeV_cYY0p1': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.0274, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p1GeV_cYY0p1': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.0274, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p03GeV_cYY0p1': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.0274, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p01GeV_cYY0p1': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.0274, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_30p0GeV_cYY0p03': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.001749, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_10p0GeV_cYY0p03': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.002378, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_3p0GeV_cYY0p03': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.002458, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_1p0GeV_cYY0p03': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.002465, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p3GeV_cYY0p03': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.002466, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p1GeV_cYY0p03': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.002466, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p03GeV_cYY0p03': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.002466, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p01GeV_cYY0p03': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.002466, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_30p0GeV_cYY0p009': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.0001574, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_10p0GeV_cYY0p009': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.000214, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_3p0GeV_cYY0p009': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.0002212, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_1p0GeV_cYY0p009': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.0002218, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p3GeV_cYY0p009': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.0002219, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p1GeV_cYY0p009': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.0002219, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p03GeV_cYY0p009': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.0002219, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p01GeV_cYY0p009': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 0.0002219, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_30p0GeV_cYY0p002': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 7.772e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_10p0GeV_cYY0p002': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 1.057e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_3p0GeV_cYY0p002': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 1.092e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_1p0GeV_cYY0p002': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 1.096e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p3GeV_cYY0p002': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 1.096e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p1GeV_cYY0p002': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 1.096e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p03GeV_cYY0p002': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 1.096e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p01GeV_cYY0p002': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 1.096e-05, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_30p0GeV_cYY0p0007': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 9.521e-07, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_10p0GeV_cYY0p0007': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 1.295e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_3p0GeV_cYY0p0007': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 1.338e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_1p0GeV_cYY0p0007': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 1.342e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p3GeV_cYY0p0007': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 1.343e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p1GeV_cYY0p0007': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 1.343e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p03GeV_cYY0p0007': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 1.343e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p01GeV_cYY0p0007': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 1.343e-06, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_30p0GeV_cYY0p0002': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 7.772e-08, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_10p0GeV_cYY0p0002': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 1.057e-07, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_3p0GeV_cYY0p0002': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 1.092e-07, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_1p0GeV_cYY0p0002': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 1.095e-07, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p3GeV_cYY0p0002': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 1.096e-07, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p1GeV_cYY0p0002': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 1.096e-07, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p03GeV_cYY0p0002': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 1.096e-07, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p01GeV_cYY0p0002': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 1.096e-07, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_30p0GeV_cYY0p00005': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 4.858e-09, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_10p0GeV_cYY0p00005': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 6.605e-09, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_3p0GeV_cYY0p00005': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 6.827e-09, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_1p0GeV_cYY0p00005': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 6.847e-09, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p3GeV_cYY0p00005': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 6.849e-09, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p1GeV_cYY0p00005': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 6.85e-09, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p03GeV_cYY0p00005': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 6.85e-09, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p01GeV_cYY0p00005': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 6.85e-09, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_30p0GeV_cYY0p00001': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 1.943e-10, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_10p0GeV_cYY0p00001': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 2.642e-10, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_3p0GeV_cYY0p00001': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 2.731e-10, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_1p0GeV_cYY0p00001': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 2.739e-10, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p3GeV_cYY0p00001': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 2.74e-10, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p1GeV_cYY0p00001': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 2.74e-10, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p03GeV_cYY0p00001': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 2.74e-10, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p01GeV_cYY0p00001': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 2.74e-10, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_30p0GeV_cYY0p000004': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 3.109e-11, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_10p0GeV_cYY0p000004': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 4.228e-11, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_3p0GeV_cYY0p000004': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 4.37e-11, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_1p0GeV_cYY0p000004': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 4.382e-11, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p3GeV_cYY0p000004': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 4.384e-11, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p1GeV_cYY0p000004': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 4.384e-11, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p03GeV_cYY0p000004': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 4.384e-11, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p01GeV_cYY0p000004': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 4.384e-11, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_30p0GeV_cYY0p000001': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 1.943e-12, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_10p0GeV_cYY0p000001': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 2.642e-12, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_3p0GeV_cYY0p000001': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 2.731e-12, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_1p0GeV_cYY0p000001': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 2.739e-12, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p3GeV_cYY0p000001': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 2.74e-12, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p1GeV_cYY0p000001': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 2.74e-12, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p03GeV_cYY0p000001': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 2.74e-12, "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p01GeV_cYY0p000001': {"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 2.74e-12, "kfactor": 1.0, "matchingEfficiency": 1.0},
+
+    # 'ALP_Z_aa_1p0GeV_cYY1p0':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 2.739 , "kfactor": 1.0, "matchingEfficiency": 1.0},
+    # 'ALP_Z_aa_0p1GeV_cYY1p0':{"numberOfEvents": 1000000, "sumOfWeights": 1000000, "crossSection": 2.739 , "kfactor": 1.0, "matchingEfficiency": 1.0},
+
 }
 
 #Number of CPUs to use
@@ -567,7 +808,13 @@ cutList = {
 
 
     ### E ###
-    # "preselection": "FSGenPhotons_min_delta_r[0] > 0.4 && RecoPhotons_min_delta_r[0] > 0.4",
+    # "sel_3photon": "n_RecoPhotons_obj_sel_eta == 3",  
+    # "sel_mindeltaR": "RecoPhotons_min_delta_r_obj_sel_eta[0] < 1",
+    # "sel_0electrons": "n_RecoElectrons == 0",
+    # "sel_2": "n_RecoPhotons_obj_sel_eta == 3 && n_RecoElectrons == 0 ",  
+    # "sel_3": "n_RecoPhotons_obj_sel_eta == 3 && n_RecoElectrons == 0 && RecoPhotons_min_delta_r_obj_sel_eta[0] < 1",  
+    # "sel_4": "n_RecoPhotons_obj_sel_eta == 3 && n_RecoElectrons == 0 && RecoPhotons_min_delta_r_obj_sel_eta[0] < 1 && RecoPhoton0_p_obj_sel_eta > 42",  
+    # "sel_4_alternative": "n_RecoPhotons_obj_sel_eta == 3 && n_RecoElectrons == 0 && RecoPhotons_min_delta_r_obj_sel_eta[0] < 1 && RecoPhoton0_pt_obj_sel_eta > 42",  
 
 }
 
@@ -584,17 +831,30 @@ cutLabels = {
     # "seldeltaR": "3 reco photons and reco photons min #DeltaR < 1",
     # "selp": "3 reco photons and RecoPhoton0 momentum > 44",
     # "selall": "all selections",
-    # "selbkg": "FSGenPhotons_min_delta_r > 0.4",
+
+    # "sel_3photon": "Exactly 3 reconstructed photons",  
+    # "sel_mindeltaR": "Reco photons min #DeltaR < 1",
+    # "sel_0electrons": "0 reconstructed electrons",
+    # "sel_2": "3 reco photons and 0 reco electrons",  
+    # "sel_3": "3 reco photons, 0 reco electrons, reco photons min #DeltaR < 1 ",  
+    # "sel_4": "3 reco photons, 0 reco electrons, reco photons min #DeltaR < 1, RecoPhoton0 momentum > 42",
+    # "sel_4_alternative": "sel 4 alternative",
+
+
+    # "sel_photon0_p": "RecoPhoton0 momentum > 38 GeV",  
+    # "sel_alp_photons_p": "Reco ALP photons total momentum > 38",
+
 }
 
 ###Dictionary for the ouput variable/hitograms. The key is the name of the variable in the output files. "name" is the name of the variable in the input file, "title" is the x-axis label of the histogram, "bin" the number of bins of the histogram, "xmin" the minimum x-axis value and "xmax" the maximum x-axis value.
 histoList = {
     #gen variables
+    "Calorimeterhit_time":             {"name":"Calorimeterhit_time",            "title":"Time of calorimeter hit",                   "bin":100,"xmin":0 ,"xmax":10e-8},  
     "All_n_GenALP":                    {"name":"All_n_GenALP",                   "title":"Total number of gen ALPs",                   "bin":5,"xmin":-0.5 ,"xmax":4.5},
 
     "n_FSGenALP":                      {"name":"n_FSGenALP",                     "title":"Total number of FS gen ALPs",                "bin":5,"xmin":-0.5 ,"xmax":4.5},
 
-    "AllGenALP_mass":                  {"name":"AllGenALP_mass",                 "title":"All gen ALP mass [GeV]",                       "bin":100,"xmin":0 ,"xmax":10},
+    "AllGenALP_mass":                  {"name":"AllGenALP_mass",                 "title":"All gen ALP mass [GeV]",                       "bin":100,"xmin":0 ,"xmax":50},
     "AllGenALP_e":                     {"name":"AllGenALP_e",                    "title":"All gen ALP energy [GeV]",                     "bin":100,"xmin":0 ,"xmax":100},
     "AllGenALP_p":                     {"name":"AllGenALP_p",                    "title":"All gen ALP p [GeV]",                          "bin":100,"xmin":0 ,"xmax":50},
     "AllGenALP_pt":                    {"name":"AllGenALP_pt",                   "title":"All gen ALP p_{T} [GeV]",                      "bin":100,"xmin":0 ,"xmax":50},
@@ -699,9 +959,9 @@ histoList = {
     # # "FSGen_a1a2_invMass":   {"name":"FSGen_a1a2_invMass",   "title":"Gen FS photons m_{12} [GeV]",           "bin":105,"xmin":-5, "xmax":100},
     # # "FSGen_aaa_invMass":   {"name":"FSGen_aaa_invMass",   "title":"Gen FS m_{#gamma #gamma #gamma} [GeV]",           "bin":105,"xmin":-5, "xmax":100},
 
-    "FSGenALP_mass":        {"name":"FSGenALP_mass",   "title":"FS gen ALP mass [GeV]",   "bin":100,"xmin":0 ,"xmax":10},
+    "FSGenALP_mass":        {"name":"FSGenALP_mass",   "title":"FS gen ALP mass [GeV]",   "bin":100,"xmin":0 ,"xmax":50},
 
-    "GenALP_mass":     {"name":"GenALP_mass",     "title":"Gen ALP mass [GeV]",      "bin":100,"xmin":0 ,"xmax":10},
+    "GenALP_mass":     {"name":"GenALP_mass",     "title":"Gen ALP mass [GeV]",      "bin":100,"xmin":0 ,"xmax":50},
     "GenALP_e":        {"name":"GenALP_e",        "title":"Gen ALP energy [GeV]",    "bin":100,"xmin":0 ,"xmax":50},
     "GenALP_p":        {"name":"GenALP_p",        "title":"Gen ALP p [GeV]",         "bin":100,"xmin":0 ,"xmax":50},
     "GenALP_pt":       {"name":"GenALP_pt",       "title":"Gen ALP p_{T} [GeV]",     "bin":100,"xmin":0 ,"xmax":50},
@@ -709,13 +969,15 @@ histoList = {
     "GenALP_eta":      {"name":"GenALP_eta",      "title":"Gen ALP #eta",            "bin":60, "xmin":-3,"xmax":3},
     "GenALP_theta":    {"name":"GenALP_theta",    "title":"Gen ALP #theta",          "bin":64, "xmin":0,"xmax":3.2},
     "GenALP_phi":      {"name":"GenALP_phi",      "title":"Gen ALP #phi",            "bin":64, "xmin":-3.2,"xmax":3.2},
+    "GenALP_beta":     {"name":"GenALP_beta",     "title":"Gen #beta_{ALP} ",           "bin":150,"xmin":0 ,"xmax":1.5},
     "GenALP_lifetime_xy": {"name":"GenALP_lifetime_xy", "title":"Gen ALP #tau_{xy} [s]",        "bin":100,"xmin":0 ,"xmax":1E-11},
     "GenALP_lifetime_xyz": {"name":"GenALP_lifetime_xyz", "title":"Gen ALP #tau_{xyz} [s]",        "bin":100,"xmin":0 ,"xmax":1E-11},
-    "GenALP_Lxy":      {"name":"GenALP_Lxy",      "title":"Gen ALP L_{xy} [mm]",     "bin":100,"xmin":0 ,"xmax":10},
-    "GenALP_Lxyz":     {"name":"GenALP_Lxyz",     "title":"Gen ALP L_{xyz} [mm]",    "bin":100,"xmin":0 ,"xmax":10},
+    "GenALP_Lxy":      {"name":"GenALP_Lxy",      "title":"Gen ALP L_{xy} [mm]",     "bin":100,"xmin":0 ,"xmax":100},
+    "GenALP_Lxyz":     {"name":"GenALP_Lxyz",     "title":"Gen ALP L_{xyz} [mm]",    "bin":200,"xmin":0 ,"xmax":100},
     "GenALP_vertex_x": {"name":"GenALP_vertex_x", "title":"Gen ALP production vertex x [mm]",   "bin":100,"xmin":-1000 ,"xmax":1000},
     "GenALP_vertex_y": {"name":"GenALP_vertex_y", "title":"Gen ALP production vertex y [mm]",   "bin":100,"xmin":-1000 ,"xmax":1000},
     "GenALP_vertex_z": {"name":"GenALP_vertex_z", "title":"Gen ALP production vertex z [mm]",   "bin":100,"xmin":-1000 ,"xmax":1000},
+    
 
     "GenALP_px_if_FSGenPhoton0_px_greaterthan_0": {"name": "GenALP_px_if_FSGenPhoton0_px_greaterthan_0", "title": "Gen ALP p_{x} if FS gen photon_{0} p_{x} > 0", "bin":100, "xmin":-55, "xmax":50},
     "FSGenPhoton1_px_if_GenALP_px_neg": {"name": "FSGenPhoton1_px_if_GenALP_px_neg", "title": "FS gen photon_{1} p_{x} if gen ALP p_{x} < 0", "bin":100, "xmin":-55, "xmax":50},
@@ -764,7 +1026,7 @@ histoList = {
     "GenALPPhoton1_vertex_y": {"name":"GenALPPhoton1_vertex_y", "title":"Gen photon_{1} production vertex y [mm]",      "bin":100,"xmin":-1000 ,"xmax":1000},
     "GenALPPhoton1_vertex_z": {"name":"GenALPPhoton1_vertex_z", "title":"Gen photon_{1} production vertex z [mm]",      "bin":100,"xmin":-1000 ,"xmax":1000},
 
-    "GenALP_aa_invMass":   {"name":"GenALP_aa_invMass",   "title":"Gen m_{#gamma#gamma} (from ALP) [GeV]",           "bin":100,"xmin":0, "xmax":10},
+    "GenALP_aa_invMass":   {"name":"GenALP_aa_invMass",   "title":"Gen m_{#gamma#gamma} (from ALP) [GeV]",           "bin":100,"xmin":0, "xmax":50},
 
     # #reco variables
     "n_RecoTracks":                    {"name":"n_RecoTracks",                   "title":"Total number of reco tracks",           "bin":5,"xmin":-0.5 ,"xmax":4.5},
@@ -928,94 +1190,116 @@ histoList = {
 
 
 
-########  obj selection: pt threshold for photons >10GeV, eta<2.5    #######
-    "FSGenPhoton_eta_obj_sel_pt_eta":                 {"name":"FSGenPhoton_eta_obj_sel_pt_eta",                "title":"Final state gen photons #eta",               "bin":60, "xmin":-3,"xmax":3},
-    "FSGenPhoton_theta_obj_sel_pt_eta":               {"name":"FSGenPhoton_theta_obj_sel_pt_eta",              "title":"Final state gen photons #theta",             "bin":64, "xmin":0,"xmax":3.2},
-    "FSGenPhoton_phi_obj_sel_pt_eta":                 {"name":"FSGenPhoton_phi_obj_sel_pt_eta",                "title":"Final state gen photons #phi",               "bin":64, "xmin":-3.2,"xmax":3.2},
-    "FSGenPhotons_delta_eta_obj_sel_pt_eta":{"name": "FSGenPhotons_delta_eta_obj_sel_pt_eta", "title": "Final state gen photons #Delta#eta", "bin":100, "xmin":0, "xmax":10},
-    "FSGenPhotons_delta_phi_obj_sel_pt_eta":{"name": "FSGenPhotons_delta_phi_obj_sel_pt_eta", "title": "Final state gen photons #Delta#phi", "bin":100, "xmin":0, "xmax":10},
-    "FSGenPhotons_delta_r_obj_sel_pt_eta":  {"name": "FSGenPhotons_delta_r_obj_sel_pt_eta",   "title": "Final state gen photons #DeltaR",    "bin":100, "xmin":0, "xmax":7},
-    "FSGenPhotons_min_delta_r_obj_sel_pt_eta": {"name": "FSGenPhotons_min_delta_r_obj_sel_pt_eta", "title": "Final state gen photons minimum #DeltaR", "bin":100, "xmin":0, "xmax": 7},
-    "FSGenPhoton_pt_obj_sel_pt_eta":                  {"name":"FSGenPhoton_pt_obj_sel_pt_eta",                 "title":"Final state gen photons p_{T} [GeV]",        "bin":100,"xmin":0 ,"xmax":50},
-    "FSGenPhoton_e_obj_sel_pt_eta":                   {"name":"FSGenPhoton_e_obj_sel_pt_eta",                  "title":"Final state gen photons energy [GeV]",       "bin":100,"xmin":0 ,"xmax":50},
-    "FSGenPhoton_p_obj_sel_pt_eta":                   {"name":"FSGenPhoton_p_obj_sel_pt_eta",                  "title":"Final state gen photons p [GeV]",            "bin":100,"xmin":0 ,"xmax":50},
-    "n_FSGenPhoton_obj_sel_pt_eta":                   {"name":"n_FSGenPhoton_obj_sel_pt_eta",                  "title":"Number of final state gen photons",          "bin":9,"xmin":-0.5 ,"xmax":8.5},
-    "FSGenPhoton_pz_obj_sel_pt_eta":                  {"name":"FSGenPhoton_pz_obj_sel_pt_eta",                 "title":"Final state gen photons p_{z} [GeV]",        "bin":100,"xmin":-3.2 ,"xmax":50},
-    "FSGenPhoton0_e_obj_sel_pt_eta":                  {"name":"FSGenPhoton0_e_obj_sel_pt_eta",                 "title":"Final state gen photon_{0} energy [GeV]",      "bin":100,"xmin":-3.2 ,"xmax":50},
-    "FSGenPhoton1_e_obj_sel_pt_eta":                  {"name":"FSGenPhoton1_e_obj_sel_pt_eta",                 "title":"Final state gen photon_{1} energy [GeV]",      "bin":100,"xmin":-3.2 ,"xmax":50},
-    "FSGenPhoton2_e_obj_sel_pt_eta":                  {"name":"FSGenPhoton2_e_obj_sel_pt_eta",                 "title":"Final state gen photon_{3} energy [GeV]",      "bin":100,"xmin":-3.2 ,"xmax":50},
-    "FSGenPhoton0_p_obj_sel_pt_eta":                  {"name":"FSGenPhoton0_p_obj_sel_pt_eta",                 "title":"Final state gen photon_{0} p [GeV]",           "bin":100,"xmin":-3.2 ,"xmax":50},
-    "FSGenPhoton1_p_obj_sel_pt_eta":                  {"name":"FSGenPhoton1_p_obj_sel_pt_eta",                 "title":"Final state gen photon_{1} p [GeV]",           "bin":100,"xmin":-3.2 ,"xmax":50},
-    "FSGenPhoton2_p_obj_sel_pt_eta":                  {"name":"FSGenPhoton2_p_obj_sel_pt_eta",                 "title":"Final state gen photon_{3} p [GeV]",           "bin":100,"xmin":-3.2 ,"xmax":50},
-    "FSGenPhoton0_pt_obj_sel_pt_eta":                 {"name":"FSGenPhoton0_pt_obj_sel_pt_eta",                "title":"Final state gen photon_{0} p_{T} [GeV]",       "bin":100,"xmin":-3.2 ,"xmax":50},
-    "FSGenPhoton1_pt_obj_sel_pt_eta":                 {"name":"FSGenPhoton1_pt_obj_sel_pt_eta",                "title":"Final state gen photon_{1} p_{T} [GeV]",       "bin":100,"xmin":-3.2 ,"xmax":50},
-    "FSGenPhoton2_pt_obj_sel_pt_eta":                 {"name":"FSGenPhoton2_pt_obj_sel_pt_eta",                "title":"Final state gen photon_{3} p_{T} [GeV]",       "bin":100,"xmin":-3.2 ,"xmax":50},
-    "FSGenPhoton0_pz_obj_sel_pt_eta":                 {"name":"FSGenPhoton0_pz_obj_sel_pt_eta",                "title":"Final state gen photon_{0} p_{z} [GeV]",       "bin":100,"xmin":-3.2 ,"xmax":50},
-    "FSGenPhoton1_pz_obj_sel_pt_eta":                 {"name":"FSGenPhoton1_pz_obj_sel_pt_eta",                "title":"Final state gen photon_{1} p_{z} [GeV]",       "bin":100,"xmin":-3.2 ,"xmax":50},
-    "FSGenPhoton2_pz_obj_sel_pt_eta":                 {"name":"FSGenPhoton2_pz_obj_sel_pt_eta",                "title":"Final state gen photon_{3} p_{z} [GeV]",       "bin":100,"xmin":-3.2 ,"xmax":50},
+########  obj selection: threshold for photons eta<2.5    #######
+    "FSGenPhoton_eta_obj_sel_eta":                 {"name":"FSGenPhoton_eta_obj_sel_eta",                "title":"Final state gen photons #eta",               "bin":60, "xmin":-3,"xmax":3},
+    "FSGenPhoton_theta_obj_sel_eta":               {"name":"FSGenPhoton_theta_obj_sel_eta",              "title":"Final state gen photons #theta",             "bin":64, "xmin":0,"xmax":3.2},
+    "FSGenPhoton_phi_obj_sel_eta":                 {"name":"FSGenPhoton_phi_obj_sel_eta",                "title":"Final state gen photons #phi",               "bin":64, "xmin":-3.2,"xmax":3.2},
+    "FSGenPhotons_delta_eta_obj_sel_eta":{"name": "FSGenPhotons_delta_eta_obj_sel_eta", "title": "Final state gen photons #Delta#eta", "bin":100, "xmin":0, "xmax":10},
+    "FSGenPhotons_delta_phi_obj_sel_eta":{"name": "FSGenPhotons_delta_phi_obj_sel_eta", "title": "Final state gen photons #Delta#phi", "bin":100, "xmin":0, "xmax":10},
+    "FSGenPhotons_delta_r_obj_sel_eta":  {"name": "FSGenPhotons_delta_r_obj_sel_eta",   "title": "Final state gen photons #DeltaR",    "bin":100, "xmin":0, "xmax":7},
+    "FSGenPhotons_min_delta_r_obj_sel_eta": {"name": "FSGenPhotons_min_delta_r_obj_sel_eta", "title": "Final state gen photons minimum #DeltaR", "bin":100, "xmin":0, "xmax": 7},
+    "FSGenPhoton_pt_obj_sel_eta":                  {"name":"FSGenPhoton_pt_obj_sel_eta",                 "title":"Final state gen photons p_{T} [GeV]",        "bin":100,"xmin":0 ,"xmax":50},
+    "FSGenPhoton_e_obj_sel_eta":                   {"name":"FSGenPhoton_e_obj_sel_eta",                  "title":"Final state gen photons energy [GeV]",       "bin":100,"xmin":0 ,"xmax":50},
+    "FSGenPhoton_p_obj_sel_eta":                   {"name":"FSGenPhoton_p_obj_sel_eta",                  "title":"Final state gen photons p [GeV]",            "bin":100,"xmin":0 ,"xmax":50},
+    "n_FSGenPhoton_obj_sel_eta":                   {"name":"n_FSGenPhoton_obj_sel_eta",                  "title":"Number of final state gen photons",          "bin":9,"xmin":-0.5 ,"xmax":8.5},
+    "FSGenPhoton_pz_obj_sel_eta":                  {"name":"FSGenPhoton_pz_obj_sel_eta",                 "title":"Final state gen photons p_{z} [GeV]",        "bin":100,"xmin":-3.2 ,"xmax":50},
+    "FSGenPhoton0_e_obj_sel_eta":                  {"name":"FSGenPhoton0_e_obj_sel_eta",                 "title":"Final state gen photon_{0} energy [GeV]",      "bin":100,"xmin":-3.2 ,"xmax":50},
+    "FSGenPhoton1_e_obj_sel_eta":                  {"name":"FSGenPhoton1_e_obj_sel_eta",                 "title":"Final state gen photon_{1} energy [GeV]",      "bin":100,"xmin":-3.2 ,"xmax":50},
+    "FSGenPhoton2_e_obj_sel_eta":                  {"name":"FSGenPhoton2_e_obj_sel_eta",                 "title":"Final state gen photon_{3} energy [GeV]",      "bin":100,"xmin":-3.2 ,"xmax":50},
+    "FSGenPhoton0_p_obj_sel_eta":                  {"name":"FSGenPhoton0_p_obj_sel_eta",                 "title":"Final state gen photon_{0} p [GeV]",           "bin":100,"xmin":-3.2 ,"xmax":50},
+    "FSGenPhoton1_p_obj_sel_eta":                  {"name":"FSGenPhoton1_p_obj_sel_eta",                 "title":"Final state gen photon_{1} p [GeV]",           "bin":100,"xmin":-3.2 ,"xmax":50},
+    "FSGenPhoton2_p_obj_sel_eta":                  {"name":"FSGenPhoton2_p_obj_sel_eta",                 "title":"Final state gen photon_{3} p [GeV]",           "bin":100,"xmin":-3.2 ,"xmax":50},
+    "FSGenPhoton0_pt_obj_sel_eta":                 {"name":"FSGenPhoton0_pt_obj_sel_eta",                "title":"Final state gen photon_{0} p_{T} [GeV]",       "bin":100,"xmin":-3.2 ,"xmax":50},
+    "FSGenPhoton1_pt_obj_sel_eta":                 {"name":"FSGenPhoton1_pt_obj_sel_eta",                "title":"Final state gen photon_{1} p_{T} [GeV]",       "bin":100,"xmin":-3.2 ,"xmax":50},
+    "FSGenPhoton2_pt_obj_sel_eta":                 {"name":"FSGenPhoton2_pt_obj_sel_eta",                "title":"Final state gen photon_{3} p_{T} [GeV]",       "bin":100,"xmin":-3.2 ,"xmax":50},
+    "FSGenPhoton0_pz_obj_sel_eta":                 {"name":"FSGenPhoton0_pz_obj_sel_eta",                "title":"Final state gen photon_{0} p_{z} [GeV]",       "bin":100,"xmin":-3.2 ,"xmax":50},
+    "FSGenPhoton1_pz_obj_sel_eta":                 {"name":"FSGenPhoton1_pz_obj_sel_eta",                "title":"Final state gen photon_{1} p_{z} [GeV]",       "bin":100,"xmin":-3.2 ,"xmax":50},
+    "FSGenPhoton2_pz_obj_sel_eta":                 {"name":"FSGenPhoton2_pz_obj_sel_eta",                "title":"Final state gen photon_{3} p_{z} [GeV]",       "bin":100,"xmin":-3.2 ,"xmax":50},
 
-    "FSGen_aa_invMass_obj_sel_pt_eta":   {"name":"FSGen_aa_invMass_obj_sel_pt_eta",   "title":" Gen photon m_{#gamma#gamma} [GeV]",           "bin":100,"xmin":0, "xmax":100},
-    "FSGen_aa_p_obj_sel_pt_eta":         {"name":"FSGen_aa_p_obj_sel_pt_eta",         "title":" Gen photon p_{#gamma#gamma} [GeV]",           "bin":100,"xmin":0, "xmax":100},
+    "FSGen_aa_invMass_obj_sel_eta":   {"name":"FSGen_aa_invMass_obj_sel_eta",   "title":" Gen photon m_{#gamma#gamma} [GeV]",           "bin":100,"xmin":0, "xmax":100},
+    "FSGen_aa_p_obj_sel_eta":         {"name":"FSGen_aa_p_obj_sel_eta",         "title":" Gen photon p_{#gamma#gamma} [GeV]",           "bin":100,"xmin":0, "xmax":100},
 
 
-    "RecoPhoton_eta_obj_sel_pt_eta":                 {"name":"RecoPhoton_eta_obj_sel_pt_eta",                "title":"Reco photon #eta",               "bin":60, "xmin":-3,"xmax":3},
-    "RecoPhoton_theta_obj_sel_pt_eta":    {"name":"RecoPhoton_theta_obj_sel_pt_eta",    "title":"Reco photon #theta",       "bin":64, "xmin":0,"xmax":3.2},
-    "RecoPhoton_phi_obj_sel_pt_eta":    {"name":"RecoPhoton_phi_obj_sel_pt_eta",    "title":"Reco photon #phi",       "bin":64, "xmin":-3.2,"xmax":3.2},
-    "RecoPhotons_delta_eta_obj_sel_pt_eta":{"name": "RecoPhotons_delta_eta_obj_sel_pt_eta", "title": "Reco photons #Delta#eta", "bin":100, "xmin":0, "xmax":10},
-    "RecoPhotons_delta_phi_obj_sel_pt_eta":{"name": "RecoPhotons_delta_phi_obj_sel_pt_eta", "title": "Reco photons #Delta#phi", "bin":100, "xmin":0, "xmax":10},
-    "RecoPhotons_delta_r_obj_sel_pt_eta":  {"name": "RecoPhotons_delta_r_obj_sel_pt_eta",   "title": "Reco photons #DeltaR",    "bin":100, "xmin":0, "xmax":7},
-    "RecoPhotons_min_delta_r_obj_sel_pt_eta": {"name": "RecoPhotons_min_delta_r_obj_sel_pt_eta", "title": "Reco photons minimum #DeltaR", "bin":100, "xmin":0, "xmax": 7},
-    "RecoPhoton_pt_obj_sel_pt_eta":       {"name":"RecoPhoton_pt_obj_sel_pt_eta",       "title":"Reco photon p_{T} [GeV]",  "bin":100,"xmin":0 ,"xmax":50},
-    "RecoPhoton_e_obj_sel_pt_eta":        {"name":"RecoPhoton_e_obj_sel_pt_eta",        "title":"Reco photon energy [GeV]", "bin":100,"xmin":0 ,"xmax":50},
-    "RecoPhoton_p_obj_sel_pt_eta":        {"name":"RecoPhoton_p_obj_sel_pt_eta",        "title":"Reco photon p [GeV]",      "bin":100,"xmin":0 ,"xmax":50},
-    "n_RecoPhotons_obj_sel_pt_eta":    {"name":"n_RecoPhotons_obj_sel_pt_eta",   "title":"Total number of reco photons",      "bin":9,"xmin":-0.5 ,"xmax":8.5},
-    "RecoPhoton_charge_obj_sel_pt_eta":    {"name":"RecoPhoton_charge_obj_sel_pt_eta",   "title":"Charge of reco photons",     "bin":3, "xmin":-1.5,"xmax":1.5},
-    "RecoPhoton_pz_obj_sel_pt_eta":       {"name":"RecoPhoton_pz_obj_sel_pt_eta",       "title":"Reco photon p_{z} [GeV]",  "bin":100,"xmin":-3.2 ,"xmax":50},
-    "RecoPhoton0_e_obj_sel_pt_eta":       {"name":"RecoPhoton0_e_obj_sel_pt_eta",       "title":"Reco photon_{0} energy [GeV]", "bin":100,"xmin":-3.2  ,"xmax":50},
-    "RecoPhoton1_e_obj_sel_pt_eta":       {"name":"RecoPhoton1_e_obj_sel_pt_eta",       "title":"Reco photon_{1} energy [GeV]", "bin":100,"xmin":-3.2  ,"xmax":50},
-    "RecoPhoton2_e_obj_sel_pt_eta":       {"name":"RecoPhoton2_e_obj_sel_pt_eta",       "title":"Reco photon_{2} energy [GeV]", "bin":100,"xmin":-3.2  ,"xmax":50},
-    "RecoPhoton0_p_obj_sel_pt_eta":       {"name":"RecoPhoton0_p_obj_sel_pt_eta",       "title":"Reco photon_{0} p [GeV]",      "bin":100,"xmin":-3.2  ,"xmax":50},
-    "RecoPhoton1_p_obj_sel_pt_eta":       {"name":"RecoPhoton1_p_obj_sel_pt_eta",       "title":"Reco photon_{1} p [GeV]",      "bin":100,"xmin":-3.2  ,"xmax":50},
-    "RecoPhoton2_p_obj_sel_pt_eta":       {"name":"RecoPhoton2_p_obj_sel_pt_eta",       "title":"Reco photon_{2} p [GeV]",      "bin":100,"xmin":-3.2  ,"xmax":50},
-    "RecoPhoton0_pt_obj_sel_pt_eta":      {"name":"RecoPhoton0_pt_obj_sel_pt_eta",      "title":"Reco photon_{0} p_{T} [GeV]",  "bin":100,"xmin":-3.2  ,"xmax":50},
-    "RecoPhoton1_pt_obj_sel_pt_eta":      {"name":"RecoPhoton1_pt_obj_sel_pt_eta",      "title":"Reco photon_{1} p_{T} [GeV]",  "bin":100,"xmin":-3.2  ,"xmax":50},
-    "RecoPhoton2_pt_obj_sel_pt_eta":      {"name":"RecoPhoton2_pt_obj_sel_pt_eta",      "title":"Reco photon_{2} p_{T} [GeV]",  "bin":100,"xmin":-3.2  ,"xmax":50},
-    "RecoPhoton0_pz_obj_sel_pt_eta":      {"name":"RecoPhoton0_pz_obj_sel_pt_eta",      "title":"Reco photon_{0} p_{z} [GeV]",  "bin":100,"xmin":-3.2  ,"xmax":50},
-    "RecoPhoton1_pz_obj_sel_pt_eta":      {"name":"RecoPhoton1_pz_obj_sel_pt_eta",      "title":"Reco photon_{1} p_{z} [GeV]",  "bin":100,"xmin":-3.2  ,"xmax":50},
-    "RecoPhoton2_pz_obj_sel_pt_eta":      {"name":"RecoPhoton2_pz_obj_sel_pt_eta",      "title":"Reco photon_{2} p_{z} [GeV]",  "bin":100,"xmin":-3.2  ,"xmax":50},
+    "RecoPhoton_eta_obj_sel_eta":                 {"name":"RecoPhoton_eta_obj_sel_eta",                "title":"Reco photon #eta",               "bin":60, "xmin":-3,"xmax":3},
+    "RecoPhoton_theta_obj_sel_eta":    {"name":"RecoPhoton_theta_obj_sel_eta",    "title":"Reco photon #theta",       "bin":64, "xmin":0,"xmax":3.2},
+    "RecoPhoton_phi_obj_sel_eta":    {"name":"RecoPhoton_phi_obj_sel_eta",    "title":"Reco photon #phi",       "bin":64, "xmin":-3.2,"xmax":3.2},
+    "RecoPhotons_delta_eta_obj_sel_eta":{"name": "RecoPhotons_delta_eta_obj_sel_eta", "title": "Reco photons #Delta#eta", "bin":100, "xmin":0, "xmax":10},
+    "RecoPhotons_delta_phi_obj_sel_eta":{"name": "RecoPhotons_delta_phi_obj_sel_eta", "title": "Reco photons #Delta#phi", "bin":100, "xmin":0, "xmax":10},
+    "RecoPhotons_delta_r_obj_sel_eta":  {"name": "RecoPhotons_delta_r_obj_sel_eta",   "title": "Reco photons #DeltaR",    "bin":100, "xmin":0, "xmax":7},
+    "RecoPhotons_min_delta_r_obj_sel_eta": {"name": "RecoPhotons_min_delta_r_obj_sel_eta", "title": "Reco photons minimum #DeltaR", "bin":100, "xmin":0, "xmax": 7},
+    "RecoPhoton_pt_obj_sel_eta":       {"name":"RecoPhoton_pt_obj_sel_eta",       "title":"Reco photon p_{T} [GeV]",  "bin":100,"xmin":0 ,"xmax":50},
+    "RecoPhoton_e_obj_sel_eta":        {"name":"RecoPhoton_e_obj_sel_eta",        "title":"Reco photon energy [GeV]", "bin":100,"xmin":0 ,"xmax":50},
+    "RecoPhoton_p_obj_sel_eta":        {"name":"RecoPhoton_p_obj_sel_eta",        "title":"Reco photon p [GeV]",      "bin":100,"xmin":0 ,"xmax":50},
+    "n_RecoPhotons_obj_sel_eta":    {"name":"n_RecoPhotons_obj_sel_eta",   "title":"Total number of reco photons",      "bin":9,"xmin":-0.5 ,"xmax":8.5, "ymin":10e-4},
+    "RecoPhoton_charge_obj_sel_eta":    {"name":"RecoPhoton_charge_obj_sel_eta",   "title":"Charge of reco photons",     "bin":3, "xmin":-1.5,"xmax":1.5},
+ 
+    "RecoPhoton_diphoton_delta_r_obj_sel_eta":  {"name": "RecoPhoton_diphoton_delta_r_obj_sel_eta",   "title": "Reco #DeltaR between diphoton and photon_{0}",    "bin":100, "xmin":0, "xmax":7},
 
-    "Reco_aa_invMass_obj_sel_pt_eta":   {"name":"Reco_aa_invMass_obj_sel_pt_eta",   "title":"Reco photon m_{#gamma#gamma} [GeV]",           "bin":100,"xmin":0, "xmax":100},
-    "Reco_aa_p_obj_sel_pt_eta":         {"name":"Reco_aa_p_obj_sel_pt_eta",         "title":"Reco photon p_{#gamma#gamma} [GeV]",          "bin":60,"xmin":0, "xmax":60},
 
-    "RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta": {"name":"RecoPhoton_pidx_min_delta_r_obj_sel_pt_eta",   "title":"Reco photon indices of mindeltaR [GeV]",           "bin":15,"xmin":0, "xmax":15},
-    "RecoPhoton1_pz_obj_sel_pt_eta_v2": {"name":"RecoPhoton1_pz_obj_sel_pt_eta_v2",   "title":"Reco photon_{1} p_{z} [GeV]",           "bin":100,"xmin":-3.2, "xmax":50},
-    "RecoPhoton2_pz_obj_sel_pt_eta_v2": {"name":"RecoPhoton2_pz_obj_sel_pt_eta_v2",   "title":"Reco photon_{2} p_{z} [GeV]",           "bin":100,"xmin":-3.2, "xmax":50},
-    "Reco_aa_invMass_obj_sel_pt_eta_v2":{"name":"Reco_aa_invMass_obj_sel_pt_eta_v2",   "title":"Reco photon m_{#gamma#gamma} [GeV]",           "bin":100,"xmin":0, "xmax":100},
-    "Reco_aa_p_obj_sel_pt_eta_v2":{"name":"Reco_aa_p_obj_sel_pt_eta_v2",         "title":"Reco photon p_{#gamma#gamma} [GeV]",           "bin":60,"xmin":0, "xmax":60},
+    "RecoPhoton_pz_obj_sel_eta":       {"name":"RecoPhoton_pz_obj_sel_eta",       "title":"Reco photon p_{z} [GeV]",  "bin":100,"xmin":-3.2 ,"xmax":50},
+    "RecoPhoton0_e_obj_sel_eta":       {"name":"RecoPhoton0_e_obj_sel_eta",       "title":"Reco photon_{0} energy [GeV]", "bin":100,"xmin":-3.2  ,"xmax":50},
+    "RecoPhoton1_e_obj_sel_eta":       {"name":"RecoPhoton1_e_obj_sel_eta",       "title":"Reco photon_{1} energy [GeV]", "bin":100,"xmin":-3.2  ,"xmax":50},
+    "RecoPhoton2_e_obj_sel_eta":       {"name":"RecoPhoton2_e_obj_sel_eta",       "title":"Reco photon_{2} energy [GeV]", "bin":100,"xmin":-3.2  ,"xmax":50},
+    "RecoPhoton0_p_obj_sel_eta":       {"name":"RecoPhoton0_p_obj_sel_eta",       "title":"Reco photon_{0} p [GeV]",      "bin":100,"xmin":-3.2  ,"xmax":50},
+    "RecoPhoton1_p_obj_sel_eta":       {"name":"RecoPhoton1_p_obj_sel_eta",       "title":"Reco photon_{1} p [GeV]",      "bin":100,"xmin":-3.2  ,"xmax":50},
+    "RecoPhoton2_p_obj_sel_eta":       {"name":"RecoPhoton2_p_obj_sel_eta",       "title":"Reco photon_{2} p [GeV]",      "bin":100,"xmin":-3.2  ,"xmax":50},
+    "RecoPhoton0_pt_obj_sel_eta":      {"name":"RecoPhoton0_pt_obj_sel_eta",      "title":"Reco photon_{0} p_{T} [GeV]",  "bin":100,"xmin":-3.2  ,"xmax":50},
+    "RecoPhoton1_pt_obj_sel_eta":      {"name":"RecoPhoton1_pt_obj_sel_eta",      "title":"Reco photon_{1} p_{T} [GeV]",  "bin":100,"xmin":-3.2  ,"xmax":50},
+    "RecoPhoton2_pt_obj_sel_eta":      {"name":"RecoPhoton2_pt_obj_sel_eta",      "title":"Reco photon_{2} p_{T} [GeV]",  "bin":100,"xmin":-3.2  ,"xmax":50},
+    "RecoPhoton0_pz_obj_sel_eta":      {"name":"RecoPhoton0_pz_obj_sel_eta",      "title":"Reco photon_{0} p_{z} [GeV]",  "bin":100,"xmin":-3.2  ,"xmax":50},
+    "RecoPhoton1_pz_obj_sel_eta":      {"name":"RecoPhoton1_pz_obj_sel_eta",      "title":"Reco photon_{1} p_{z} [GeV]",  "bin":100,"xmin":-3.2  ,"xmax":50},
+    "RecoPhoton2_pz_obj_sel_eta":      {"name":"RecoPhoton2_pz_obj_sel_eta",      "title":"Reco photon_{2} p_{z} [GeV]",  "bin":100,"xmin":-3.2  ,"xmax":50},
+
+    "Reco_aa_invMass_obj_sel_eta":   {"name":"Reco_aa_invMass_obj_sel_eta",   "title":"Reco photon m_{#gamma#gamma} [GeV]",           "bin":100,"xmin":0, "xmax":100},
+    "Reco_aa_p_obj_sel_eta":         {"name":"Reco_aa_p_obj_sel_eta",         "title":"Reco photon p_{#gamma#gamma} [GeV]",          "bin":60,"xmin":0, "xmax":60},
+    "Reco_beta_ALP_obj_sel_eta":     {"name":"Reco_beta_ALP_obj_sel_eta",     "title":"Reco #beta_{ALP} [GeV]",                      "bin":150,"xmin":0, "xmax":1.5},
+
+    # "RecoPhoton0_prompt_calorimeter_hit_x_obj_sel_eta":  {"name":"RecoPhoton0_prompt_calorimeter_hit_x_obj_sel_eta",  "title":"Calorimeter hit position x for photon_{0} [mm]", "bin":600,"xmin":-3000 ,"xmax":3000},
+    # "RecoPhoton0_prompt_calorimeter_hit_y_obj_sel_eta":  {"name":"RecoPhoton0_prompt_calorimeter_hit_y_obj_sel_eta",  "title":"Calorimeter hit position y for photon_{0} [mm]", "bin":600,"xmin":-3000 ,"xmax":3000},
+    # "RecoPhoton0_prompt_calorimeter_hit_z_obj_sel_eta":  {"name":"RecoPhoton0_prompt_calorimeter_hit_z_obj_sel_eta",  "title":"Calorimeter hit position z for photon_{0} [mm]", "bin":600,"xmin":-3000 ,"xmax":3000},
+    # "RecoPhoton1_displaced_calorimeter_hit_x_obj_sel_eta":  {"name":"RecoPhoton1_displaced_calorimeter_hit_x_obj_sel_eta",  "title":"Calorimeter hit position x for photon_{1} [mm]", "bin":600,"xmin":-3000 ,"xmax":3000},
+    # "RecoPhoton1_displaced_calorimeter_hit_y_obj_sel_eta":  {"name":"RecoPhoton1_displaced_calorimeter_hit_y_obj_sel_eta",  "title":"Calorimeter hit position y for photon_{1} [mm]", "bin":600,"xmin":-3000 ,"xmax":3000},
+    # "RecoPhoton1_displaced_calorimeter_hit_z_obj_sel_eta":  {"name":"RecoPhoton1_displaced_calorimeter_hit_z_obj_sel_eta",  "title":"Calorimeter hit position z for photon_{1} [mm]", "bin":600,"xmin":-3000 ,"xmax":3000},
+
+    # "RecoPhoton0_prompt_dist_calorimeter_obj_sel_eta":  {"name":"RecoPhoton0_prompt_dist_calorimeter_obj_sel_eta",  "title":"Length of trajectory of prompt photon [mm]", "bin":450,"xmin":0 ,"xmax":4500},
+    # "max_dist_ALP_to_calorimeter_obj_sel_eta": {"name":"max_dist_ALP_to_calorimeter_obj_sel_eta",  "title":"Length of trajectory of displaced photon from ALP decay vertex [mm]", "bin":550,"xmin":0 ,"xmax":5500},
+    # "RecoPhoton1_total_dist_IP_to_calorimeter_obj_sel_eta": {"name":"RecoPhoton1_total_dist_IP_to_calorimeter_obj_sel_eta",  "title":"Total length of trajectory of displaced photon & ALP [mm]", "bin":550,"xmin":0 ,"xmax":5500},
+    # "RecoPhoton0_time2calorimeter_obj_sel_eta": {"name":"RecoPhoton0_time2calorimeter_obj_sel_eta", "title":"Reco t calorimeter hit [s]", "bin":100,"xmin":0 ,"xmax":0.2E-8},
+    # "RecoPhoton1_time2calorimeter_obj_sel_eta_new": {"name":"RecoPhoton1_time2calorimeter_obj_sel_eta_new", "title":"Reco t calorimeter hit [s]", "bin":100,"xmin":0 ,"xmax":0.2E-8},
+    # "Reco_deltaT_CaloriHit_obj_sel_eta_new": {"name":"Reco_deltaT_CaloriHit_obj_sel_eta_new", "title":"Reco#Deltat between calorimeter hits [s]", "bin":100,"xmin":0 ,"xmax":0.2E-8},
+
+
+
+
+    "RecoPhoton_pidx_min_delta_r_obj_sel_eta": {"name":"RecoPhoton_pidx_min_delta_r_obj_sel_eta",   "title":"Reco photon indices of mindeltaR [GeV]",           "bin":15,"xmin":0, "xmax":15},
+    "RecoPhoton1_pz_obj_sel_eta_v2": {"name":"RecoPhoton1_pz_obj_sel_eta_v2",   "title":"Reco photon_{1} p_{z} [GeV]",           "bin":100,"xmin":-3.2, "xmax":50},
+    "RecoPhoton2_pz_obj_sel_eta_v2": {"name":"RecoPhoton2_pz_obj_sel_eta_v2",   "title":"Reco photon_{2} p_{z} [GeV]",           "bin":100,"xmin":-3.2, "xmax":50},
+    "Reco_aa_invMass_obj_sel_eta_v2":{"name":"Reco_aa_invMass_obj_sel_eta_v2",   "title":"Reco photon m_{#gamma#gamma} [GeV]",           "bin":100,"xmin":0, "xmax":100},
+    "Reco_aa_p_obj_sel_eta_v2":{"name":"Reco_aa_p_obj_sel_eta_v2",         "title":"Reco photon p_{#gamma#gamma} [GeV]",           "bin":60,"xmin":0, "xmax":60},
 
 
     # "verify_deltaR":  {"name": "verify_deltaR",   "title": "Reco photons #DeltaR",    "bin":100, "xmin":0, "xmax":7},
 
     # #   alp photons with obj sel
-    "RecoALPPhoton1_e_obj_sel_pt_eta":        {"name":"RecoALPPhoton1_e_obj_sel_pt_eta",        "title":"Reco photon_{1} (from ALP) energy [GeV]", "bin":100,"xmin":0 ,"xmax":50},
-    "RecoALPPhoton2_e_obj_sel_pt_eta":        {"name":"RecoALPPhoton2_e_obj_sel_pt_eta",        "title":"Reco photon_{2} (from ALP) energy [GeV]",               "bin":100,"xmin":0 ,"xmax":50},
-    "RecoALPPhoton1_p_obj_sel_pt_eta":        {"name":"RecoALPPhoton1_p_obj_sel_pt_eta",        "title":"Reco photon_{1} (from ALP) p [GeV]",      "bin":100,"xmin":0 ,"xmax":50},
-    "RecoALPPhoton2_p_obj_sel_pt_eta":        {"name":"RecoALPPhoton2_p_obj_sel_pt_eta",        "title":"Reco photon_{2} (from ALP) p [GeV]",                    "bin":100,"xmin":0 ,"xmax":50},
-    "RecoALPPhoton1_pt_obj_sel_pt_eta":       {"name":"RecoALPPhoton1_pt_obj_sel_pt_eta",       "title":"Reco photon_{1} (from ALP) p_{T} [GeV]",  "bin":100,"xmin":0 ,"xmax":50},
-    "RecoALPPhoton2_pt_obj_sel_pt_eta":       {"name":"RecoALPPhoton2_pt_obj_sel_pt_eta",       "title":"Reco photon_{2} (from ALP) p_{T} [GeV]",                "bin":100,"xmin":0 ,"xmax":50},
-    "RecoALPPhoton1_pz_obj_sel_pt_eta":       {"name":"RecoALPPhoton1_pz_obj_sel_pt_eta",       "title":"Reco photon_{1} (from ALP) p_{z} [GeV]",  "bin":100,"xmin":0 ,"xmax":50},
-    "RecoALPPhoton2_pz_obj_sel_pt_eta":       {"name":"RecoALPPhoton2_pz_obj_sel_pt_eta",       "title":"Reco photon_{2} (from ALP) p_{z} [GeV]",                "bin":100,"xmin":0 ,"xmax":50},
-    "RecoALPPhoton1_eta_obj_sel_pt_eta":      {"name":"RecoALPPhoton1_eta_obj_sel_pt_eta",      "title":"Reco photon_{1} (from ALP) #eta",         "bin":60, "xmin":-3,"xmax":3},
-    "RecoALPPhoton2_eta_obj_sel_pt_eta":      {"name":"RecoALPPhoton2_eta_obj_sel_pt_eta",      "title":"Reco photon_{2} (from ALP) #eta",                       "bin":60, "xmin":-3,"xmax":3},
-    "RecoALPPhoton1_phi_obj_sel_pt_eta":      {"name":"RecoALPPhoton1_phi_obj_sel_pt_eta",      "title":"Reco photon_{1} (from ALP) #phi",         "bin":64, "xmin":-3.2,"xmax":3.2},
-    "RecoALPPhoton2_phi_obj_sel_pt_eta":      {"name":"RecoALPPhoton2_phi_obj_sel_pt_eta",      "title":"Reco photon_{2} (from ALP) #phi",                       "bin":64, "xmin":-3.2,"xmax":3.2},
-    "RecoALPPhotons_deltaEta_obj_sel_pt_eta": {"name":"RecoALPPhotons_deltaEta_obj_sel_pt_eta", "title":"Reco ALP photons #Delta#eta",                   "bin":60, "xmin":-2, "xmax":8},
-    "RecoALPPhotons_deltaPhi_obj_sel_pt_eta": {"name":"RecoALPPhotons_deltaPhi_obj_sel_pt_eta", "title":"Reco ALP photons #Delta#phi",                   "bin":60, "xmin":-2, "xmax":8},
-    "RecoALPPhotons_deltaR_obj_sel_pt_eta":   {"name":"RecoALPPhotons_deltaR_obj_sel_pt_eta",   "title":"Reco ALP photons #DeltaR",                      "bin":60, "xmin":-3, "xmax":8},
-    "n_RecoALPPhoton1_obj_sel_pt_eta":        {"name":"n_RecoALPPhoton1_obj_sel_pt_eta",        "title":"Number of reco photon_{1} (from ALP)",    "bin":5, "xmin":-0.5, "xmax":4.5},
-    "n_RecoALPPhoton2_obj_sel_pt_eta":        {"name":"n_RecoALPPhoton2_obj_sel_pt_eta",        "title":"Number of reco photon_{2} (from ALP)",    "bin":5, "xmin":-0.5, "xmax":4.5},
-    "RecoALP_aa_invMass_obj_sel_pt_eta":      {"name":"RecoALP_aa_invMass_obj_sel_pt_eta",      "title":"Reco m_{#gamma #gamma} (from ALP) [GeV]",           "bin":100,"xmin":0, "xmax":100},
-    "RecoALP_aa_p_obj_sel_pt_eta":         {"name":"RecoALP_aa_p_obj_sel_pt_eta",         "title":"Reco photon (from ALP) p_{#gamma#gamma} [GeV]",           "bin":100,"xmin":0, "xmax":100},
+    "RecoALPPhoton1_e_obj_sel_eta":        {"name":"RecoALPPhoton1_e_obj_sel_eta",        "title":"Reco photon_{1} (from ALP) energy [GeV]", "bin":100,"xmin":0 ,"xmax":50},
+    "RecoALPPhoton2_e_obj_sel_eta":        {"name":"RecoALPPhoton2_e_obj_sel_eta",        "title":"Reco photon_{2} (from ALP) energy [GeV]",               "bin":100,"xmin":0 ,"xmax":50},
+    "RecoALPPhoton1_p_obj_sel_eta":        {"name":"RecoALPPhoton1_p_obj_sel_eta",        "title":"Reco photon_{1} (from ALP) p [GeV]",      "bin":100,"xmin":0 ,"xmax":50},
+    "RecoALPPhoton2_p_obj_sel_eta":        {"name":"RecoALPPhoton2_p_obj_sel_eta",        "title":"Reco photon_{2} (from ALP) p [GeV]",                    "bin":100,"xmin":0 ,"xmax":50},
+    "RecoALPPhoton1_pt_obj_sel_eta":       {"name":"RecoALPPhoton1_pt_obj_sel_eta",       "title":"Reco photon_{1} (from ALP) p_{T} [GeV]",  "bin":100,"xmin":0 ,"xmax":50},
+    "RecoALPPhoton2_pt_obj_sel_eta":       {"name":"RecoALPPhoton2_pt_obj_sel_eta",       "title":"Reco photon_{2} (from ALP) p_{T} [GeV]",                "bin":100,"xmin":0 ,"xmax":50},
+    "RecoALPPhoton1_pz_obj_sel_eta":       {"name":"RecoALPPhoton1_pz_obj_sel_eta",       "title":"Reco photon_{1} (from ALP) p_{z} [GeV]",  "bin":100,"xmin":0 ,"xmax":50},
+    "RecoALPPhoton2_pz_obj_sel_eta":       {"name":"RecoALPPhoton2_pz_obj_sel_eta",       "title":"Reco photon_{2} (from ALP) p_{z} [GeV]",                "bin":100,"xmin":0 ,"xmax":50},
+    "RecoALPPhoton1_eta_obj_sel_eta":      {"name":"RecoALPPhoton1_eta_obj_sel_eta",      "title":"Reco photon_{1} (from ALP) #eta",         "bin":60, "xmin":-3,"xmax":3},
+    "RecoALPPhoton2_eta_obj_sel_eta":      {"name":"RecoALPPhoton2_eta_obj_sel_eta",      "title":"Reco photon_{2} (from ALP) #eta",                       "bin":60, "xmin":-3,"xmax":3},
+    "RecoALPPhoton1_phi_obj_sel_eta":      {"name":"RecoALPPhoton1_phi_obj_sel_eta",      "title":"Reco photon_{1} (from ALP) #phi",         "bin":64, "xmin":-3.2,"xmax":3.2},
+    "RecoALPPhoton2_phi_obj_sel_eta":      {"name":"RecoALPPhoton2_phi_obj_sel_eta",      "title":"Reco photon_{2} (from ALP) #phi",                       "bin":64, "xmin":-3.2,"xmax":3.2},
+    "RecoALPPhotons_deltaEta_obj_sel_eta": {"name":"RecoALPPhotons_deltaEta_obj_sel_eta", "title":"Reco ALP photons #Delta#eta",                   "bin":60, "xmin":-2, "xmax":8},
+    "RecoALPPhotons_deltaPhi_obj_sel_eta": {"name":"RecoALPPhotons_deltaPhi_obj_sel_eta", "title":"Reco ALP photons #Delta#phi",                   "bin":60, "xmin":-2, "xmax":8},
+    "RecoALPPhotons_deltaR_obj_sel_eta":   {"name":"RecoALPPhotons_deltaR_obj_sel_eta",   "title":"Reco ALP photons #DeltaR",                      "bin":60, "xmin":-3, "xmax":8},
+    "n_RecoALPPhoton1_obj_sel_eta":        {"name":"n_RecoALPPhoton1_obj_sel_eta",        "title":"Number of reco photon_{1} (from ALP)",    "bin":5, "xmin":-0.5, "xmax":4.5},
+    "n_RecoALPPhoton2_obj_sel_eta":        {"name":"n_RecoALPPhoton2_obj_sel_eta",        "title":"Number of reco photon_{2} (from ALP)",    "bin":5, "xmin":-0.5, "xmax":4.5},
+    "RecoALP_aa_invMass_obj_sel_eta":      {"name":"RecoALP_aa_invMass_obj_sel_eta",      "title":"Reco m_{#gamma#gamma} (from ALP) [GeV]",           "bin":100,"xmin":0, "xmax":100},
+    "RecoALP_aa_p_obj_sel_eta":         {"name":"RecoALP_aa_p_obj_sel_eta",         "title":"Reco photon (from ALP) p_{#gamma#gamma} [GeV]",           "bin":60,"xmin":0, "xmax":60},
 
 
 
