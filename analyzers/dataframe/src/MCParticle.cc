@@ -88,28 +88,6 @@ ROOT::VecOps::RVec<edm4hep::MCParticleData>  sel_eta::operator() (ROOT::VecOps::
 }
 
 
-// sel_min_delta_r::sel_min_delta_r(float arg_min_delta_r) : m_min_delta_r(arg_min_delta_r) {};
-// ROOT::VecOps::RVec<edm4hep::MCParticleData>  sel_delta_r::operator() (ROOT::VecOps::RVec<edm4hep::MCParticleData> in) {
-//   ROOT::VecOps::RVec<edm4hep::MCParticleData> result;
-//   result.reserve(in.size());
-//   float min_delta_r = 999;
-//   for (int i = 0; i < in.size(); i++) {
-//     TLorentzVector tlv1;
-//     tlv1.SetXYZM(in[i].momentum.x, in[i].momentum.y, in[i].momentum.z, in[i].mass);
-//     for (auto j = i + 1; j < in.size(); j++) {
-//       TLorentzVector tlv2;
-//       tlv2.SetXYZM(in[j].momentum.x, in[j].momentum.y, in[j].momentum.z, in[j].mass);
-//       float delta_r = tlv1.DeltaR(tlv2);
-//       if (delta_r < min_delta_r) {
-//         min_delta_r = delta_r;
-//       if (min_delta_r < m_min_delta_r) {
-//         result.emplace_back(in[i]);
-//     }
-//   }
-// }
-//   return result;
-// }
-
 filter_pdgID::filter_pdgID(int arg_pdgid, bool arg_abs){m_pdgid = arg_pdgid; m_abs = arg_abs;};
 bool  filter_pdgID::operator() (ROOT::VecOps::RVec<edm4hep::MCParticleData> in) {
   for (size_t i = 0; i < in.size(); ++i) {
@@ -461,20 +439,6 @@ ROOT::VecOps::RVec<float> get_p(ROOT::VecOps::RVec<edm4hep::MCParticleData> in) 
   ROOT::VecOps::RVec<float> result;
   for (auto & p: in) {
     TLorentzVector tlv;
-    // // std::cout << p.momentum.x << " " << p.momentum.y << " " << p.momentum.z << " " << p.mass << std::endl;
-    // // std::cout << p.PDG << std::endl;
-    // if( p.PDG == 9000005 ) {
-    //   std::cout << p.PDG << std::endl;
-    //   std::cout << p.momentum.x << " " << p.momentum.y << " " << p.momentum.z << " " << p.mass << std::endl;
-    // }
-    // if( p.PDG == 22 ) {
-    //   std::cout << p.PDG << std::endl;
-    //   std::cout << p.momentum.x << " " << p.momentum.y << " " << p.momentum.z << " " << p.mass << std::endl;
-    // }
-    // if ( abs(p.PDG) == 11 ) {
-    //   std::cout << p.PDG << std::endl;
-    //   std::cout << p.momentum.x << " " << p.momentum.y << " " << p.momentum.z << " " << p.mass << std::endl;
-    // }
     tlv.SetXYZM(p.momentum.x, p.momentum.y, p.momentum.z, p.mass);
     result.push_back(tlv.P());
   }

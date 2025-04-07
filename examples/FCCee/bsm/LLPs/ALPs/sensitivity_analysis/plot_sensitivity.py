@@ -70,9 +70,6 @@ class Plotting:
         h.GetXaxis().SetTitleOffset(1.4)
         h.GetZaxis().SetRangeUser(zrange[0],zrange[1])
         for m,v,z in zip(mN,Ve,Z):
-            # print("m: ", m)
-            # print("v: ", v)
-            # print("z: ", z)
             h.Fill(m,v,z)
             # h.Fill(m,v,log10(z))
         if zrange:
@@ -165,6 +162,7 @@ class Plotting:
             # Text.DrawLatex(0.67,0.41,"#bf{3 signal event}")
 
 
+        #this corresponds to approxiamtely 95% confidence level
         x[0] = 2.0
         h1 = h.Clone()
         h1.SetContour(1,x)
@@ -173,23 +171,15 @@ class Plotting:
         h1.DrawCopy("cont3 C same")
         leg.AddEntry(h1,"s = 2.0","l")
 
-        # x[0] = 5.0
-        # h2 = h.Clone()
-        # h2.SetContour(1,x)
-        # h2.SetLineWidth(3)
-        # h2.SetLineColor(4)
-        # # Text.SetTextColor(3)
-        # # Text.DrawLatex(0.3,0.6,"#bf{s = 0.01}")
-        # h2.DrawCopy("cont3 C same")
-        # leg.AddEntry(h2,"s = 5.0","l")
-
 
         leg.Draw()
         c.Modified()
         c.Update()
 
 
-        # # projection of L=c*tau=2500mm  (proper decay length)
+
+        # projection of L=c*tau=2500mm  (proper decay length) on the sensitivity plot (optional)
+
         # tau_target = 2.5/(299792458)  #length divided my speed of light (meters)
         # alpha = 1/137
         # hbar = 6.58e-25 # GeV s
@@ -646,12 +636,7 @@ if __name__=="__main__":
     # Ztautau + Zee + Zbb + Zcc + Zuds
     # B = 6.64e+04 + 0 + 1.72e+03 + 0 + 0
     B = 9.16e+07 + 2.16e+04 + 1.19e+04 + 2.00e+02
-    # B0 = 1.38e+10 + 6.14e+08 + 1.29e+07 + 4.52e+11 + 1.19e+10 + 2.00e+08 + 2.38e+06
-    # DeltaB = 3.84e+04 + 3.94e+06 + 1.72e+03 + 1.23e+03 + 2.79e+03
-    # B2 = 5.96e+08 + 5.05e+05  + 3.57e+04 + 4.00e+03 + 1.95e+02
-    # B3 = 
-    # B_d0cut = 7.47e+06 + 0 + 1.72e+03 + 0 + 0
-    # print("DeltaB: ", DeltaB)
+
 
     # Signal #
     # mN = [5, 5, 5, 5, 5, 5, 5, 5, 5,
