@@ -1,3 +1,5 @@
+#don't delete this file, this template is used to produce madgraph samples with the shell script "mg.sh"
+
 #************************************************************
 #*                     MadGraph5_aMC@NLO                    *
 #*                                                          *
@@ -45,6 +47,8 @@ import model ALP_NLO_UFO
 generate e+ e- > Z, (Z > a ALP, (ALP > a a))
 output OUTPUTDIR
 launch OUTPUTDIR
+#set run_card draa 0.01
+#set run_card pta 2.0
 done
 # set to electron beams (0 for ele, 1 for proton)
 set lpp1 0

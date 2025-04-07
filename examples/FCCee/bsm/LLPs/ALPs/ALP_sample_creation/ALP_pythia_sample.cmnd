@@ -1,3 +1,6 @@
+#don't delete this file, this template is used to produce pythia outputs with the shell script "runPythiaDelphesCondor.sh" 
+
+
 ! File: ALP_pythia.cmd
 Random:setSeed = on
 Main:timesAllowErrors = 10         ! how many aborts before run stops
