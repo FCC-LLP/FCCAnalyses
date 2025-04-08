@@ -150,6 +150,8 @@ Functions</h2></td></tr>
 <tr class="memitem:a5938497ca9f2d053cc66dd484aa4afe0" id="r_a5938497ca9f2d053cc66dd484aa4afe0"><td class="memItemLeft" align="right" valign="top">ROOT::VecOps::RVec&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5938497ca9f2d053cc66dd484aa4afe0">get_p</a> (ROOT::VecOps::RVec&lt; edm4hep::ReconstructedParticleData &gt; in)</td></tr>
 <tr class="memdesc:a5938497ca9f2d053cc66dd484aa4afe0"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the momenta of the input ReconstructedParticles  <br /></td></tr>
 <tr class="separator:a5938497ca9f2d053cc66dd484aa4afe0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a709c4e4218b2474e347fa5ae8331b5e8" id="r_a709c4e4218b2474e347fa5ae8331b5e8"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a709c4e4218b2474e347fa5ae8331b5e8">get_diphoton_deltaR</a> (edm4hep::ReconstructedParticleData p, edm4hep::ReconstructedParticleData diphoton1, edm4hep::ReconstructedParticleData diphoton2)</td></tr>
+<tr class="separator:a709c4e4218b2474e347fa5ae8331b5e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2a17b1bff81d40c1351387b31db4f049" id="r_a2a17b1bff81d40c1351387b31db4f049"><td class="memItemLeft" align="right" valign="top">ROOT::VecOps::RVec&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2a17b1bff81d40c1351387b31db4f049">get_px</a> (ROOT::VecOps::RVec&lt; edm4hep::ReconstructedParticleData &gt; in)</td></tr>
 <tr class="memdesc:a2a17b1bff81d40c1351387b31db4f049"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the momenta of the input ReconstructedParticles  <br /></td></tr>
 <tr class="separator:a2a17b1bff81d40c1351387b31db4f049"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -168,6 +170,11 @@ Functions</h2></td></tr>
 <tr class="memitem:ac08bd102c77a2ea6d2403a216f3ab8a8" id="r_ac08bd102c77a2ea6d2403a216f3ab8a8"><td class="memItemLeft" align="right" valign="top">ROOT::VecOps::RVec&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac08bd102c77a2ea6d2403a216f3ab8a8">get_theta</a> (ROOT::VecOps::RVec&lt; edm4hep::ReconstructedParticleData &gt; in)</td></tr>
 <tr class="memdesc:ac08bd102c77a2ea6d2403a216f3ab8a8"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the theta of the input ReconstructedParticles  <br /></td></tr>
 <tr class="separator:ac08bd102c77a2ea6d2403a216f3ab8a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a841257d15591c82548ccee5dc63707c7" id="r_a841257d15591c82548ccee5dc63707c7"><td class="memItemLeft" align="right" valign="top">ROOT::VecOps::RVec&lt; std::vector&lt; float &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a841257d15591c82548ccee5dc63707c7">get_prompt_photon_calorimeter_hits</a> (ROOT::VecOps::RVec&lt; edm4hep::ReconstructedParticleData &gt; photon)</td></tr>
+<tr class="memdesc:a841257d15591c82548ccee5dc63707c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the distance of particle to the calorimeter barrel or endcap based on its current trajectory  <br /></td></tr>
+<tr class="separator:a841257d15591c82548ccee5dc63707c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b4aa2b840518ace036b819e996e66cc" id="r_a8b4aa2b840518ace036b819e996e66cc"><td class="memItemLeft" align="right" valign="top">ROOT::VecOps::RVec&lt; std::vector&lt; float &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b4aa2b840518ace036b819e996e66cc">get_displaced_photon_calorimeter_hits</a> (ROOT::VecOps::RVec&lt; edm4hep::ReconstructedParticleData &gt; photon, float ALP_Lx, float ALP_Ly, float ALP_Lz)</td></tr>
+<tr class="separator:a8b4aa2b840518ace036b819e996e66cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a452a59774c838bea5ecca08a54aa6e2b" id="r_a452a59774c838bea5ecca08a54aa6e2b"><td class="memItemLeft" align="right" valign="top">ROOT::VecOps::RVec&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a452a59774c838bea5ecca08a54aa6e2b">get_phi</a> (ROOT::VecOps::RVec&lt; edm4hep::ReconstructedParticleData &gt; in)</td></tr>
 <tr class="memdesc:a452a59774c838bea5ecca08a54aa6e2b"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the phi of the input ReconstructedParticles  <br /></td></tr>
 <tr class="separator:a452a59774c838bea5ecca08a54aa6e2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -180,9 +187,15 @@ Functions</h2></td></tr>
 <tr class="memitem:ad0398e907e188db6a09efdcd51fba9df" id="r_ad0398e907e188db6a09efdcd51fba9df"><td class="memItemLeft" align="right" valign="top">ROOT::VecOps::RVec&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad0398e907e188db6a09efdcd51fba9df">get_delta_r</a> (ROOT::VecOps::RVec&lt; edm4hep::ReconstructedParticleData &gt; in)</td></tr>
 <tr class="memdesc:ad0398e907e188db6a09efdcd51fba9df"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the delta r of the input ReconstructedParticles  <br /></td></tr>
 <tr class="separator:ad0398e907e188db6a09efdcd51fba9df"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9540603a15028ac5ad36db3df9c58f23" id="r_a9540603a15028ac5ad36db3df9c58f23"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9540603a15028ac5ad36db3df9c58f23">get_delta_r</a> (edm4hep::ReconstructedParticleData p1, edm4hep::ReconstructedParticleData p2)</td></tr>
+<tr class="memdesc:a9540603a15028ac5ad36db3df9c58f23"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the delta r of the input ReconstructedParticles  <br /></td></tr>
+<tr class="separator:a9540603a15028ac5ad36db3df9c58f23"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a08566132a4f1b3963f244136399fd5ff" id="r_a08566132a4f1b3963f244136399fd5ff"><td class="memItemLeft" align="right" valign="top">ROOT::VecOps::RVec&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a08566132a4f1b3963f244136399fd5ff">get_min_delta_r</a> (ROOT::VecOps::RVec&lt; edm4hep::ReconstructedParticleData &gt; in)</td></tr>
 <tr class="memdesc:a08566132a4f1b3963f244136399fd5ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the minimum delta r of the input ReconstructedParticles  <br /></td></tr>
 <tr class="separator:a08566132a4f1b3963f244136399fd5ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dcd6d16902b179976b602266e280bdd" id="r_a1dcd6d16902b179976b602266e280bdd"><td class="memItemLeft" align="right" valign="top">ROOT::VecOps::RVec&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1dcd6d16902b179976b602266e280bdd">get_pidx_min_delta_r</a> (ROOT::VecOps::RVec&lt; edm4hep::ReconstructedParticleData &gt; in)</td></tr>
+<tr class="memdesc:a1dcd6d16902b179976b602266e280bdd"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the photon indices of the minimum delta r of the input ReconstructedParticles  <br /></td></tr>
+<tr class="separator:a1dcd6d16902b179976b602266e280bdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3398bc970e765be398f8cf673c8edfa" id="r_ac3398bc970e765be398f8cf673c8edfa"><td class="memItemLeft" align="right" valign="top">ROOT::VecOps::RVec&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3398bc970e765be398f8cf673c8edfa">get_reference_point_x</a> (ROOT::VecOps::RVec&lt; edm4hep::ReconstructedParticleData &gt; in)</td></tr>
 <tr class="memdesc:ac3398bc970e765be398f8cf673c8edfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the energy of the input ReconstructedParticles  <br /></td></tr>
 <tr class="separator:ac3398bc970e765be398f8cf673c8edfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -236,6 +249,10 @@ Functions</h2></td></tr>
 <tr class="memitem:ad8ae8fe8b860b2468b91c2db7216a4e5" id="r_ad8ae8fe8b860b2468b91c2db7216a4e5"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad8ae8fe8b860b2468b91c2db7216a4e5">get_total_e</a> (ROOT::VecOps::RVec&lt; edm4hep::ReconstructedParticleData &gt; in)</td></tr>
 <tr class="memdesc:ad8ae8fe8b860b2468b91c2db7216a4e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">return the summed total energy of all of the input ReconstructedParticles  <br /></td></tr>
 <tr class="separator:ad8ae8fe8b860b2468b91c2db7216a4e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0890197eef7f9fc9e914d7ace4145776" id="r_a0890197eef7f9fc9e914d7ace4145776"><td class="memItemLeft" align="right" valign="top">ROOT::VecOps::RVec&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0890197eef7f9fc9e914d7ace4145776">get_reference_point_y</a> (ROOT::VecOps::RVec&lt; edm4hep::ReconstructedParticleData &gt; in)</td></tr>
+<tr class="separator:a0890197eef7f9fc9e914d7ace4145776"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd999b67e55efec3907bd0d8d960ccba" id="r_abd999b67e55efec3907bd0d8d960ccba"><td class="memItemLeft" align="right" valign="top">ROOT::VecOps::RVec&lt; float &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abd999b67e55efec3907bd0d8d960ccba">get_reference_point_z</a> (ROOT::VecOps::RVec&lt; edm4hep::ReconstructedParticleData &gt; in)</td></tr>
+<tr class="separator:abd999b67e55efec3907bd0d8d960ccba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
 <a id="ae59881aa2caf5152af31e287b59aef23" name="ae59881aa2caf5152af31e287b59aef23"></a>
@@ -352,8 +369,31 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a9540603a15028ac5ad36db3df9c58f23" name="a9540603a15028ac5ad36db3df9c58f23"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9540603a15028ac5ad36db3df9c58f23">&#9670;&#160;</a></span>get_delta_r() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float FCCAnalyses::ReconstructedParticle::get_delta_r </td>
+          <td>(</td>
+          <td class="paramtype">edm4hep::ReconstructedParticleData</td>          <td class="paramname"><span class="paramname"><em>p1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">edm4hep::ReconstructedParticleData</td>          <td class="paramname"><span class="paramname"><em>p2</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>return the delta r of the input ReconstructedParticles </p>
+
+</div>
+</div>
 <a id="ad0398e907e188db6a09efdcd51fba9df" name="ad0398e907e188db6a09efdcd51fba9df"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad0398e907e188db6a09efdcd51fba9df">&#9670;&#160;</a></span>get_delta_r()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad0398e907e188db6a09efdcd51fba9df">&#9670;&#160;</a></span>get_delta_r() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -368,6 +408,65 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>return the delta r of the input ReconstructedParticles </p>
+
+</div>
+</div>
+<a id="a709c4e4218b2474e347fa5ae8331b5e8" name="a709c4e4218b2474e347fa5ae8331b5e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a709c4e4218b2474e347fa5ae8331b5e8">&#9670;&#160;</a></span>get_diphoton_deltaR()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float FCCAnalyses::ReconstructedParticle::get_diphoton_deltaR </td>
+          <td>(</td>
+          <td class="paramtype">edm4hep::ReconstructedParticleData</td>          <td class="paramname"><span class="paramname"><em>p</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">edm4hep::ReconstructedParticleData</td>          <td class="paramname"><span class="paramname"><em>diphoton1</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">edm4hep::ReconstructedParticleData</td>          <td class="paramname"><span class="paramname"><em>diphoton2</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a8b4aa2b840518ace036b819e996e66cc" name="a8b4aa2b840518ace036b819e996e66cc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b4aa2b840518ace036b819e996e66cc">&#9670;&#160;</a></span>get_displaced_photon_calorimeter_hits()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ROOT::VecOps::RVec&lt; std::vector&lt; float &gt; &gt; FCCAnalyses::ReconstructedParticle::get_displaced_photon_calorimeter_hits </td>
+          <td>(</td>
+          <td class="paramtype">ROOT::VecOps::RVec&lt; edm4hep::ReconstructedParticleData &gt;</td>          <td class="paramname"><span class="paramname"><em>photon</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>ALP_Lx</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>ALP_Ly</em></span>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float</td>          <td class="paramname"><span class="paramname"><em>ALP_Lz</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>solving quadratic equation to find intersection with calorimeter (ALP_Lx + t * ux)^2 + (ALP_Ly + t * uy)^2 = R^2 and solve for t (ux^2 + uy^2) * t^2 + 2 * (ALP_Lx * ux + ALP_Ly * uy) * t + (ALP_Lx^2 + ALP_Ly^2 - R^2) = 0</p>
+<p>solving quadratic equation to find intersection with calorimeter (ALP_Lx + t * ux)^2 + (ALP_Ly + t * uy)^2 = R^2 and solve for t (ux^2 + uy^2) * t^2 + 2 * (ALP_Lx * ux + ALP_Ly * uy) * t + (ALP_Lx^2 + ALP_Ly^2 - R^2) = 0</p>
 
 </div>
 </div>
@@ -523,6 +622,45 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a1dcd6d16902b179976b602266e280bdd" name="a1dcd6d16902b179976b602266e280bdd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1dcd6d16902b179976b602266e280bdd">&#9670;&#160;</a></span>get_pidx_min_delta_r()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ROOT::VecOps::RVec&lt; float &gt; FCCAnalyses::ReconstructedParticle::get_pidx_min_delta_r </td>
+          <td>(</td>
+          <td class="paramtype">ROOT::VecOps::RVec&lt; edm4hep::ReconstructedParticleData &gt;</td>          <td class="paramname"><span class="paramname"><em>in</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>return the photon indices of the minimum delta r of the input ReconstructedParticles </p>
+
+</div>
+</div>
+<a id="a841257d15591c82548ccee5dc63707c7" name="a841257d15591c82548ccee5dc63707c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a841257d15591c82548ccee5dc63707c7">&#9670;&#160;</a></span>get_prompt_photon_calorimeter_hits()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ROOT::VecOps::RVec&lt; std::vector&lt; float &gt; &gt; FCCAnalyses::ReconstructedParticle::get_prompt_photon_calorimeter_hits </td>
+          <td>(</td>
+          <td class="paramtype">ROOT::VecOps::RVec&lt; edm4hep::ReconstructedParticleData &gt;</td>          <td class="paramname"><span class="paramname"><em>photon</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>return the distance of particle to the calorimeter barrel or endcap based on its current trajectory </p>
+<p>return coordiantes of calorimeter hit of a prompt photon coming from the interaction point </p>
+
+</div>
+</div>
 <a id="a7fb07d5b2dd5a721b566ce2f1f555dd6" name="a7fb07d5b2dd5a721b566ce2f1f555dd6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7fb07d5b2dd5a721b566ce2f1f555dd6">&#9670;&#160;</a></span>get_pt()</h2>
 
@@ -615,6 +753,40 @@ Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>return the energy of the input ReconstructedParticles </p>
+
+</div>
+</div>
+<a id="a0890197eef7f9fc9e914d7ace4145776" name="a0890197eef7f9fc9e914d7ace4145776"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0890197eef7f9fc9e914d7ace4145776">&#9670;&#160;</a></span>get_reference_point_y()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ROOT::VecOps::RVec&lt; float &gt; FCCAnalyses::ReconstructedParticle::get_reference_point_y </td>
+          <td>(</td>
+          <td class="paramtype">ROOT::VecOps::RVec&lt; edm4hep::ReconstructedParticleData &gt;</td>          <td class="paramname"><span class="paramname"><em>in</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="abd999b67e55efec3907bd0d8d960ccba" name="abd999b67e55efec3907bd0d8d960ccba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abd999b67e55efec3907bd0d8d960ccba">&#9670;&#160;</a></span>get_reference_point_z()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ROOT::VecOps::RVec&lt; float &gt; FCCAnalyses::ReconstructedParticle::get_reference_point_z </td>
+          <td>(</td>
+          <td class="paramtype">ROOT::VecOps::RVec&lt; edm4hep::ReconstructedParticleData &gt;</td>          <td class="paramname"><span class="paramname"><em>in</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
