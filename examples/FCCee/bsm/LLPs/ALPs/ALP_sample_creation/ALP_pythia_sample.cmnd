@@ -1,18 +1,21 @@
+#don't delete this file, this template is used to produce pythia outputs with the shell script "runPythiaDelphesCondor.sh" 
+
+
 ! File: ALP_pythia.cmd
 Random:setSeed = on
 Main:timesAllowErrors = 10         ! how many aborts before run stops
-Main:numberOfEvents = 1000000         ! number of events to generate
+Main:numberOfEvents = NUMBEROFEVENTS         ! number of events to generate
 
 
 ! 2) Settings related to output in init(), next() and stat().
-Next:numberCount = 1000             ! print message every n events
+Next:numberCount = 100             ! print message every n events
 !Beams:idA = 11                     ! first beam, e+ = 11
 !Beams:idB = -11                    ! second beam, e- = -11
 
 Beams:frameType = 4                ! read info from a LHEF
 ! Change the LHE file here
 !Beams:LHEF = /eos/experiment/fcc/ee/analyses_storage/BSM/LLPs/ALPs_3photons/mg5amcnlo/madgraph_5_1.0/Events/run_01/unweighted_events.lhe
-Beams:LHEF = /eos/user/e/ebakhish/MG/MGOutput/Backgrounds/background_ee_aa/Events/run_01/unweighted_events.lhe.gz
+Beams:LHEF = INPUTFILE
 
 
 ! 3) Settings for the event generation process in the Pythia8 library.

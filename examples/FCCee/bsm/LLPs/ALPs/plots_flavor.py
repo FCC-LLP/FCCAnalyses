@@ -1,4 +1,5 @@
 import ROOT
+#plots_flavor
 
 # global parameters
 intLumi = 1

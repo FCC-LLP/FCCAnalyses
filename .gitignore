@@ -112,3 +112,8 @@ benchmark*json
 # Graphviz graphs
 *.dot
 *.png
+
+# Condor logs
+*.err
+*.out
+*.log

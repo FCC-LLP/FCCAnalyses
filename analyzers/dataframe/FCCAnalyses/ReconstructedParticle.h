@@ -110,6 +110,8 @@ namespace ReconstructedParticle{
   /// return the momenta of the input ReconstructedParticles
   ROOT::VecOps::RVec<float> get_p(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in);
 
+  float get_diphoton_deltaR(edm4hep::ReconstructedParticleData p, edm4hep::ReconstructedParticleData diphoton1 , edm4hep::ReconstructedParticleData diphoton2);
+
   /// return the momenta of the input ReconstructedParticles
   ROOT::VecOps::RVec<float> get_px(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in);
 
@@ -128,6 +130,14 @@ namespace ReconstructedParticle{
   /// return the theta of the input ReconstructedParticles
   ROOT::VecOps::RVec<float> get_theta(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in);
 
+  /// return the distance of particle to the calorimeter barrel or endcap based on its current trajectory
+  //ROOT::VecOps::RVec<float> get_L2calorimeter(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> photon, float ALP_Lx, float ALP_Ly, float ALP_Lz);
+
+  /// return coordiantes of calorimeter hit of a prompt photon coming from the interaction point
+  ROOT::VecOps::RVec<std::vector<float>> get_prompt_photon_calorimeter_hits(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> photon);
+
+  ROOT::VecOps::RVec<std::vector<float>> get_displaced_photon_calorimeter_hits(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> photon,float ALP_Lx, float ALP_Ly, float ALP_Lz);
+
   /// return the phi of the input ReconstructedParticles
   ROOT::VecOps::RVec<float> get_phi(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in);
 
@@ -140,8 +150,14 @@ namespace ReconstructedParticle{
   /// return the delta r of the input ReconstructedParticles
   ROOT::VecOps::RVec<float> get_delta_r(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in);
 
+    /// return the delta r of the input ReconstructedParticles
+  float get_delta_r(edm4hep::ReconstructedParticleData p1, edm4hep::ReconstructedParticleData p2);
+
   /// return the minimum delta r of the input ReconstructedParticles
   ROOT::VecOps::RVec<float> get_min_delta_r(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in);
+
+  /// return the photon indices of the minimum delta r of the input ReconstructedParticles
+  ROOT::VecOps::RVec<float> get_pidx_min_delta_r(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in);
 
   /// return the energy of the input ReconstructedParticles
   ROOT::VecOps::RVec<float> get_reference_point_x(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in);

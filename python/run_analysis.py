@@ -343,6 +343,8 @@ def run_rdf(rdf_module,
         if args.graph:
             generate_graph(dframe, args)
 
+        # print("out_file: ", out_file)
+        # print("branch_list: ", branch_list)
         dframe3.Snapshot("events", out_file, branch_list)
     except cppyy.gbl.std.runtime_error as err:
         LOGGER.error('%s\nDuring the execution of the analysis script an '

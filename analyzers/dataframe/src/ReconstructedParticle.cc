@@ -387,6 +387,15 @@ ROOT::VecOps::RVec<float> get_delta_r(ROOT::VecOps::RVec<edm4hep::ReconstructedP
   return result;
 }
 
+float get_delta_r(edm4hep::ReconstructedParticleData p1, edm4hep::ReconstructedParticleData p2) {
+  TLorentzVector tlv1;
+  tlv1.SetXYZM(p1.momentum.x, p1.momentum.y, p1.momentum.z, p1.mass);
+  TLorentzVector tlv2;
+  tlv2.SetXYZM(p2.momentum.x, p2.momentum.y, p2.momentum.z, p2.mass);
+  float delta_r = tlv1.DeltaR(tlv2);
+  return delta_r;
+}
+
 ROOT::VecOps::RVec<float> get_min_delta_r(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in) {
   ROOT::VecOps::RVec<float> result;
   float min_delta_r = 999;
@@ -406,10 +415,55 @@ ROOT::VecOps::RVec<float> get_min_delta_r(ROOT::VecOps::RVec<edm4hep::Reconstruc
   return result;
 }
 
+ROOT::VecOps::RVec<float> get_pidx_min_delta_r(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in) {
+  ROOT::VecOps::RVec<float> result;
+  float min_delta_r = 999;
+  int p1idx = -1;
+  int p2idx = -1;
+  for (int i = 0; i < in.size(); i++) {
+    TLorentzVector tlv1;
+    tlv1.SetXYZM(in[i].momentum.x, in[i].momentum.y, in[i].momentum.z, in[i].mass);
+    for (int j = i + 1; j < in.size(); j++) {
+      TLorentzVector tlv2;
+      tlv2.SetXYZM(in[j].momentum.x, in[j].momentum.y, in[j].momentum.z, in[j].mass);
+      float delta_r = tlv1.DeltaR(tlv2);
+      if (delta_r < min_delta_r) {
+        min_delta_r = delta_r;
+        p1idx = i;
+        p2idx = j;
+      }
+    }
+  }
+
+  if(p1idx > -1 && p2idx > -1) 
+    result.emplace_back(p1idx);
+    result.emplace_back(p2idx);
+    // std::cout << p1idx << " " << p2idx << std::endl;
+  return result;
+}
+
+
+
 ROOT::VecOps::RVec<float> get_reference_point_x(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in) {
   ROOT::VecOps::RVec<float> result;
   for (auto & p: in) {
     result.push_back(p.referencePoint.x);
+  }
+  return result;
+}
+
+ROOT::VecOps::RVec<float> get_reference_point_y(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in) {
+  ROOT::VecOps::RVec<float> result;
+  for (auto & p: in) {
+    result.push_back(p.referencePoint.y);
+  }
+  return result;
+}
+
+ROOT::VecOps::RVec<float> get_reference_point_z(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in) {
+  ROOT::VecOps::RVec<float> result;
+  for (auto & p: in) {
+    result.push_back(p.referencePoint.z);
   }
   return result;
 }
@@ -438,6 +492,15 @@ ROOT::VecOps::RVec<float> get_p(ROOT::VecOps::RVec<edm4hep::ReconstructedParticl
     result.push_back(tlv.P());
   }
   return result;
+}
+
+float get_diphoton_deltaR(edm4hep::ReconstructedParticleData p, edm4hep::ReconstructedParticleData diphoton1 , edm4hep::ReconstructedParticleData diphoton2) {
+  ROOT::VecOps::RVec<float> result;
+  TLorentzVector diphoton_tlv, p_tlv;
+  diphoton_tlv.SetXYZM(diphoton1.momentum.x+diphoton2.momentum.x, diphoton1.momentum.y+diphoton2.momentum.y, diphoton1.momentum.z+diphoton2.momentum.z, diphoton1.mass+diphoton2.mass);
+  p_tlv.SetXYZM(p.momentum.x, p.momentum.y, p.momentum.z, p.mass);
+  float delta_r = diphoton_tlv.DeltaR(p_tlv);
+  return delta_r;
 }
 
 ROOT::VecOps::RVec<float> get_px(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in) {
@@ -492,6 +555,82 @@ ROOT::VecOps::RVec<float> get_theta(ROOT::VecOps::RVec<edm4hep::ReconstructedPar
   }
   return result;
 }
+
+
+ROOT::VecOps::RVec<std::vector<float>> get_prompt_photon_calorimeter_hits(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> photon) {
+  const float R = 2500.0; //calorimeter radius and length is 2500mm
+  const float Zmax = 2500.0;
+  ROOT::VecOps::RVec<std::vector<float>> result;
+  for (auto & p : photon) {
+    TLorentzVector tlv;
+    tlv.SetXYZM(p.momentum.x, p.momentum.y, p.momentum.z, p.mass);
+    TVector3 direction = tlv.Vect().Unit(); 
+    float ux = static_cast<float>(direction.X());
+    float uy = static_cast<float>(direction.Y());  
+    float uz = static_cast<float>(direction.Z());  
+    float t_r = R / sqrt(ux*ux + uy*uy);  
+    float t_z = Zmax / fabs(uz);             
+    float t_hit = std::min(t_r, t_z); 
+
+    // float ux2 = sin(tlv.Theta())*cos(tlv.Phi());
+    // float uy2 = sin(tlv.Theta())*sin(tlv.Phi());
+    // float uz2 = cos(tlv.Theta());
+
+    std::vector<float> hit_pos = {t_hit * ux, t_hit * uy, t_hit * uz};
+
+
+
+    result.push_back(hit_pos);
+  }
+  return result;
+}
+
+ROOT::VecOps::RVec<std::vector<float>> get_displaced_photon_calorimeter_hits(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> photon,float ALP_Lx, float ALP_Ly, float ALP_Lz) {
+  const float R = 2500.0; //calorimeter radius and length is 2500mm
+  const float Zmax = 2500.0;
+  ROOT::VecOps::RVec<std::vector<float>> result;
+  for (auto & p : photon) {
+    TLorentzVector tlv;
+    tlv.SetXYZM(p.momentum.x, p.momentum.y, p.momentum.z, p.mass);
+    TVector3 direction = tlv.Vect().Unit(); 
+    float ux = static_cast<float>(direction.X());
+    float uy = static_cast<float>(direction.Y());  
+    float uz = static_cast<float>(direction.Z());  
+
+    ///solving quadratic equation to find intersection with calorimeter
+    /// (ALP_Lx + t * ux)^2 + (ALP_Ly + t * uy)^2 = R^2 and solve for t
+    /// (ux^2 + uy^2) * t^2 + 2 * (ALP_Lx * ux + ALP_Ly * uy) * t + (ALP_Lx^2 + ALP_Ly^2 - R^2) = 0
+    float a = 2.0f * (ALP_Lx * ux + ALP_Ly * uy);
+    float b = a * a - 4 * (ux * ux + uy * uy) * (ALP_Lx * ALP_Lx + ALP_Ly * ALP_Ly - R * R);
+
+    float t_r = 99999999;
+
+    if (b >= 0) {
+      float t1 = (-a + sqrt(b)) / (2 * (ux * ux + uy * uy));
+      float t2 = (-a - sqrt(b)) / (2 * (ux * ux + uy * uy));
+      if (t1 > 0) t_r = t1;
+      if (t2 > 0) t_r = std::min(t_r, t2);
+    }
+ 
+    float t_z_pos = (Zmax - ALP_Lz) / uz;
+    float t_z_neg = (-Zmax - ALP_Lz) / uz;
+    float t_z = 99999999;
+    if (t_z_pos > 0 && fabs(ALP_Lz + t_z_pos * uz) <= Zmax) t_z = t_z_pos;
+    if (t_z_neg > 0 && fabs(ALP_Lz + t_z_neg * uz) <= Zmax) t_z = std::min(t_z, t_z_neg);
+
+    if (t_r < 0) t_r = 99999999; 
+    if (t_z < 0) t_z = 99999999; 
+        
+    float t_hit = std::min(t_r, t_z); 
+
+    std::vector<float> hit_pos = {ALP_Lx + t_hit * ux, ALP_Ly + t_hit * uy, ALP_Lz + t_hit * uz};
+    result.push_back(hit_pos);
+  }
+  return result;
+}
+
+
+
 
 ROOT::VecOps::RVec<TLorentzVector> get_tlv(ROOT::VecOps::RVec<edm4hep::ReconstructedParticleData> in) {
   ROOT::VecOps::RVec<TLorentzVector> result;

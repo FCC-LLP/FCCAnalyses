@@ -131,6 +131,9 @@ def load_hists(var: str,
                 scale = determine_lumi_scaling(config,
                                                infile,
                                                config['scale_sig'])
+                if config['scale_sig'] == -1.:
+                    if(hist.Integral() != 0):
+                        scale = 1.0/hist.Integral()
             hist.Scale(scale)
             hist.Rebin(rebin)
 
@@ -140,7 +143,31 @@ def load_hists(var: str,
                 hist.Add(hsignal[s][0])
                 hsignal[s][0] = hist
 
+
     hbackgrounds = {}
+    total_background_integral = 0.0
+
+    for b in backgrounds:
+        hbackgrounds[b] = []
+        for filepathstem in backgrounds[b]:
+            infilepath = config['input_dir'] + filepathstem + '_' + sel + \
+                         '_histo.root'
+            if not os.path.isfile(infilepath):
+                LOGGER.info('File "%s" not found!\nSkipping it...', infilepath)
+                continue
+
+            with ROOT.TFile(infilepath) as infile:
+                hist = copy.deepcopy(infile.Get(var))
+                hist.SetDirectory(0)
+
+                # print('hist.integral:', hist.Integral())
+
+                total_background_integral += hist.Integral()
+
+
+    # LOGGER.info('total_background_integral: %f', total_background_integral)
+
+
     for b in backgrounds:
         hbackgrounds[b] = []
         for filepathstem in backgrounds[b]:
@@ -157,6 +184,13 @@ def load_hists(var: str,
                 scale = determine_lumi_scaling(config,
                                                infile,
                                                config['scale_bkg'])
+
+                if config['scale_bkg'] == -1.:
+                    if(total_background_integral != 0):
+                        scale = 1.0/total_background_integral
+                    else:
+                        scale = 1.0
+
             hist.Scale(scale)
             hist.Rebin(rebin)
 
@@ -258,10 +292,10 @@ def runPlots(config: dict[str, any],
 
     # Below are settings for separate signal and background legends
     if config['split_leg']:
-        legsize = 0.04 * (len(hsignal))
-        legsize2 = 0.04 * (len(hbackgrounds))
-        leg = ROOT.TLegend(0.15, 0.60 - legsize, 0.50, 0.62)
-        leg2 = ROOT.TLegend(0.60, 0.60 - legsize2, 0.88, 0.62)
+        legsize = 0.025 * (len(hsignal))
+        legsize2 = 0.025 * (len(hbackgrounds))
+        leg = ROOT.TLegend(0.15, 0.7 - legsize, 0.50, 0.72)
+        leg2 = ROOT.TLegend(0.60, 0.86- legsize2, 0.88, 0.88)
 
         if config['leg_position'][0] is not None and \
                 config['leg_position'][2] is not None:
@@ -562,8 +596,8 @@ def drawStack(config, name, ylabel, legend, leftText, rightText, formats,
     canvas = ROOT.TCanvas(name, name, 800, 800)
     canvas.SetLogy(logY)
     canvas.SetTicks(1, 1)
-    canvas.SetLeftMargin(0.14)
-    canvas.SetRightMargin(0.08)
+    canvas.SetLeftMargin(0.13)
+    canvas.SetRightMargin(0.10)
 
     sumhistos = histos[0].Clone()
     iterh = iter(histos)
@@ -701,6 +735,8 @@ def drawStack(config, name, ylabel, legend, leftText, rightText, formats,
     if ymin <= 0 and logY:
         LOGGER.error('Log scale can\'t start at: %i', ymin)
         sys.exit(3)
+    # ymin=10e-8
+    # ymax=10e4
     h_dummy.SetMaximum(ymax)
     h_dummy.SetMinimum(ymin)
 
@@ -714,49 +750,49 @@ def drawStack(config, name, ylabel, legend, leftText, rightText, formats,
     latex.SetTextSize(0.04)
 
     text = '#it{' + leftText + '}'
-    latex.DrawLatex(0.90, 0.94, text)
+    latex.DrawLatex(0.94, 0.92, text)
 
     text = '#it{'+customLabel+'}'
     latex.SetTextAlign(12)
     latex.SetNDC(ROOT.kTRUE)
-    latex.SetTextSize(0.04)
-    latex.DrawLatex(0.18, 0.85, text)
+    latex.SetTextSize(0.03)
+    latex.DrawLatex(0.18, 0.89, text)
 
     rightText = re.split(",", rightText)
     text = '#bf{#it{' + rightText[0] + '}}'
 
     latex.SetTextAlign(12)
     latex.SetNDC(ROOT.kTRUE)
-    latex.SetTextSize(0.04)
-    latex.DrawLatex(0.18, 0.81, text)
+    latex.SetTextSize(0.03)
+    latex.DrawLatex(0.18, 0.86, text)
 
     rightText[1] = rightText[1].replace("   ", "")
     text = '#bf{#it{' + rightText[1] + '}}'
-    latex.SetTextSize(0.035)
-    latex.DrawLatex(0.18, 0.76, text)
+    latex.SetTextSize(0.03)
+    latex.DrawLatex(0.18, 0.83, text)
 
     text = '#bf{#it{' + ana_tex + '}}'
-    latex.SetTextSize(0.04)
-    latex.DrawLatex(0.18, 0.71, text)
+    latex.SetTextSize(0.03)
+    latex.DrawLatex(0.18, 0.80, text)
 
     text = '#bf{#it{' + extralab + '}}'
     latex.SetTextSize(0.025)
-    latex.DrawLatex(0.18, 0.66, text)
+    latex.DrawLatex(0.18, 0.77, text)
 
-    if config['scale_sig'] != 1.0:
-        text = '#bf{#it{Signal Scaling = ' + f'{config["scale_sig"]:.3g}' + \
-               '}}'
-        latex.SetTextSize(0.025)
-        latex.DrawLatex(0.18, 0.63, text)
+    # if config['scale_sig'] != 1.0:
+    #     text = '#bf{#it{Signal Scaling = ' + f'{config["scale_sig"]:.3g}' + \
+    #            '}}'
+    #     latex.SetTextSize(0.025)
+    #     latex.DrawLatex(0.18, 0.63, text)
 
-    if config['scale_bkg'] != 1.0:
-        text = '#bf{#it{Background Scaling = ' + \
-                f'{config["scale_bkg"]:.3g}' + '}}'
-        latex.SetTextSize(0.025)
-        latex.DrawLatex(0.18, 0.63, text)
+    # if config['scale_bkg'] != 1.0:
+    #     text = '#bf{#it{Background Scaling = ' + \
+    #             f'{config["scale_bkg"]:.3g}' + '}}'
+    #     latex.SetTextSize(0.025)
+    #     latex.DrawLatex(0.18, 0.63, text)
 
     canvas.RedrawAxis()
-    canvas.GetFrame().SetBorderSize(12)
+    canvas.GetFrame().SetBorderSize(5)
     canvas.Modified()
     canvas.Update()
 
@@ -807,8 +843,8 @@ def drawStack(config, name, ylabel, legend, leftText, rightText, formats,
 
         dy = 0
         text = '#bf{#it{' + 'Process' + '}}'
-        latex.SetTextSize(0.035)
-        latex.DrawLatex(0.18, 0.45, text)
+        latex.SetTextSize(0.025)
+        latex.DrawLatex(0.18, 0.6, text)
 
         text = '#bf{#it{' + 'Yields' + '}}'
         latex.SetTextSize(0.035)
@@ -982,7 +1018,7 @@ def run(args):
     if config['int_lumi_label'] is None:
         if config['int_lumi'] >= 1e6:
             int_lumi_label = config['int_lumi'] / 1e6
-            config['int_lumi_label'] = f'L = {int_lumi_label:.2g} ab^{{-1}}'
+            config['int_lumi_label'] = f'L = {int_lumi_label:.5g} ab^{{-1}}'
         elif config['int_lumi'] >= 1e3:
             int_lumi_label = config['int_lumi'] / 1e3
             config['int_lumi_label'] = f'L = {int_lumi_label:.2g} fb^{{-1}}'

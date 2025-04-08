@@ -1,0 +1,14 @@
+#submit description file for HTCondor
+
+Universe              = vanilla
+executable            = mg.sh
+arguments             = $(ProcId) 2.0 1.0 100000
+GetEnv                = True
+output                = output/$(ClusterId).$(ProcId).out
+error                 = error/$(ClusterId).$(ProcId).err
+log                   = log/$(ClusterId).log
+#requirements 	        = ( OpSysAndVer == "RedHat9")
+# request_memory        = 4 GB
++JobFlavour           = "espresso"
+
+queue 10
