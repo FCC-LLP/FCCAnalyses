@@ -12,13 +12,15 @@ import urllib.request
 import yaml  # type: ignore
 import ROOT  # type: ignore
 import cppyy
+import numpy as np
+
 
 ROOT.gROOT.SetBatch(True)
-
 
 LOGGER: logging.Logger = logging.getLogger('FCCAnalyses.process_info')
 
 
+# _____________________________________________________________________________
 def get_entries(inpath: str) -> int | None:
     '''
     Retrieves number of entries in the "events" TTree from the provided ROOT
@@ -100,12 +102,18 @@ def get_entries_sow(infilepath: str, nevents_max: Optional[int] = None, get_loca
     return processEvents, eventsTTree, processSumOfWeights, sumOfWeightsTTree
 
 
-def get_process_info(process: str,
-                     prod_tag: str,
-                     input_dir: str) -> tuple[list[str], list[int]]:
+def get_process_info(
+        process_name: str,
+        prod_tag: str,
+        input_dir: str,
+        process_input_dir: str | None = None) -> tuple[list[str], list[int]]:
     '''
     Decide where to look for the filelist and eventlist.
     '''
+
+    if process_input_dir is not None:
+        return get_process_info_files(process_name, process_input_dir)
+
     if prod_tag is None and input_dir is None:
         LOGGER.error('The variable <prodTag> or <inputDir> is mandatory in '
                      'your analysis script!\nAborting...')
@@ -117,9 +125,9 @@ def get_process_info(process: str,
         sys.exit(3)
 
     if prod_tag is not None:
-        return get_process_info_yaml(process, prod_tag)
+        return get_process_info_yaml(process_name, prod_tag)
 
-    return get_process_info_files(process, input_dir)
+    return get_process_info_files(process_name, input_dir)
 
 
 def get_process_info_files(process: str, input_dir: str) -> tuple[list[str],
@@ -196,6 +204,7 @@ def get_process_info_yaml(process_name: str,
     return filelist, eventlist
 
 
+# _____________________________________________________________________________
 def get_process_dict(proc_dict_location: str) -> dict:
     '''
     Pick up the dictionary with process information
@@ -241,6 +250,7 @@ def get_process_dict(proc_dict_location: str) -> dict:
     return proc_dict
 
 
+# _____________________________________________________________________________
 def get_process_dict_dirs() -> list[str]:
     '''
     Get search directories for the process dictionaries
@@ -255,3 +265,48 @@ def get_process_dict_dirs() -> list[str]:
     dirs[:] = [d for d in dirs if d]
 
     return dirs
+
+
+# _____________________________________________________________________________
+def get_subfile_list(in_file_list: list[str],
+                     event_list: list[int],
+                     fraction: float) -> list[str]:
+    '''
+    Obtain list of files roughly containing the requested fraction of events.
+    '''
+    nevts_total: int = sum(event_list)
+    nevts_target: int = int(nevts_total * fraction)
+
+    if nevts_target <= 0:
+        LOGGER.error('The reduction fraction %f too stringent, no events '
+                     'left!\nAborting...', fraction)
+        sys.exit(3)
+
+    nevts_real: int = 0
+    out_file_list: list[str] = []
+    for i, nevts in enumerate(event_list):
+        if nevts_real >= nevts_target:
+            break
+        nevts_real += nevts
+        out_file_list.append(in_file_list[i])
+
+    info_msg = f'Reducing the input file list by fraction "{fraction}" of '
+    info_msg += 'total events:\n\t'
+    info_msg += f'- total number of events: {nevts_total:,}\n\t'
+    info_msg += f'- targeted number of events: {nevts_target:,}\n\t'
+    info_msg += '- number of events in the resulting file list: '
+    info_msg += f'{nevts_real:,}\n\t'
+    info_msg += '- number of files after reduction: '
+    info_msg += str((len(out_file_list)))
+    LOGGER.info(info_msg)
+
+    return out_file_list
+
+
+# _____________________________________________________________________________
+def get_chunk_list(file_list: str, chunks: int):
+    '''
+    Get list of input file paths arranged into chunks.
+    '''
+    chunk_list = list(np.array_split(file_list, chunks))
+    return [chunk for chunk in chunk_list if chunk.size > 0]

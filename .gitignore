@@ -7,9 +7,6 @@ __pycache__/
 # C extensions
 *.so
 
-# ROOT files
-*.root
-
 # HTCondor
 # ignores <lxplus-username>.cc file in the top FCCAnalyses directory
 /*.cc
@@ -44,9 +41,17 @@ share/python-wheels/
 *.egg
 MANIFEST
 
+# Input
+*.root
+*.lst
+*.txt
+
 # Output
 outputs/
+
+# Batch submission
 BatchOutputs/
+batch-submission-files
 
 # PyInstaller
 #  Usually these files are written by a python script from a template

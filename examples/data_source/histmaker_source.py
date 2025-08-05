@@ -1,16 +1,19 @@
+from string import Template
+
 # list of processes (mandatory)
 processList = {
     'p8_ee_WW_ecm240': {
         'output': 'p8_ee_WW_ecm240_out',
-        'testfile': 'https://fccsw.web.cern.ch/fccsw/testsamples/edm4hep1/'
-                    'p8_ee_WW_ecm240_edm4hep.root'}
+        'testfile': Template('https://fccsw.web.cern.ch/fccsw/analysis/'
+                             'test-samples/edm4hep099/$key4hep_os/'
+                             '$key4hep_stack/p8_ee_WW_ecm240_edm4hep.root')}
 }
 
 # Production tag when running over EDM4Hep centrally produced events, this
 # points to the yaml files for getting sample statistics (mandatory)
 prodTag = "FCCee/winter2023/IDEA/"
 
-# Link to the dictonary that contains all the cross section informations
+# Link to the dictonary that contains all the cross section information
 # etc... (mandatory)
 procDict = "FCCee_procDict_winter2023_IDEA.json"
 
@@ -37,7 +40,7 @@ def build_graph(df, dataset):
 
     df = df.Define(
         "electron_truth",
-        "ReconstructedParticle::selAbsPDG(11)(MCRecoAssociations)")
+        "ReconstructedParticle::selAbsPDG(11)(RecoMCLink)")
 
     df = df.Define(
         "electron_truth_pt",

@@ -31,9 +31,10 @@ endmacro()
 
 function(add_integration_test _testname)
   #FIXME make this call 'add_generic_test'
+  string(RANDOM _random)
   add_test(NAME fccanalysisrun_${_testname}
           # todo: figure out how to make ctest pick fccanalysis up from PATH
-          COMMAND ${CMAKE_SOURCE_DIR}/bin/fccanalysis run ${_testname} --test --nevents 100 --bench
+          COMMAND ${CMAKE_SOURCE_DIR}/bin/fccanalysis run ${_testname} --test --nevents 100 --bench -o output-${_random}.root
           WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
           )
   set_property(TEST fccanalysisrun_${_testname} APPEND PROPERTY ENVIRONMENT
@@ -59,8 +60,9 @@ function(add_generic_test _testname _testcmd)
 endfunction()
 
 function(add_standalone_test _testname)
+  string(RANDOM _random)
   add_test(NAME fccanalysis_standalone_${_testname}
-           COMMAND python ${_testname} --test
+           COMMAND python ${_testname} --test -o output-${_random}.root
            WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
   )
   set_property(TEST fccanalysis_standalone_${_testname} APPEND PROPERTY ENVIRONMENT
@@ -87,7 +89,7 @@ macro(fccanalyses_addon_build _name)
     target_include_directories(${_name} PUBLIC $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/addons>
                                                $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/analyzers/dataframe>)
     if(ARG_EXT_LIBS)
-      target_link_libraries(${_name} ${ARG_EXT_LIBS})
+      target_link_libraries(${_name} PUBLIC ${ARG_EXT_LIBS})
     endif()
     if(ARG_EXT_HEADERS)
       target_include_directories(${_name} PUBLIC ${ARG_EXT_HEADERS})
