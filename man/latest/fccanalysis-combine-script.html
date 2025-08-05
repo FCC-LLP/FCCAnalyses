@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html>
 <!-- This is an automatically generated file.  Do not edit.
-   Manpage for fccanalysis-final-script
+   Manpage for fccanalysis-combine-script
    Contact FCC-PED-SoftwareAndComputing-Analysis@cern.ch to correct errors or typos.
  -->
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <link rel="stylesheet" href="../../css/mandoc.css" type="text/css" media="all"/>
-  <title>FCCANALYSIS-FINAL-SCRIPT(7)</title>
+  <title>FCCANALYSIS-COMBINE-SCRIPT(7)</title>
 </head>
 <body>
 <table class="head">
   <tr>
-    <td class="head-ltitle">FCCANALYSIS-FINAL-SCRIPT(7)</td>
-    <td class="head-vol">fccanalysis-final-script man page</td>
-    <td class="head-rtitle">FCCANALYSIS-FINAL-SCRIPT(7)</td>
+    <td class="head-ltitle">FCCANALYSIS-COMBINE-SCRIPT(7)</td>
+    <td class="head-vol">fccanalysis-combine-script man page</td>
+    <td class="head-rtitle">FCCANALYSIS-COMBINE-SCRIPT(7)</td>
   </tr>
 </table>
 <div class="manual-text">
 <section class="Sh">
 <h1 class="Sh" id="NAME"><a class="permalink" href="#NAME">NAME</a></h1>
-<p class="Pp"><b>fccanalysis-final-script</b> &#x2013; analysis script for the
-    final stage of the analysis</p>
+<p class="Pp"><b>fccanalysis-combine-script</b> &#x2013; analysis script for the
+    combine stage of the analysis</p>
 </section>
 <section class="Sh">
 <h1 class="Sh" id="SYNOPSIS"><a class="permalink" href="#SYNOPSIS">SYNOPSIS</a></h1>
@@ -33,12 +33,13 @@
 </section>
 <section class="Sh">
 <h1 class="Sh" id="DESCRIPTION"><a class="permalink" href="#DESCRIPTION">DESCRIPTION</a></h1>
-<p class="Pp">The analysis script for the final stage of the analysis is
-    expected to be a valid Python script containing definitions of the cuts and
-    the final histograms. To run the final stage do</p>
+<p class="Pp">The analysis script for the combine stage of the analysis is
+    expected to be a valid Python script containing, among other variables,
+    definitions of signal, background, categories and systematic uncertainties.
+    To run the combine stage do</p>
 <dl class="Bl-tag">
   <dt></dt>
-  <dd>fccanalysis final <i>analysis_script.py</i>
+  <dd>fccanalysis combine <i>analysis_combine_script.py</i>
     <p class="Pp"></p>
   </dd>
 </dl>
@@ -46,79 +47,55 @@
 <section class="Sh">
 <h1 class="Sh" id="ATTRIBUTES"><a class="permalink" href="#ATTRIBUTES">ATTRIBUTES</a></h1>
 <p class="Pp">User can use the following global attributes to control the
-    behavior of the final analysis stage.</p>
+    behavior of the combine stage.</p>
 <dl class="Bl-tag">
-  <dt id="procDict"><a class="permalink" href="#procDict"><b>procDict</b>
-    (mandatory)</a></dt>
-  <dd>This variable controls which process dictionary will be used. It can be
-      either simple file name, absolute path or url. In the case of a simple
-      filename, the file is being searched for first in the working directory
-      and then at the locations indicated in the $FCCDICTSDIR environment
-      variable.</dd>
-  <dt id="procDictAdd"><a class="permalink" href="#procDictAdd"><b>procDictAdd</b>
-    (optional)</a></dt>
-  <dd>User can provide additional processes, which are not included in the main
-      processes dictionary.</dd>
   <dt id="inputDir"><a class="permalink" href="#inputDir"><b>inputDir</b>
     (mandatory)</a></dt>
   <dd>User has to specify the directory where the input files coming from the
       previous analysis stage are stored.</dd>
   <dt id="outputDir"><a class="permalink" href="#outputDir"><b>outputDir</b>
-    (optional)</a></dt>
-  <dd>User can specify the directory for the output files.
-    <br/>
-    Default value: . (current working directory)</dd>
-  <dt id="nCPUS"><a class="permalink" href="#nCPUS"><b>nCPUS</b>
-    (optional)</a></dt>
-  <dd>Number of threads the RDataFrame will use. If -1 is specified all
-      available cores will be used.
-    <br/>
-    Default value: 4</dd>
-  <dt id="cutList"><a class="permalink" href="#cutList"><b>cutList</b>
-    (optional)</a></dt>
-  <dd>Dictionary of cuts to be done of form &quot;&lt;cut_name&gt;:
-      &lt;cut_definition&gt;&quot;. The cuts are independent and there is one
-      special cut &quot;all_events&quot;.
-    <br/>
-    Default value: Empty dictionary</dd>
-  <dt id="cutLabels"><a class="permalink" href="#cutLabels"><b>cutLabels</b>
-    (optional)</a></dt>
-  <dd>Dictionary of labels for cuts defined in <b>cutList</b> which will be used
-      in LaTeX table(s).
-    <br/>
-    Default value: Empty dictionary</dd>
-  <dt id="doScale"><a class="permalink" href="#doScale"><b>doScale</b>
-    (optional)</a></dt>
-  <dd>Whether to scale the results to the expected integrated luminosity.
-    <br/>
-    Default value: True</dd>
+    (mandatory)</a></dt>
+  <dd>User has to specify the directory for the combine datacards.</dd>
   <dt id="intLumi"><a class="permalink" href="#intLumi"><b>intLumi</b>
+    (mandatory)</a></dt>
+  <dd>Expected integrated luminosity in pb^{-1}.</dd>
+  <dt id="sig_procs"><a class="permalink" href="#sig_procs"><b>sig_procs</b>
+    (mandatory)</a></dt>
+  <dd>List of processes considered signal.</dd>
+  <dt id="bkg_procs"><a class="permalink" href="#bkg_procs"><b>bkg_procs</b>
+    (mandatory)</a></dt>
+  <dd>List of processes considered background.</dd>
+  <dt id="categories"><a class="permalink" href="#categories"><b>categories</b>
+    (mandatory)</a></dt>
+  <dd>List of categories to be evaluated.</dd>
+  <dt id="hist_names"><a class="permalink" href="#hist_names"><b>hist_names</b>
+    (mandatory)</a></dt>
+  <dd>List of histogram names connected with the category.</dd>
+  <dt id="systs"><a class="permalink" href="#systs"><b>systs</b>
+    (mandatory)</a></dt>
+  <dd>List of systematic uncertainties to be considered.</dd>
+  <dt id="selection"><a class="permalink" href="#selection"><b>selection</b>
     (optional)</a></dt>
-  <dd>Expected integrated luminosity in pb^{-1}.
+  <dd>User can specify the selection to be used.
     <br/>
-    Default value: 1.0 pb^{-1}</dd>
-  <dt id="doTree"><a class="permalink" href="#doTree"><b>doTree</b>
+    Default value: No selection</dd>
+  <dt id="mc_stats"><a class="permalink" href="#mc_stats"><b>mc_stats</b>
     (optional)</a></dt>
-  <dd>Save events passing final cuts into output TTree.
+  <dd>Whether Combine should handle MC statistical uncertainties automatically.
     <br/>
     Default value: False</dd>
-  <dt id="saveTabular"><a class="permalink" href="#saveTabular"><b>saveTabular</b>
+  <dt id="rebin"><a class="permalink" href="#rebin"><b>rebin</b>
     (optional)</a></dt>
-  <dd>Save results into LaTeX table(s).
+  <dd>Rebin factor to be applied on the input histograms.
     <br/>
-    Default value: False</dd>
-  <dt id="saveJSON"><a class="permalink" href="#saveJSON"><b>saveJSON</b>
-    (optional)</a></dt>
-  <dd>Save results into JSON file.
-    <br/>
-    Default value: False</dd>
+    Default value: 1</dd>
 </dl>
 <p class="Pp">This section is under construction. You are invited to help :)</p>
 </section>
 <section class="Sh">
 <h1 class="Sh" id="SEE_ALSO"><a class="permalink" href="#SEE_ALSO">SEE
   ALSO</a></h1>
-<p class="Pp">fccanalysis(1), fccanalysis-final(1)</p>
+<p class="Pp">fccanalysis(1), fccanalysis-combine(1)</p>
 </section>
 <section class="Sh">
 <h1 class="Sh" id="BUGS"><a class="permalink" href="#BUGS">BUGS</a></h1>
@@ -155,7 +132,7 @@
 </div>
 <table class="foot">
   <tr>
-    <td class="foot-date">05 Aug 2024</td>
+    <td class="foot-date">27 Mar 2025</td>
     <td class="foot-os">0.11.0</td>
   </tr>
 </table>
