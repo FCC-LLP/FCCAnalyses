@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.16.9)
-
+cmake_policy(SET CMP0167 NEW)
 
 project(FCCAnalyses VERSION 0.11.0
                     LANGUAGES CXX
