@@ -329,7 +329,7 @@ inputDir = "/eos/user/e/ebakhish/MG/Pythia_Output/"
 # outputDir = "./stage1_ee_gaga_1million/"
 # outputDir = "./stage1_FSGenALP/"
 #outputDir = "/eos/user/j/jalimena/FCCeeLLP/"
-outputDir = "/eos/user/e/ebakhish/stage1_output/final_signals/"
+outputDir = "./stage1_output/"
 
 #outputDirEos = "/eos/experiment/fcc/ee/analyses/case-studies/bsm/LLPs/ALPs_3photons/winter2023/output_stage1/"
 #outputDirEos = "/eos/user/j/jalimena/FCCeeLLP/"
@@ -340,7 +340,7 @@ nCPUS       = 4
 
 #Optional running on HTCondor, default is False
 # runBatch    = False
-runBatch    = True
+runBatch    = False
 
 #Optional batch queue name when running on HTCondor, default is workday
 batchQueue = "longlunch"
