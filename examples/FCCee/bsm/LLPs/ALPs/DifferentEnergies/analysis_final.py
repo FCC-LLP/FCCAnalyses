@@ -270,7 +270,7 @@ histoList = {
     "FSGenPhoton_phi_obj_sel_eta":                      {"name":"FSGenPhoton_phi_obj_sel_eta",                      "title":"Final state gen photons #phi",                           "bin":64,  "xmin":-3.2,  "xmax":3.2},
     "FSGenPhotons_delta_eta_obj_sel_eta":               {"name":"FSGenPhotons_delta_eta_obj_sel_eta",               "title":"Final state gen photons #Delta#eta",                     "bin":100, "xmin":0,     "xmax":10},
     "FSGenPhotons_delta_phi_obj_sel_eta":               {"name":"FSGenPhotons_delta_phi_obj_sel_eta",               "title":"Final state gen photons #Delta#phi",                     "bin":100, "xmin":0,     "xmax":10},
-       "FSGenPhotons_delta_r_obj_sel_eta":                 {"name":"FSGenPhotons_delta_r_obj_sel_eta",                 "title":"Final state gen photons #DeltaR",                     "bin":100, "xmin":0,     "xmax":7},
+    "FSGenPhotons_delta_r_obj_sel_eta":                 {"name":"FSGenPhotons_delta_r_obj_sel_eta",                 "title":"Final state gen photons #DeltaR",                        "bin":100, "xmin":0,     "xmax":7},
     "FSGenPhotons_min_delta_r_obj_sel_eta":             {"name":"FSGenPhotons_min_delta_r_obj_sel_eta",             "title":"Final state gen photons minimum #DeltaR",                "bin":100, "xmin":0,     "xmax":7},
     "FSGenPhoton_pt_obj_sel_eta":                       {"name":"FSGenPhoton_pt_obj_sel_eta",                       "title":"Final state gen photons p_{T} [GeV]",                    "bin":100, "xmin":0,     "xmax":50},
     "FSGenPhoton_e_obj_sel_eta":                        {"name":"FSGenPhoton_e_obj_sel_eta",                        "title":"Final state gen photons energy [GeV]",                   "bin":100, "xmin":0,     "xmax":50},
