@@ -324,7 +324,6 @@ colors['background_WW_events10k_edm4hep'] = ROOT.TColor.GetColor(color_wheel[9])
 colors['background_ZH_events10k_edm4hep'] = ROOT.TColor.GetColor(color_wheel[10])  
 colors['background_tt_events10k_edm4hep'] = ROOT.TColor.GetColor(color_wheel[11])  
 
-
 plots = {}
 plots['ALP'] = {
     'signal':{

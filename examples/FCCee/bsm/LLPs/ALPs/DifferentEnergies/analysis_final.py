@@ -3,7 +3,7 @@ Final stage of the ALP analysis: e⁺e⁻ → aγ → γγγ
 '''
 
 # Input/output directories
-inputDir = "/eos/user/c/cdorofee/stage1_output/"
+inputDir  = "/eos/user/c/cdorofee/stage1_output/"
 outputDir = "/eos/user/c/cdorofee/final_output/"
 
 # List of datasets used in the analysis
@@ -27,7 +27,7 @@ process_list = {
 procDict = "FCCee_procDict_winter2023_IDEA.json"
 
 # Add samples which are not part of the offical process
-procDictAdd={
+procDictAdd = {
     "signal_Z_malp1_events10k_edm4hep":   {"numberOfEvents": 10000, "sumOfWeights": 10000, "crossSection": 2.470319,    "kfactor": 1.0, "matchingEfficiency": 1.0},
     "signal_Z_malp50_events10k_edm4hep":  {"numberOfEvents": 10000, "sumOfWeights": 10000, "crossSection": 0.8448685,   "kfactor": 1.0, "matchingEfficiency": 1.0},
     "signal_WW_malp1_events10k_edm4hep":  {"numberOfEvents": 10000, "sumOfWeights": 10000, "crossSection": 0.021765299, "kfactor": 1.0, "matchingEfficiency": 1.0},
