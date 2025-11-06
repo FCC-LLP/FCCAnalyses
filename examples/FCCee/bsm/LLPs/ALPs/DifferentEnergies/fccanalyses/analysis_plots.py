@@ -48,6 +48,7 @@ variables = [
     "FSGenPhoton_eta",
     "FSGenPhoton_theta",
     "FSGenPhoton_phi",
+    "FSGenPhoton_vertex_x",
     "FSGenPhoton_vertex_y",
     "FSGenPhoton_vertex_z",
     "FSGenALP_p",
