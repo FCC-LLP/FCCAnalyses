@@ -1,0 +1,7 @@
+process = e+ e- > ALP a, ALP > a a
+CME = 91.188
+MALP = 10.0
+CYY = 1.0
+CWW = 0.
+CBB = 1.0
+nevents = 10000.

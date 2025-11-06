@@ -1,0 +1,56 @@
+#************************************************************
+#*                        MadGraph 5                        *
+#*                                                          *
+#*                *                       *                 *
+#*                  *        * *        *                   *
+#*                    * * * * 5 * * * *                     *
+#*                  *        * *        *                   *
+#*                *                       *                 *
+#*                                                          *
+#*                                                          *
+#*    The MadGraph Development Team - Please visit us at    *
+#*    https://server06.fynu.ucl.ac.be/projects/madgraph     *
+#*                                                          *
+#************************************************************
+#*                                                          *
+#*               Command File for MadGraph 5                *
+#*                                                          *
+#*     run as ./bin/mg5_aMC  filename                       *
+#*                                                          *
+#************************************************************
+
+import model sm
+define p = g u c d s u~ c~ d~ s~
+define j = g u c d s u~ c~ d~ s~
+define l+ = e+ mu+
+define l- = e- mu-
+define vl = ve vm vt
+define vl~ = ve~ vm~ vt~
+
+import model ALP_linear_UFO
+generate PROCESS
+
+output OUTPUTDIR
+launch OUTPUTDIR
+
+set lpp1 0
+set lpp2 0
+set ebeam1 EBEAM1
+set ebeam2 EBEAM2
+
+set pta 0.
+set ptl 0.
+set ptj 0.
+set ptb 0.
+set draa 0.0
+set ea 0.0
+set CGtil 0.
+set CWtil CWW
+set CBtil CBB
+set CaPhi 0
+set fa 1000.
+set Ma MALP
+set Wax auto
+
+set nevents NUMBEROFEVENTS
+set iseed SEEDNUMBER
