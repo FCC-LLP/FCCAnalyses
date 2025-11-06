@@ -1,10 +1,6 @@
 # ALPs @ FCC-ee
 
-This repository documents a workflow for generating and analyzing samples for an FCC-ee ALP analysis with a three photon final state. The Feynman diagram for the signal process is the following:
-
-<p align="center">
-  <img src="https://gitlab.cern.ch/cdorofee/alps-fcc-ee/-/raw/master/images/feynman-diagram.png?ref_type=heads" width="300"/>
-</p>
+This repository documents a workflow for generating and analyzing samples for an FCC-ee ALP analysis with a three photon final state.
 
 ## Sample Locations
 
