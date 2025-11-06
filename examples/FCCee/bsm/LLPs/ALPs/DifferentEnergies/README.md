@@ -186,3 +186,5 @@ Before running the limit scripts, you must first install Combine. You may follow
    ```
    python coupling.py
    ```
+
+The resulting exclusion limits on coupling can then be compared to other experiments using the plotting code in [AxionLimits](https://cajohare.github.io/AxionLimits/)
