@@ -1,0 +1,14 @@
+universe    = vanilla
+executable  = pythiadelphes.sh
+output      = output/$(ClusterId).$(ProcId).out
+error       = error/$(ClusterId).$(ProcId).err
+log         = log/$(ClusterId).log
++JobFlavour = "espresso"
+
+# signal
+arguments   = $(cme) $(mass) $(nevents) $(job)
+queue cme, mass, nevents, job from queue.txt
+
+# background
+# arguments   = $(cme) $(nevents) $(job)
+# queue cme, nevents, job from queue.txt

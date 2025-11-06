@@ -1,0 +1,46 @@
+#************************************************************
+#*                        MadGraph 5                        *
+#*                                                          *
+#*                *                       *                 *
+#*                  *        * *        *                   *
+#*                    * * * * 5 * * * *                     *
+#*                  *        * *        *                   *
+#*                *                       *                 *
+#*                                                          *
+#*                                                          *
+#*    The MadGraph Development Team - Please visit us at    *
+#*    https://server06.fynu.ucl.ac.be/projects/madgraph     *
+#*                                                          *
+#************************************************************
+#*                                                          *
+#*               Command File for MadGraph 5                *
+#*                                                          *
+#*     run as ./bin/mg5  filename                           *
+#*                                                          *
+#************************************************************
+
+import model sm
+define p = g u c d s u~ c~ d~ s~
+define j = g u c d s u~ c~ d~ s~
+define l+ = e+ mu+
+define l- = e- mu-
+define vl = ve vm vt
+define vl~ = ve~ vm~ vt~
+
+generate e+ e- > a a a
+
+output OUTPUTDIR
+launch OUTPUTDIR
+
+set lpp1 0
+set lpp2 0
+set ebeam1 EBEAM1
+set ebeam2 EBEAM2
+
+set ea 0.1
+set pta 0
+set etaa 2.6
+set draa 0
+
+set nevents NUMBEROFEVENTS
+set iseed SEEDNUMBER

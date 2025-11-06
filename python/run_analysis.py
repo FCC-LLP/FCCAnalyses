@@ -309,12 +309,17 @@ def run_stages(args, rdf_module, anapath):
 
     # Check if files are specified, and if so run the analysis on it/them (this
     # will exit after)
-    if len(args.files_list) > 0:
-        LOGGER.info('Running over files provided in command line argument...')
+    if args.input_file_list:
+        LOGGER.info('Processing input files listed in the provided text file...')
+        with open(args.input_file_list, 'r') as f:
+            input_files = [line.strip() for line in f if line.strip()]
+        if not input_files:
+            LOGGER.error(f"No valid input files found in {args.input_file_list}")
+            sys.exit(3)
         directory, _ = os.path.split(args.output)
         if directory:
             os.system(f'mkdir -p {directory}')
-        run_local(rdf_module, args.files_list, args)
+        run_local(rdf_module, input_files, args)
         sys.exit(0)
 
     # Check if the process list is specified

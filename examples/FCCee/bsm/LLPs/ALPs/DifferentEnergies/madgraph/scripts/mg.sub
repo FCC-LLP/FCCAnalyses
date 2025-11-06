@@ -1,0 +1,10 @@
+universe    = vanilla
+executable  = signal.sh
+arguments   = 91.188 0.1 10000 $(ProcId)
+GetEnv      = True
+output      = output/$(ClusterId).$(ProcId).out
+error       = error/$(ClusterId).$(ProcId).err
+log         = log/$(ClusterId).log
++JobFlavour = "longlunch"
+
+queue 100
